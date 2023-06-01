@@ -1,0 +1,41 @@
+.home-page{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 70px);
+    
+}
+
+.container-home{
+    // overflow-y: scroll !important;
+    height: 100%;
+}
+.section-home{
+    margin: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    // background: #f5f5f5;
+    // position: relative;
+    // top: -110px;
+}
+
+.maps{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+   justify-content: center;
+}
+
+ .maps .a{
+        text-decoration: none;
+        font-size: 20px;
+    }
+
+    .maps .a .img{
+        width: 20px;
+        height: 20px;
+    }

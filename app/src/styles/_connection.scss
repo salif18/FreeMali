@@ -1,0 +1,45 @@
+.connection-pages{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid #f5f5f5;
+    background: #f5f5f5;
+}
+
+.container-connect{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin:100px;
+    background: #fff;
+    width: 550px;
+}
+
+.container-connect h1{
+    margin:20px;
+    font-family: "Roboto";
+
+}
+
+.login-btn{
+    margin: 20px;
+    width: 450px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background: #27a8f3;
+    color:#fff;
+    font-size: 18px;
+    font-family: 'Roboto';
+    font-weight: 600;
+}
+
+.connection-pages .form-control{
+    width: 450px;
+    height: 50px;
+    margin:20px;
+    font-size: 18px;
+    font-family: "Roboto",sans-serif;
+}

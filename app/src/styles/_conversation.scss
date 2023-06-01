@@ -1,0 +1,23 @@
+.conversation{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    // margin-top: 10px;
+    cursor: pointer;
+    &:hover{
+        background: rgb(245,243,243);
+    }
+}
+
+.convers-img{
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    object-fit: cover;
+    border: 1px solid rgb(15,202,248);
+}
+
+.convers-name{
+    font-weight: 600;
+}

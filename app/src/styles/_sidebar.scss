@@ -1,0 +1,55 @@
+.sidebar{
+    flex:1;
+    background: #ffff;
+    border:1px solid #e7e7e7;
+    margin: 20px;
+    height: 950px;
+    border-radius: 20px;
+}
+
+.header-side{
+    margin: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.sidebar .mainsoeuvres h3{
+    font-size: 24px;
+    font-weight: 600;
+    color: #8a8a8a8c;
+    font-family: 'Roboto';
+   margin: 10px;
+}
+
+
+
+.mainsoeuvres{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.secteur{
+    display:flex;
+    align-items:center;
+    // background:#b6afaf49;
+    // background: rgb(15, 202, 248);
+     height: 45px;
+    
+}
+
+.liens {
+    list-style: none;
+    text-decoration: none;
+    font-family: 'Roboto';
+    font-weight: 600;
+    font-size: 18px;
+    color: black;
+    transition: all  ease-in-out;
+    &:hover{
+        //  background: rgb(15,202,248);
+        border-radius: 5px;
+        color: rgb(15, 202, 248);
+        // border: 2px solid rgba(15, 202, 248);
+    }
+}
