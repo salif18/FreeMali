@@ -4,7 +4,7 @@ import TipsAndUpdatesIcon from '@mui/icons-material/TipsAndUpdates';
 import GarageIcon from '@mui/icons-material/Garage';
 import ConstructionIcon from '@mui/icons-material/Construction';
 import PlumbingRoundedIcon from '@mui/icons-material/PlumbingRounded';
-import CastForEducationRoundedIcon from '@mui/icons-material/CastForEducationRounded';
+// import CastForEducationRoundedIcon from '@mui/icons-material/CastForEducationRounded';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import TagFacesIcon from '@mui/icons-material/TagFaces';
 import Diversity1RoundedIcon from '@mui/icons-material/Diversity1Rounded';

@@ -4,22 +4,22 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { MyStore } from '../context/myStore';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
-
+import SettingsPowerIcon from '@mui/icons-material/SettingsPower';
 
 const Navbar = () => {
- const {myProfile,logout,isInLine,conversations} = useContext(MyStore)
+ const {myProfile,logout,isInLine,conversations,offres} = useContext(MyStore)
     const navigate = useNavigate()
 
 
     return (
         <nav className='navbar'>
 
-            <div className='navbar-left'>
-            {isInLine && <div className='sedeconecter' onClick={logout} >Se deconnecter</div>}
-             <NavLink to='/'>Home</NavLink> 
-             <NavLink to='/blogs'>Blogs prestataires</NavLink>
-             {isInLine && <NavLink to='/offres'>Offres</NavLink>}
-             <NavLink>Contacts</NavLink>
+            <div className='navbar-left' >
+            {isInLine && <div className='sedeconecter' onClick={logout} ><SettingsPowerIcon style={{color:'red'}}/>Se deconnecter</div>}
+             <NavLink className={({isActive})=> isActive ? 'active':''} to='/'>Accueil</NavLink> 
+             <NavLink className={({isActive})=> isActive ? 'active':''} to='/blogs'>Blogs prestataires</NavLink>
+             {isInLine && <NavLink className={({isActive})=> isActive ? 'active':''} to='/offres'>Offres<span className='len-offre'>{offres.length}</span></NavLink>}
+             <NavLink className={({isActive})=> isActive ? 'active':'navbar-left'}>Contacts</NavLink>
             </div>
 
             <div className='navbar-rigth'>
@@ -28,7 +28,7 @@ const Navbar = () => {
              </button>
             <p className='p-rech'>Rechercher</p>
             <div className='navbar-rigth-sociaux'>
-            {isInLine && <NavLink className='lien-sociaux' to='/messagerie'><ChatBubbleOutlineIcon/>{conversations.length}</NavLink>}
+            {isInLine && <NavLink className='lien-sociaux' to='/messagerie'><ChatBubbleOutlineIcon/>{conversations.length > 0 && <div className='len-offre'><p>{conversations.length}</p></div>}</NavLink>}
             {isInLine && <NavLink className='lien-sociaux' to='/notification'><NotificationsNoneIcon/></NavLink>}
              {isInLine && <NavLink className='lien-sociaux' to='/parametre'>
                <img className='img-profi' src={myProfile ? myProfile.photo :'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtYqXjw6IR_opev4UADLjT8TPcLmWYQsx_YQ&usqp=CAU'} alt='' />

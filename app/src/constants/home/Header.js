@@ -12,7 +12,7 @@ const Header = () => {
         
          </div> 
          <a  href ='https://www.google.com/maps/d/edit?mid=16CrjtsUTS-ZQI8nioIGzalRqLgvliI4&usp=sharing'>
-         <img className='img-so' src='https://play-lh.googleusercontent.com/Kf8WTct65hFJxBUDm5E-EpYsiDoLQiGGbnuyP6HBNax43YShXti9THPon1YKB6zPYpA' /></a>
+         <img className='img-so' src='https://play-lh.googleusercontent.com/Kf8WTct65hFJxBUDm5E-EpYsiDoLQiGGbnuyP6HBNax43YShXti9THPon1YKB6zPYpA' alt='' /></a>
         </div>
         <div className='header-rigth'>
          {!isInLine && <NavLink to='/connecter' >Se connecter</NavLink>}

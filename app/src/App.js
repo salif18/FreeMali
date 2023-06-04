@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Routes,Route} from 'react-router';
 import Home from './pages/Home';
 import InscriptionPrestataire from './pages/InscriptionPrestataire';
@@ -29,9 +29,23 @@ import 'react-toastify/dist/ReactToastify.css'
 import Messagerie from './pages/Messagerie';
 import Chat from './pages/Chat';
 import Contacter from './pages/Contacter';
+import { MyStore } from './context/myStore';
+import axios from 'axios';
 
 function App() {
-  
+  // url pour poster et recuperer tous les offres
+const url = 'http://localhost:3002/offres'
+
+const {getOffres} = useContext(MyStore)
+
+// recuperation des offres du cotes server
+useEffect(()=>{
+    axios.get(url)
+    .then(res => {
+        res && getOffres(res.data)
+    }).catch((err)=>console.log(err))
+},[])
+
   return (
     <>
     <div className="App">

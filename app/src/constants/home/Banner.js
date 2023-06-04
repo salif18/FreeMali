@@ -5,8 +5,12 @@ import { MyStore } from '../../context/myStore';
 const Banner = () => {
     const {isInLine} = useContext(MyStore)
     const navigate = useNavigate()
-    return (
+    
+    return ( 
+        <>
+      
         <section className='banner'>
+       
             <div className='container-baner'>
             <h1>Vous avez besoin d'un prestataire ou vous recherchez un job en ligne ? <br/>Rejoignez notre Communauté !</h1>
             <p>Trouvez des professionnels qualifiés pour vos services</p>
@@ -17,6 +21,7 @@ const Banner = () => {
           </div>
 
         </section>
+        </>
     );
 }
 

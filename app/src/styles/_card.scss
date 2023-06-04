@@ -1,6 +1,7 @@
 .card-content{
     display: flex;
     flex-direction: column;
+    justify-content: center;
     border: 1px solid #aaa;
     border-radius: 10px;
     width: 300px;
@@ -36,5 +37,7 @@
 }
 
 .card-content .card-body p{
+    text-align: center;
     font-family: 'Roboto';
+    text-transform: lowercase;
 }

@@ -1,16 +1,15 @@
-import React, { useContext, useState } from 'react';
-import data from '../data/EmpData';
+import React, { useContext} from 'react';
+// import data from '../data/EmpData';
 import EmpCard from '../constants/card/Employers';
-import Navbar from '../constants/Navbar';
 import NavbarSearch from '../constants/NavbarSearch';
 import { MyStore } from '../context/myStore';
-import Footer from '../constants/Footer';
+
 
 
 const Search = () => {
-    const {valueSearch,} =useContext(MyStore)
-
-   const resultatSearch = data.filter((x)=> x.proffession.includes(valueSearch.toLowerCase()))
+    const {valueSearch,users} =useContext(MyStore)
+    console.log(users)
+   const resultatSearch = users.filter((user)=> user.proffession.includes(valueSearch.toLowerCase()))
     return (
         <>
        <NavbarSearch/>

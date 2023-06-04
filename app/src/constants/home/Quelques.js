@@ -1,8 +1,10 @@
-import React from 'react';
-import data from '../../data/EmpData'
+import React, { useContext } from 'react';
+// import data from '../../data/EmpData'
 import EmpCard from '../card/Employers';
 import { useNavigate } from 'react-router';
+import { MyStore } from '../../context/myStore';
 const Quelques = () => {
+    const {users} = useContext(MyStore)
     const navigate = useNavigate()
     return (
         <div className='quelques'>
@@ -11,7 +13,7 @@ const Quelques = () => {
             <div className='container-quelques'>
             
              {
-               data.slice(0,4).map(item => (
+               users.filter((pre => pre.isPrestataire === true)).map(item => (
                 <EmpCard item={item}/>
                ))
              }

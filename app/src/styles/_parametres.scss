@@ -12,13 +12,18 @@
     align-items: center;
     justify-content: space-between;
     height: 200px;
-    background: rgb(15,202,248);
+    // background: rgb(15,202,248);
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
 }
 .img-para-container{
     padding-left: 20px;
     
+}
+
+.carte-maps{
+    width: 200px;
+    height: 100px;
 }
 .container-pro-parametre{
 display: flex;
@@ -42,14 +47,15 @@ margin-bottom: 20px;
 .pro-h1{
     font-family: 'Roboto';
     margin: 20px;
-
+   font-size: 25px;
+   font-weight: 300;
 }
 
 .img-param{
     width: 150px;
     height: 150px;
     border-radius: 100%;
-    border: 2.5px solid rgb(15,202,248);
+    // border: 2.5px solid rgb(15,202,248);
     margin: 20px;
 }
 
@@ -69,6 +75,8 @@ margin-bottom: 20px;
 .infos-h1{
     font-family: 'Roboto';
     margin: 20px;
+    font-size: 25px;
+    font-weight: 300;
 }
 
 .form-para{
@@ -95,7 +103,7 @@ margin-bottom: 20px;
     height: 50px;
     border-radius: 10px;
     border: none;
-    background:rgb(15,202,248);
+    background:rgb(13,179,221);
     color: #f5f5f5;
     font-family: 'Roboto';
     font-size: 16px;

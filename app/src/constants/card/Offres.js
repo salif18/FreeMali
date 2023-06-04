@@ -9,12 +9,13 @@ const CardOffres = ({item}) => {
 
     return (
         <div className='card-offre' key={item._id}>
+        
+            <div className='card-offre-body'> 
             <div className='container-img-card-offre'>
                <img className='img-card-offre' src={item.image} alt='' />
             </div>
-            <div className='card-offre-body'>
               <div className='contenu'>
-               <h1>Titre du projet</h1>
+               <h1>Offre</h1>
                <p>{item.contenu}</p>
                <NavLink className='commenter' to={`/offre/${item._id}`}>Commentaires({item.commentaires.length})</NavLink>
                </div>
@@ -27,12 +28,13 @@ const CardOffres = ({item}) => {
               <p className='p2'>{format(item.createdAt)}</p>
               </div>
             </div>
+
             <div className='grp-btn'>
             
             {!me_User.isPrestataire && item.userId === userId && <button className='btn-card-offre-del'
              onClick={()=>delOffre(item._id)}
             >
-            X
+            x
             </button>}
             <button className='btn-card-offre'
              onClick={()=>navigate(`/offre/${item._id}`)}>

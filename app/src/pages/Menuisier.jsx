@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Sidebar from '../constants/blogs/Sidebar';
 import Navbar from '../constants/Navbar';
 import EmpCard from '../constants/card/Employers';
-import data from '../data/EmpData'
+// import data from '../data/EmpData'
+import { MyStore } from '../context/myStore';
+
 const Menuisier = () => {
+const {users} = useContext(MyStore)
     return (
         <>
         <Navbar/>
@@ -13,7 +16,7 @@ const Menuisier = () => {
             <h1>Nos profils menuisiers</h1>
             <div className='section-ens'>
             {
-              data.filter((item => item.proffession.includes('menuisier'))).map((item)=>(
+              users.filter((item => item.proffession.includes('menuisier'))).map((item)=>(
                   <EmpCard item={item}/>
               ))
             }

@@ -8,14 +8,14 @@ import axios from 'axios'
 // url pour poster et recuperer tous les offres
 const url = 'http://localhost:3002/offres'
 const Offres = () => {
-const {me_User,myProfile, isInLine, userId} = useContext(MyStore)
-const [offre,setOffre] =useState([])
+const {me_User,myProfile, isInLine, userId,offres,getOffres} = useContext(MyStore)
+// const [offre,setOffre] =useState([])
 
 // recuperation des offres du cotes server
 useEffect(()=>{
     axios.get(url)
     .then(res => {
-        res && setOffre(res.data)
+        res && getOffres(res.data)
     }).catch((err)=>console.log(err))
 },[])
 
@@ -69,8 +69,8 @@ const handlePost =()=>{
               </div>  
             }
            <div className='offre-pulier'>
-           {offre.length <= 0 && me_User.isPrestataire && <p className='textaucun'>" Aucun offre pour le moment "</p>}
-            {offre.map((item)=>(
+           {offres.length <= 0 && me_User.isPrestataire && <p className='textaucun'>" Aucun offre pour le moment "</p>}
+            {offres.map((item)=>(
                 <CardOffres item={item} />
             ))
 

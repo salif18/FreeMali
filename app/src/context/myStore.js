@@ -1,19 +1,9 @@
 import { createContext, useState } from "react";
-// import offres from "../data/OffresData";
-
-// const getOffre = () => {
-//   const data = localStorage.getItem("offres");
-//   if (data) {
-//     return JSON.parse(data);
-//   } else {
-//     return [];
-//   }
-// };
 
 const defaultValue = {
   userId: "",
   token: null,
-  iSadminLogin: false,
+  isUserToConnect: false,
   login: () => {},
   logout: () => {},
 };
@@ -40,14 +30,34 @@ const getprofildata = () => {
   }
 };
 
+const getusers =()=>{
+  const data = localStorage.getItem('users')
+  if(data){
+    return JSON.parse(data)
+  }else{
+    return []
+  }
+}
+
+const getoffres =()=>{
+  const data = localStorage.getItem('offres')
+  if(data){
+    return JSON.parse(data)
+  }else{
+    return []
+  }
+}
+
 export const MyStoreProvider = (props) => {
-  const [userId, setUserId] = useState(userIdStorage);
-  const [token, setToken] = useState(tokenStorage);
-  const [myData, setMyData] = useState(getuserdata);
+  const [userId, setUserId] = useState(userIdStorage);//magasin de stock userId
+  const [token, setToken] = useState(tokenStorage);//magasin de stock token
+  const [myData, setMyData] = useState(getuserdata);//magasin de stock des donnees de l'utilisateur
   const me_User = myData[0];
-  const [myProfileData, setMyProfileData] = useState(getprofildata);
+  const [myProfileData, setMyProfileData] = useState(getprofildata);//magasin de stock du profile de utilisateur
   const myProfile = myProfileData[0];
-  const [prestataires,setPrestataires]=useState([])
+  const [users,setUsers]=useState(getusers)//magasin de stock de tous les utilisateurs
+  const [conversations, setConversations] = useState([]);//conversation stockage
+  const [offres,setOffres] = useState(getoffres)//stockage des offres
 
 //   connection
   const handleLogin = (userId, token) => {
@@ -69,6 +79,17 @@ export const MyStoreProvider = (props) => {
     localStorage.setItem("profile", JSON.stringify(profile));
   };
 
+//obtenir les users
+const getUsers =(user)=>{
+  setUsers(user)
+  localStorage.setItem('users',JSON.stringify(user))
+}
+
+//recuperer les offres
+const getOffres=(data)=>{
+  setOffres(data)
+  localStorage.setItem('offres',JSON.stringify(data))
+}
 //   se deconnecter
   const handleLogout = () => {
     setUserId(null);
@@ -76,19 +97,8 @@ export const MyStoreProvider = (props) => {
     localStorage.clear();
   };
 
-//   etat de connection de utilisateur
-  const iSadminLogin = !!token;
-
-  // les offres
-//   const [offre, setOffre] = useState(getOffre);
-//   useEffect(() => {
-//     localStorage.setItem("offres", JSON.stringify(offre));
-//   }, [offre]);
-
-  // supprimer un offre
-//   const delOffre = (id) => {
-//     setOffre(offre.filter((x) => x.id !== id));
-//   };
+//Etat de connection de utilisateur
+  const isUserToConnect = !!token;
 
   // valeur de recherche
   const [valueSearch, setValueSearch] = useState("");
@@ -96,17 +106,7 @@ export const MyStoreProvider = (props) => {
     setValueSearch(e.target.value);
   };
 
-//   // client
-//   const client = {
-//     userId_client: 1,
-//     image:
-//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIVM5e8ISRJQukKAZcmEBN1cUf6ztd7ciFbA&usqp=CAU",
-//     nom: "Salif M",
-//     prenom: "Konate",
-//     email: "salifmoctar@gmail.com",
-//     numero: "78 30 32 08",
-//     address: "https://goo.gl/maps/tgzewVJJP2EUk8wP7",
-//   };
+
 
   // notification
   const [notifications, setNotifications] = useState([]);
@@ -123,8 +123,7 @@ export const MyStoreProvider = (props) => {
     );
   };
 
-  //conversation
-  const [conversations, setConversations] = useState([]);
+ 
 
   // context value
   const contextValue = {
@@ -136,23 +135,24 @@ export const MyStoreProvider = (props) => {
     myProfile: myProfile,
     getMyData: getMyData,
     getMyProfileData: getMyProfileData,
-    isInLine: iSadminLogin,
+    isInLine: isUserToConnect,
     valueSearch: valueSearch,
     setValueSearch: setValueSearch,
     handleChange: handleChange,
-    // offre: offre,
-    // setOffre: setOffre,
-    // delOffre: delOffre,
-    // client: client,
     notifications: notifications,
     addNotification: addNotification,
     removeNotification: removeNotification,
     conversations: conversations,
     setConversations: setConversations,
-    prestataires,setPrestataires
+    users:users,
+    getUsers:getUsers,
+    offres:offres,
+    getOffres:getOffres
   };
 
   return (
-    <MyStore.Provider value={contextValue}>{props.children}</MyStore.Provider>
+    <MyStore.Provider value={contextValue}>
+      {props.children}
+    </MyStore.Provider>
   );
 };

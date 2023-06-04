@@ -80,9 +80,9 @@ exports.Allprestataire =async(req,res,next)=>{
 Profile.aggregate([
   {
     $lookup: {
-      from: 'user',
-      localField: '_id',
-      foreignField: 'userId',
+      from: 'users',
+      localField: 'userId',//cetait _id
+      foreignField: 'userId',//cetait userId
       as: 'profiles',
     },
   },
@@ -96,22 +96,23 @@ Profile.aggregate([
       email:1,
       numero:1,
       biographie:1,
-      proffession:'$proffession',
-      categorie:'$categorie',
+      proffession:1,
+      categorie:1,
       address: 1,
       isPrestataire:1,
-      profiles: {
-        $arrayElemAt: ['$profiles', 0],
-      },
+    //   profiles: {
+    //     $arrayElemAt: ['$profiles', 0],
+    //   },
     },
   },
 ])
-  .then((result) => {
-    res.status(200).json(result);
+  .then((profiles) => {
+    res.status(200).json(profiles);
   })
   .catch((error) => {
     res.status(500).json({error});
   });
+
 
 }
 
@@ -123,38 +124,7 @@ exports.getUser = async(req,res,next)=>{
     .find({_id:userId})
     .then((user)=>res.status(200).json(user))
     .catch((err)=>res.status(400).json({err}))
-    // try{
-    //     const users = await Users.aggregate([
-            
-    //         {
-    //           $lookup:{
-    //             from:'profile',
-    //             localField:'_id',
-    //             foreignField:'userId',
-    //             as:'profile'
-    //           }
-    //         },
-    //          {
-    //             $unwind:'$profil'
-    //          },
-    //          {
-    //             $project: {
-    //               _id: 1, // Conserve l'ID de l'utilisateur
-    //               nom: 1, // Conserve le nom de l'utilisateur
-    //               email: 1, // Conserve l'e-mail de l'utilisateur
-    //               profil: {
-    //                 _id: "$profil._id", // Renomme l'ID du profil
-    //                 titre: "$profil.titre", // Conserve le titre du profil
-    //                 description: "$profil.description" // Conserve la description du profil
-    //               }
-    //             }
-    //           }
-            
-    //     ]);
-    //     res.status(200).json(users)
-    //   }catch(err){
-    //     res.status(500).json({err})
-    //   }
+   
 }
 
 
@@ -208,4 +178,45 @@ res.status(500).json(e)
 }
  }
 
+
+ //obtenir user et son profile 
+// exports.getUserAndProdile = async(req,res,next)=>{
+   
+//    try{
+//      const users =await Users.aggregate([
+//         {
+//         $match:{}
+//     },
+//     {
+//         $lookup:{
+//             from:'profiles',
+//             localField:"_id",
+//             foreignField:'userId',
+//             as:'profile'
+//         }
+//     },
+//    {
+//         $unwind:"$profile"
+//     },
+//     {
+//         $project:{
+//             _id:1,
+//             nom:1,
+//             prenom:1,
+//             isPrestataire:1,
+//             profile:1,
+//             proffession:1,
+           
+            
+//         },
+        
+//     },
+    
+       
+//     ]);
+//     res.status(200).json(users)
+// }catch(e){
+// res.status(500).json(e)
+// }
+//  }
  

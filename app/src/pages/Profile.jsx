@@ -19,12 +19,8 @@ useEffect(()=>{
     .then((res)=>{
         res && setItem(res.data)
     }).catch((err)=>console.log(err))
-},[id])
+},[])
     
-    // const item = data.filter((x)=> x.userId == userId)
-    // const ite =item[0]
-       
-    console.log(item)
 
     return (
         <>

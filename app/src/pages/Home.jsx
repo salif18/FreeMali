@@ -13,9 +13,11 @@ import { MyStore } from '../context/myStore'
 import axios from 'axios'
 
 const Home = () => {
-  const {getMyData, getMyProfileData, userId, isInLine} = useContext(MyStore)
+  const {getUsers, getMyData, getMyProfileData, userId, isInLine} = useContext(MyStore)
   const PROFILGET = `http://localhost:3002/profiles/${userId}`//url pour recuperer le profile de utilisateur connecter
   const urlGET = `http://localhost:3002/auth/users/${userId}`//url de recuperation des donnes de user apres etre connecter
+  
+  
   useEffect(()=>{
     const getUser =async()=>{
       axios
@@ -46,6 +48,17 @@ useEffect(()=>{
   }
   isInLine && getProfile()
 },[])
+
+
+// recuperer tous les utilisateurs
+useEffect(()=>{
+    axios.get('http://localhost:3002/auth/utilisateur&Infos')
+    .then((res)=>{
+     res && getUsers(res.data)
+    }).catch((Err)=>console.log(Err))
+},[])
+
+
   // donnee des trois carte sur home
  const data = [
     {
@@ -67,7 +80,7 @@ useEffect(()=>{
     {
       id:3,
       image:logo3,
-      title:'Les differents offres',
+      title:'Les differentes offres',
       infos:'Ici se trouves les differentes demandes',
       btntext:'Découvrir',
       lien:'/offres'
@@ -76,9 +89,8 @@ useEffect(()=>{
   ]
   return (
     <> 
-    <Header/>
-    <Navbar/>
-     
+     <Header/>
+     <Navbar/>
     <div className='home-page'>
      <div className='container-home'>
      <Banner/>

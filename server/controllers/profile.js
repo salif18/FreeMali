@@ -60,7 +60,7 @@ exports.getProfileAll = (req,res,next)=>{
 
 // modifier le profile
 exports.modifyProfile =(req,res,next)=>{
-    Profile.updateOne({_id:req.params.id},{...req.body , _id:req.params.id})
+    Profile.updateOne({userId:req.params.userId},{...req.body , userId:req.params.userId})
     .then(()=>res.status(200).json({user:'modifier'}))
     .catch((err)=>res.status(400).json({err}))
 }

@@ -12,9 +12,12 @@ router.post('/login',usersControllers.login)
 router.get('/users/:userId',usersControllers.getUser)
 
 //reucper tous les utilisateur profiler
-router.get('/prestataire',usersControllers.Allprestataire)
+router.get('/utilisateur&Infos',usersControllers.Allprestataire)
 
 //recuperer un seul utilisateur
 router.get('/user/:id',usersControllers.getOneUser)
+
+// recuperer utilisateur avec profile combiner
+// router.get('/userAndprofile',usersControllers.getUserAndProdile)
 //exportation
 module.exports = router

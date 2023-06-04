@@ -58,7 +58,7 @@ const Messagerie = () => {
         {/*partie ou affiche les conversations recus*/}
         <div className='chatMenu'>
         <div className='chatMenuWrapper'>
-          <h1>Conversations</h1>
+          <h1>Mes conversations</h1>
          {conversations.map((item)=>(
           <div onClick={()=>setCurrentMessage([item])}>
            <Conversation conversation={item}/>
@@ -91,7 +91,7 @@ const Messagerie = () => {
      </div>
          
      </div>
-       :<span className='textread'>Ouvrir un message pour commencer la discussion</span>}
+       :<span className='textread'> "" Aucune discussion ouverte ""</span>}
        </div>
 
       </div>
