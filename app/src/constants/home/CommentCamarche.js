@@ -6,23 +6,23 @@ const CommentCamarche = () => {
         <h1>Comment fonctionne notre plateforme FreeMali ?</h1>
         <div className='container-objets'>
             <div className='objets'>
-             <img className='obj-img' src='https://cdn-icons-png.flaticon.com/512/3143/3143361.png' alt=''/>
-             <p>Postez votre projet et explicitez votre besoin</p>
+             <img className='obj-img' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWBdX_GMVfQxlanKWwT9ne-aiQnuBT_1tZ-g&usqp=CAU' alt=''/>
+             <p>Vous etes client ?, postez votre projet et explicitez votre besoin</p>
             </div>
 
             <div className='objets'>
-             <img className='obj-img' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT1zqABU-HdMHZil_zVx2-i05jiVLfU218PX_jI9bIqI0HMArcAagD0DWSCgh_7Xcoukzs&usqp=CAU' alt=''/>
-             <p>Parcourez les profils puis choisissez celui qui vous convient le mieux</p>
+             <img className='obj-img' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTUEXl0Ew_ZtTcAyQSLmatAnqg3Wx46B-6YmA&usqp=CAU' alt=''/>
+             <p>Parcourez les profils dans le blog puis choisissez celui qui vous convient le mieux</p>
             </div>
 
             <div className='objets'>
-             <img className='obj-img' src='https://www.simplilearn.com/ice9/free_resources_article_thumb/Syntax-of-interface-in-Java.png' alt=''/>
-             <p>Servez-vous de l'interface  pour discuter et partager des fichiers</p>
+             <img className='obj-img' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGF9kQdsN_IKiE4f4Ezje_td2vooo7KFdLww&usqp=CAU' alt=''/>
+             <p>Servez-vous de l'interface  pour discuter et partager vos services</p>
             </div>
 
             <div className='objets'>
-             <img className='obj-img' src='https://e7.pngegg.com/pngimages/54/114/png-clipart-computer-icons-payment-credit-card-credit-card-text-logo.png' alt=''/>
-             <p>Avec notre système, vous ne payez qu'une fois le travail validé</p>
+             <img className='obj-img' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGuJmswuXRtJhTMI4nvTa9z-g58mBBvqPakA&usqp=CAU' alt=''/>
+             <p>Vous etes prestataire ?, definir votre proffession et gagner des clients</p>
             </div>
         </div>
         </div>

@@ -95,14 +95,14 @@ Profile.aggregate([
       prenom:1,
       email:1,
       numero:1,
-      biographie:1,
-      proffession:1,
+      biographie:'$biographie',
+      proffession:'$proffession',
       categorie:1,
       address: 1,
       isPrestataire:1,
-    //   profiles: {
-    //     $arrayElemAt: ['$profiles', 0],
-    //   },
+      profiles: {
+        $arrayElemAt: ['$profiles', 0],
+      },
     },
   },
 ])

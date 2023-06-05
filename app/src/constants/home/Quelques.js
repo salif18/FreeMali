@@ -9,7 +9,7 @@ const Quelques = () => {
     return (
         <div className='quelques'>
         
-            <h1 className='h-h1'>Trouver les meilleurs experts employés  pour vos projets</h1>
+            <h1 className='h-h1'>Trouver les meilleurs prestataires experts qualifies pour vos services</h1>
             <div className='container-quelques'>
             
              {
@@ -19,7 +19,7 @@ const Quelques = () => {
              }
              
             </div>
-            <button onClick={()=>navigate('/blogs')} className='btn-qlq'>Voirs tous les employes &#8594;</button>
+            <button onClick={()=>navigate('/blogs')} className='btn-qlq'>Voirs tous les prestataires &#8594;</button>
            
         </div>
     );

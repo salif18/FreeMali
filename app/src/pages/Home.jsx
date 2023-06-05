@@ -65,7 +65,7 @@ useEffect(()=>{
       id:1,
       image:logo1,
       title:'Devenir potentielle prestataire',
-      infos:'Pour etre employé',
+      infos:'Pour avoir des offres de travails',
       btntext:"S'inscrire",
       lien:'/sign-presta'
     },
@@ -73,7 +73,7 @@ useEffect(()=>{
       id:2,
       image:logo2,
       title:'Devenir potentielle client',
-      infos:'Pour poster vos differents services ',
+      infos:'Pour poster vos differents besoins de services ',
       btntext:"S'inscrire",
       lien:'/sign-clients'
     },
@@ -81,7 +81,7 @@ useEffect(()=>{
       id:3,
       image:logo3,
       title:'Les differentes offres',
-      infos:'Ici se trouves les differentes demandes',
+      infos:'Ici se trouves les differentes services de travail',
       btntext:'Découvrir',
       lien:'/offres'
     }
@@ -100,17 +100,9 @@ useEffect(()=>{
      <Quelques/>
      </div>
      
-     <CommentCamarche/>
+    <CommentCamarche/>
     
-      <div className='section-home'>
      
-       {
-        data.map((item)=>(
-          <Card item={item}  />
-        ))
-       }
-     </div>
-
      <Footer/>
      </div>
     </div>
@@ -119,3 +111,11 @@ useEffect(()=>{
 }
 
 export default Home
+// <div className='section-home'>
+     
+// {
+//  data.map((item)=>(
+// <Card item={item}  />
+//  ))
+// }
+// </div>

@@ -7,7 +7,7 @@ import { MyStore } from '../context/myStore';
 
 const Blogs = () => {
    const {users,getUsers} = useContext(MyStore)
-
+console.log(users[1].proffession)
   //  recuperer tous les utilisateur avec profile combiner
    useEffect(()=>{
        axios.get('http://localhost:3002/auth/utilisateur&Infos')

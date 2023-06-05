@@ -1,10 +1,10 @@
 .sidebar{
     flex:1;
-    background: #ffff;
+    background: #fff;
     border:1px solid #e7e7e7;
     margin: 20px;
     height: 950px;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 
 .header-side{
@@ -14,8 +14,8 @@
 }
 
 .sidebar .mainsoeuvres h3{
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 20px;
+    font-weight: 550;
     color: #8a8a8a8c;
     font-family: 'Roboto';
    margin: 10px;
@@ -41,15 +41,16 @@
 .liens {
     list-style: none;
     text-decoration: none;
-    font-family: 'Roboto';
-    font-weight: 600;
-    font-size: 18px;
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 16px;
     color: black;
     transition: all  ease-in-out;
     &:hover{
         //  background: rgb(15,202,248);
         border-radius: 5px;
         color: rgb(13, 179, 221);
+        background: #f5f5f5;
         // border: 2px solid rgba(15, 202, 248);
     }
 }

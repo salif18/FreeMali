@@ -76,6 +76,9 @@
         color: #fff;
         font-weight: 600;
         font-size: 14px;
+        &:hover{
+            background: rgb(15,202,248);
+        }
     }
 }
 
@@ -118,6 +121,9 @@
         font-family: "Roboto";
         font-size: 16px;
         color: #fff;
+        &:hover{
+            background: rgb(15,202,248);
+        }
        
     }
 }

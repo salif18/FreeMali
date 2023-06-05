@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import {useNavigate, useParams} from 'react-router-dom'
 import axios from 'axios'
 import { MyStore } from '../context/myStore';
+import Navbar from '../constants/Navbar';
 
 const Contacter = () => {
     const navigate = useNavigate()
@@ -36,8 +37,14 @@ console.log(client)
     }
 
     return (
+        <>
+        <Navbar/>
         <div className='contacter-invite'>
-            <div className='contacter-top'></div>
+            <div className='contacter-top'>
+             <img className='mes-img' src={client.photo} alt='' />
+             <h2>{client.nom} {client.prenom}</h2>
+             <p>{client.proffession}</p>
+            </div>
             <div className='contacter-bottom'>
               <input 
                className='contacter-input'
@@ -52,6 +59,7 @@ console.log(client)
             </div>
 
         </div>
+        </>
     );
 }
 

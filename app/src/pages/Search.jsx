@@ -7,9 +7,10 @@ import { MyStore } from '../context/myStore';
 
 
 const Search = () => {
-    const {valueSearch,users} =useContext(MyStore)
-    console.log(users)
-   const resultatSearch = users.filter((user)=> user.proffession.includes(valueSearch.toLowerCase()))
+    const {valueSearch,users} = useContext(MyStore)
+    console.log(users[1].proffession)
+   const resultatSearch = users.filter((user) => user.proffession.includes(valueSearch.toLowerCase()))
+   
     return (
         <>
        <NavbarSearch/>

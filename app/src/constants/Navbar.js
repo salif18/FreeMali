@@ -15,11 +15,11 @@ const Navbar = () => {
         <nav className='navbar'>
 
             <div className='navbar-left' >
-            {isInLine && <div className='sedeconecter' onClick={logout} ><SettingsPowerIcon style={{color:'red'}}/>Se deconnecter</div>}
+           
              <NavLink className={({isActive})=> isActive ? 'active':''} to='/'>Accueil</NavLink> 
              <NavLink className={({isActive})=> isActive ? 'active':''} to='/blogs'>Blogs prestataires</NavLink>
-             {isInLine && <NavLink className={({isActive})=> isActive ? 'active':''} to='/offres'>Offres<span className='len-offre'>{offres.length}</span></NavLink>}
-             <NavLink className={({isActive})=> isActive ? 'active':'navbar-left'}>Contacts</NavLink>
+             {isInLine && <NavLink className={({isActive})=> isActive ? 'active':''} to='/offres'>Offres d'emploi</NavLink>}
+             <NavLink className={({isActive})=> isActive ? 'active':''} to='/contacts'>Contacts</NavLink>
             </div>
 
             <div className='navbar-rigth'>
@@ -28,12 +28,15 @@ const Navbar = () => {
              </button>
             <p className='p-rech'>Rechercher</p>
             <div className='navbar-rigth-sociaux'>
-            {isInLine && <NavLink className='lien-sociaux' to='/messagerie'><ChatBubbleOutlineIcon/>{conversations.length > 0 && <div className='len-offre'><p>{conversations.length}</p></div>}</NavLink>}
+            {isInLine && <NavLink className='lien-sociaux' to='/messagerie'><ChatBubbleOutlineIcon/></NavLink>}
             {isInLine && <NavLink className='lien-sociaux' to='/notification'><NotificationsNoneIcon/></NavLink>}
-             {isInLine && <NavLink className='lien-sociaux' to='/parametre'>
+            {isInLine && <div className='sedeconecter' onClick={logout} ><SettingsPowerIcon style={{color:'rgb(13, 179,221)'}}/></div>}
+            {isInLine && <NavLink className='lien-sociaux' to='/parametre'>
                <img className='img-profi' src={myProfile ? myProfile.photo :'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtYqXjw6IR_opev4UADLjT8TPcLmWYQsx_YQ&usqp=CAU'} alt='' />
             </NavLink>}
             </div>
+            
+             
             </div>
 
         </nav>
@@ -43,4 +46,4 @@ const Navbar = () => {
 export default Navbar;
 // <NavLink ><FacebookSharpIcon style={{color:'rgba(0, 132, 255, 0.726)',fontSize:30,fontWeight:'bold'}} /></NavLink>
 //  <NavLink><TwitterIcon style={{color:'rgba(0, 132, 255, 0.726)',fontSize:30,fontWeight:'bold'}} /></NavLink>
-//  <NavLink><InstagramIcon style={{color:'#f3086280',fontSize:30,fontWeight:'bold'}} /></NavLink>
+//  <NavLink><InstagramIcon style={{color:'#f3086280',fontSize:30,fontWeight:'bold'}} /></NavLink><span className='len-offre'>{offres.length}</span>
