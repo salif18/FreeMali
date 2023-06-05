@@ -35,6 +35,11 @@ const addCommentaires=(commentaires)=>{
     setNewComents('')
 }
   
+const handleDeleteCommit =(commit)=>{
+  axios.put(`http://localhost:3002/offres/user/delete/${oneOffre.userId}/commentaires/${commit._id}`)
+  .then(res => res.data)
+  .catch(err => console.log(err))
+}
   
 console.log(comments)
   return (
@@ -71,7 +76,7 @@ console.log(comments)
                 <p>{commit.comments}</p>
                 <p>{format(commit.date)}</p>
                 <div className='grp-btn'>
-                {userId === commit.userId && <button className='btn-card-offre-del'>x</button>}
+                {userId === commit.userId && <button className='btn-card-offre-del' onClick={()=>handleDeleteCommit(commit)}>x</button>}
                  {!me_User.isPrestataire && <button className="btn-offre-contacter" >contacter</button>}
                 </div>
               </div>

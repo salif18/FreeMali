@@ -3,10 +3,15 @@ import { useNavigate } from 'react-router';
 import { MyStore } from '../../context/myStore';
 import { NavLink } from 'react-router-dom';
 import {format} from 'timeago.js'
+import axios from 'axios';
 const CardOffres = ({item}) => {
     const navigate = useNavigate()
-     const {delOffre,me_User,userId } = useContext(MyStore)
+     const {me_User,userId } = useContext(MyStore)
 
+     const deleteOffre =()=>{
+        axios.delete(`http://localhost:3002/offres/${item._id}`)//supprimer son offre
+        .then((res)=>res.data).catch(Err => console.log(Err))
+     }
     return (
         <div className='card-offre' key={item._id}>
         
@@ -32,7 +37,7 @@ const CardOffres = ({item}) => {
             <div className='grp-btn'>
             
             {!me_User.isPrestataire && item.userId === userId && <button className='btn-card-offre-del'
-             onClick={()=>delOffre(item._id)}
+             onClick={()=>deleteOffre(item._id)}
             >
             x
             </button>}

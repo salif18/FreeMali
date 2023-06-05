@@ -7,7 +7,7 @@ const CommentCamarche = () => {
         <div className='container-objets'>
             <div className='objets'>
              <img className='obj-img' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSWBdX_GMVfQxlanKWwT9ne-aiQnuBT_1tZ-g&usqp=CAU' alt=''/>
-             <p>Vous etes client ?, postez votre projet et explicitez votre besoin</p>
+             <p>Vous etes client ? postez votre projet et explicitez votre besoin</p>
             </div>
 
             <div className='objets'>
@@ -22,7 +22,7 @@ const CommentCamarche = () => {
 
             <div className='objets'>
              <img className='obj-img' src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGuJmswuXRtJhTMI4nvTa9z-g58mBBvqPakA&usqp=CAU' alt=''/>
-             <p>Vous etes prestataire ?, definir votre proffession et gagner des clients</p>
+             <p>Vous etes prestataire ? definir votre proffession et gagner des clients</p>
             </div>
         </div>
         </div>

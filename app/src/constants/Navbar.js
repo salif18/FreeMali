@@ -16,7 +16,7 @@ const Navbar = () => {
 
             <div className='navbar-left' >
            
-             <NavLink className={({isActive})=> isActive ? 'active':''} to='/'>Accueil</NavLink> 
+             <NavLink className={({isActive})=> isActive ? 'active':'navbar-left'} to='/'>Accueil</NavLink> 
              <NavLink className={({isActive})=> isActive ? 'active':''} to='/blogs'>Blogs prestataires</NavLink>
              {isInLine && <NavLink className={({isActive})=> isActive ? 'active':''} to='/offres'>Offres d'emploi</NavLink>}
              <NavLink className={({isActive})=> isActive ? 'active':''} to='/contacts'>Contacts</NavLink>
