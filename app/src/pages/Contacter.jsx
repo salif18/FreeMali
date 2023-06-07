@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {useNavigate, useParams} from 'react-router-dom'
+import {Navigate, useNavigate, useParams} from 'react-router-dom'
 import axios from 'axios'
 import { MyStore } from '../context/myStore';
 import Navbar from '../constants/Navbar';
@@ -7,12 +7,12 @@ import Navbar from '../constants/Navbar';
 const Contacter = () => {
     const navigate = useNavigate()
     const {id} = useParams()
-    const {userId ,me_User , myProfile} = useContext(MyStore)
+    const {isInLine,userId ,me_User , myProfile} = useContext(MyStore)
     const [client,setClient] = useState([])
     
 
     useEffect(()=>{
-        axios.get(`http://localhost:3002/profiles/prestataire/${id}`)
+        axios.get(`http://localhost:3002/profiles/yourProfile/${id}`)
         .then((res)=>{
             res && setClient(res.data)
         }).catch((err)=>console.log(err))
@@ -24,14 +24,14 @@ console.log(client)
          conversations={
             userId:userId,
             senderId:client.userId,
-            nom:me_User.nom,
-            image:client.photo,//photo du client selectioner
-            discussions:[{userId:userId, image:myProfile.photo, nom:me_User.nom, contenu:message}]
+            nom:myProfile.nom,
+            image:myProfile.photo,//photo du client selectioner
+            discussions:[{userId:userId, image:myProfile.photo, nom:myProfile.nom, contenu:message}]
          };
          axios.post('http://localhost:3002/conversations',conversations)
          .then((res)=>res.data)
          .catch((Err)=>console.log(Err));
-        navigate(`/profile/${client._id}`)
+        navigate(`/profile/${client.userId}`)
          setMessage('')
          alert('Votre message a ete envoye')
     }
@@ -40,6 +40,7 @@ console.log(client)
         <>
         <Navbar/>
         <div className='contacter-invite'>
+        {!isInLine && <Navigate to='/connecter' replace={true} />}
             <div className='contacter-top'>
              <img className='mes-img' src={client.photo} alt='' />
              <h2>{client.nom} {client.prenom}</h2>

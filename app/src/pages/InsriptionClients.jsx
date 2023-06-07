@@ -7,16 +7,18 @@ import axios from 'axios'
 import { MyStore } from '../context/myStore';
 import { useNavigate } from 'react-router';
 
+const InsriptionClients = () => {
+  const {login,userId,getMyData,isInLine,getMyProfileData} = useContext(MyStore)
 //API de registre signup
 const url = 'http://localhost:3002/auth/signup'
-const InsriptionClients = () => {
-  const {login} = useContext(MyStore)
+const urlGET = `http://localhost:3002/auth/usersData/${userId}`//url de recuperation des donnes de user apres etre connecter
+const PROFILGET = `http://localhost:3002/profiles/myProfile/${userId}`//url pour recuperer le profile de utilisateur connecter 
   const navigate = useNavigate()
     const initialValue = {
-        nom: "",
-        prenom: "",
-        proffession: "",
-        categorie: "",
+        // nom: "",
+        // prenom: "",
+        // proffession: "",
+        // categorie: "",
         email: "",
         numero: "",
         password: "",
@@ -24,8 +26,8 @@ const InsriptionClients = () => {
       };
     
       const validation = yup.object({
-        nom: yup.string().required("Veuillez entrer votre nom"),
-        prenom: yup.string().required("Veuillez entrer votre prenom"),
+        // nom: yup.string().required("Veuillez entrer votre nom"),
+        // prenom: yup.string().required("Veuillez entrer votre prenom"),
         email: yup.string().required("Veuillez entrer un email operationnel"),
         numero: yup.number().required("Veuillez entrer un numero joingnable"),
         password: yup
@@ -63,7 +65,37 @@ const InsriptionClients = () => {
   }
 
   
-
+  useEffect(()=>{
+    const getUser =async()=>{
+      axios
+      .get(urlGET)
+      .then((res)=>{
+        res && getMyData(res.data)
+         
+      })
+      .catch((err)=>{
+        console.error(err)
+      })
+    }
+    isInLine && getUser()
+  },[])
+  
+ 
+ 
+// recuperation du profile de user 
+useEffect(()=>{
+  const getProfile =async()=>{
+    axios
+    .get(PROFILGET)
+    .then((res)=>{
+       res && getMyProfileData(res.data)
+    })
+    .catch((err)=>{
+      console.error(err)
+    })
+  }
+  isInLine && getProfile()
+},[])
 
     return (
         <div>
@@ -86,42 +118,23 @@ const InsriptionClients = () => {
               <Form className="form">
               
                 <div className="left-form">
-                  <div>
-                    
-                    <Field
-                      className="form-control"
-                      type="text"
-                      name="nom"
-                      id="nom"
-                      placeholder="Nom"
-                    />
-                    <ErrorMessage
-                      className="text-danger"
-                      name="nom"
-                      component="span"
-                    />
-                  </div>
-    
-                  <div>
-                    
-                    <Field
-                      className="form-control"
-                      type="text"
-                      name="prenom"
-                      id="prenom"
-                      placeholder='Prenom'
-                    />
-                    <ErrorMessage
-                      className="text-danger"
-                      name="prenom"
-                      component="span"
-                    />
-                  </div>
-    
-                  <div>
-                    
-                </div>
+                 
 
+                <div>
+              
+                <Field
+                  className="form-control"
+                  type="number"
+                  name="numero"
+                  id="numero"
+                  placeholder="Numero de telephone"
+                />
+                <ErrorMessage
+                  className="text-danger"
+                  name="numero"
+                  component="span"
+                />
+              </div>
                 <div>
                
                 <Field
@@ -142,21 +155,6 @@ const InsriptionClients = () => {
                 <div className="rigth-form">
                 
     
-              <div>
-              
-              <Field
-                className="form-control"
-                type="number"
-                name="numero"
-                id="numero"
-                placeholder="Numero de telephone"
-              />
-              <ErrorMessage
-                className="text-danger"
-                name="numero"
-                component="span"
-              />
-            </div>
     
             <div>
               
@@ -197,3 +195,39 @@ const InsriptionClients = () => {
 }
 
 export default InsriptionClients;
+
+// <div>
+                    
+// <Field
+//   className="form-control"
+//   type="text"
+//   name="nom"
+//   id="nom"
+//   placeholder="Nom"
+// />
+// <ErrorMessage
+//   className="text-danger"
+//   name="nom"
+//   component="span"
+// />
+// </div>
+
+// <div>
+
+// <Field
+//   className="form-control"
+//   type="text"
+//   name="prenom"
+//   id="prenom"
+//   placeholder='Prenom'
+// />
+// <ErrorMessage
+//   className="text-danger"
+//   name="prenom"
+//   component="span"
+// />
+// </div>
+
+// <div>
+
+// </div>

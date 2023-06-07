@@ -39,14 +39,14 @@ const getusers =()=>{
   }
 }
 
-const getoffres =()=>{
-  const data = localStorage.getItem('offres')
-  if(data){
-    return JSON.parse(data)
-  }else{
-    return []
-  }
-}
+// const getoffres =()=>{
+//   const data = localStorage.getItem('offres')
+//   if(data){
+//     return JSON.parse(data)
+//   }else{
+//     return []
+//   }
+// }
 
 export const MyStoreProvider = (props) => {
   const [userId, setUserId] = useState(userIdStorage);//magasin de stock userId
@@ -57,7 +57,7 @@ export const MyStoreProvider = (props) => {
   const myProfile = myProfileData[0];
   const [users,setUsers]=useState(getusers)//magasin de stock de tous les utilisateurs
   const [conversations, setConversations] = useState([]);//conversation stockage
-  const [offres,setOffres] = useState(getoffres)//stockage des offres
+  const [offres,setOffres] = useState([])//stockage des offres
 
 //   connection
   const handleLogin = (userId, token) => {

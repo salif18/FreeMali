@@ -13,8 +13,18 @@ const Footer = () => {
              <a><TwitterIcon style={{color:'#aaa',fontSize:30,fontWeight:'bold'}} /> Twitter</a>
              <a><InstagramIcon style={{color:'#aaa',fontSize:30,fontWeight:'bold'}} /> Instagram</a>
              </div>
-             <div className='service'><h2>Nos services</h2></div>
-             <div className='politique'><h2>Nos politiques</h2></div>
+             <div className='service'><h2>Nos services</h2>
+             <a><FacebookSharpIcon style={{color:'#aaa',fontSize:30,fontWeight:'bold'}} /> Facebook</a>
+             <a><WhatsAppIcon style={{color:'#aaa',fontSize:30,fontWeight:'bold'}} /> WhatsApp</a>
+             <a><TwitterIcon style={{color:'#aaa',fontSize:30,fontWeight:'bold'}} /> Twitter</a>
+             <a><InstagramIcon style={{color:'#aaa',fontSize:30,fontWeight:'bold'}} /> Instagram</a>
+             </div>
+             <div className='politique'><h2>Nos politiques</h2>
+             <a><FacebookSharpIcon style={{color:'#aaa',fontSize:30,fontWeight:'bold'}} /> Facebook</a>
+             <a><WhatsAppIcon style={{color:'#aaa',fontSize:30,fontWeight:'bold'}} /> WhatsApp</a>
+             <a><TwitterIcon style={{color:'#aaa',fontSize:30,fontWeight:'bold'}} /> Twitter</a>
+             <a><InstagramIcon style={{color:'#aaa',fontSize:30,fontWeight:'bold'}} /> Instagram</a>
+             </div>
             </div>
         </footer>
     );

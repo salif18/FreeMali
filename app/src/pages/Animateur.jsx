@@ -7,7 +7,7 @@ import EmpCard from '../constants/card/Employers';
 
 const Animateur = () => {
   const {users} = useContext(MyStore)
-  console.log(users)
+  const prestataires = users.filter((presta) =>  presta.isPrestataire)
     return (
         <>
         <Navbar/>
@@ -17,7 +17,7 @@ const Animateur = () => {
             <h1>Nos profils animateurs</h1>
             <div className='section-ens'>
             {
-              users.filter((item => item.proffession.includes('animateurs'))).map((item)=>(
+              prestataires.filter((item => item['profile'].proffession.includes('animateurs'))).map((item)=>(
                   <EmpCard item={item}/>
               ))
             }

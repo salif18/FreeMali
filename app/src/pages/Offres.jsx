@@ -4,6 +4,7 @@ import CardOffres from '../constants/card/Offres';
 import { MyStore } from '../context/myStore';
 import { Navigate,} from 'react-router';
 import axios from 'axios'
+import Footer from '../constants/Footer';
 
 // url pour poster et recuperer tous les offres
 const url = 'http://localhost:3002/offres'
@@ -27,7 +28,7 @@ const handlePost =()=>{
     const d = new Date()
     const offres ={
     userId:userId,
-    nom:me_User.nom,
+    nom:myProfile.nom,
     image:myProfile.photo,
     contenu:recits,
     commentaires:[],
@@ -70,6 +71,7 @@ const handlePost =()=>{
             }
            <div className='offre-pulier'>
            {offres.length <= 0 && me_User.isPrestataire && <p className='textaucun'>" Aucun offre pour le moment "</p>}
+           {offres.length <= 0 && !me_User.isPrestataire && <p className='textaucun'>" Aucun offre pour le moment "</p>}
             {offres.map((item)=>(
                 <CardOffres item={item} />
             ))

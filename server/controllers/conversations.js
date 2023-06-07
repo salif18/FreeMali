@@ -27,6 +27,14 @@ exports.getOneConversations = (req,res,next)=>{
     .catch((err)=>res.status(400).json(err))
 }
 
+//supprimer une conversation
+exports.delConversations = (req,res,next)=>{
+    const {id} = req.params
+    Conversations.deleteOne({_id:id})
+    .then((conversation)=>res.status(200).json(conversation))
+    .catch((err)=>res.status(400).json(err))
+}
+
 // mise a jours de la discussion dans la conversation
 exports.updateConversations = (req,res,next)=>{
     const {id} = req.params

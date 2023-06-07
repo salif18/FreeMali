@@ -7,6 +7,7 @@ import { MyStore } from '../context/myStore';
 
 const Avocats = () => {
   const {users} = useContext(MyStore)
+  const prestataires = users.filter((presta) =>  presta.isPrestataire)
     return (
         <>
         <Navbar/>
@@ -16,7 +17,7 @@ const Avocats = () => {
             <h1>Nos profils avocats</h1>
             <div className='section-ens'>
             {
-              users.filter((item => item.proffession.includes('avocat'))).map((item)=>(
+              prestataires.filter((item => item['profile'].proffession.includes('avocat'))).map((item)=>(
                   <EmpCard item={item}/>
               ))
             }

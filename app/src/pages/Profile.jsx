@@ -6,6 +6,7 @@ import Navbar from '../constants/Navbar';
 import Footer from '../constants/Footer';
 import axios from 'axios';
 import { MyStore } from '../context/myStore';
+import MapsPrestataire from '../Maps/MapsPrestataire';
 
 
 const Profile = () => {
@@ -13,14 +14,16 @@ const Profile = () => {
     const {userId} = useContext(MyStore)
     const [item,setItem] = useState([])
     const {id} = useParams()
-     
-useEffect(()=>{
-    axios.get(`http://localhost:3002/profiles/prestataire/${id}`)
-    .then((res)=>{
-        res && setItem(res.data)
-    }).catch((err)=>console.log(err))
-},[])
-    
+    console.log(id)
+
+    useEffect(()=>{
+        axios
+            .get(`http://localhost:3002/profiles/yourProfile/${id}`)
+            .then(res => {
+                res && setItem(res.data)
+            }).catch(err => console.log(err))
+    },[])
+
 
     return (
         <>
@@ -46,7 +49,7 @@ useEffect(()=>{
             <div className='biograph'>
              <h2>A propos de moi</h2>
              <p>{item.biographie}</p>
-             {userId !== item.userId && <button className='btn-contacter' onClick={()=>navigate(`/contacter/${item._id}`)}>
+             {userId !== item.userId && <button className='btn-contacter' onClick={()=>navigate(`/contacter/${item.userId}`)}>
                Contacter moi</button>
              }
             </div>
@@ -56,7 +59,7 @@ useEffect(()=>{
              <p>Nom: {item.nom}</p>
              <p>Prenom: {item.prenom}</p>
              <p>Proffession: {item.proffession}</p>
-             <p>Address: <a className='lienGeo' href={item.address}> Ma geo-localisation</a></p>
+             <p>Address: </p><MapsPrestataire item={item} />
             </div>
             
             </div>

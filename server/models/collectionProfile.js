@@ -2,7 +2,7 @@
 const mongoose = require('mongoose')
 
 const Schema = mongoose.Schema({
-    userId:{ type:String},
+    userId:{ type:mongoose.Schema.Types.ObjectId},
     photo:{ type:String },
     nom:{ type:String},
     prenom:{ type:String},
@@ -11,8 +11,10 @@ const Schema = mongoose.Schema({
     proffession:{type:String},
     categorie:{type:String},
     address:{ type:String,required:true},
+    longitude:{type:Number},
+    latitude:{type:Number},
     biographie:{type:String},
-    isPrestataire:{ type:Boolean, default:false }
+    
 },{timstamps:true})
 
 module.exports =mongoose.model('Profile',Schema)

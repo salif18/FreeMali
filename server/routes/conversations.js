@@ -10,6 +10,6 @@ router.post('/',conversControllers.creatConversations)
 router.get('/userId/:userId',conversControllers.getConversations)
 router.get('/:id',conversControllers.getOneConversations)
 router.put('/:id',conversControllers.updateConversations)
-
+router.delete('/:id',conversControllers.delConversations)
 //exportation
 module.exports = router

@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext,useEffect} from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Footer from '../constants/Footer'
@@ -7,18 +7,19 @@ import axios from "axios";
 import { MyStore } from "../context/myStore";
 import { useNavigate } from "react-router";
 
+const InscriptionPrestataire = () => {
+  const {login,getMyData,userId,isInLine,getMyProfileData} = useContext(MyStore)
+  const navigate = useNavigate()
 //API de registre signup
 const url = 'http://localhost:3002/auth/signup'
-
-const InscriptionPrestataire = () => {
-  const navigate = useNavigate()
-  const {login} = useContext(MyStore)
+const urlGET = `http://localhost:3002/auth/usersData/${userId}`//url de recuperation des donnes de user apres etre connecter
+const PROFILGET = `http://localhost:3002/profiles/myProfile/${userId}`//url pour recuperer le profile de utilisateur connecter 
   
   const initialValue = {
-    nom: "",
-    prenom: "",
-    proffession: "",
-    categorie: "",
+    // nom: "",
+    // prenom: "",
+    // proffession: "",
+    // categorie: "",
     email: "",
     numero: "",
     password: "",
@@ -26,10 +27,10 @@ const InscriptionPrestataire = () => {
   };
 
   const validation = yup.object({
-    nom: yup.string().required("Veuillez entrer votre nom"),
-    prenom: yup.string().required("Veuillez entrer votre prenom"),
-    proffession: yup.string().required("Veuillez choisir votre proffession"),
-    categorie: yup.string().required("Veuillez choisir la categorie"),
+    // nom: yup.string().required("Veuillez entrer votre nom"),
+    // prenom: yup.string().required("Veuillez entrer votre prenom"),
+    // proffession: yup.string().required("Veuillez choisir votre proffession"),
+    // categorie: yup.string().required("Veuillez choisir la categorie"),
     email: yup.string().required("Veuillez entrer un email operationnel"),
     numero: yup.number().required("Veuillez entrer un numero joingnable"),
     password: yup
@@ -95,6 +96,37 @@ try{
 }
 
   
+useEffect(()=>{
+  const getUser =async()=>{
+    axios
+    .get(urlGET)
+    .then((res)=>{
+      res && getMyData(res.data)
+       
+    })
+    .catch((err)=>{
+      console.error(err)
+    })
+  }
+  isInLine && getUser()
+},[])
+
+
+  
+// recuperation du profile de user 
+useEffect(()=>{
+  const getProfile =async()=>{
+    axios
+    .get(PROFILGET)
+    .then((res)=>{
+       res && getMyProfileData(res.data)
+    })
+    .catch((err)=>{
+      console.error(err)
+    })
+  }
+  isInLine && getProfile()
+},[])
 
   return (
     <>
@@ -116,86 +148,21 @@ try{
           <Form className="form">
             
             <div className="left-form">
-              <div>
-                
-                <Field
-                  className="form-control"
-                  type="text"
-                  name="nom"
-                  id="nom"
-                  placeholder="Nom"
-                />
-                <ErrorMessage
-                  className="text-danger"
-                  name="nom"
-                  component="span"
-                />
-              </div>
-
-              <div>
-               
-                <Field
-                  className="form-control"
-                  type="text"
-                  name="prenom"
-                  id="prenom"
-                  placeholder="Prenom"
-                />
-                <ErrorMessage
-                  className="text-danger"
-                  name="prenom"
-                  component="span"
-                />
-              </div>
-
-              <div>
-               
-                <Field name="proffession" id="proffesion" className='form-control'>
-                  {({ field }) => (
-                    <>
-                      <select {...field} className="form-control">
-                        {proffesions.map((prof) => (
-                          <option key={prof.value} value={prof.value} >
-                            {prof.label}
-                          </option>
-                        ))}
-                      </select>
-                      <ErrorMessage
-                        className="text-danger"
-                        name="proffession"
-                        component="span"
-                      />
-                    </>
-                  )}
-                </Field>
-              </div>
-
-              <div>
-               
-                <Field name="categorie" id="categorie">
-                  {({ field }) => (
-                    <>
-                      <select {...field} className="form-control">
-                        {categories.map((catego) => (
-                          <option key={catego.value} value={catego.value}>
-                            {catego.label}
-                          </option>
-                        ))}
-                      </select>
-                      <ErrorMessage
-                        className="text-danger"
-                        name="categorie"
-                        component="span"
-                      />
-                    </>
-                  )}
-                </Field>
-
-               
-              </div>
-            </div>
-
-            <div className="rigth-form">
+             <div>
+          
+          <Field
+            className="form-control"
+            type="number"
+            name="numero"
+            id="numero"
+            placeholder="Numero de telephone"
+          />
+          <ErrorMessage
+            className="text-danger"
+            name="numero"
+            component="span"
+          />
+        </div>
             <div>
             
             <Field
@@ -212,21 +179,11 @@ try{
             />
           </div>
 
-          <div>
-          
-          <Field
-            className="form-control"
-            type="number"
-            name="numero"
-            id="numero"
-            placeholder="Numero de telephone"
-          />
-          <ErrorMessage
-            className="text-danger"
-            name="numero"
-            component="span"
-          />
-        </div>
+         
+            </div>
+
+            <div className="rigth-form">
+           
 
         <div>
           
@@ -263,4 +220,81 @@ try{
   );
 };
 
-export default InscriptionPrestataire;
+ export default InscriptionPrestataire;
+// <div>
+                
+// <Field
+//   className="form-control"
+//   type="text"
+//   name="nom"
+//   id="nom"
+//   placeholder="Nom"
+// />
+// <ErrorMessage
+//   className="text-danger"
+//   name="nom"
+//   component="span"
+// />
+// </div>
+
+// <div>
+
+// <Field
+//   className="form-control"
+//   type="text"
+//   name="prenom"
+//   id="prenom"
+//   placeholder="Prenom"
+// />
+// <ErrorMessage
+//   className="text-danger"
+//   name="prenom"
+//   component="span"
+// />
+// </div>
+
+// <div>
+
+// <Field name="proffession" id="proffesion" className='form-control'>
+//   {({ field }) => (
+//     <>
+//       <select {...field} className="form-control">
+//         {proffesions.map((prof) => (
+//           <option key={prof.value} value={prof.value} >
+//             {prof.label}
+//           </option>
+//         ))}
+//       </select>
+//       <ErrorMessage
+//         className="text-danger"
+//         name="proffession"
+//         component="span"
+//       />
+//     </>
+//   )}
+// </Field>
+// </div>
+
+// <div>
+
+// <Field name="categorie" id="categorie">
+//   {({ field }) => (
+//     <>
+//       <select {...field} className="form-control">
+//         {categories.map((catego) => (
+//           <option key={catego.value} value={catego.value}>
+//             {catego.label}
+//           </option>
+//         ))}
+//       </select>
+//       <ErrorMessage
+//         className="text-danger"
+//         name="categorie"
+//         component="span"
+//       />
+//     </>
+//   )}
+// </Field>
+
+
+// </div>

@@ -2,12 +2,12 @@ const mongoose = require('mongoose')
 
 // Modèle de données pour les messages
 const Schema = new mongoose.Schema({
-    userId:{type:String,required:true},
-    senderId:{type:String,required:true},
+    userId:{ type:mongoose.Schema.Types.ObjectId, required:true},
+    senderId:{type:mongoose.Schema.Types.ObjectId,required:true},
     nom:{type:String},
     image:{type:String},
     discussions:[{
-        userId:{type:String},
+        userId:{type:mongoose.Schema.Types.ObjectId},
         image:{type:String},
         nom:{type:String},
         contenu:{type:String},

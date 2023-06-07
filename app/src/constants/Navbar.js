@@ -3,11 +3,11 @@ import SearchSharpIcon from '@mui/icons-material/SearchSharp';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { MyStore } from '../context/myStore';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
-import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
+//import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import SettingsPowerIcon from '@mui/icons-material/SettingsPower';
 
 const Navbar = () => {
- const {myProfile,logout,isInLine,conversations,offres} = useContext(MyStore)
+ const {myProfile,logout,isInLine} = useContext(MyStore)
     const navigate = useNavigate()
 
 
@@ -29,7 +29,7 @@ const Navbar = () => {
             <p className='p-rech'>Rechercher</p>
             <div className='navbar-rigth-sociaux'>
             {isInLine && <NavLink className='lien-sociaux' to='/messagerie'><ChatBubbleOutlineIcon/></NavLink>}
-            {isInLine && <NavLink className='lien-sociaux' to='/notification'><NotificationsNoneIcon/></NavLink>}
+            
             {isInLine && <div className='sedeconecter' onClick={logout} ><SettingsPowerIcon style={{color:'rgb(13, 179,221)'}}/></div>}
             {isInLine && <NavLink className='lien-sociaux' to='/parametre'>
                <img className='img-profi' src={myProfile ? myProfile.photo :'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtYqXjw6IR_opev4UADLjT8TPcLmWYQsx_YQ&usqp=CAU'} alt='' />
@@ -47,3 +47,4 @@ export default Navbar;
 // <NavLink ><FacebookSharpIcon style={{color:'rgba(0, 132, 255, 0.726)',fontSize:30,fontWeight:'bold'}} /></NavLink>
 //  <NavLink><TwitterIcon style={{color:'rgba(0, 132, 255, 0.726)',fontSize:30,fontWeight:'bold'}} /></NavLink>
 //  <NavLink><InstagramIcon style={{color:'#f3086280',fontSize:30,fontWeight:'bold'}} /></NavLink><span className='len-offre'>{offres.length}</span>
+// {isInLine && <NavLink className='lien-sociaux' to='/notification'><NotificationsNoneIcon/></NavLink>}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState,useContext } from "react";
-import { useParams, Navigate } from "react-router";
+import { useParams, Navigate, useNavigate } from "react-router";
 // import offres from '../data/OffresData';
 import Navbar from "../constants/Navbar";
 import { MyStore } from '../context/myStore';
@@ -8,7 +8,7 @@ import {format} from 'timeago.js'
 
 const SingleOffre = () => {
     const {userId,me_User,myProfile, isInLine} = useContext(MyStore)    
-    
+    const navigate = useNavigate()
   const { id } = useParams();
   const [oneOffre, setOneOffre] = useState([])
 const [comments, setComments] = useState([]);
@@ -77,7 +77,7 @@ console.log(comments)
                 <p>{format(commit.date)}</p>
                 <div className='grp-btn'>
                 {userId === commit.userId && <button className='btn-card-offre-del' onClick={()=>handleDeleteCommit(commit)}>x</button>}
-                 {!me_User.isPrestataire && <button className="btn-offre-contacter" >contacter</button>}
+                 {!me_User.isPrestataire && <button className="btn-offre-contacter" onClick={()=>navigate(`/profile/${commit.userId}`)} >contacter</button>}
                 </div>
               </div>
              ))}

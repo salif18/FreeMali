@@ -2,7 +2,6 @@ import React, { useContext, useEffect } from 'react'
 import Header from '../constants/home/Header'
 import Navbar from '../constants/Navbar'
 import Banner from '../constants/home/Banner'
-import Card from '../constants/home/Card'
 import logo1 from '../images/bussi.jpg'
 import logo2 from '../images/client.png'
 import logo3 from '../images/offre.png'
@@ -13,9 +12,9 @@ import { MyStore } from '../context/myStore'
 import axios from 'axios'
 
 const Home = () => {
-  const {getUsers, getMyData, getMyProfileData, userId, isInLine} = useContext(MyStore)
-  const PROFILGET = `http://localhost:3002/profiles/${userId}`//url pour recuperer le profile de utilisateur connecter
-  const urlGET = `http://localhost:3002/auth/users/${userId}`//url de recuperation des donnes de user apres etre connecter
+  const {getUsers,users, getMyData, getMyProfileData, userId, isInLine} = useContext(MyStore)
+  const PROFILGET = `http://localhost:3002/profiles/myProfile/${userId}`//url pour recuperer le profile de utilisateur connecter
+  const urlGET = `http://localhost:3002/auth/usersData/${userId}`//url de recuperation des donnes de user apres etre connecter
   
   
   useEffect(()=>{
@@ -33,6 +32,7 @@ const Home = () => {
     isInLine && getUser()
   },[])
   
+ 
   
 // recuperation du profile de user 
 useEffect(()=>{
@@ -52,12 +52,13 @@ useEffect(()=>{
 
 // recuperer tous les utilisateurs
 useEffect(()=>{
-    axios.get('http://localhost:3002/auth/utilisateur&Infos')
+    axios.get('http://localhost:3002/auth/users&Profile')
     .then((res)=>{
      res && getUsers(res.data)
     }).catch((Err)=>console.log(Err))
 },[])
-
+ 
+ console.log(users)
 
   // donnee des trois carte sur home
  const data = [

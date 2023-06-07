@@ -39,7 +39,7 @@ const Messagerie = () => {
 
   //envoie des discussion dans la conversation
   const envoyer = (discussions)=>{
-     discussions={ userId:userId, image:myProfile.photo, nom:me_User.nom, contenu:newMessage }
+     discussions={ userId:userId, image:myProfile.photo, nom:myProfile.nom, contenu:newMessage }
      const id = currentMessage[0]._id;
      axios.put(`http://localhost:3002/conversations/${id}`,{discussions})
      .then((res)=>res.data)

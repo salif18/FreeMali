@@ -1,12 +1,12 @@
 .footer{
     background: #161b2e;
     height: 50vh;
-
+    padding: 20px;
     
 }
 
 .container-footer{
-    // margin: 20px;
+    margin: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -22,17 +22,20 @@
 }
 
 .contacts,.service,.politique{
-    // margin: 40px;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    padding: 10px;
 }
 
-.container-footer .contacts a{
-    color:#f5f5f5;
+.container-footer 
+.contacts ,
+.service , 
+.politique {
+    color:#fff;
     font-size: 16px;
     font-weight: 600;
-    margin: 10px;
+    padding: 10px;
     cursor: pointer;
     &:hover{
         color:#c7c7c7

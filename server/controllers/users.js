@@ -75,51 +75,83 @@ exports.getOneUser = async(req,res,next)=>{
 // const User = require('./models/user');
 // const Profile = require('./models/profile');
 
-exports.Allprestataire =async(req,res,next)=>{
-
-Profile.aggregate([
+exports.AllUsers =async(req,res,next)=>{
+try{
+const users = await Users.aggregate([
   {
     $lookup: {
-      from: 'users',
-      localField: 'userId',//cetait _id
+      from: 'profiles',
+      localField: '_id',//cetait _id
       foreignField: 'userId',//cetait userId
-      as: 'profiles',
+      as: 'profile',
     },
   },
   {
-    $project: {
-       _id: 1,
-      userId:1,
-      photo:1,
-      nom:1,
-      prenom:1,
-      email:1,
-      numero:1,
-      biographie:'$biographie',
-      proffession:'$proffession',
-      categorie:1,
-      address: 1,
-      isPrestataire:1,
-      profiles: {
-        $arrayElemAt: ['$profiles', 0],
-      },
-    },
-  },
+    $unwind:'$profile'
+  }
+//   {
+//     $project: {
+//        _id: 1,
+//       userId:1,
+//       photo:1,
+//       nom:1,
+//       prenom:1,
+//       email:1,
+//       numero:1,
+//       biographie:'$biographie',
+//       proffession:'$proffession',
+//       categorie:1,
+//       address: 1,
+//       isPrestataire:1,
+//       profile:1
+//     },
+//   },
 ])
-  .then((profiles) => {
-    res.status(200).json(profiles);
-  })
-  .catch((error) => {
-    res.status(500).json({error});
-  });
+res.status(200).json(users);
+ 
+}catch(err){
+    res.status(500).json(err)
+}
 
+}
 
+//recuperation dun user et son profile
+exports.getOneUserAndProfile = async(req,res,next)=>{
+    
+    
+    try{
+        const {id} = req.params
+        console.log(id)
+        const users = await Users.aggregate([
+            {
+                $match:{
+                    _id:mongoose.Schema.Types.ObjectId(id)
+                }
+            },
+
+            {
+                $lookup: {
+                  from: 'profiles',
+                  localField: '_id',//cetait _id
+                  foreignField: 'userId',//cetait userId
+                  as: 'profile',
+                },
+              },
+             
+              {
+                $unwind:'$profile'
+              },
+              
+        ])
+        res.status(200).json(users)
+    }catch(err){
+        res.status(500).json(err)
+    }
 }
 
 //profile recuperation
 exports.getUser = async(req,res,next)=>{
     const {userId} = req.params
-    console.log(userId)
     Users
     .find({_id:userId})
     .then((user)=>res.status(200).json(user))

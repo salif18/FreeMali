@@ -1,17 +1,18 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
 
-const EmpCard = ({item}) => {
+const Employers = ({item}) => {
   const navigate = useNavigate()
+  
     return (
 
         <div className='empCard' key={item._id}>
             <div className='containe-img'>
-               <img className='empcard-img' src={item.photo} alt=''/>
+               <img className='empcard-img' src={item.profile.photo} alt=''/>
             </div>
             <div className='card-body'>
-              <h2>{item.nom} {item.prenom} </h2>
-              <p>{item.proffession}</p>
+              <h2>{item.profile.nom} {item.profile.prenom} </h2>
+              <p>{item.profile.proffession}</p>
               
             </div>
             <div className='container-bt'>
@@ -22,4 +23,4 @@ const EmpCard = ({item}) => {
     );
 }
 
-export default EmpCard;
+export default Employers;

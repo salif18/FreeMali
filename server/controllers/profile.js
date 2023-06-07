@@ -22,11 +22,11 @@ exports.getProfile = (req,res,next)=>{
 
 //le profile d'un prestaire
 exports.getOneprestaProfile = (req,res,next)=>{
-    const {id}=req.params
+    const {id} = req.params
     console.log(id)
     Profile
-    .findOne({_id:id})
-    .then((user)=> res.status(200).json(user))
+    .findOne({userId:id})
+    .then((profile)=> res.status(200).json(profile))
     .catch((err)=> res.status(400).json({err}))
 
    
@@ -36,27 +36,30 @@ exports.getOneprestaProfile = (req,res,next)=>{
 exports.getProfileAll = (req,res,next)=>{
     Profile
     .find()
-    .then((user)=> res.status(200).json(user))
+    .then((profile)=> res.status(200).json(profile))
     .catch((err)=> res.status(400).json({err}))
 }
 
 
-// exports.getProfileToAdmin =async()=>{
-//     try{
-//        const profile = await Profile.aggregate([
-
+exports.getProfileOfuser =async()=>{
+    try{
+       const profile = await Profile.aggregate([
+       
 //           {
-//             $sort:{createdAt:-1}
+//             $lookup:{
+//                 from:'users',
+//                 localField:'userId',
+//                 foreignField:'_id',
+//                 as:'user'
+//             }
 //           },
-//           {
-//             $limit:5
-//           }
-//        ])
-//        res.status(200).json(profile)
-//     }catch(err){
-//         res.status(500).json({err})
-//     }
-// }
+         
+       ])
+       res.status(200).json(profile)
+    }catch(err){
+        res.status(500).json({err})
+    }
+}
 
 // modifier le profile
 exports.modifyProfile =(req,res,next)=>{

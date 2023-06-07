@@ -1,23 +1,40 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../constants/Navbar';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Footer from '../constants/Footer';
-import MapContainer from '../Maps/MapContainer';
 import { MyStore } from '../context/myStore';
 import axios from 'axios';
 import { useNavigate ,Navigate} from 'react-router';
-
+import LocationSearchingIcon from '@mui/icons-material/LocationSearching';
+import GpsFixedIcon from '@mui/icons-material/GpsFixed';
+import DoneAllIcon from '@mui/icons-material/DoneAll';
+import MapUser from '../Maps/MapUser';
 
 const Parametres = () => {
 const {getMyProfileData,isInLine,userId,me_User,myProfile} = useContext(MyStore)
 const navigate = useNavigate()
 //API 
 const urlPOST = 'http://localhost:3002/profiles'//url pour poster le profile
-const urlGET = `http://localhost:3002/profiles/${userId}`//url pour recuperer le profile de utilisateur connecter
+const urlGET = `http://localhost:3002/profiles/myProfile/${userId}`//url pour recuperer le profile de utilisateur connecter
 const urlPUT =`http://localhost:3002/profiles/${userId}`//url pour modifier le profile de utilisateru
+const [click,setClick] =useState(false)
+const [LONGITUDE,setLONGITUDE] =useState('')
+const [LATITUDE,setLATITUDE]=useState('')
 
-console.log(me_User)
+const getPosition=()=>{
+  //demander acces ala position local
+  navigator.geolocation.getCurrentPosition((position)=>{
+    //recuperer la position local
+    const {latitude,longitude} = position.coords
+    setLONGITUDE(longitude)
+    setLATITUDE(latitude)
+    setClick(true)
+  })
+}
+  
+  console.log(LONGITUDE, LATITUDE)
+
 // recuperation du profile de user 
 useEffect(()=>{
       const getProfile =async()=>{
@@ -32,6 +49,7 @@ useEffect(()=>{
       }
       isInLine && getProfile()
 },[])
+
 
 // validation des champs de formulaire de modifcation profile
     const validation1 = yup.object({
@@ -55,7 +73,9 @@ useEffect(()=>{
         categorie:"",
         address:"",
         biographie:"",
-        isPrestataire:""
+        isPrestataire:"",
+        longitude:"",
+        latitude:""
       };
 
       const formSubmission =()=>{
@@ -70,7 +90,7 @@ useEffect(()=>{
       //envoi de formulaire
    const handleSubmit1=async(formData , onSubmittingProps)=>{
     try{
-       const res = await axios.put(urlPUT,{...formData,isPrestataire:me_User.isPrestataire})
+       const res = await axios.put(urlPUT,{...formData})
        if(res){
           await res.data 
           const {data} = res.data
@@ -107,7 +127,9 @@ useEffect(()=>{
         proffesion:"",
         categorie:"",
         biographie:"",
-        isPrestataire:""
+        isPrestataire:"",
+        longitude:"",
+        latitude:""
       };
 
       const formSubmission2 =()=>{
@@ -122,7 +144,7 @@ useEffect(()=>{
       //envoi de formulaire
    const handleSubmit2=async(formData , onSubmittingProps)=>{
     try{
-       const res = await axios.post(urlPOST,{...formData,userId,isPrestataire:me_User.isPrestataire})
+       const res = await axios.post(urlPOST,{...formData,userId,longitude:LONGITUDE,latitude:LATITUDE})
        if(res){
           await res.data 
           const {data} = res.data
@@ -145,7 +167,7 @@ useEffect(()=>{
     { value: "mecanicien", label: "Mecanicien" },
     { value: "plombier", label: "Plombier" },
     { value: "enseignant", label: "Enseignant" },
-    { value: "proffeseur", label: "Proffesseur" },
+    { value: "proffesseur", label: "Proffesseur" },
     { value: "docteur", label: "Docteur" },
     { value: "medecin", label: "Medecin" },
     { value: "sage femme", label: "Sage femme" },
@@ -164,7 +186,6 @@ useEffect(()=>{
     { value: "entreprenariat", label: "entreprenariat" },
   ];
   
-
     return (
         <>
         <Navbar/>
@@ -172,10 +193,11 @@ useEffect(()=>{
         <div className='header-para'>
         {!isInLine && <Navigate to='/connecter' replace={true} />}
             <div className='img-para-container'>
-             <img className='img-param' src={myProfile? myProfile.photo :'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtYqXjw6IR_opev4UADLjT8TPcLmWYQsx_YQ&usqp=CAU'} alt='' />
+             <img className='img-param' src={myProfile ? myProfile.photo :'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtYqXjw6IR_opev4UADLjT8TPcLmWYQsx_YQ&usqp=CAU'} alt='' />
              </div> 
              <div className='lienposi'>
-              <a href={myProfile? myProfile.address :''}><img className='carte-maps' src='data:image/jpeg;base64,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' alt=''/>Ma Geo-Localisation</a>
+             <img className='carte-maps' src='data:image/jpeg;base64,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' alt=''/>
+               <MapUser/>
              </div>
         </div>
 
@@ -197,7 +219,7 @@ useEffect(()=>{
                         type="text"
                         name="nom"
                         id="nom"
-                        placeholder={me_User.nom}
+                        placeholder='Nom'
                       />
                       <ErrorMessage
                         className="text-danger"
@@ -213,7 +235,7 @@ useEffect(()=>{
                         type="text"
                         name="prenom"
                         id="prenom"
-                        placeholder={me_User.prenom}
+                        placeholder='Prenom'
                       />
                       <ErrorMessage
                         className="text-danger"
@@ -230,9 +252,10 @@ useEffect(()=>{
                     placeholder={myProfile ? myProfile.photo:'lien de limage'}
                   />
 
-                  <div>
+                 {me_User.isPrestataire &&
+                   <div>
                
-                <Field name="proffession" id="proffesion" className='champs'>
+               <Field name="proffession" id="proffesion" className='champs'>
                   {({ field }) => (
                     <>
                       <select {...field} className="champs">
@@ -250,8 +273,9 @@ useEffect(()=>{
                     </>
                   )}
                 </Field>
-              </div>
+              </div>}
 
+                {me_User.isPrestataire &&  
                   <div>
                
                   <Field name="categorie" id="categorie" className='champs'>
@@ -274,7 +298,7 @@ useEffect(()=>{
                   </Field>
   
                  
-                </div>
+                </div>}
   
                   <div>
                  
@@ -351,13 +375,10 @@ useEffect(()=>{
               )}
             </Formik>
 
-            <div className='maps'>
-              <MapContainer/>
-            </div>
 
             </div>
 
-            <div className='infos-pro'>
+           {myProfile.length <=0 && <div className='infos-pro'>
             <h1 className='infos-h1'>Completer votre profil</h1>
             <Formik
             initialValues={initialValue2}
@@ -405,7 +426,8 @@ useEffect(()=>{
                     />
                   </div>
     
-                  <div>
+                  {me_User.isPrestataire &&
+                    <div>
                
                 <Field name="proffession" id="proffesion" className='champs'>
                   {({ field }) => (
@@ -426,8 +448,10 @@ useEffect(()=>{
                   )}
                 </Field>
               </div>
+                        }
 
-                  <div>
+                  {me_User.isPrestataire && 
+                    <div>
                
                   <Field name="categorie" id="categorie">
                     {({ field }) => (
@@ -449,7 +473,7 @@ useEffect(()=>{
                   </Field>
   
                  </div>
-
+                          }
                 <div>
                
                 <Field
@@ -488,7 +512,7 @@ useEffect(()=>{
                 className="champs"
                 type="text"
                 name="address"
-                placeholder='Lien de votre position maps'
+                placeholder="Ville/Quartier"
               />
               <ErrorMessage
                 className="text-danger"
@@ -514,6 +538,21 @@ useEffect(()=>{
             />
           </div>
 
+<div>
+<p>( Option obligatoire :)</p>
+  {!click ? 
+    
+    <button className='maps-btn' onClick={()=>getPosition()}>
+    <LocationSearchingIcon style={{marginRight:10}}/> 
+    Envoyer nous votre position actuelle
+    </button> :
+  <p style={{fontFamily:'Roboto'}}> 
+  <GpsFixedIcon style={{color:'green',marginRight:10}}/> Position active 
+  <DoneAllIcon style={{color:'green',marginLeft:10}}/></p>
+  
+}
+{!click &&<span>Veuillez active la position pour valider ton inscription</span>}
+</div>
             <div>
                   <button
                     className="signup-btn-para"
@@ -529,8 +568,7 @@ useEffect(()=>{
             )}
           </Formik>
            
-        </div>
-
+        </div>}
 
             </div>
        
@@ -542,3 +580,4 @@ useEffect(()=>{
 }
 
 export default Parametres;
+// <a href={myProfile? myProfile.address :''}>Ma Geo-Localisation</a>

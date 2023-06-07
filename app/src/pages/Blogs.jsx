@@ -1,21 +1,24 @@
 import React, { useContext, useEffect} from 'react';
 import Navbar from '../constants/Navbar';
 import Sidebar from '../constants/blogs/Sidebar';
-import EmpCard from '../constants/card/Employers';
+
+// import data from '../data/EmpData'
 import axios from 'axios'
 import { MyStore } from '../context/myStore';
+import Employers from '../constants/card/Employers';
 
 const Blogs = () => {
    const {users,getUsers} = useContext(MyStore)
-console.log(users[1].proffession)
+
   //  recuperer tous les utilisateur avec profile combiner
    useEffect(()=>{
-       axios.get('http://localhost:3002/auth/utilisateur&Infos')
+       axios.get('http://localhost:3002/auth/users&Profile')
        .then((res)=>{
         res && getUsers(res.data)
        }).catch((Err)=>console.log(Err))
    },[])
 
+console.log(users)
 
     return (
             <>
@@ -30,7 +33,7 @@ console.log(users[1].proffession)
               <div className='section-ens'>
               {
                 users.filter((item => item.isPrestataire)).map((item)=>(
-                    <EmpCard item={item}/>
+                    <Employers item={item}/>
                 ))
               }
             </div>

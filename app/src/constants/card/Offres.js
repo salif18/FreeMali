@@ -21,7 +21,7 @@ const CardOffres = ({item}) => {
             </div>
               <div className='contenu'>
                <h1>Offre</h1>
-               <p>{item.contenu}</p>
+               <p>{item.contenu.slice(0,20)}</p>
                <NavLink className='commenter' to={`/offre/${item._id}`}>Commentaires({item.commentaires.length})</NavLink>
                </div>
               <div className='contenu'>
