@@ -13,7 +13,7 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    margin: 27% 20px 20px 20px;
+    margin: 60% 20px 20px 20px;
 }
 
 .input-search2{
@@ -27,7 +27,10 @@ font-weight: 500;
 outline: none;
 border-top-left-radius: 20px;
 border-bottom-left-radius: 20px;
-border: 2.5px solid rgb(13, 179, 221);
+border-top-right-radius: 20px;
+border-bottom-right-radius:20px ;
+border: none;
+// border: 2.5px solid rgb(13, 179, 221);
 }
 
 .search-p{

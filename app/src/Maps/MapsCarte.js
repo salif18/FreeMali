@@ -1,5 +1,5 @@
 import React, { Component} from 'react';
-import {Map , GoogleApiWrapper} from 'google-maps-react'
+import {Map , GoogleApiWrapper, Marker} from 'google-maps-react'
 class MapsCarte extends Component { 
 
   render() {
@@ -8,15 +8,25 @@ class MapsCarte extends Component {
        
          <Map
            google={this.props.google}
-           zoom={10}
+           zoom={14}
            style={{
-               width: '1500px',
-               height: '350px',
+               width: '100%',
+               height: '50vh',
             }}
            initialCenter={{
                lat:12.639232,
                lng:-8.002889 }}
-         /> 
+         >
+
+        {this.props.resultatSearch.map((user)=>(
+          <Marker
+            position={{
+            lat:user.profile.latitude,
+            lng:user.profile.longitude
+         }}
+         />
+    ))}
+         </Map> 
       
        );
      }
@@ -24,5 +34,5 @@ class MapsCarte extends Component {
   }
 
    export default GoogleApiWrapper({
-     apiKey: 'AIzaSyDFLF-glHoZOBdZYG6Y95SQVlQjzlE6KTw',
+    //  apiKey: 'AIzaSyDFLF-glHoZOBdZYG6Y95SQVlQjzlE6KTw',
    })(MapsCarte);
