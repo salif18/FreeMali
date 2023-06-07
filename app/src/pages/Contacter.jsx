@@ -31,7 +31,7 @@ console.log(client)
          axios.post('http://localhost:3002/conversations',conversations)
          .then((res)=>res.data)
          .catch((Err)=>console.log(Err));
-        navigate(`/profile/${client.userId}`)
+        navigate(`/messagerie`)
          setMessage('')
          alert('Votre message a ete envoye')
     }

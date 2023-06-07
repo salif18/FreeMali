@@ -47,7 +47,7 @@ const prestataires = users.filter((presta)=> presta.isPrestataire )
   // Étape 4 : Utiliser les utilisateurs filtrés comme vous le souhaitez
   const filteredUsers = prestataires.filter(user => {
       const distance = calculateDistance(myProfile.latitude, myProfile.longitude, user.profile.latitude, user.profile.longitude);
-      const maxDistance = 15; // Distance maximale en kilomètres
+      const maxDistance = 10; // Distance maximale en kilomètres
       
       return distance <= maxDistance;
     });

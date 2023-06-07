@@ -32,14 +32,15 @@
     margin-left:20px;
     font-size: 18px;
     text-decoration: none;
-    color:#0e1235;
+    color:rgb(13, 179, 221);
     align-items: center;
     cursor: pointer;
     font-family: 'Roboto';
     font-weight: 500;
     transition: all ease-in-out;
     &:hover{
-        border-bottom: 3.2px solid rgb(248, 15, 15);
+        // border-bottom: 3.2px solid rgb(13,179,221);
+        color: #1d359c;
         
     }
 }
@@ -168,5 +169,5 @@
 }
 
 .active{
-    border-bottom: 3.5px solid rgb(7, 255, 40);
+    border-bottom: 3.5px solid rgb(13, 179, 221);
 }
