@@ -15,9 +15,6 @@ exports.signup = (req,res,next)=>{
     bcrypt.hash(req.body.password , 10)
     .then(hash=>{
         const users = new Users({
-            // nom:req.body.nom,
-            // prenom:req.body.prenom,
-            // numero:req.body.numero,
             ...req.body,
             password:hash
         })
@@ -30,7 +27,7 @@ exports.signup = (req,res,next)=>{
                 {expiresIn:'24h'}
                 )
         })
-        // res.status(201).json({message:'New user creer'}
+    
         )
         .catch((err)=>res.status(500).json({err}))
     })
@@ -62,50 +59,32 @@ exports.login =(req,res,next)=>{
     .catch((err)=>res.status(500).json({err}))
 }
 
-//profile recuperation
+//recuperation un utilisateur
 exports.getOneUser = async(req,res,next)=>{
     const {id} = req.params
-    console.log(id)
     Users
     .findOne({_id:id})
     .then((user)=>res.status(200).json(user))
     .catch((err)=>res.status(400).json({err}))
 }
 
-// const User = require('./models/user');
-// const Profile = require('./models/profile');
 
+//tous utilisateurs avec leur profiles
 exports.AllUsers =async(req,res,next)=>{
 try{
 const users = await Users.aggregate([
   {
     $lookup: {
       from: 'profiles',
-      localField: '_id',//cetait _id
-      foreignField: 'userId',//cetait userId
+      localField: '_id',
+      foreignField: 'userId',
       as: 'profile',
     },
   },
   {
     $unwind:'$profile'
   }
-//   {
-//     $project: {
-//        _id: 1,
-//       userId:1,
-//       photo:1,
-//       nom:1,
-//       prenom:1,
-//       email:1,
-//       numero:1,
-//       biographie:'$biographie',
-//       proffession:'$proffession',
-//       categorie:1,
-//       address: 1,
-//       isPrestataire:1,
-//       profile:1
-//     },
-//   },
+
 ])
 res.status(200).json(users);
  
@@ -115,41 +94,7 @@ res.status(200).json(users);
 
 }
 
-//recuperation dun user et son profile
-exports.getOneUserAndProfile = async(req,res,next)=>{
-    
-    
-    try{
-        const {id} = req.params
-        console.log(id)
-        const users = await Users.aggregate([
-            {
-                $match:{
-                    _id:mongoose.Schema.Types.ObjectId(id)
-                }
-            },
-
-            {
-                $lookup: {
-                  from: 'profiles',
-                  localField: '_id',//cetait _id
-                  foreignField: 'userId',//cetait userId
-                  as: 'profile',
-                },
-              },
-             
-              {
-                $unwind:'$profile'
-              },
-              
-        ])
-        res.status(200).json(users)
-    }catch(err){
-        res.status(500).json(err)
-    }
-}
-
-//profile recuperation
+//recuperer mes donnes users
 exports.getUser = async(req,res,next)=>{
     const {userId} = req.params
     Users
@@ -174,81 +119,9 @@ exports.userDelete =(req,res,next)=>{
     .catch((err)=>res.status(400).json({err}))
 }
 
-//obtenir statistic 
-exports.usersStatistycs = async(req,res,next)=>{
-    const date =new Date()
-    const lastYear = new Date(date.setFullYear(date.getFullYear() -1))
-   
-   try{
-     const data =await Users.aggregate([
-       { 
-        // filtre afficher le moi inferieur ou egal au moi passe
-        $match:{
-            createdAt: {$gte: lastYear}
-        }
-       },
-        { 
-            // les champs(de la sortie) a afficher
-            $project:{
-                month:{$month:'$createdAt'},
-            }
-        },
-        {
-            // grouper la date de creation par mois et grouper la somme total par mois
-            $group:{
-                 _id:'$month',
-                 total:{ $sum: 1}
-            },
-           
-        },
-    
-       
-    ]);
-    res.status(200).send(data)
-}catch(e){
-res.status(500).json(e)
-}
- }
 
 
- //obtenir user et son profile 
-// exports.getUserAndProdile = async(req,res,next)=>{
-   
-//    try{
-//      const users =await Users.aggregate([
-//         {
-//         $match:{}
-//     },
-//     {
-//         $lookup:{
-//             from:'profiles',
-//             localField:"_id",
-//             foreignField:'userId',
-//             as:'profile'
-//         }
-//     },
-//    {
-//         $unwind:"$profile"
-//     },
-//     {
-//         $project:{
-//             _id:1,
-//             nom:1,
-//             prenom:1,
-//             isPrestataire:1,
-//             profile:1,
-//             proffession:1,
-           
-            
-//         },
-        
-//     },
+
+
     
        
-//     ]);
-//     res.status(200).json(users)
-// }catch(e){
-// res.status(500).json(e)
-// }
-//  }
- 

@@ -2,7 +2,6 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    // margin-top: 10px;
     cursor: pointer;
     &:hover{
         background: rgb(245,243,243);
@@ -20,4 +19,22 @@
 
 .convers-name{
     font-weight: 600;
+}
+
+.btn-convers-del{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50px;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    font-family: Roboto;
+    border: none;
+    background: #7e7e7e15;
+    color:rgb(255, 255, 255);
+    &:hover{
+        color:"#fff";
+        background: #7e7e7e;
+    }
 }

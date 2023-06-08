@@ -554,7 +554,7 @@ useEffect(()=>{
   <DoneAllIcon style={{color:'green',marginLeft:10}}/></p>
   
 }
-{!click &&<span>Veuillez active la position pour valider ton inscription</span>}
+
 </div>
             <div>
                   <button
@@ -584,3 +584,4 @@ useEffect(()=>{
 
 export default Parametres;
 // <a href={myProfile? myProfile.address :''}>Ma Geo-Localisation</a>
+// {/*!click &&<span>Veuillez active la position pour valider ton inscription</span>*/}

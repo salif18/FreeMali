@@ -4,15 +4,15 @@ import axios from 'axios';
 
 
 const Conversation = ({conversation}) => {
-const {me_User} = useContext(MyStore)
+const {userId} = useContext(MyStore)
 
 const handledeleteConver=()=>{
    axios.delete(`http://localhost:3002/conversations/${conversation._id}`)//suprimer la conversations
 }
     return (
        <div className='conversation' key={conversation._id}>
-         <img className='convers-img' src={conversation.image} alt=''/>
-          <span className='convers-name'>{conversation.nom}</span>
+         <img className='convers-img' src={userId === conversation.userId ? conversation.imageSender : conversation.image} alt=''/>
+          <span className='convers-name'>{userId === conversation.userId ? conversation.nomSender : conversation.nom}</span>
           <button className='btn-convers-del' onClick={handledeleteConver}>x</button>
        </div>
     );

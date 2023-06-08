@@ -7,7 +7,7 @@ import Navbar from '../constants/Navbar';
 const Contacter = () => {
     const navigate = useNavigate()
     const {id} = useParams()
-    const {isInLine,userId ,me_User , myProfile} = useContext(MyStore)
+    const {isInLine,userId , myProfile} = useContext(MyStore)
     const [client,setClient] = useState([])
     
 
@@ -16,17 +16,19 @@ const Contacter = () => {
         .then((res)=>{
             res && setClient(res.data)
         }).catch((err)=>console.log(err))
-    },[id])
-console.log(client)
+    },[])
+console.log(client.prenom)
     const [message,setMessage]=useState('')
 
     const sendConvers=(conversations)=>{
          conversations={
             userId:userId,
             senderId:client.userId,
-            nom:myProfile.nom,
+            nom:myProfile.prenom,
+            nomSender:client.prenom,
             image:myProfile.photo,//photo du client selectioner
-            discussions:[{userId:userId, image:myProfile.photo, nom:myProfile.nom, contenu:message}]
+            imageSender:client.photo,
+            discussions:[{userId:userId, image:myProfile.photo, nom:myProfile.prenom, contenu:message}]
          };
          axios.post('http://localhost:3002/conversations',conversations)
          .then((res)=>res.data)

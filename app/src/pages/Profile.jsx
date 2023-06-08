@@ -125,7 +125,7 @@ const handlePlus =()=>{
             </div>
             <div className='les-notations'>
             <div className='header-avis'>
-              <h1>Votre avis sur le client</h1>
+              <h1>Votre avis sur le prestataire</h1>
               
               <input
               className="input-avis"

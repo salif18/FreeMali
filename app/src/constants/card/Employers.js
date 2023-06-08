@@ -13,11 +13,11 @@ const Employers = ({item}) => {
                <img className='empcard-img' src={item.profile.photo} alt=''/>
             </div>
             <div className='card-body'>
-              <h2>{item.profile.nom} {item.profile.prenom} </h2>
+              <h2>{item.profile.prenom} {item.profile.nom}</h2>
               <p>{item.profile.proffession}</p>
               <div className='icons'>
-              <p style={{color:'red',fontSize:10,fontFamily:"Roboto",fontWeight:600}}><FavoriteIcon style={{color:'#ff4040',marginLeft:10}}/> {item.profile.likes}</p>
-              <p style={{color:'rgb(13,179,221)',fontSize:10,fontFamily:"Roboto",fontWeight:600}}><ThumbDownIcon style={{color:'rgb(13,167,221)',marginLeft:10}}/> {item.profile.disLikes}</p>
+              <p style={{color:'red',fontSize:12,fontFamily:"Roboto",fontWeight:600}}><FavoriteIcon style={{color:'#ff4040',marginLeft:10}}/> {item.profile.likes}</p>
+              <p style={{color:'rgb(13,179,221)',fontSize:12,fontFamily:"Roboto",fontWeight:600}}><ThumbDownIcon style={{color:'rgb(13,167,221)',marginLeft:10}}/> {item.profile.disLikes}</p>
               <p style={{marginLeft:20, fontSize:12,fontWeight:600,fontFamily:'Roboto'}}>Avis {item.profile.avis.length}</p>
               </div>
             </div>

@@ -29,7 +29,7 @@ console.log(users)
             </div>
             
              <div className='main-container'>
-              <h1>Choisissez votre employe pour son savoir-faire</h1>
+              <h1>Choisissez votre prestataire pour son savoir-faire</h1>
               <div className='section-ens'>
               {
                 users.filter((item => item.isPrestataire)).map((item)=>(

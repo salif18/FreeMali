@@ -5,6 +5,7 @@ import { MyStore } from '../context/myStore';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 //import NotificationsNoneIcon from '@mui/icons-material/NotificationsNone';
 import SettingsPowerIcon from '@mui/icons-material/SettingsPower';
+import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 
 const Navbar = () => {
  const {myProfile,logout,isInLine} = useContext(MyStore)
@@ -28,7 +29,7 @@ const Navbar = () => {
              </button>
             <p className='p-rech'>Rechercher</p>
             <div className='navbar-rigth-sociaux'>
-            {isInLine && <NavLink className='lien-sociaux' to='/messagerie'><ChatBubbleOutlineIcon/></NavLink>}
+            {isInLine && <NavLink className='lien-sociaux' to='/messagerie'><QuestionAnswerIcon/></NavLink>}
             
             {isInLine && <div className='sedeconecter' onClick={logout} ><SettingsPowerIcon style={{color:'rgb(13, 179,221)'}}/></div>}
             {isInLine && <NavLink className='lien-sociaux' to='/parametre'>
