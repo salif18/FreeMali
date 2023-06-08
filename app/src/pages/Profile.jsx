@@ -10,19 +10,23 @@ import MapsPrestataire from '../Maps/MapsPrestataire';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
-
+import DoDisturbOnIcon from '@mui/icons-material/DoDisturbOn';
+import {format} from 'timeago.js'
 const Profile = () => {
     const navigate = useNavigate()
-    const {userId} = useContext(MyStore)
+    const {userId,myProfile, me_User} = useContext(MyStore)
     const [item,setItem] = useState([])
+    const [avis,setAvis]=useState([])
     const {id} = useParams()
-    console.log(id)
+    const [comments,setComments] = useState('')
 
     useEffect(()=>{
         axios
             .get(`http://localhost:3002/profiles/yourProfile/${id}`)
             .then(res => {
-                res && setItem(res.data)
+                const {avis} =res.data
+                setItem(res.data)
+                setAvis(avis)
             }).catch(err => console.log(err))
     },[])
 
@@ -43,6 +47,26 @@ const handlePlus =()=>{
         .then((res)=>res.data)
         .catch((err)=>console.log(err))
     }
+console.log(myProfile)
+    const handleAvis=(avis)=>{
+         avis ={
+            userId:userId,
+            prenom:myProfile.prenom,
+            image:myProfile.photo,
+            comments:comments,
+        };
+        axios.put(`http://localhost:3002/profiles/avis/${id}`,{avis})
+        .then(res => res.data)
+        .catch(err => console.log(err));
+        setComments('')
+    }
+
+  
+    const handleDeleteCommit =(avi)=>{
+        axios.put(`http://localhost:3002/profiles/delete/${id}/avis/${avi._id}`)
+        .then(res => res.data)
+        .catch(err => console.log(err))
+      }
 
     return (
         <>
@@ -63,16 +87,17 @@ const handlePlus =()=>{
                <h1>Salut je suis {item.nom} {item.prenom}</h1>
                
                <div className='les-notes'>
-               <p><FavoriteIcon style={{color:'red'}} /> {(item.likes)} j'aime(s)</p>
+               <p>Votes <FavoriteIcon style={{color:'red'}} /> {(item.likes)} j'aime(s)</p>
+               <p>Votes <HeartBrokenIcon style={{color:'red'}} /> {(item.disLikes)} nul(s)</p>
                </div>
 
                <div className='btn-avis'>
                <button className='btn-j' onClick={()=>handleLike()}>
                <FavoriteIcon style={{color:'rgb(13,179,221),marginRight:10'}} /> j'aime</button>
-               <button className='btn-nj' onClick={()=>handlePlus()} >
-               <HeartBrokenIcon style={{color:'red',marginRight:10}} />j'aime plus</button>
                <button className='btn-jp' onClick={()=>handleDisLike()}>
-               <ThumbDownIcon style={{color:'blue',marginRight:10}} /> nul</button>
+               <HeartBrokenIcon style={{color:'red',marginRight:10}} /> nul</button>
+               <button className='btn-nj' onClick={()=>handlePlus()} >
+               <DoDisturbOnIcon style={{color:'blue',marginRight:10}} />annuler</button>
                </div>
 
               </div>
@@ -102,18 +127,34 @@ const handlePlus =()=>{
               <input
               className="input-avis"
               type="text"
-              value=''
-    
+              value={comments}
+              onChange={(e)=>setComments(e.target.value)}
               placeholder="Ecris quelques choses sur ..."
             />
             <button className="btn-avis-input"
-           
+            onClick={()=>handleAvis()}
             >Critiquer</button>
 
             </div>
 
             <div className='avis'>
                <h1>Les avis</h1>
+               {avis.map((avi)=>(
+                <div className="commentaire-o" key={avi._id}>
+                <div className="left-commit">
+                  <img className="img-co" src={avi.image} alt='' />
+                  <p>{avi.comments}</p>
+                 </div>
+  
+                  <div className="rigth-commit">
+                  <p>{format(avi.date)}</p>
+                  <div className='grp-btn'>
+                  {userId === avi.userId && <button className='btn-card-offre-del' onClick={()=>handleDeleteCommit(avi)}>x</button>}
+                  
+                  </div>
+                  </div>
+                </div>
+               ))}
             </div>
 
             </div>
