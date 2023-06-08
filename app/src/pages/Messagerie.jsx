@@ -5,28 +5,28 @@ import Conversation from '../constants/card/Conversation';
 // import convers from '../data/ConversData';
 import Discussions from '../constants/card/Discussions';
 import axios from 'axios';
-//  import io from 'socket.io-client';
+import io from 'socket.io-client';
 import { Navigate } from 'react-router';
 
-// const socket = io('http://localhost:3002'); 
+const socket = io('http://localhost:3002'); 
 
 const Messagerie = () => {
-  const {userId,me_User,myProfile,isInLine,conversations,setConversations} = useContext(MyStore)
+  const {userId,myProfile,isInLine,conversations,setConversations} = useContext(MyStore)
   const [newMessage,setNewMessage] = useState('')//nouveau text de discusion
   const [currentMessage,setCurrentMessage] =useState(null)//message courante pour etre envoyer dans la zone de discusion
  
   // useEffect(()=>{
-  //   socket.on('sendMessage',(discu)=>{
-  //     setConvers((convers)=>([...convers,discu]))
+  //   socket.on('sendMessage',(conversations)=>{
+  //     setConversations([...conversations,conversations])
   //   });
   //   return ()=>{
-  //     socket.off('receiveMessage')
+  //     socket.off('receivMessage')
   //   }
   // },[])
 
   // const handleSend=()=>{
-  //   socket.emit('sendMessage',message);
-  //   setMessage('')
+  //   socket.emit('sendMessage',newMessage);
+  //   setNewMessage('')
   // }
 
   useEffect(()=>{  
@@ -35,7 +35,7 @@ const Messagerie = () => {
       res && setConversations(res.data)
     }).catch((err)=>console.log(err))
   },[])
-  console.log(myProfile)
+  
 
   //envoie des discussion dans la conversation
   const envoyer = (discussions)=>{

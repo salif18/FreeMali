@@ -50,7 +50,7 @@ const prestataires = users.filter((presta)=> presta.isPrestataire )
       const distance = calculateDistance(myProfile.latitude, myProfile.longitude, user.profile.latitude, user.profile.longitude);
       // const maxDistance = 6; // Distance maximale en kilomètres
       
-      return distance 
+      return distance
     });
     console.log('les filtrer');
     console.log(filteredUsers);

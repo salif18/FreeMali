@@ -14,36 +14,19 @@ app.set(process.env.PORT || 3001)
 const server = http.createServer(app)
 const io = socketIO(server)
 
-// io.on('connection', (socket) => {
-//     console.log('Nouvelle connexion établie :', socket.id);
-  
-//     socket.on('message', (data) => {
-//       // Logique pour gérer le message reçu
-//       console.log('Message reçu:', data);
-      
-//       // Diffuser le message à tous les utilisateurs connectés
-//       io.emit('message', data);
-//     });
-  
-//     socket.on('disconnect', () => {
-//       console.log('Connexion terminée :', socket.id);
-//     });
-//   });
-
-
 io.on('connection',(socket)=>{
   console.log('new connection');
 
   // enregistrement de nouveaux message
-  socket.on('sendMessage',async({userId,senderId,discussions})=>{
+  socket.on('sendMessage',async({userId,senderId,newMessage})=>{
      try{
        const conversations = await Conversations.findOneAndUpdate(
         {userId, senderId},
-        {$push:{discussions:{userId,contenu}}},
+        {$push:{discussions:{userId,newMessage}}},
         {upsert:true, new:true}
        );
       //  recuperation du message
-      io.emit('receiveMessage',discussions)
+      io.emit('receivMessage',conversations)
      }catch(err){
       res.status(500).json(err)
      }

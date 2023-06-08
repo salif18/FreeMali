@@ -28,7 +28,7 @@ useEffect(()=>{
 
 // ajouter des commentaires
 const addCommentaires=(commentaires)=>{
-    commentaires={userId:userId, nom:me_User.nom, image:myProfile.photo, comments:newComents};
+    commentaires={userId:userId, nom:myProfile.prenom, image:myProfile.photo, comments:newComents};
     axios.put(`http://localhost:3002/offres/addComent/${id}`,{commentaires})
     .then(res => res.data)
     .catch((err)=>console.log(err));
@@ -74,7 +74,10 @@ console.log(comments)
               <div className="commentaire-o" key={commit._id}>
               <div className="left-commit">
                 <img className="img-co" src={commit.image} alt='' />
+                <div style={{display:'flex',flexDirection:'column',justifyContent:"space-between"}}>
+                <p style={{fontWeight:600}}>{commit.nom}</p>
                 <p>{commit.comments}</p>
+                </div>
                </div>
 
                 <div className="rigth-commit">

@@ -17,7 +17,7 @@ const Contacter = () => {
             res && setClient(res.data)
         }).catch((err)=>console.log(err))
     },[])
-console.log(client.prenom)
+
     const [message,setMessage]=useState('')
 
     const sendConvers=(conversations)=>{
@@ -35,7 +35,7 @@ console.log(client.prenom)
          .catch((Err)=>console.log(Err));
         navigate(`/messagerie`)
          setMessage('')
-         alert('Votre message a ete envoye')
+         
     }
 
     return (

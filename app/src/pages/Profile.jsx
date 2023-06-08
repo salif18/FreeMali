@@ -98,7 +98,7 @@ const handlePlus =()=>{
                <button className='btn-j' onClick={()=>handleLike()}>
                <FavoriteIcon style={{color:'rgb(13,179,221),marginRight:10'}} /> {(item.likes)} j'aime(s)</button>
                <button className='btn-jp' onClick={()=>handleDisLike()}>
-               <HeartBrokenIcon style={{color:'#ff4040',marginRight:10}} />{(item.disLikes)} nul(s)</button>
+               <HeartBrokenIcon style={{color:'#ff4040',marginRight:10}} />{(item.disLikes)} j'aime pas</button>
                <button className='btn-nj' onClick={()=>handlePlus()} >
                <DoDisturbOnIcon style={{color:'blue',marginRight:10}} />annuler</button>
                </div>
@@ -141,12 +141,15 @@ const handlePlus =()=>{
             </div>
 
             <div className='avis'>
-               <h1>Les avis</h1>
+               <h1>Les commentaires</h1>
                {avis.map((avi)=>(
                 <div className="commentaire-o" key={avi._id}>
                 <div className="left-commit">
                   <img className="img-co" src={avi.image} alt='' />
+                  <div style={{display:'flex',flexDirection:'column',justifyContent:"space-between"}}>
+                  <p style={{fontWeight:600}}>{avi.prenom}</p>
                   <p>{avi.comments}</p>
+                  </div>
                  </div>
   
                   <div className="rigth-commit">
