@@ -12,10 +12,10 @@ exports.usersNotations =(req,res,next)=>{
           Profile.updateOne(
             {userId:id},
             {
-                $inc:{likes: 1},
-                $push:{usersLikes:req.body.userId}
+                $inc:{likes: +1},
+                $push:{usersLikes:userId}
             },
-          ).then(()=>res.status(201).json({msg:'like de +'}))
+          ).then(()=>res.status(201).json({msg:'plus 1 likes'}))
           .catch((err)=>res.status(400).json({err}))
        };
 
@@ -24,9 +24,9 @@ exports.usersNotations =(req,res,next)=>{
           {userId:id},
           {
               $inc:{likes:-1},
-              $pull:{usersLikes:req.body.userId},
+              $pull:{usersLikes:userId},
           },
-        ).then(()=>res.status(201).json({msg:'like de -'}))
+        ).then(()=>res.status(201).json({msg:'moins 1 like'}))
         .catch((err)=>res.status(400).json({err}))
      };
 
@@ -36,10 +36,10 @@ exports.usersNotations =(req,res,next)=>{
         Profile.updateOne(
           {userId:id},
           {
-              $inc:{disLikes:1},
+              $inc:{disLikes: +1},
               $push:{usersDisLikes:userId}
           },
-        ).then(()=>res.status(201).json({msg:'like de '}))
+        ).then(()=>res.status(201).json({msg:'plus 1 dislike '}))
         .catch((err)=>res.status(400).json({err}))
      };
 
@@ -47,10 +47,10 @@ exports.usersNotations =(req,res,next)=>{
       Profile.updateOne(
         {userId:id},
         {
-            $inc:{disLikes: +1},
+            $inc:{disLikes: -1},
             $pull:{usersDisLikes:userId},
         },
-      ).then(()=>res.status(201).json({msg:'like de '}))
+      ).then(()=>res.status(201).json({msg:'moins 1 dislike '}))
       .catch((err)=>res.status(400).json({err}))
    }
 
