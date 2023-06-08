@@ -12,7 +12,9 @@ const prestataires = users.filter((presta) =>  presta.isPrestataire)
         <>
         <Navbar/>
         <div className='blogs'>
+        <div className='side'>
         <Sidebar/>
+      </div>
             <div className='main-container'>
             <h1>Nos profils sages femmes</h1>
             <div className='section-ens'>

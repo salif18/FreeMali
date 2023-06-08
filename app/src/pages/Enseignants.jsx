@@ -12,7 +12,9 @@ const Enseignants = () => {
         <>
         <Navbar/>
         <div className='blogs'>
+        <div className='side'>
         <Sidebar/>
+      </div>
             <div className='main-container'>
             <h1>Nos profils enseignants</h1>
             <div className='section-ens'>

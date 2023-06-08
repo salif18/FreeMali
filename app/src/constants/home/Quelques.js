@@ -14,7 +14,7 @@ const Quelques = () => {
             <div className='container-quelques'>
             
              {
-               users.filter((pre => pre.isPrestataire === true)).map(item => (
+               users.slice(0,3).filter((pre => pre.isPrestataire === true)).map(item => (
                 <Employers item={item}/>
                ))
              }

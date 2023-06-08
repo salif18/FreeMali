@@ -24,9 +24,13 @@ router.put('/:userId',profileRouter.modifyProfile)
 
 //route pour ajouter des likes
 router.post('/:id/notations',likesRouter.usersNotations)
+
 //route pour ajouter des avis sur prestataire
 router.put('/avis/:id',avisRouter.addAvis)
+
 // route pur supprimer son commentaire sur le client
 router.put('/delete/:userId/avis/:id',avisRouter.deleteAvisCommit)
+
+
 //exportation
 module.exports = router

@@ -12,7 +12,9 @@ const Animateur = () => {
         <>
         <Navbar/>
         <div className='blogs'>
+        <div className='side'>
         <Sidebar/>
+      </div>
             <div className='main-container'>
             <h1>Nos profils animateurs</h1>
             <div className='section-ens'>

@@ -66,7 +66,10 @@ return (
             <div className='container-result'>
              {valueSearch &&
                 resultatSearch.map(item => (
+                  <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
                     <EmpCard item={item}/>
+                    <p style={{fontFamily:'Roboto',fontWeight:600}}>{item.profile.address}</p>
+                    </div>
                 ))
              }
             </div>

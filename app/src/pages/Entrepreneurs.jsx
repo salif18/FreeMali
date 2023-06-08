@@ -12,7 +12,9 @@ const Entrepreneurs = () => {
         <>
         <Navbar/>
         <div className='blogs'>
+        <div className='side'>
         <Sidebar/>
+      </div>
             <div className='main-container'>
             <h1>Nos profils entrepreneurs</h1>
             <div className='section-ens'>

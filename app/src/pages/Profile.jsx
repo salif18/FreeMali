@@ -12,14 +12,16 @@ import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import DoDisturbOnIcon from '@mui/icons-material/DoDisturbOn';
 import {format} from 'timeago.js'
+
 const Profile = () => {
     const navigate = useNavigate()
-    const {userId,myProfile, me_User} = useContext(MyStore)
+    const {userId,myProfile} = useContext(MyStore)
     const [item,setItem] = useState([])
     const [avis,setAvis]=useState([])
     const {id} = useParams()
     const [comments,setComments] = useState('')
 
+    //recuperer le profile du prestataire selectionner
     useEffect(()=>{
         axios
             .get(`http://localhost:3002/profiles/yourProfile/${id}`)
@@ -30,24 +32,28 @@ const Profile = () => {
             }).catch(err => console.log(err))
     },[])
 
+    //click pour donner un like
     const handleLike=()=>{
           axios.post(`http://localhost:3002/profiles/${id}/notations`,{userId:userId,likes:1})
           .then((res)=>res.data)
           .catch((err)=>console.log(err))
     }
 
+    //click pour anuuler son jaime
 const handlePlus =()=>{
     axios.post(`http://localhost:3002/profiles/${id}/notations`,{userId:userId,likes:0})
     .then((res)=>res.data)
     .catch((err)=>console.log(err))
 }
 
+    // click pour non jaime
     const handleDisLike =()=>{
         axios.post(`http://localhost:3002/profiles/${id}/notations`,{userId:userId,likes:-1})
         .then((res)=>res.data)
         .catch((err)=>console.log(err))
     }
-console.log(myProfile)
+    
+    // ajouter des avis sur le prestataire
     const handleAvis=(avis)=>{
          avis ={
             userId:userId,
@@ -61,7 +67,7 @@ console.log(myProfile)
         setComments('')
     }
 
-  
+    // supprimer son avis sur le prestataire
     const handleDeleteCommit =(avi)=>{
         axios.put(`http://localhost:3002/profiles/delete/${id}/avis/${avi._id}`)
         .then(res => res.data)
@@ -86,16 +92,13 @@ console.log(myProfile)
               <div className='card-body'>
                <h1>Salut je suis {item.nom} {item.prenom}</h1>
                
-               <div className='les-notes'>
-               <p>Votes <FavoriteIcon style={{color:'red'}} /> {(item.likes)} j'aime(s)</p>
-               <p>Votes <HeartBrokenIcon style={{color:'red'}} /> {(item.disLikes)} nul(s)</p>
-               </div>
+               
 
                <div className='btn-avis'>
                <button className='btn-j' onClick={()=>handleLike()}>
-               <FavoriteIcon style={{color:'rgb(13,179,221),marginRight:10'}} /> j'aime</button>
+               <FavoriteIcon style={{color:'rgb(13,179,221),marginRight:10'}} /> {(item.likes)} j'aime(s)</button>
                <button className='btn-jp' onClick={()=>handleDisLike()}>
-               <HeartBrokenIcon style={{color:'red',marginRight:10}} /> nul</button>
+               <HeartBrokenIcon style={{color:'#ff4040',marginRight:10}} />{(item.disLikes)} nul(s)</button>
                <button className='btn-nj' onClick={()=>handlePlus()} >
                <DoDisturbOnIcon style={{color:'blue',marginRight:10}} />annuler</button>
                </div>
@@ -122,7 +125,7 @@ console.log(myProfile)
             </div>
             <div className='les-notations'>
             <div className='header-avis'>
-              <h1>Un mot sur le client</h1>
+              <h1>Votre avis sur le client</h1>
               
               <input
               className="input-avis"
@@ -165,3 +168,7 @@ console.log(myProfile)
 }
 
 export default Profile;
+// <div className='les-notes'>
+//                <p>Votes <FavoriteIcon style={{color:'red'}} /> {(item.likes)} j'aime(s)</p>
+//                <p>Votes <HeartBrokenIcon style={{color:'red'}} /> {(item.disLikes)} nul(s)</p>
+//                </div>
