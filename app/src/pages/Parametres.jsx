@@ -69,13 +69,12 @@ useEffect(()=>{
         photo:'',
         email: "",
         numero: "",
-        proffesion:"",
+        proffession:"",
         categorie:"",
         address:"",
         biographie:"",
-        isPrestataire:"",
-        longitude:"",
-        latitude:""
+       
+        
       };
 
       const formSubmission =()=>{
@@ -124,12 +123,10 @@ useEffect(()=>{
         email: "",
         numero: "",
         address:"",
-        proffesion:"",
+        proffession:"",
         categorie:"",
         biographie:"",
-        isPrestataire:"",
-        longitude:"",
-        latitude:""
+       
       };
 
       const formSubmission2 =()=>{
@@ -142,9 +139,12 @@ useEffect(()=>{
       }
 
       //envoi de formulaire
-   const handleSubmit2=async(formData , onSubmittingProps)=>{
+   const handleSubmit2=async(formData , onSubmittingProps)=>{ 
+    
     try{
-       const res = await axios.post(urlPOST,{...formData,userId,longitude:LONGITUDE,latitude:LATITUDE})
+       const res = await axios.post(urlPOST,{...formData,
+        userId,longitude:LONGITUDE,latitude:LATITUDE})
+       console.log(formData)
        if(res){
           await res.data 
           const {data} = res.data
@@ -185,6 +185,8 @@ useEffect(()=>{
     { value: "juriste", label: "Juriste" },
     { value: "entreprenariat", label: "entreprenariat" },
   ];
+
+  
   
     return (
         <>

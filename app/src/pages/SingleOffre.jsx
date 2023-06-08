@@ -72,12 +72,17 @@ console.log(comments)
           <h1>Les commentaires</h1>
            {comments.map((commit)=>(
               <div className="commentaire-o" key={commit._id}>
+              <div className="left-commit">
                 <img className="img-co" src={commit.image} alt='' />
                 <p>{commit.comments}</p>
+               </div>
+
+                <div className="rigth-commit">
                 <p>{format(commit.date)}</p>
                 <div className='grp-btn'>
                 {userId === commit.userId && <button className='btn-card-offre-del' onClick={()=>handleDeleteCommit(commit)}>x</button>}
                  {!me_User.isPrestataire && <button className="btn-offre-contacter" onClick={()=>navigate(`/profile/${commit.userId}`)} >contacter</button>}
+                </div>
                 </div>
               </div>
              ))}

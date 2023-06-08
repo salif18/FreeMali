@@ -18,22 +18,27 @@ const CardOffres = ({item}) => {
             <div className='card-offre-body'> 
             <div className='container-img-card-offre'>
                <img className='img-card-offre' src={item.image} alt='' />
-            </div>
+            
               <div className='contenu'>
                <h1>Offre</h1>
-               <p>{item.contenu.slice(0,20)}</p>
+               <p>{item.contenu.slice(0,90)}</p>
                <NavLink className='commenter' to={`/offre/${item._id}`}>Commentaires({item.commentaires.length})</NavLink>
                </div>
+
+            </div>
+            
+            </div>
+ <div className='center'> 
               <div className='contenu'>
               <h1>Auteur</h1>
               <p>{item.nom}</p>
               </div>
+
               <div className='contenu'>
               <h1>Date</h1>
               <p className='p2'>{format(item.createdAt)}</p>
               </div>
-            </div>
-
+             </div>
             <div className='grp-btn'>
             
             {!me_User.isPrestataire && item.userId === userId && <button className='btn-card-offre-del'
