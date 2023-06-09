@@ -41,7 +41,7 @@ const CardOffres = ({item}) => {
              </div>
             <div className='grp-btn'>
             
-            {!me_User.isPrestataire && item.userId === userId && <button className='btn-card-offre-del'
+            {(me_User && !me_User.isPrestataire) && item.userId === userId && <button className='btn-card-offre-del'
              onClick={()=>deleteOffre(item._id)}
             >
             x

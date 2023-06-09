@@ -42,14 +42,14 @@ const handlePost =()=>{
     setRecits('')
 }
 
-
+//  {!isInLine && <Navigate to='/connecter' replace={true} />}
     return (
         <>
         <Navbar/>
         <div className='offres'>
-           {!isInLine && <Navigate to='/connecter' replace={true} />}
+          
            
-            {!me_User.isPrestataire &&
+            {(me_User && !me_User.isPrestataire) &&
                 <div className='container-offre'>
                <img className='img-offre' 
                src={myProfile.photo} alt=''/>
@@ -69,9 +69,10 @@ const handlePost =()=>{
                </div>
               </div>  
             }
+
            <div className='offre-pulier'>
-           {offres.length <= 0 && me_User.isPrestataire && <p className='textaucun'>" Aucun offre pour le moment "</p>}
-           {offres.length <= 0 && !me_User.isPrestataire && <p className='textaucun'>" Aucun offre pour le moment "</p>}
+           {((offres.length <= 0) && (me_User && me_User.isPrestataire )) && <p className='textaucun'>" Aucun offre pour le moment "</p>}
+           {((offres.length <= 0) && (me_User && !me_User.isPrestataire ))&& <p className='textaucun'>" Aucun offre pour le moment "</p>}
             {offres.map((item)=>(
                 <CardOffres item={item} />
             ))

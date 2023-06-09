@@ -19,7 +19,7 @@ const Navbar = () => {
              <h2 className='logo-title'>FreeMali</h2>
              <NavLink className={({isActive})=> isActive ? 'active':'navbar-left'} to='/'>Accueil</NavLink> 
              <NavLink className={({isActive})=> isActive ? 'active':''} to='/blogs'>Blogs prestataires</NavLink>
-             {isInLine && <NavLink className={({isActive})=> isActive ? 'active':''} to='/offres'>Offres d'emploi</NavLink>}
+             <NavLink className={({isActive})=> isActive ? 'active':''} to='/offres'>Offres d'emploi</NavLink>
              <NavLink className={({isActive})=> isActive ? 'active':''} to='/contacts'>Contacts</NavLink>
             </div>
             
