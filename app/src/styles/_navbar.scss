@@ -43,7 +43,7 @@
     margin-left:20px;
     font-size: 18px;
     text-decoration: none;
-    color:rgb(13, 179, 221);
+    color:#1876f2;
     align-items: center;
     cursor: pointer;
     font-family: 'Roboto';
@@ -116,7 +116,7 @@
     font-family: 'Roboto';
     margin:20px;
     font-weight: 600;
-    color:rgb(13, 179, 221);
+    color:#1876f2;
     // &:hover{
     //     border-bottom: 1px solid rgb(15, 202, 248);
     // }
@@ -124,14 +124,14 @@
 .btn-search{
     width: 40px;
     height:40px ;
-    background: rgb(13, 179, 221);
+    background: #1876f2;
     border: none;
     color:#fff;
     border-radius: 100%;
     transition: all 0.9s;
     &:hover{
         transform: rotate(90deg);
-        border:4px solid rgb(13, 179, 221);
+        border:4px solid #1876f2;
         color:rgb(15, 202, 248);
         background: #f5f5f5;
     }
@@ -157,7 +157,7 @@
     text-decoration: none;
     font-family: "Roboto";
     font-size: 16px;
-    color:rgb(13, 179, 221);
+    color:#1876f2;
     font-weight: 600;
    }
     
@@ -185,7 +185,7 @@
 }
 
 .active{
-    border-bottom: 3.5px solid rgb(13, 179, 221);
+    border-bottom: 3.5px solid #1876f2;
 }
 
 .seconnecter-container a{

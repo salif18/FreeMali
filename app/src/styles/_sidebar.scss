@@ -1,6 +1,6 @@
 .sidebar{
     flex:1;
-    background: #fff;
+    background: #f0f2f5;
     border:1px solid #e7e7e7;
     margin: 20px;
     height: 950px;
@@ -49,8 +49,8 @@
     &:hover{
         //  background: rgb(15,202,248);
         border-radius: 5px;
-        color: rgb(13, 179, 221);
-        background: #f5f5f5;
+        color: #6e6e6e;
+        background: #dbdbdb;
         // border: 2px solid rgba(15, 202, 248);
     }
 }

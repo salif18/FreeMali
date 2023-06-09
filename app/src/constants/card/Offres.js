@@ -6,7 +6,7 @@ import {format} from 'timeago.js'
 import axios from 'axios';
 const CardOffres = ({item}) => {
     const navigate = useNavigate()
-     const {me_User,userId } = useContext(MyStore)
+     const {me_User,userId,defaultImage } = useContext(MyStore)
 
      const deleteOffre =()=>{
         axios.delete(`http://localhost:3002/offres/${item._id}`)//supprimer son offre
@@ -17,7 +17,7 @@ const CardOffres = ({item}) => {
         
             <div className='card-offre-body'> 
             <div className='container-img-card-offre'>
-               <img className='img-card-offre' src={item.image} alt='' />
+               <img className='img-card-offre' src={item ? item.image:defaultImage} alt='' />
             
               <div className='contenu'>
                <h1>Offre</h1>

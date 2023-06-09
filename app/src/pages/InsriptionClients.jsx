@@ -11,14 +11,13 @@ const InsriptionClients = () => {
   const {login,userId,getMyData,isInLine,getMyProfileData} = useContext(MyStore)
 //API de registre signup
 const url = 'http://localhost:3002/auth/signup'
-const urlGET = `http://localhost:3002/auth/usersData/${userId}`//url de recuperation des donnes de user apres etre connecter
-const PROFILGET = `http://localhost:3002/profiles/myProfile/${userId}`//url pour recuperer le profile de utilisateur connecter 
+//url de recuperation des donnes de user apres etre connecter
+const urlGET = `http://localhost:3002/auth/usersData/${userId}`
+//url pour recuperer le profile de utilisateur connecter 
+const PROFILGET = `http://localhost:3002/profiles/myProfile/${userId}`
+
   const navigate = useNavigate()
     const initialValue = {
-        // nom: "",
-        // prenom: "",
-        // proffession: "",
-        // categorie: "",
         email: "",
         numero: "",
         password: "",
@@ -26,8 +25,6 @@ const PROFILGET = `http://localhost:3002/profiles/myProfile/${userId}`//url pour
       };
     
       const validation = yup.object({
-        // nom: yup.string().required("Veuillez entrer votre nom"),
-        // prenom: yup.string().required("Veuillez entrer votre prenom"),
         email: yup.string().required("Veuillez entrer un email operationnel"),
         numero: yup.number().required("Veuillez entrer un numero joingnable"),
         password: yup
@@ -195,39 +192,3 @@ useEffect(()=>{
 }
 
 export default InsriptionClients;
-
-// <div>
-                    
-// <Field
-//   className="form-control"
-//   type="text"
-//   name="nom"
-//   id="nom"
-//   placeholder="Nom"
-// />
-// <ErrorMessage
-//   className="text-danger"
-//   name="nom"
-//   component="span"
-// />
-// </div>
-
-// <div>
-
-// <Field
-//   className="form-control"
-//   type="text"
-//   name="prenom"
-//   id="prenom"
-//   placeholder='Prenom'
-// />
-// <ErrorMessage
-//   className="text-danger"
-//   name="prenom"
-//   component="span"
-// />
-// </div>
-
-// <div>
-
-// </div>

@@ -2,13 +2,12 @@ import React, { useContext, useEffect, useState } from 'react';
 import { MyStore } from '../context/myStore';
 import Navbar from '../constants/Navbar';
 import Conversation from '../constants/card/Conversation';
-// import convers from '../data/ConversData';
 import Discussions from '../constants/card/Discussions';
 import axios from 'axios';
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 import { Navigate } from 'react-router';
 
-const socket = io('http://localhost:3002'); 
+// const socket = io('http://localhost:3002'); 
 
 const Messagerie = () => {
   const {userId,myProfile,isInLine,conversations,setConversations} = useContext(MyStore)

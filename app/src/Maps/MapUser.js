@@ -7,9 +7,10 @@ const MapUser =()=>{
       
         if (navigator.geolocation) {
             //demander la position actuel de user
-            navigator.geolocation.getCurrentPosition(() => {
+            navigator.geolocation.getCurrentPosition((position) => {
+              const {latitude,longitude} = position.coords
             //partager sa position par biais de maps google
-            const shareUrl = `https://www.google.com/maps?q=${myProfile.latitude},${myProfile.longitude}`;
+            const shareUrl = `https://www.google.com/maps?q=${myProfile ? myProfile.latitude:latitude},${myProfile ? myProfile.longitude : longitude}`;
             //ouvrir par la fenetre window
             window.open(shareUrl, '_blank');
           });

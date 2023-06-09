@@ -16,10 +16,6 @@ const urlGET = `http://localhost:3002/auth/usersData/${userId}`//url de recupera
 const PROFILGET = `http://localhost:3002/profiles/myProfile/${userId}`//url pour recuperer le profile de utilisateur connecter 
   
   const initialValue = {
-    // nom: "",
-    // prenom: "",
-    // proffession: "",
-    // categorie: "",
     email: "",
     numero: "",
     password: "",
@@ -27,10 +23,6 @@ const PROFILGET = `http://localhost:3002/profiles/myProfile/${userId}`//url pour
   };
 
   const validation = yup.object({
-    // nom: yup.string().required("Veuillez entrer votre nom"),
-    // prenom: yup.string().required("Veuillez entrer votre prenom"),
-    // proffession: yup.string().required("Veuillez choisir votre proffession"),
-    // categorie: yup.string().required("Veuillez choisir la categorie"),
     email: yup.string().required("Veuillez entrer un email operationnel"),
     numero: yup.number().required("Veuillez entrer un numero joingnable"),
     password: yup
@@ -41,31 +33,6 @@ const PROFILGET = `http://localhost:3002/profiles/myProfile/${userId}`//url pour
       isPrestaire:yup.boolean().oneOf([true],'veuillez cocher la case prestataire')
   });
 
-  const proffesions = [
-    { value: "", label: "Select-votre-proffession" },
-    { value: "electricien", label: "Electricien" },
-    { value: "menuisier", label: "Menuisier" },
-    { value: "mecanicien", label: "Mecanicien" },
-    { value: "plombier", label: "Plombier" },
-    { value: "enseignant", label: "Enseignant" },
-    { value: "proffeseur", label: "Proffesseur" },
-    { value: "docteur", label: "Docteur" },
-    { value: "medecin", label: "Medecin" },
-    { value: "sage femme", label: "Sage femme" },
-    { value: "entrepreneur", label: "Entrepreneur" },
-    { value: "avocat", label: "Avocat" },
-    { value: "animateur", label: "Animateur" },
-    { value: "dj", label: "Dj" },
-  ];
-
-  const categories = [
-    {value:'',label:'Choix de la categorie'},
-    { value: "mains d'oeuvres", label: "Mains d'oeuvres" },
-    { value: "educations", label:"Educations" },
-    { value: "sante", label: "Sante" },
-    { value: "juriste", label: "Juriste" },
-    { value: "entreprenariat", label: "entreprenariat" },
-  ];
   
   const formSubmission =()=>{
     return new Promise((resolve, reject)=>{
@@ -221,80 +188,3 @@ useEffect(()=>{
 };
 
  export default InscriptionPrestataire;
-// <div>
-                
-// <Field
-//   className="form-control"
-//   type="text"
-//   name="nom"
-//   id="nom"
-//   placeholder="Nom"
-// />
-// <ErrorMessage
-//   className="text-danger"
-//   name="nom"
-//   component="span"
-// />
-// </div>
-
-// <div>
-
-// <Field
-//   className="form-control"
-//   type="text"
-//   name="prenom"
-//   id="prenom"
-//   placeholder="Prenom"
-// />
-// <ErrorMessage
-//   className="text-danger"
-//   name="prenom"
-//   component="span"
-// />
-// </div>
-
-// <div>
-
-// <Field name="proffession" id="proffesion" className='form-control'>
-//   {({ field }) => (
-//     <>
-//       <select {...field} className="form-control">
-//         {proffesions.map((prof) => (
-//           <option key={prof.value} value={prof.value} >
-//             {prof.label}
-//           </option>
-//         ))}
-//       </select>
-//       <ErrorMessage
-//         className="text-danger"
-//         name="proffession"
-//         component="span"
-//       />
-//     </>
-//   )}
-// </Field>
-// </div>
-
-// <div>
-
-// <Field name="categorie" id="categorie">
-//   {({ field }) => (
-//     <>
-//       <select {...field} className="form-control">
-//         {categories.map((catego) => (
-//           <option key={catego.value} value={catego.value}>
-//             {catego.label}
-//           </option>
-//         ))}
-//       </select>
-//       <ErrorMessage
-//         className="text-danger"
-//         name="categorie"
-//         component="span"
-//       />
-//     </>
-//   )}
-// </Field>
-
-
-// </div>

@@ -8,8 +8,10 @@ import SettingsPowerIcon from '@mui/icons-material/SettingsPower';
 import QuestionAnswerIcon from '@mui/icons-material/QuestionAnswer';
 
 const Navbar = () => {
- const {myProfile,logout,isInLine, defaultImage} = useContext(MyStore)
+ const {myProfile,logout,isInLine, defaultImage ,newOffre} = useContext(MyStore)
+
     const navigate = useNavigate()
+
 
 
     return (
@@ -18,8 +20,8 @@ const Navbar = () => {
             <div className='navbar-left' >
              <h2 className='logo-title'>FreeMali</h2>
              <NavLink className={({isActive})=> isActive ? 'active':'navbar-left'} to='/'>Accueil</NavLink> 
-             <NavLink className={({isActive})=> isActive ? 'active':''} to='/blogs'>Blogs prestataires</NavLink>
-             <NavLink className={({isActive})=> isActive ? 'active':''} to='/offres'>Offres d'emploi</NavLink>
+             <NavLink className={({isActive})=> isActive ? 'active':''} to='/blogs'>Prestataires</NavLink>
+             <NavLink className={({isActive})=> isActive ? 'active':''} to='/offres'>Offres d'emploi{newOffre > 0 && <span>{newOffre}</span>}</NavLink>
              <NavLink className={({isActive})=> isActive ? 'active':''} to='/contacts'>Contacts</NavLink>
             </div>
             
@@ -34,7 +36,7 @@ const Navbar = () => {
             <div className='navbar-rigth-sociaux'>
             {isInLine && <NavLink className='lien-sociaux' to='/messagerie'><QuestionAnswerIcon/></NavLink>}
             {isInLine && <NavLink className='lien-sociaux' to='/notification'><NotificationsNoneIcon/></NavLink>}
-            {isInLine && <div className='sedeconecter' onClick={logout} ><SettingsPowerIcon style={{color:'rgb(13, 179,221)'}}/></div>}
+            {isInLine && <div className='sedeconecter' onClick={logout} ><SettingsPowerIcon style={{color:"#1876f2"}}/></div>}
             {isInLine && <NavLink className='lien-sociaux' to='/parametre'>
                <img className='img-profi' src={myProfile ? myProfile.photo : defaultImage} alt='' />
             </NavLink>}

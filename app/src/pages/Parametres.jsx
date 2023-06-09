@@ -15,9 +15,12 @@ const Parametres = () => {
 const {getMyProfileData,isInLine,userId,me_User,myProfile,defaultImage} = useContext(MyStore)
 const navigate = useNavigate()
 //API 
-const urlPOST = 'http://localhost:3002/profiles'//url pour poster le profile
-const urlGET = `http://localhost:3002/profiles/myProfile/${userId}`//url pour recuperer le profile de utilisateur connecter
-const urlPUT =`http://localhost:3002/profiles/${userId}`//url pour modifier le profile de utilisateru
+//url pour poster le profile
+const urlPOST = 'http://localhost:3002/profiles'
+//url pour recuperer le profile de utilisateur connecter
+const urlGET = `http://localhost:3002/profiles/myProfile/${userId}`
+//url pour modifier le profile de utilisateru
+const urlPUT =`http://localhost:3002/profiles/${userId}`
 const [click,setClick] =useState(false)
 const [LONGITUDE,setLONGITUDE] =useState('')
 const [LATITUDE,setLATITUDE]=useState('')
@@ -48,7 +51,7 @@ useEffect(()=>{
         })
       }
       isInLine && getProfile()
-},[isInLine,urlGET,getMyProfileData])
+},[])
 
 
 // validation des champs de formulaire de modifcation profile
@@ -73,8 +76,6 @@ useEffect(()=>{
         categorie:"",
         address:"",
         biographie:"",
-       
-        
       };
 
       const formSubmission =()=>{
@@ -384,7 +385,7 @@ useEffect(()=>{
 
             </div>
 
-           <div className='infos-pro'>
+           {!myProfile && <div className='infos-pro'>
             <h1 className='infos-h1'>Completer votre profil</h1>
             <Formik
             initialValues={initialValue2}
@@ -574,7 +575,7 @@ useEffect(()=>{
             )}
           </Formik>
            
-        </div>
+        </div>}
 
             </div>
        

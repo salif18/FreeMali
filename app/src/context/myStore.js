@@ -58,7 +58,9 @@ export const MyStoreProvider = (props) => {
   const [users,setUsers]=useState(getusers)//magasin de stock de tous les utilisateurs
   const [conversations, setConversations] = useState([]);//conversation stockage
   const [offres,setOffres] = useState([])//stockage des offres
-
+  const [newOffre,setNewOffre] = useState(0)//si un nouveau offre est recu
+  const [newMessage,setNewMessage] = useState(0)//si un nouveau message est recu
+  const [newNotification,setNewNotification] = useState(0)
 //   connection
   const handleLogin = (userId, token) => {
     setUserId(userId);
@@ -148,7 +150,13 @@ const getOffres=(data)=>{
     getUsers:getUsers,
     offres:offres,
     getOffres:getOffres,
-    defaultImage:defaultImage
+    defaultImage:defaultImage,
+    newOffre:newOffre,
+    setNewOffre:setNewOffre,
+    newMessage:newMessage,
+    setNewMessage:setNewMessage,
+    newNotification:newNotification,
+    setNewNotification:setNewNotification
   };
 
   return (

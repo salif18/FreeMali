@@ -2,27 +2,26 @@ import React, { useContext, useEffect, useState } from 'react';
 import Navbar from '../constants/Navbar';
 import CardOffres from '../constants/card/Offres';
 import { MyStore } from '../context/myStore';
-import { Navigate,} from 'react-router';
 import axios from 'axios'
-import Footer from '../constants/Footer';
 
 // url pour poster et recuperer tous les offres
 const url = 'http://localhost:3002/offres'
 const Offres = () => {
-const {me_User,myProfile, isInLine, userId,offres,getOffres} = useContext(MyStore)
-// const [offre,setOffre] =useState([])
+const {me_User,myProfile, defaultImage, userId,offres,getOffres,newOffre ,setNewOffre} = useContext(MyStore)
+
 
 // recuperation des offres du cotes server
 useEffect(()=>{
     axios.get(url)
     .then(res => {
         res && getOffres(res.data)
+        setNewOffre(newOffre + 1)
     }).catch((err)=>console.log(err))
-},[getOffres])
+},[])
 
 // valeur du champs input offre
 const [recits,setRecits] = useState('')
-
+console.log(newOffre)
 // boutton pour poster un offre
 const handlePost =()=>{
     const d = new Date()
@@ -42,7 +41,6 @@ const handlePost =()=>{
     setRecits('')
 }
 
-//  {!isInLine && <Navigate to='/connecter' replace={true} />}
     return (
         <>
         <Navbar/>
@@ -52,12 +50,12 @@ const handlePost =()=>{
             {(me_User && !me_User.isPrestataire) &&
                 <div className='container-offre'>
                <img className='img-offre' 
-               src={myProfile.photo} alt=''/>
+               src={myProfile? myProfile.photo :defaultImage} alt=''/>
               <div className='cham-texta'>
                <h1>Rediger votre offre</h1>
                <textarea className='texta' value={recits} 
                  onChange={(e)=>setRecits(e.target.value)}
-                 placeholder='Ecrit votre text...'
+                 placeholder='Ajoutez une offre...'
                 >
                 
                </textarea>
