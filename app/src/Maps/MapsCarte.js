@@ -8,9 +8,9 @@ class MapsCarte extends Component {
        
          <Map
            google={this.props.google}
-           zoom={12}
+           zoom={10}
            style={{
-               width: '100%',
+               width: '300px',
                height: '80vh',
             }}
            initialCenter={{

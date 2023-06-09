@@ -30,7 +30,7 @@ const Home = () => {
       })
     }
     isInLine && getUser()
-  },[])
+  },[getMyData,isInLine,urlGET])
   
  
   
@@ -47,7 +47,7 @@ useEffect(()=>{
     })
   }
   isInLine && getProfile()
-},[])
+},[PROFILGET,getMyProfileData,isInLine])
 
 
 // recuperer tous les utilisateurs
@@ -56,41 +56,14 @@ useEffect(()=>{
     .then((res)=>{
      res && getUsers(res.data)
     }).catch((Err)=>console.log(Err))
-},[])
+},[getUsers])
  
  console.log(users)
 
-  // donnee des trois carte sur home
- const data = [
-    {
-      id:1,
-      image:logo1,
-      title:'Devenir potentielle prestataire',
-      infos:'Pour avoir des offres de travails',
-      btntext:"S'inscrire",
-      lien:'/sign-presta'
-    },
-    {
-      id:2,
-      image:logo2,
-      title:'Devenir potentielle client',
-      infos:'Pour poster vos differents besoins de services ',
-      btntext:"S'inscrire",
-      lien:'/sign-clients'
-    },
-    {
-      id:3,
-      image:logo3,
-      title:'Les differentes offres',
-      infos:'Ici se trouves les differentes services de travail',
-      btntext:'Découvrir',
-      lien:'/offres'
-    }
 
-  ]
   return (
     <> 
-     <Header/>
+    
      <Navbar/>
     <div className='home-page'>
      <div className='container-home'>

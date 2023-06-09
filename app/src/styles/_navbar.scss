@@ -1,5 +1,5 @@
 .navbar{
-    height: 70px;
+    height: 80px;
     background:#fff;
     display: flex;
     align-items: center;
@@ -11,10 +11,21 @@
 .navbar-left{
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-left: 200px;
+    justify-content:center;
+    
 }
 
+.logo-title{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: bold;
+    color:  #1d359c;
+    margin: 20px;
+    font-size: 25px;
+}
+
+.links{
+    margin-right: 20px;
+}
 .sedeconecter{
     display: flex;
     align-items: center;
@@ -169,8 +180,23 @@
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     font-weight: bold;
     color:  #1d359c;
+    font-size: 25px;
+    margin-left: 20px;
 }
 
 .active{
     border-bottom: 3.5px solid rgb(13, 179, 221);
+}
+
+.seconnecter-container a{
+    text-decoration: none;
+    margin: 10px;
+    font-weight: 500;
+    color:#000000;
+    cursor: pointer;
+    font-family: 'Roboto';
+    font-size: 16px;
+    &:hover{
+        color:#0000005b
+    }
 }

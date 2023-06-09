@@ -13,7 +13,7 @@ exports.addAvis=(req,res,next)=>{
 
 //supprimer les commemtaire au client
 exports.deleteAvisCommit=(req,res,next)=>{
-    
+
     const {userId,id}=req.params//recuperer userId de offres et id du commentaire
     console.log(userId, id)
     Profile

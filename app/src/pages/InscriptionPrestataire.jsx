@@ -109,7 +109,7 @@ useEffect(()=>{
     })
   }
   isInLine && getUser()
-},[])
+},[getMyData,isInLine,urlGET])
 
 
   
@@ -126,7 +126,7 @@ useEffect(()=>{
     })
   }
   isInLine && getProfile()
-},[])
+},[PROFILGET,getMyProfileData,isInLine])
 
   return (
     <>

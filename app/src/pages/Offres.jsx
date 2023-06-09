@@ -18,7 +18,7 @@ useEffect(()=>{
     .then(res => {
         res && getOffres(res.data)
     }).catch((err)=>console.log(err))
-},[])
+},[getOffres])
 
 // valeur du champs input offre
 const [recits,setRecits] = useState('')

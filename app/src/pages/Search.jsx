@@ -29,25 +29,30 @@ const calculateDistance=(lat1, lon1, lat2, lon2)=>{
     return distance;
   }
   
- 
+const [LATITUDE,setLATITUDE] = useState('')
+const [LONGITUDE,setLONGITUDE] = useState('') 
   
-// Étape 1 : Obtenir la position de l'utilisateur actuel
-// navigator.geolocation.getCurrentPosition((position)=>{
-    // const {latitude,longitude}= position.coords
+// Étape 1 : Obtenir la position actuel de l'utilisateur 
+const getPosition =()=>{
+   navigator.geolocation.getCurrentPosition((position)=>{
+    const {latitude,longitude}= position.coords
+    setLATITUDE(latitude)
+    setLONGITUDE(longitude)
+  });
+}   
 
-  
-    
-  // });
-    
-//   Cela vous donne une base pour filtrer les utilisateurs en fonction de leur position de géolocalisation la plus proche en utilisant React.js. Vous pouvez adapter ce code en
-  
-
+// si l'utilisateur n'est pas connecter appel cette fonction pour obtenir la position actuel de lui
+!myProfile && getPosition()
 
 const prestataires = users.filter((presta)=> presta.isPrestataire )
 
+// si user est connecter utilise son latitude ou
+const lat1 = myProfile ? myProfile.latitude : LATITUDE
+const lng1 = myProfile ? myProfile.longitude : LONGITUDE
+
   // Étape 4 : Utiliser les utilisateurs filtrés comme vous le souhaitez
   const filteredUsers = prestataires.filter(user => {
-      const distance = calculateDistance(myProfile.latitude, myProfile.longitude, user.profile.latitude, user.profile.longitude);
+      const distance = calculateDistance(lat1, lng1, user.profile.latitude, user.profile.longitude);
       // const maxDistance = 6; // Distance maximale en kilomètres
       
       return distance

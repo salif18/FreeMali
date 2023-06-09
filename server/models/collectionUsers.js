@@ -4,10 +4,7 @@ const uniqueValidator = require('mongoose-unique-validator')
 
 //creation table
 const Schema = mongoose.Schema({
-    // nom:{type:String,required:true},
-    // prenom:{type:String,required:true},
-    // proffession:{type:String},
-    // categorie:{type:String},
+   
     email:{type:String,required:true},
     numero:{ type:Number, required:[true,'Veuillez entrer votre numero de telephone'],
         unique:true,
@@ -17,7 +14,8 @@ const Schema = mongoose.Schema({
          trim:true
         // maxLength:[9,'Le mot de passe doit contenir au moins 8 a 9 characteres']
     },
-    isPrestataire:{ type:Boolean, default:false }
+    isPrestataire:{ type:Boolean, default:false },
+    status:{type:String,default:'En cours'}
 },{timestamps:true})
 
 Schema.plugin(uniqueValidator)

@@ -1,16 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useNavigate } from 'react-router';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import { MyStore } from '../../context/myStore';
 const Employers = ({item}) => {
   const navigate = useNavigate()
-  
+  const {defaultImage} = useContext(MyStore)
     return (
 
         <div className='empCard' key={item._id}>
             <div className='containe-img'>
-               <img className='empcard-img' src={item.profile.photo} alt=''/>
+               <img className='empcard-img' src={item.profile.photo ? item.profile.photo:defaultImage} alt=''/>
             </div>
             <div className='card-body'>
               <h2>{item.profile.prenom} {item.profile.nom}</h2>

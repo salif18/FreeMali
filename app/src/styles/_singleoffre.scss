@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    // height: calc(100vh - 80px);
 }
 
 .single-offre-header{
@@ -47,7 +48,8 @@
         margin:20px;
         font-size: 16px;
         font-family: "Roboto";
-        font-weight:500;
+        font-weight:400;
+        
     };
 
     .input-single{
@@ -91,8 +93,8 @@
         margin:20px;
         font-family: "Roboto";
         font-size: 18px;
-        color: rgb(13,179,221);
-        font-weight: 600;
+        color: rgb(54, 54, 54);
+        font-weight: 550;
     }
 
     p{
@@ -156,5 +158,7 @@
     p{
         font-family: 'Roboto';
         margin-left: 20px;
+        font-weight: 350;
+        text-transform: none;
     }
 }

@@ -124,7 +124,7 @@ const getOffres=(data)=>{
   };
 
  
-
+  const defaultImage ='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtYqXjw6IR_opev4UADLjT8TPcLmWYQsx_YQ&usqp=CAU'
   // context value
   const contextValue = {
     userId: userId,
@@ -147,7 +147,8 @@ const getOffres=(data)=>{
     users:users,
     getUsers:getUsers,
     offres:offres,
-    getOffres:getOffres
+    getOffres:getOffres,
+    defaultImage:defaultImage
   };
 
   return (

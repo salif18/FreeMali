@@ -109,6 +109,13 @@
 
 .details{
     margin: 20px;
+    p{
+        font-family: Roboto;
+    }
+    span{
+        font-weight: 300;
+        color: #8b8b8b;
+    }
 }
 
 .profile p{
@@ -152,7 +159,7 @@
         width: 100px;
         border: none;
         background: teal;
-        height: 50px;
+        height: 45px;
         text-align: center;
         font-family: Roboto;
         font-size: 16px;

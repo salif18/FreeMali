@@ -34,7 +34,7 @@ const Messagerie = () => {
     .then(res =>{
       res && setConversations(res.data)
     }).catch((err)=>console.log(err))
-  },[])
+  },[userId,setConversations])
   
 
   //envoie des discussion dans la conversation

@@ -15,12 +15,12 @@ import {format} from 'timeago.js'
 
 const Profile = () => {
     const navigate = useNavigate()
-    const {userId,myProfile} = useContext(MyStore)
+    const {userId,myProfile,defaultImage} = useContext(MyStore)
     const [item,setItem] = useState([])
     const [avis,setAvis]=useState([])
     const {id} = useParams()
     const [comments,setComments] = useState('')
-
+    const [viewBtnLike,setViewBtnLike] =useState()
     //recuperer le profile du prestataire selectionner
     useEffect(()=>{
         axios
@@ -30,13 +30,14 @@ const Profile = () => {
                 setItem(res.data)
                 setAvis(avis)
             }).catch(err => console.log(err))
-    },[])
+    },[id])
 
     //click pour donner un like
     const handleLike=()=>{
           axios.post(`http://localhost:3002/profiles/${id}/notations`,{userId:userId,likes:1})
           .then((res)=>res.data)
           .catch((err)=>console.log(err))
+          
     }
 
     //click pour anuuler son jaime
@@ -44,6 +45,7 @@ const handlePlus =()=>{
     axios.post(`http://localhost:3002/profiles/${id}/notations`,{userId:userId,likes:0})
     .then((res)=>res.data)
     .catch((err)=>console.log(err))
+    
 }
 
     // click pour non jaime
@@ -51,6 +53,7 @@ const handlePlus =()=>{
         axios.post(`http://localhost:3002/profiles/${id}/notations`,{userId:userId,likes:-1})
         .then((res)=>res.data)
         .catch((err)=>console.log(err))
+        
     }
     
     // ajouter des avis sur le prestataire
@@ -86,7 +89,7 @@ const handlePlus =()=>{
 
             <div className='cars-profile'>
             <div className='img-car'>
-                <img className='card-img' src={item.photo}  alt=''/>
+                <img className='card-img' src={item.photo ? item.photo : defaultImage}  alt=''/>
             </div>
              
               <div className='card-body'>
@@ -116,23 +119,26 @@ const handlePlus =()=>{
 
             <div className='details'>
              <h2>Des details</h2>
-             <p>Nom: {item.nom}</p>
-             <p>Prenom: {item.prenom}</p>
-             <p>Proffession: {item.proffession}</p>
-             <p>Address: </p><MapsPrestataire item={item} />
+             <p>Nom  <span>{item.nom}</span></p>
+             <p>Prenom  <span>{item.prenom}</span></p>
+             <p>Proffession  <span>{item.proffession}</span></p>
+             <p>Address  <span>{item.address}</span></p>
+             <MapsPrestataire item={item} />
             </div>
             
             </div>
             <div className='les-notations'>
             <div className='header-avis'>
-              <h1>Votre avis sur le prestataire</h1>
+              <h1>Vos critiques sur le prestataire</h1>
               
+              <img style={{width:50,height:50, borderRadius:'100%'}} src={myProfile? myProfile.photo : defaultImage} alt='' />
+
               <input
               className="input-avis"
               type="text"
               value={comments}
               onChange={(e)=>setComments(e.target.value)}
-              placeholder="Ecris quelques choses sur ..."
+              placeholder="Ajoutez un commentaire...."
             />
             <button className="btn-avis-input"
             onClick={()=>handleAvis()}
@@ -142,12 +148,15 @@ const handlePlus =()=>{
 
             <div className='avis'>
                <h1>Les commentaires</h1>
+               {avis.length <= 0 && <p style={{marginLeft:20,color:'#aaa',fontSize:14}}>"Aucuns commentaires"</p>}
                {avis.map((avi)=>(
                 <div className="commentaire-o" key={avi._id}>
                 <div className="left-commit">
+                <div><p style={{fontWeight:600}}>{avi.prenom}</p>
                   <img className="img-co" src={avi.image} alt='' />
+                </div>
                   <div style={{display:'flex',flexDirection:'column',justifyContent:"space-between"}}>
-                  <p style={{fontWeight:600}}>{avi.prenom}</p>
+                  
                   <p>{avi.comments}</p>
                   </div>
                  </div>

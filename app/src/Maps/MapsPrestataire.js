@@ -19,7 +19,7 @@ const MapsPrestataire =({item})=>{
 
     return (
         
-         <button className='maps-btn' onClick={shareLocation}>
+         <button className='maps-presta-btn' onClick={shareLocation}>
           <PlaceIcon style={{marginRight:10,color:'#fff'}}/> Afficher la localisation 
          </button>
       

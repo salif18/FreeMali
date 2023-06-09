@@ -7,7 +7,7 @@ import axios from "axios";
 import {format} from 'timeago.js'
 
 const SingleOffre = () => {
-    const {userId,me_User,myProfile, isInLine} = useContext(MyStore)    
+    const {userId,me_User,myProfile,defaultImage, isInLine} = useContext(MyStore)    
     const navigate = useNavigate()
   const { id } = useParams();
   const [oneOffre, setOneOffre] = useState([])
@@ -23,7 +23,7 @@ useEffect(()=>{
         setOneOffre(res.data)
         setComments(commentaires)
     }).catch((err)=>console.log(err))
-},[])
+},[id])
 
 
 // ajouter des commentaires
@@ -55,12 +55,14 @@ console.log(comments)
         <div className="contenu-single-offre">
           <p>{oneOffre.contenu}</p>
           <div className="input-single">
+
+          <img style={{width:50,height:50,marginRight:20, borderRadius:'100%'}} src={ myProfile ? myProfile.photo : defaultImage} alt='' />
             <input
               className="input-reponse"
               type="text"
               value={newComents}
               onChange={(e)=>setNewComents(e.target.value)}
-              placeholder="Votre commentaire..."
+              placeholder="Ajoutez un commentaire...."
             />
             <button className="btn-offre-reponse"
             onClick={(e)=>addCommentaires(e)}
@@ -70,10 +72,11 @@ console.log(comments)
 
         <div className="single-commentaire">
           <h1>Les commentaires</h1>
+          {comments.length <= 0 && <p style={{marginLeft:20,color:'#aaa',fontSize:14}}>"Aucuns commentaires"</p>}
            {comments.map((commit)=>(
               <div className="commentaire-o" key={commit._id}>
               <div className="left-commit">
-                <img className="img-co" src={commit.image} alt='' />
+                <img className="img-co" src={commit ? commit.image : defaultImage} alt='' />
                 <div style={{display:'flex',flexDirection:'column',justifyContent:"space-between"}}>
                 <p style={{fontWeight:600}}>{commit.nom}</p>
                 <p>{commit.comments}</p>

@@ -2,7 +2,7 @@ const Conversations = require('../models/collectionConversation')
 
 exports.creatConversations = (req,res,next)=>{
     const conversations = new Conversations({
-        ...req.body
+        ...req.body 
     })
     console.log(conversations)
     conversations.save()
@@ -17,7 +17,7 @@ exports.getConversations = (req,res,next)=>{
     .then((conversation)=>res.status(200).json(conversation))
     .catch((err)=>res.status(400).json(err))
 }
-
+ 
 // recuperations des dune convers uniquement
 exports.getOneConversations = (req,res,next)=>{
     const {id} = req.params
