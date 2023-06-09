@@ -12,7 +12,24 @@
     display: flex;
     align-items: center;
     justify-content:center;
-    
+   
+}
+
+.badge{
+     width: 20px;
+        height: 20px; 
+        background: #e00a0a;
+        border-radius: 100%;
+        
+        position: relative;
+        top: -15px;
+ span{
+        color:#fff;
+        font-family: Roboto;
+        font-size: 12px;
+        display: flex;
+        justify-content: center;
+    }
 }
 
 .logo-title{

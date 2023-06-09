@@ -21,7 +21,7 @@ const Navbar = () => {
              <h2 className='logo-title'>FreeMali</h2>
              <NavLink className={({isActive})=> isActive ? 'active':'navbar-left'} to='/'>Accueil</NavLink> 
              <NavLink className={({isActive})=> isActive ? 'active':''} to='/blogs'>Prestataires</NavLink>
-             <NavLink className={({isActive})=> isActive ? 'active':''} to='/offres'>Offres d'emploi{newOffre > 0 && <span>{newOffre}</span>}</NavLink>
+             <NavLink className={({isActive})=> isActive ? 'active':''} to='/offres'><div>Offres d'emploi<div className='badge'>{newOffre >0  && <span>{newOffre }</span>}</div></div></NavLink>
              <NavLink className={({isActive})=> isActive ? 'active':''} to='/contacts'>Contacts</NavLink>
             </div>
             
