@@ -7,7 +7,7 @@ import axios from 'axios'
 // url pour poster et recuperer tous les offres
 const url = 'http://localhost:3002/offres'
 const Offres = () => {
-const {me_User,myProfile, defaultImage, userId,offres,getOffres,newOffre ,setNewOffre} = useContext(MyStore)
+const {me_User,myProfile, defaultImage, userId,offres,getOffres,newOffre ,isInLine,setNewOffre} = useContext(MyStore)
 
 
 // recuperation des offres du cotes server
@@ -71,6 +71,7 @@ const handlePost =()=>{
            <div className='offre-pulier'>
            {((offres.length <= 0) && (me_User && me_User.isPrestataire )) && <p className='textaucun'>" Aucun offre pour le moment "</p>}
            {((offres.length <= 0) && (me_User && !me_User.isPrestataire ))&& <p className='textaucun'>" Aucun offre pour le moment "</p>}
+           {(offres.length <= 0 && !isInLine) && <p className='textaucun'>" Aucun offre pour le moment "</p>}
             {offres.map((item)=>(
                 <CardOffres item={item} />
             ))
