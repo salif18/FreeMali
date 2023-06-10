@@ -12,23 +12,28 @@ app.set(process.env.PORT || 3001)
 
 
 const server = http.createServer(app)
-const io = socketIO(server)
+const io = socketIO(server,{
+  cors:{
+    origin:'http://localhost:3000',
+    methods:['GET','POST']
+  }
+})
 
 io.on('connection',(socket)=>{
-  console.log('new connection');
+  console.log(`new connection ${socket.id}`);
 
-  // enregistrement de nouveaux message
-  socket.on('sendMessage',async({userId,senderId,newMessage})=>{
+  //recevoire et enregistrement de nouveaux message
+  socket.on('send_message',async(discussions)=>{
      try{
-       const conversations = await Conversations.findOneAndUpdate(
-        {userId, senderId},
-        {$push:{discussions:{userId,newMessage}}},
+       const conversations = await Conversations.updateOne(
+        // {_id:id},
+        {$push:{discussions:discussions}},
         {upsert:true, new:true}
        );
-      //  recuperation du message
-      io.emit('receivMessage',conversations)
-     }catch(err){
-      res.status(500).json(err)
+    
+  socket.broadcast.emit('receive_message',conversations)
+ }catch(err){
+      console.log(err)
      }
   });
   socket.on('disconnect',()=>{

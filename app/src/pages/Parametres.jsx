@@ -197,6 +197,7 @@ useEffect(()=>{
             <div className='img-para-container'>
             <img className='img-param' src={myProfile ? myProfile.photo : defaultImage } alt=''/>
              <div className='information'>
+             <h1>Informations personnelles</h1>
               <h2>Prenom  <span>{myProfile && myProfile.prenom}</span></h2>
               <h2>Nom  <span>{myProfile && myProfile.nom}</span></h2>
               <h2>Proffession <span>{(myProfile && myProfile.proffession )? myProfile.proffession :  'Non defini'}</span></h2>
@@ -210,7 +211,7 @@ useEffect(()=>{
 
            <div className='container-pro-parametre'>
             <div className='pro'>
-              <h1 className='pro-h1'>Informations</h1>
+              <h1 className='pro-h1'>Modifier les informations</h1>
               <Formik
               initialValues={initialValue1}
               validationSchema={validation1}
@@ -386,7 +387,7 @@ useEffect(()=>{
             </div>
 
            {!myProfile && <div className='infos-pro'>
-            <h1 className='infos-h1'>Completer votre profil</h1>
+            <h1 className='infos-h1'>Creer votre profil utilisateur</h1>
             <Formik
             initialValues={initialValue2}
             validationSchema={validation2}

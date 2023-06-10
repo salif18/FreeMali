@@ -23,6 +23,8 @@ exports.getProfile = (req,res,next)=>{
 //le profile d'un prestaire
 exports.getOneprestaProfile = (req,res,next)=>{
     const {id} = req.params
+    console.log('invite id')
+    console.log(id)
     Profile
     .findOne({userId:id})
     .then((profile)=> res.status(200).json(profile))

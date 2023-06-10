@@ -24,11 +24,20 @@
 }
 
 .information{
+    margin-right: 50px;
+    h1{
+        font-size: 18px;
+        font-family: "Roboto";
+        font-weight: 300;
+        margin-bottom: 30px;
+        border-bottom: 1px solid #000;
+    }
     h2{
     font-size: 16px;
     font-family: Roboto;
     font-weight: 500;
     }
+
     span{
         font-weight: 300;
         color: #8b8b8b;

@@ -61,6 +61,7 @@ export const MyStoreProvider = (props) => {
   const [newOffre,setNewOffre] = useState(0)//si un nouveau offre est recu
   const [newMessage,setNewMessage] = useState(0)//si un nouveau message est recu
   const [newNotification,setNewNotification] = useState(0)
+  const [invite,setInvite] = useState(null)
 //   connection
   const handleLogin = (userId, token) => {
     setUserId(userId);
@@ -156,7 +157,9 @@ const getOffres=(data)=>{
     newMessage:newMessage,
     setNewMessage:setNewMessage,
     newNotification:newNotification,
-    setNewNotification:setNewNotification
+    setNewNotification:setNewNotification,
+    invite:invite,
+    setInvite:setInvite
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState ,useRef } from 'react';
 import { MyStore } from '../context/myStore';
 import Navbar from '../constants/Navbar';
 import Conversation from '../constants/card/Conversation';
@@ -7,46 +7,77 @@ import axios from 'axios';
 // import io from 'socket.io-client';
 import { Navigate } from 'react-router';
 
-// const socket = io('http://localhost:3002'); 
+// const socket = io.connect('http://localhost:3002'); 
 
 const Messagerie = () => {
-  const {userId,myProfile,isInLine,conversations,setConversations} = useContext(MyStore)
+  const {userId,isInLine} = useContext(MyStore)
+  
+  //contacts des deux chatters
+  const [chaters,setChaters]=useState([])
+  //maintenir les infos des deux chatters recus pour utiliser ce id dans les conversations
+  const [currenChat,setCurrenChat] =useState(null)
+  //les messages de discussion
+  const [message,setMessage] = useState([])
   const [newMessage,setNewMessage] = useState('')//nouveau text de discusion
-  const [currentMessage,setCurrentMessage] =useState(null)//message courante pour etre envoyer dans la zone de discusion
- 
+
+  //recuperer les contact des deux chatters
+  useEffect(()=>{
+    axios.get(`http://localhost:3002/chat/${userId}`)
+    .then(res => {
+      setChaters(res.data)
+    }).catch(err => console.log(err))
+  },[userId])
+
+  //recuperer la conversation des deux personnes
+  useEffect(()=>{
+    axios.get(`http://localhost:3002/message/${currenChat?._id}`)
+    .then((res)=>{
+      setMessage(res.data)
+    }).catch((err)=>console.log(err))
+  },[currenChat])
+
+  
+
+  const handleSubmit =(e)=>{
+    e.preventDefault()
+    const message ={conversationId:currenChat._id,sender:userId,text:newMessage}
+    axios.post(`http://localhost:3002/message`,message)
+    .then((res)=>{
+      setMessage([...message,res.data])
+    })
+    .catch(Err => console.log(Err))
+    setNewMessage('')
+  }
+
   // useEffect(()=>{
-  //   socket.on('sendMessage',(conversations)=>{
-  //     setConversations([...conversations,conversations])
+  //   socket.on('receive_message',(data)=>{
+  //     alert(data.message)
+      // setConversations([...conversations,conversations])
   //   });
   //   return ()=>{
-  //     socket.off('receivMessage')
+  //     socket.off('receive_message')
   //   }
   // },[])
-
-  // const handleSend=()=>{
-  //   socket.emit('sendMessage',newMessage);
+  
+ 
+  // const sendMessage=(discussions)=>{
+  //   discussions={ userId:userId, image:myProfile.photo, nom:myProfile.nom, contenu:newMessage }
+  //   socket.emit(`send_message`,{discussions});
   //   setNewMessage('')
   // }
 
-  useEffect(()=>{  
-    axios.get(`http://localhost:3002/conversations/userId/${userId}`)//recuperation des conversation  de user uniquement
-    .then(res =>{
-      res && setConversations(res.data)
-    }).catch((err)=>console.log(err))
-  },[userId,setConversations])
-  
 
-  //envoie des discussion dans la conversation
-  const envoyer = (discussions)=>{
-     discussions={ userId:userId, image:myProfile.photo, nom:myProfile.nom, contenu:newMessage }
-     const id = currentMessage[0]._id;
-     axios.put(`http://localhost:3002/conversations/${id}`,{discussions})
-     .then((res)=>res.data)
-     .catch((err)=>console.log(err));
-     setNewMessage('') 
-     
+  // scroll ecrant automatiquement a chaque nouveau text recu
+  const scrollRef = useRef(null)
+  const scrollToBottom=()=>{
+    scrollRef.current?.scrollIntoView({behavior:'smooth'})
   }
+  
+  useEffect(()=>{
+     scrollToBottom()
+  },[message])
 
+  
 
     return (
       <>
@@ -58,23 +89,29 @@ const Messagerie = () => {
         <div className='chatMenu'>
         <div className='chatMenuWrapper'>
           <h1>Mes conversations</h1>
-         {conversations.map((item)=>(
-          <div onClick={()=>setCurrentMessage([item])}>
-           <Conversation conversation={item}/>
+         {chaters.map((c)=>(
+          <div onClick={()=>setCurrenChat(c)}>
+           <Conversation chaters={c}/>
            </div>
           ))}
         </div>
       </div>
 
+   
        {/*zone ou souvre la converstion discussion*/}
        <div className='chatBox'>
-       {currentMessage ?
+      
        <div className='chatBoxWrapper'>
-
+      {currenChat ?
+        <>
         <div className='chatBoxtop'>
-          
-          <Discussions discussion={currentMessage} />
+        {message.map((item)=>(
+          <div ref={scrollRef}>
+          <Discussions discussion={item} />
+          </div>
+          ))}
         </div>
+        
      
      <div className='chatBoxBottom'>
        <input type='text' 
@@ -85,17 +122,56 @@ const Messagerie = () => {
        />
        <button
         className='chatBox-btn' 
-        onClick={()=>envoyer()}
+        onClick={(e)=>handleSubmit(e)}
        >Envoyer</button>
      </div>
-         
+     </>
+     :
+       <span className='textread'> "" Aucune discussion ouverte ""</span>
+        }
      </div>
-       :<span className='textread'> "" Aucune discussion ouverte ""</span>}
-       </div>
 
       </div>
-      </>
-    );
-}
+    </div>
+
+  </>  
+
+  )};
+
 
 export default Messagerie;
+
+
+// useEffect(()=>{  
+  //   axios.get(`http://localhost:3002/conversations/userId/${userId}`)//recuperation des conversation  de user uniquement
+  //   .then(res =>{
+  //     res && setConversations(res.data)
+  //   }).catch((err)=>console.log(err))
+  // },[userId,setConversations])
+  
+
+  //envoie des discussion dans la conversation
+  // const envoyer = (discussions)=>{
+  //    discussions={ userId:userId, image:myProfile.photo, nom:myProfile.nom, contenu:newMessage }
+  //    const id = currentMessage[0]._id;
+  //    axios.put(`http://localhost:3002/conversations/${id}`,{discussions})
+  //    .then((res)=>res.data)
+  //    .catch((err)=>console.log(err));
+  //    setNewMessage('') 
+     
+  // }
+
+
+
+// <div>
+// <input type='text' 
+// className='input-message'
+// value={newMessage}
+// onChange={(e)=>setNewMessage(e.target.value)}
+// placeholder='Ecrit votre message...'
+// />
+// <button
+//  className='chatBox-btn' 
+//  onClick={()=>envoyer()}
+// >Envoyer</button>
+// </div>

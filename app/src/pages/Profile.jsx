@@ -76,7 +76,12 @@ const handlePlus =()=>{
         .then(res => res.data)
         .catch(err => console.log(err))
       }
-
+const handleContacter=()=>{
+  axios.post(`http://localhost:3002/chat`,{senderId:userId ,receiverId:item.userId})
+  .then((res)=>res.data)
+  .catch((err)=>console.log(err));
+  navigate(`/messagerie`)
+}
     return (
         <>
         <Navbar/>
@@ -112,7 +117,7 @@ const handlePlus =()=>{
             <div className='biograph'>
              <h2>A propos de moi</h2>
              <p>{item.biographie}</p>
-             {userId !== item.userId && <button className='btn-contacter' onClick={()=>navigate(`/contacter/${item.userId}`)}>
+             {userId !== item.userId && <button className='btn-contacter' onClick={()=>handleContacter()}>
                Contacter moi</button>
              }
             </div>
