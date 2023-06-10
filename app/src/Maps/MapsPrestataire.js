@@ -16,11 +16,11 @@ const MapsPrestataire =({item})=>{
         }
       };
  
-
+const mapsImg='https://www.plotprojects.com/wp-content/uploads/2023/01/geotargeting_advertising.jpg'
     return (
         
          <button className='maps-presta-btn' onClick={shareLocation}>
-          <PlaceIcon style={{marginRight:10,color:'#fff'}}/> Afficher la localisation 
+         <img src={mapsImg} alt=''/>
          </button>
       
        );

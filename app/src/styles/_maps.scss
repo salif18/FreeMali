@@ -8,6 +8,10 @@
     font-family: 'Roboto';
     font-size: 14px;
     font-weight: 300;
+    transition: all 0.5s;
+    &:hover{
+        transform: scale(1.1);
+    }
 }
 
 .maps-btn-ins{
@@ -15,6 +19,10 @@
     width: 300px;
     height: 30px;
     font-family: Roboto;
+    transition: all 0.5s;
+    &:hover{
+        transform: scale(1.1);
+    }
 }
 
 .maps-user-btn{
@@ -23,4 +31,8 @@
     border: none;
     font-weight: 300;
     font-size: 14px;
+    transition: all 0.5s;
+    &:hover{
+        transform: scale(1.1);
+    }
 }

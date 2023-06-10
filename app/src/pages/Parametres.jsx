@@ -56,11 +56,11 @@ useEffect(()=>{
 
 // validation des champs de formulaire de modifcation profile
     const validation1 = yup.object({
-        nom: yup.string().required("Veuillez entrer votre nom"),
-        prenom: yup.string().required("Veuillez entrer votre prenom"),
-        address: yup.string().required("Veuillez choisir votre address"),
-        email: yup.string().required("Veuillez entrer un email operationnel"),
-        numero: yup.number().required("Veuillez entrer un numero joingnable"),
+        // nom: yup.string().required("Veuillez entrer votre nom"),
+        // prenom: yup.string().required("Veuillez entrer votre prenom"),
+        // address: yup.string().required("Veuillez choisir votre address"),
+        // email: yup.string().required("Veuillez entrer un email operationnel"),
+        // numero: yup.number().required("Veuillez entrer un numero joingnable"),
        
       });
 
