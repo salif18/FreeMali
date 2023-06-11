@@ -1,169 +1,217 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useNavigate, useParams} from 'react-router';
-import Navbar from '../constants/Navbar';
-import Footer from '../constants/Footer';
-import axios from 'axios';
-import { MyStore } from '../context/myStore';
-import MapsPrestataire from '../Maps/MapsPrestataire';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
-import DoDisturbOnIcon from '@mui/icons-material/DoDisturbOn';
-import AviComentaires from '../constants/card/aviComentaires';
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router";
+import Navbar from "../constants/Navbar";
+import Footer from "../constants/Footer";
+import axios from "axios";
+import { MyStore } from "../context/myStore";
+import MapsPrestataire from "../Maps/MapsPrestataire";
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import HeartBrokenIcon from "@mui/icons-material/HeartBroken";
+import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
+import AviComentaires from "../constants/card/aviComentaires";
 
 const Profile = () => {
-    const navigate = useNavigate()
-    const {userId,myProfile,defaultImage} = useContext(MyStore)
-    const [item,setItem] = useState([])
-    const [avis,setAvis]=useState([])
-    const {id} = useParams()
-    const [comments,setComments] = useState('')
-    // const [viewBtnLike,setViewBtnLike] =useState()
-    //recuperer le profile du prestataire selectionner
-    useEffect(()=>{
-        axios
-            .get(`http://localhost:3002/profiles/yourProfile/${id}`)
-            .then(res => {
-                const {avis} =res.data
-                setItem(res.data)
-                setAvis(avis)
-            }).catch(err => console.log(err))
-    },[id])
+  const navigate = useNavigate();
+  const { userId, myProfile, defaultImage } = useContext(MyStore);
+  const [item, setItem] = useState([]);
+  const [avis, setAvis] = useState([]);
+  const { id } = useParams();
+  const [comments, setComments] = useState("");
+  // const [viewBtnLike,setViewBtnLike] =useState()
+  //recuperer le profile du prestataire selectionner
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3002/profiles/yourProfile/${id}`)
+      .then((res) => {
+        const { avis } = res.data;
+        setItem(res.data);
+        setAvis(avis);
+      })
+      .catch((err) => console.log(err));
+  }, [id]);
 
-    //click pour donner un like
-    const handleLike=()=>{
-          axios.post(`http://localhost:3002/profiles/${id}/notations`,{userId:userId,likes:1})
-          .then((res)=>res.data)
-          .catch((err)=>console.log(err))
-          
-    }
+  //click pour donner un like
+  const handleLike = () => {
+    axios
+      .post(`http://localhost:3002/profiles/${id}/notations`, {
+        userId: userId,
+        likes: 1,
+      })
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+  };
 
-    //click pour anuuler son jaime
-const handlePlus =()=>{
-    axios.post(`http://localhost:3002/profiles/${id}/notations`,{userId:userId,likes:0})
-    .then((res)=>res.data)
-    .catch((err)=>console.log(err))
-    
-}
+  //click pour anuuler son jaime
+  const handlePlus = () => {
+    axios
+      .post(`http://localhost:3002/profiles/${id}/notations`, {
+        userId: userId,
+        likes: 0,
+      })
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+  };
 
-    // click pour non jaime
-    const handleDisLike =()=>{
-        axios.post(`http://localhost:3002/profiles/${id}/notations`,{userId:userId,likes:-1})
-        .then((res)=>res.data)
-        .catch((err)=>console.log(err))
-        
-    }
-    
-    // ajouter des avis sur le prestataire
-    const handleAvis=(avis)=>{
-         avis ={
-            userId:userId,
-            comments:comments,
-        };
-        axios.put(`http://localhost:3002/profiles/avis/${id}`,{avis})
-        .then(res => res.data)
-        .catch(err => console.log(err));
-        setComments('')
-    }
+  // click pour non jaime
+  const handleDisLike = () => {
+    axios
+      .post(`http://localhost:3002/profiles/${id}/notations`, {
+        userId: userId,
+        likes: -1,
+      })
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+  };
 
-    // supprimer son avis sur le prestataire
-    const handleDeleteCommit =(avi)=>{
-        axios.put(`http://localhost:3002/profiles/delete/${id}/avis/${avi._id}`)
-        .then(res => res.data)
-        .catch(err => console.log(err))
-      }
-const handleContacter=()=>{
-  axios.post(`http://localhost:3002/chat`,{senderId:userId ,receiverId:item.userId})
-  .then((res)=>res.data)
-  .catch((err)=>console.log(err));
-  navigate(`/messagerie`)
-}
-    return (
-        <>
-        <Navbar/>
-        <div className='profile'>
-        <div className='pr'>
-        <h1>Profil de {item.nom} {item.prenom}</h1>
+  // ajouter des avis sur le prestataire
+  const handleAvis = (avis) => {
+    avis = {
+      userId: userId,
+      comments: comments,
+    };
+    axios
+      .put(`http://localhost:3002/profiles/avis/${id}`, { avis })
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+    setComments("");
+  };
+
+  // supprimer son avis sur le prestataire
+  const handleDeleteCommit = (avi) => {
+    axios
+      .put(`http://localhost:3002/profiles/delete/${id}/avis/${avi._id}`)
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+  };
+  const handleContacter = () => {
+    axios
+      .post(`http://localhost:3002/chat`, {
+        senderId: userId,
+        receiverId: item.userId,
+      })
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+    navigate(`/messagerie`);
+  };
+  return (
+    <>
+      <Navbar />
+      <div className="profile">
+        <div className="pr">
+          <h1>
+            Profil de {item.nom} {item.prenom}
+          </h1>
         </div>
-        
-            <div className='container-profiles'>
 
-            <div className='cars-profile'>
-            <div className='img-car'>
-                <img className='card-img' src={item.photo ? item.photo : defaultImage}  alt=''/>
+        <div className="container-profiles">
+          <div className="cars-profile">
+            <div className="img-car">
+              <img
+                className="card-img"
+                src={item.photo ? item.photo : defaultImage}
+                alt=""
+              />
             </div>
-             
-              <div className='card-body'>
-               <h1>Salut je suis {item.nom} {item.prenom}</h1>
-               
-               
 
-               <div className='btn-avis'>
-               <button className='btn-j' onClick={()=>handleLike()}>
-               <FavoriteIcon style={{color:'rgb(13,179,221),marginRight:10'}} /> {(item.likes)} j'aime(s)</button>
-               <button className='btn-jp' onClick={()=>handleDisLike()}>
-               <HeartBrokenIcon style={{color:'#ff4040',marginRight:10}} />{(item.disLikes)} j'aime pas</button>
-               <button className='btn-nj' onClick={()=>handlePlus()} >
-               <DoDisturbOnIcon style={{color:'blue',marginRight:10}} />annuler</button>
-               </div>
+            <div className="card-body">
+              <h1>
+                Salut je suis {item.nom} {item.prenom}
+              </h1>
 
+              <div className="btn-avis">
+                <button className="btn-j" onClick={() => handleLike()}>
+                  <FavoriteIcon
+                    style={{ color: "rgb(13,179,221),marginRight:10" }}
+                  />{" "}
+                  {item.likes} j'aime(s)
+                </button>
+                <button className="btn-jp" onClick={() => handleDisLike()}>
+                  <HeartBrokenIcon
+                    style={{ color: "#ff4040", marginRight: 10 }}
+                  />
+                  {item.disLikes} j'aime pas
+                </button>
+                <button className="btn-nj" onClick={() => handlePlus()}>
+                  <DoDisturbOnIcon style={{ color: "blue", marginRight: 10 }} />
+                  annuler
+                </button>
               </div>
             </div>
+          </div>
 
-            <div className='biograph'>
-             <h2>A propos de moi</h2>
-             <p>{item.biographie}</p>
-             {userId !== item.userId && <button className='btn-contacter' onClick={()=>handleContacter()}>
-               Contacter moi</button>
-             }
-            </div>
+          <div className="biograph">
+            <h2>A propos de moi</h2>
+            <p>{item.biographie}</p>
+            {userId !== item.userId && (
+              <button
+                className="btn-contacter"
+                onClick={() => handleContacter()}>
+                Contacter moi
+              </button>
+            )}
+          </div>
 
-            <div className='details'>
-             <h2>Des details</h2>
-             <p>Nom  <span>{item.nom}</span></p>
-             <p>Prenom  <span>{item.prenom}</span></p>
-             <p>Contact <span>{item.numero}</span></p>
-             <p>Proffession  <span>{item.proffession}</span></p>
-             <p>Address  <span>{item.address}</span></p>
-             <MapsPrestataire item={item} />
-            </div>
-            
-            </div>
-            <div className='les-notations'>
-            <div className='header-avis'>
-              <h1>Vos critiques sur le prestataire</h1>
-              
-              <img style={{width:50,height:50, borderRadius:'100%'}} src={myProfile? myProfile.photo : defaultImage} alt='' />
+          <div className="details">
+            <h2>Des details</h2>
+            <p>
+              Nom <span>{item.nom}</span>
+            </p>
+            <p>
+              Prenom <span>{item.prenom}</span>
+            </p>
+            <p>
+              Contact <span>{item.numero}</span>
+            </p>
+            <p>
+              Proffession <span>{item.proffession}</span>
+            </p>
+            <p>
+              Address <span>{item.address}</span>
+            </p>
+            <MapsPrestataire item={item} />
+          </div>
+        </div>
+        <div className="les-notations">
+          <div className="header-avis">
+            <h1>Vos critiques sur le prestataire</h1>
 
-              <input
+            <img
+              style={{ width: 50, height: 50, borderRadius: "100%" }}
+              src={myProfile ? myProfile.photo : defaultImage}
+              alt=""
+            />
+
+            <input
               className="input-avis"
               type="text"
               value={comments}
-              onChange={(e)=>setComments(e.target.value)}
+              onChange={(e) => setComments(e.target.value)}
               placeholder="Ajoutez un commentaire...."
             />
-            <button className="btn-avis-input"
-            onClick={()=>handleAvis()}
-            >Critiquer</button>
+            <button className="btn-avis-input" onClick={() => handleAvis()}>
+              Critiquer
+            </button>
+          </div>
 
-            </div>
-
-            <div className='avis'>
-               <h1>Les commentaires</h1>
-               {avis.length <= 0 && <p style={{marginLeft:20,color:'#aaa',fontSize:14}}>"Aucuns commentaires"</p>}
-               {avis.map((avi)=>(
-                <AviComentaires avi={avi} handleDeleteCommit={handleDeleteCommit} />
-               ))}
-            </div>
-
-            </div>
-            <Footer/>
+          <div className="avis">
+            <h1>Les commentaires</h1>
+            {avis.length <= 0 && (
+              <p style={{ marginLeft: 20, color: "#aaa", fontSize: 14 }}>
+                "Aucuns commentaires"
+              </p>
+            )}
+            {avis.map((avi) => (
+              <AviComentaires
+                avi={avi}
+                handleDeleteCommit={handleDeleteCommit}
+              />
+            ))}
+          </div>
         </div>
-        </>
-    );
-}
+        <Footer />
+      </div>
+    </>
+  );
+};
 
 export default Profile;
-// <div className='les-notes'>
-//                <p>Votes <FavoriteIcon style={{color:'red'}} /> {(item.likes)} j'aime(s)</p>
-//                <p>Votes <HeartBrokenIcon style={{color:'red'}} /> {(item.disLikes)} nul(s)</p>
-//                </div>

@@ -1,56 +1,67 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams, Navigate, useNavigate } from "react-router";
 import Navbar from "../constants/Navbar";
-import { MyStore } from '../context/myStore';
+import { MyStore } from "../context/myStore";
 import axios from "axios";
-import {format} from 'timeago.js'
+import { format } from "timeago.js";
 import Commentaires from "../constants/card/commentaires";
 
 const SingleOffre = () => {
-    const {userId,me_User,myProfile,defaultImage, isInLine} = useContext(MyStore)    
-    const navigate = useNavigate()
+  const { userId, me_User, myProfile, defaultImage, isInLine } =
+    useContext(MyStore);
+  const navigate = useNavigate();
   const { id } = useParams();
-  const [oneOffre, setOneOffre] = useState([])
-const [comments, setComments] = useState([]);
+  const [oneOffre, setOneOffre] = useState([]);
+  const [comments, setComments] = useState([]);
 
- //contenu du commentaries
- const [newComents,setNewComents] =useState('')
+  //contenu du commentaries
+  const [newComents, setNewComents] = useState("");
 
-useEffect(()=>{
-    axios.get(`http://localhost:3002/offres/${id}`)//recuperer un offre
-    .then(res => {
-        const {commentaires}=res.data
-        setOneOffre(res.data)
-        setComments(commentaires)
-    }).catch((err)=>console.log(err))
-},[id])
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3002/offres/${id}`) //recuperer un offre
+      .then((res) => {
+        const { commentaires } = res.data;
+        setOneOffre(res.data);
+        setComments(commentaires);
+      })
+      .catch((err) => console.log(err));
+  }, [id]);
 
+  // ajouter des commentaires
+  const addCommentaires = (commentaires) => {
+    commentaires = { userId: userId, comments: newComents };
+    axios
+      .put(`http://localhost:3002/offres/addComent/${id}`, { commentaires })
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+    setNewComents("");
+  };
 
-// ajouter des commentaires
-const addCommentaires=(commentaires)=>{
-    commentaires={userId:userId, comments:newComents};
-    axios.put(`http://localhost:3002/offres/addComent/${id}`,{commentaires})
-    .then(res => res.data)
-    .catch((err)=>console.log(err));
-    setNewComents('')
-}
-  
-const handleDeleteCommit =(commit)=>{
-  axios.put(`http://localhost:3002/offres/user/delete/${oneOffre.userId}/commentaires/${commit._id}`)
-  .then(res => res.data)
-  .catch(err => console.log(err))
-}
-  const contactDonneur=()=>{
-    axios.post('http://localhost:3002/chat',{senderId:userId,receiverId:oneOffre.userId })
-    .then((res)=> res.data).catch((err)=>console.log(err))
-    navigate('/messagerie')
-  }
+  const handleDeleteCommit = (commit) => {
+    axios
+      .put(
+        `http://localhost:3002/offres/user/delete/${oneOffre.userId}/commentaires/${commit._id}`
+      )
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+  };
+  const contactDonneur = () => {
+    axios
+      .post("http://localhost:3002/chat", {
+        senderId: userId,
+        receiverId: oneOffre.userId,
+      })
+      .then((res) => res.data)
+      .catch((err) => console.log(err));
+    navigate("/messagerie");
+  };
 
-console.log(comments)
+  console.log(comments);
   return (
     <>
       <Navbar />
-      {!isInLine && <Navigate to='/connecter' replace={true} />}
+      {!isInLine && <Navigate to="/connecter" replace={true} />}
       <div className="singleoffre">
         <div className="single-offre-header">
           <h1>Service</h1>
@@ -59,29 +70,52 @@ console.log(comments)
 
         <div className="contenu-single-offre">
           <p>{oneOffre.contenu}</p>
-          {me_User?.isPrestataire && <button className="contacter-offre" onClick={()=>contactDonneur()}>Contacter l'auteur</button>}
+          {me_User?.isPrestataire && (
+            <button
+              className="contacter-offre"
+              onClick={() => contactDonneur()}>
+              Contacter l'auteur
+            </button>
+          )}
           <div className="input-single">
-
-          <img style={{width:50,height:50,marginRight:20, borderRadius:'100%'}} src={ myProfile ? myProfile.photo : defaultImage} alt='' />
+            <img
+              style={{
+                width: 50,
+                height: 50,
+                marginRight: 20,
+                borderRadius: "100%",
+              }}
+              src={myProfile ? myProfile.photo : defaultImage}
+              alt=""
+            />
             <input
               className="input-reponse"
               type="text"
               value={newComents}
-              onChange={(e)=>setNewComents(e.target.value)}
+              onChange={(e) => setNewComents(e.target.value)}
               placeholder="Ajoutez un commentaire...."
             />
-            <button className="btn-offre-reponse"
-            onClick={(e)=>addCommentaires(e)}
-            >Commenter</button>
+            <button
+              className="btn-offre-reponse"
+              onClick={(e) => addCommentaires(e)}>
+              Commenter
+            </button>
           </div>
         </div>
 
         <div className="single-commentaire">
           <h1>Les commentaires</h1>
-          {comments.length <= 0 && <p style={{marginLeft:20,color:'#aaa',fontSize:14}}>"Aucuns commentaires"</p>}
-           {comments.map((commit)=>(
-             <Commentaires commit={commit} handleDeleteCommit={handleDeleteCommit} />
-             ))}
+          {comments.length <= 0 && (
+            <p style={{ marginLeft: 20, color: "#aaa", fontSize: 14 }}>
+              "Aucuns commentaires"
+            </p>
+          )}
+          {comments.map((commit) => (
+            <Commentaires
+              commit={commit}
+              handleDeleteCommit={handleDeleteCommit}
+            />
+          ))}
         </div>
       </div>
     </>
