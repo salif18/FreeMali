@@ -195,13 +195,13 @@ useEffect(()=>{
         <div className='header-para'>
         {!isInLine && <Navigate to='/connecter' replace={true} />}
             <div className='img-para-container'>
-            <img className='img-param' src={myProfile ? myProfile.photo : defaultImage } alt=''/>
+            <img className='img-param' src={myProfile ? myProfile?.photo : defaultImage } alt=''/>
              <div className='information'>
              <h1>Informations personnelles</h1>
-              <h2>Prenom  <span>{myProfile && myProfile.prenom}</span></h2>
-              <h2>Nom  <span>{myProfile && myProfile.nom}</span></h2>
-              <h2>Proffession <span>{(myProfile && myProfile.proffession )? myProfile.proffession :  'Non defini'}</span></h2>
-              <h2>Address  <span>{myProfile && myProfile.address}</span></h2>
+              <h2>Prenom  <span>{myProfile && myProfile?.prenom}</span></h2>
+              <h2>Nom  <span>{myProfile && myProfile?.nom}</span></h2>
+              <h2>Proffession <span>{(myProfile && myProfile?.proffession )? myProfile?.proffession :  'Non defini'}</span></h2>
+              <h2>Address  <span>{myProfile && myProfile?.address}</span></h2>
              </div>
              </div> 
              <div className='lienposi'>
@@ -260,7 +260,7 @@ useEffect(()=>{
                     placeholder="Photo"
                   />
 
-                 {me_User.isPrestataire &&
+                 {me_User?.isPrestataire &&
                    <div>
                
                <Field name="proffession" id="proffesion" className='champs'>

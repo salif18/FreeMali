@@ -30,7 +30,7 @@ const Home = () => {
       })
     }
     isInLine && getUser()
-  },[getMyData,isInLine,urlGET])
+  },[])
   
  
   
@@ -47,7 +47,7 @@ useEffect(()=>{
     })
   }
   isInLine && getProfile()
-},[PROFILGET,getMyProfileData,isInLine])
+},[])
 
 
 // recuperer tous les utilisateurs
@@ -56,7 +56,7 @@ useEffect(()=>{
     .then((res)=>{
      res && getUsers(res.data)
     }).catch((Err)=>console.log(Err))
-},[getUsers])
+},[])
  
  console.log(users)
 

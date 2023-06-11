@@ -2,7 +2,7 @@
 const http = require('http')
 const dotenv = require('dotenv')
 const app = require('./app')
-const Conversations = require('./models/collectionConversation')
+const Message = require('./models/message')
 const socketIO = require('socket.io')
 //configurations
 dotenv.config()
@@ -12,29 +12,32 @@ app.set(process.env.PORT || 3001)
 
 
 const server = http.createServer(app)
-const io = socketIO(server,{
+const io = socketIO(server,
+  {
   cors:{
     origin:'http://localhost:3000',
     methods:['GET','POST']
-  }
-})
+  }}
+)
 
 io.on('connection',(socket)=>{
   console.log(`new connection ${socket.id}`);
 
-  //recevoire et enregistrement de nouveaux message
-  socket.on('send_message',async(discussions)=>{
-     try{
-       const conversations = await Conversations.updateOne(
-        // {_id:id},
-        {$push:{discussions:discussions}},
-        {upsert:true, new:true}
-       );
-    
-  socket.broadcast.emit('receive_message',conversations)
- }catch(err){
-      console.log(err)
-     }
+  // envover vers backend et enregistrement de nouveaux message
+  socket.on('send_message',async(data)=>{
+    const message = new Message({
+      conversationId:data.conversationId,
+      sender:data.sender,
+      text:data.text
+    })
+     message.save()
+     .then(()=>{   
+    //  envoyer de message vers frontend
+  io.emit('receive_message',message)
+ })
+  .catch((err)=>console.log(err))
+
+ 
   });
   socket.on('disconnect',()=>{
     console.log('user deconnecter')

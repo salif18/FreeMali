@@ -24,7 +24,7 @@ const handledeleteConver=()=>{
 }
     return (
        <div className='conversation' key={chaters._id}>
-         <img className='convers-img' src={invite ? invite?.photo :defaultImage} alt=''/>
+         <img className='convers-img' src={invite?.photo ? invite.photo :defaultImage} alt=''/>
           <span className='convers-name'>{invite?.prenom}</span>
           <button className='btn-convers-del' onClick={handledeleteConver}>x</button>
        </div>

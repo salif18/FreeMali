@@ -27,8 +27,8 @@ const handlePost =()=>{
     const d = new Date()
     const offres ={
     userId:userId,
-    nom:myProfile.nom,
-    image:myProfile.photo,
+    nom:myProfile?.nom,
+    image:myProfile?.photo,
     contenu:recits,
     commentaires:[],
     date:`${d.toLocaleDateString()} à ${d.toLocaleTimeString()}`
@@ -47,10 +47,10 @@ const handlePost =()=>{
         <div className='offres'>
           
            
-            {(me_User && !me_User.isPrestataire) &&
+            {(me_User && !me_User?.isPrestataire) &&
                 <div className='container-offre'>
                <img className='img-offre' 
-               src={myProfile? myProfile.photo :defaultImage} alt=''/>
+               src={myProfile? myProfile?.photo :defaultImage} alt=''/>
               <div className='cham-texta'>
                <h1>Rediger votre offre</h1>
                <textarea className='texta' value={recits} 
@@ -69,10 +69,10 @@ const handlePost =()=>{
             }
 
            <div className='offre-pulier'>
-           {((offres.length <= 0) && (me_User && me_User.isPrestataire )) && <p className='textaucun'>" Aucun offre pour le moment "</p>}
-           {((offres.length <= 0) && (me_User && !me_User.isPrestataire ))&& <p className='textaucun'>" Aucun offre pour le moment "</p>}
-           {(offres.length <= 0 && !isInLine) && <p className='textaucun'>" Aucun offre pour le moment "</p>}
-            {offres.map((item)=>(
+           {((offres?.length <= 0) && (me_User && me_User?.isPrestataire )) && <p className='textaucun'>" Aucun offre pour le moment "</p>}
+           {((offres?.length <= 0) && (me_User && !me_User?.isPrestataire ))&& <p className='textaucun'>" Aucun offre pour le moment "</p>}
+           {(offres?.length <= 0 && !isInLine) && <p className='textaucun'>" Aucun offre pour le moment "</p>}
+            {offres?.map((item)=>(
                 <CardOffres item={item} />
             ))
 

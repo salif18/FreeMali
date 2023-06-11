@@ -4,10 +4,11 @@ import Navbar from '../constants/Navbar';
 import Conversation from '../constants/card/Conversation';
 import Discussions from '../constants/card/Discussions';
 import axios from 'axios';
-// import io from 'socket.io-client';
+import io from 'socket.io-client';
 import { Navigate } from 'react-router';
 
-// const socket = io.connect('http://localhost:3002'); 
+// url de socket
+ const socket = io('http://localhost:3002'); 
 
 const Messagerie = () => {
   const {userId,isInLine} = useContext(MyStore)
@@ -34,47 +35,32 @@ const Messagerie = () => {
     .then((res)=>{
       setMessage(res.data)
     }).catch((err)=>console.log(err))
-  },[currenChat])
+  },[currenChat?._id])
 
   
 
   const handleSubmit =(e)=>{
     e.preventDefault()
     const message ={conversationId:currenChat._id,sender:userId,text:newMessage}
-    axios.post(`http://localhost:3002/message`,message)
-    .then((res)=>{
-      setMessage([...message,res.data])
-    })
-    .catch(Err => console.log(Err))
+    socket.emit(`send_message`,message);
     setNewMessage('')
   }
 
-  // useEffect(()=>{
-  //   socket.on('receive_message',(data)=>{
-  //     alert(data.message)
-      // setConversations([...conversations,conversations])
-  //   });
-  //   return ()=>{
-  //     socket.off('receive_message')
-  //   }
-  // },[])
+  useEffect(()=>{
+    socket.on('receive_message',(data)=>{
+      setMessage([...message,data])
+    });
+    return ()=>{
+      socket.off('receive_message')
+    }
+  },[message])
   
  
-  // const sendMessage=(discussions)=>{
-  //   discussions={ userId:userId, image:myProfile.photo, nom:myProfile.nom, contenu:newMessage }
-  //   socket.emit(`send_message`,{discussions});
-  //   setNewMessage('')
-  // }
-
-
   // scroll ecrant automatiquement a chaque nouveau text recu
   const scrollRef = useRef(null)
-  const scrollToBottom=()=>{
-    scrollRef.current?.scrollIntoView({behavior:'smooth'})
-  }
   
   useEffect(()=>{
-     scrollToBottom()
+      scrollRef.current?.scrollIntoView({behavior:'smooth'})
   },[message])
 
   
@@ -140,38 +126,3 @@ const Messagerie = () => {
 
 
 export default Messagerie;
-
-
-// useEffect(()=>{  
-  //   axios.get(`http://localhost:3002/conversations/userId/${userId}`)//recuperation des conversation  de user uniquement
-  //   .then(res =>{
-  //     res && setConversations(res.data)
-  //   }).catch((err)=>console.log(err))
-  // },[userId,setConversations])
-  
-
-  //envoie des discussion dans la conversation
-  // const envoyer = (discussions)=>{
-  //    discussions={ userId:userId, image:myProfile.photo, nom:myProfile.nom, contenu:newMessage }
-  //    const id = currentMessage[0]._id;
-  //    axios.put(`http://localhost:3002/conversations/${id}`,{discussions})
-  //    .then((res)=>res.data)
-  //    .catch((err)=>console.log(err));
-  //    setNewMessage('') 
-     
-  // }
-
-
-
-// <div>
-// <input type='text' 
-// className='input-message'
-// value={newMessage}
-// onChange={(e)=>setNewMessage(e.target.value)}
-// placeholder='Ecrit votre message...'
-// />
-// <button
-//  className='chatBox-btn' 
-//  onClick={()=>envoyer()}
-// >Envoyer</button>
-// </div>

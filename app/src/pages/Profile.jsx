@@ -30,7 +30,7 @@ const Profile = () => {
                 setItem(res.data)
                 setAvis(avis)
             }).catch(err => console.log(err))
-    },[id])
+    },[])
 
     //click pour donner un like
     const handleLike=()=>{

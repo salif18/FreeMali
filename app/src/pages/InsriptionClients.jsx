@@ -75,7 +75,7 @@ const PROFILGET = `http://localhost:3002/profiles/myProfile/${userId}`
       })
     }
     isInLine && getUser()
-  },[isInLine,getMyData,urlGET])
+  },[])
   
  
  
@@ -92,7 +92,7 @@ useEffect(()=>{
     })
   }
   isInLine && getProfile()
-},[PROFILGET,isInLine,getMyProfileData])
+},[])
 
     return (
         <div>

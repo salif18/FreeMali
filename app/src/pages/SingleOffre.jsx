@@ -23,7 +23,7 @@ useEffect(()=>{
         setOneOffre(res.data)
         setComments(commentaires)
     }).catch((err)=>console.log(err))
-},[id])
+},[])
 
 
 // ajouter des commentaires
