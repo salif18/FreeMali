@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useNavigate, useParams} from 'react-router';
-
-// import data from '../data/EmpData'
 import Navbar from '../constants/Navbar';
 import Footer from '../constants/Footer';
 import axios from 'axios';
@@ -9,9 +7,8 @@ import { MyStore } from '../context/myStore';
 import MapsPrestataire from '../Maps/MapsPrestataire';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
-import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 import DoDisturbOnIcon from '@mui/icons-material/DoDisturbOn';
-import {format} from 'timeago.js'
+import AviComentaires from '../constants/card/aviComentaires';
 
 const Profile = () => {
     const navigate = useNavigate()
@@ -20,7 +17,7 @@ const Profile = () => {
     const [avis,setAvis]=useState([])
     const {id} = useParams()
     const [comments,setComments] = useState('')
-    const [viewBtnLike,setViewBtnLike] =useState()
+    // const [viewBtnLike,setViewBtnLike] =useState()
     //recuperer le profile du prestataire selectionner
     useEffect(()=>{
         axios
@@ -30,7 +27,7 @@ const Profile = () => {
                 setItem(res.data)
                 setAvis(avis)
             }).catch(err => console.log(err))
-    },[])
+    },[id])
 
     //click pour donner un like
     const handleLike=()=>{
@@ -60,8 +57,6 @@ const handlePlus =()=>{
     const handleAvis=(avis)=>{
          avis ={
             userId:userId,
-            prenom:myProfile.prenom,
-            image:myProfile.photo,
             comments:comments,
         };
         axios.put(`http://localhost:3002/profiles/avis/${id}`,{avis})
@@ -126,6 +121,7 @@ const handleContacter=()=>{
              <h2>Des details</h2>
              <p>Nom  <span>{item.nom}</span></p>
              <p>Prenom  <span>{item.prenom}</span></p>
+             <p>Contact <span>{item.numero}</span></p>
              <p>Proffession  <span>{item.proffession}</span></p>
              <p>Address  <span>{item.address}</span></p>
              <MapsPrestataire item={item} />
@@ -155,25 +151,7 @@ const handleContacter=()=>{
                <h1>Les commentaires</h1>
                {avis.length <= 0 && <p style={{marginLeft:20,color:'#aaa',fontSize:14}}>"Aucuns commentaires"</p>}
                {avis.map((avi)=>(
-                <div className="commentaire-o" key={avi._id}>
-                <div className="left-commit">
-                <div><p style={{fontWeight:600}}>{avi.prenom}</p>
-                  <img className="img-co" src={avi.image} alt='' />
-                </div>
-                  <div style={{display:'flex',flexDirection:'column',justifyContent:"space-between"}}>
-                  
-                  <p>{avi.comments}</p>
-                  </div>
-                 </div>
-  
-                  <div className="rigth-commit">
-                  <p>{format(avi.date)}</p>
-                  <div className='grp-btn'>
-                  {userId === avi.userId && <button className='btn-card-offre-del' onClick={()=>handleDeleteCommit(avi)}>x</button>}
-                  
-                  </div>
-                  </div>
-                </div>
+                <AviComentaires avi={avi} handleDeleteCommit={handleDeleteCommit} />
                ))}
             </div>
 

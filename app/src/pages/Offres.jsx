@@ -17,7 +17,7 @@ useEffect(()=>{
         res && getOffres(res.data)
         setNewOffre(newOffre + 1)
     }).catch((err)=>console.log(err))
-},[])
+},[getOffres,newOffre,setNewOffre])
 
 // valeur du champs input offre
 const [recits,setRecits] = useState('')
@@ -27,10 +27,7 @@ const handlePost =()=>{
     const d = new Date()
     const offres ={
     userId:userId,
-    nom:myProfile?.nom,
-    image:myProfile?.photo,
     contenu:recits,
-    commentaires:[],
     date:`${d.toLocaleDateString()} à ${d.toLocaleTimeString()}`
    };
    

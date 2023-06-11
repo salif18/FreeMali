@@ -16,7 +16,7 @@ const Blogs = () => {
        .then((res)=>{
         res && getUsers(res.data)
        }).catch((Err)=>console.log(Err))
-   },[])
+   },[getUsers])
 
 console.log(users)
 

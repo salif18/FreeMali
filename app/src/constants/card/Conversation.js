@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect} from 'react';
 import { MyStore } from '../../context/myStore';
 import axios from 'axios';
 
@@ -17,6 +17,8 @@ useEffect(()=>{
    };
    getInvite()
 },[chaters,setInvite,userId])
+
+const id = chaters.membres.find( x => x !== userId)
 
 
 const handledeleteConver=()=>{

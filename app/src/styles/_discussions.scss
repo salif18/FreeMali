@@ -3,17 +3,22 @@
     flex-direction: column;
     margin-top: 20px;
     background: #f0f2f5;
+
 }
 
 .messageTop{
     display: flex;
+    
     p{
         padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
         border-radius: 20px;
         background: rgb(81, 165, 221);
         font-family: 'Roboto';
         color: #ffffff;
         font-weight: 500;
+        max-width: 300px;
     }
 }
 
@@ -26,7 +31,7 @@
     color:#fff;
     font-family: 'Roboto';
     margin-right: 10px;
-    max-width: 300px;
+    
 }
 
 .message-times{

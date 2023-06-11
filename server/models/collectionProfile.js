@@ -20,8 +20,6 @@ const Schema = mongoose.Schema({
     disLikes:{type:Number, default:0},
     avis:[{
         userId:{ type:mongoose.Schema.Types.ObjectId},
-        prenom:{type:String},
-        image:{type:String},
         comments:{type:String},
         date:{type:Date, default:Date.now}
     }]

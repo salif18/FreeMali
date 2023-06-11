@@ -6,13 +6,10 @@ const Message = require('./models/message')
 const socketIO = require('socket.io')
 //configurations
 dotenv.config()
-app.set(process.env.PORT || 3001)
-
-
-
+app.set(process.env.PORT || 3002)
 
 const server = http.createServer(app)
-const io = socketIO(server,
+ const io = socketIO(server,
   {
   cors:{
     origin:'http://localhost:3000',
@@ -21,8 +18,6 @@ const io = socketIO(server,
 )
 
 io.on('connection',(socket)=>{
-  console.log(`new connection ${socket.id}`);
-
   // envover vers backend et enregistrement de nouveaux message
   socket.on('send_message',async(data)=>{
     const message = new Message({
@@ -32,12 +27,10 @@ io.on('connection',(socket)=>{
     })
      message.save()
      .then(()=>{   
-    //  envoyer de message vers frontend
+    // envoyer de message vers frontend
   io.emit('receive_message',message)
  })
   .catch((err)=>console.log(err))
-
- 
   });
   socket.on('disconnect',()=>{
     console.log('user deconnecter')
@@ -47,7 +40,7 @@ io.on('connection',(socket)=>{
   
   //start server
 server.listen(process.env.PORT,()=>{
-    console.log('Server en marche sur PORT:',process.env.PORT)
+    console.log('Server en marche sur PORT:',process.env.PORT) 
 })
   
 

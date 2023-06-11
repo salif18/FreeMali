@@ -16,7 +16,7 @@ const Contacter = () => {
         .then((res)=>{
             res && setClient(res.data)
         }).catch((err)=>console.log(err))
-    },[])
+    },[id])
 
     const [message,setMessage]=useState('')
 

@@ -6,18 +6,24 @@ import {format} from 'timeago.js'
 import axios from 'axios';
 const CardOffres = ({item}) => {
     const navigate = useNavigate()
-     const {me_User,userId,defaultImage } = useContext(MyStore)
+     const {me_User,userId,defaultImage,users } = useContext(MyStore)
 
      const deleteOffre =()=>{
         axios.delete(`http://localhost:3002/offres/${item._id}`)//supprimer son offre
         .then((res)=>res.data).catch(Err => console.log(Err))
      }
+
+//recuperer les infos sur auteurs dans la list de tous les users
+const Auteur = users.filter((c)=> c._id === item.userId)
+const auteur = Auteur[0]
+
+console.log(auteur)
     return (
         <div className='card-offre' key={item._id}>
         
             <div className='card-offre-body'> 
             <div className='container-img-card-offre'>
-               <img className='img-card-offre' src={item ? item.image:defaultImage} alt='' />
+               <img className='img-card-offre' src={auteur ? auteur?.profile.photo : defaultImage} alt='' />
             
               <div className='contenu'>
                <h1>Offre</h1>
@@ -31,7 +37,8 @@ const CardOffres = ({item}) => {
  <div className='center'> 
               <div className='contenu'>
               <h1>Auteur</h1>
-              <p>{item.nom}</p>
+              <p>{auteur?.profile.prenom}</p>
+              <p>{auteur?.numero}</p>
               </div>
 
               <div className='contenu'>

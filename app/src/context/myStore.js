@@ -62,6 +62,7 @@ export const MyStoreProvider = (props) => {
   const [newMessage,setNewMessage] = useState(0)//si un nouveau message est recu
   const [newNotification,setNewNotification] = useState(0)
   const [invite,setInvite] = useState(null)
+  
 //   connection
   const handleLogin = (userId, token) => {
     setUserId(userId);

@@ -1,10 +1,6 @@
 import React, { useContext, useEffect } from 'react'
-import Header from '../constants/home/Header'
 import Navbar from '../constants/Navbar'
 import Banner from '../constants/home/Banner'
-import logo1 from '../images/bussi.jpg'
-import logo2 from '../images/client.png'
-import logo3 from '../images/offre.png'
 import Footer from '../constants/Footer'
 import CommentCamarche from '../constants/home/CommentCamarche'
 import Quelques from '../constants/home/Quelques'
@@ -30,7 +26,7 @@ const Home = () => {
       })
     }
     isInLine && getUser()
-  },[])
+  },[getMyData,isInLine,urlGET])
   
  
   
@@ -47,7 +43,7 @@ useEffect(()=>{
     })
   }
   isInLine && getProfile()
-},[])
+},[PROFILGET,getMyProfileData,isInLine])
 
 
 // recuperer tous les utilisateurs
@@ -56,7 +52,7 @@ useEffect(()=>{
     .then((res)=>{
      res && getUsers(res.data)
     }).catch((Err)=>console.log(Err))
-},[])
+},[getUsers])
  
  console.log(users)
 

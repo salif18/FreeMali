@@ -38,7 +38,7 @@ const Messagerie = () => {
   },[currenChat?._id])
 
   
-
+// envoi de message au server par socket.io
   const handleSubmit =(e)=>{
     e.preventDefault()
     const message ={conversationId:currenChat._id,sender:userId,text:newMessage}
@@ -46,6 +46,7 @@ const Messagerie = () => {
     setNewMessage('')
   }
 
+  // recevoir message depuis server par socket.io
   useEffect(()=>{
     socket.on('receive_message',(data)=>{
       setMessage([...message,data])
@@ -92,7 +93,7 @@ const Messagerie = () => {
         <>
         <div className='chatBoxtop'>
         {message.map((item)=>(
-          <div ref={scrollRef}>
+          <div ref={scrollRef} >
           <Discussions discussion={item} />
           </div>
           ))}

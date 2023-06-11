@@ -4,7 +4,6 @@ import EmpCard from '../constants/card/Employers';
 import NavbarSearch from '../constants/NavbarSearch';
 import { MyStore } from '../context/myStore';
 import MapsCarte from '../Maps/MapsCarte';
-import GoogleMaps from '../Maps/GoogleMaps';
 
 
 const Search = () => {

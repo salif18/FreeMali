@@ -51,7 +51,7 @@ useEffect(()=>{
         })
       }
       isInLine && getProfile()
-},[])
+},[getMyProfileData,isInLine,urlGET])
 
 
 // validation des champs de formulaire de modifcation profile
