@@ -25,8 +25,8 @@ const Commentaires = ({ commit, handleDeleteCommit }) => {
             flexDirection: "column",
             justifyContent: "space-between",
           }}>
-          <p style={{ fontWeight: 600 }}>{commit.nom}</p>
-          <p>{commit.comments}</p>
+          <p style={{ fontWeight: 600 }}>{commentataire?.profile.prenom}</p>
+            <p>{commit.comments}</p>
         </div>
       </div>
 

@@ -3,6 +3,7 @@ const http = require('http')
 const dotenv = require('dotenv')
 const app = require('./app')
 const Message = require('./models/message')
+const Notifications = require('./models/notifications')
 const socketIO = require('socket.io')
 //configurations
 dotenv.config()
@@ -18,7 +19,7 @@ const server = http.createServer(app)
 )
 
 io.on('connection',(socket)=>{
-  // envover vers backend et enregistrement de nouveaux message
+// envover vers backend et enregistrement de nouveaux message
   socket.on('send_message',async(data)=>{
     const message = new Message({
       conversationId:data.conversationId,
@@ -27,15 +28,38 @@ io.on('connection',(socket)=>{
     })
      message.save()
      .then(()=>{   
-    // envoyer de message vers frontend
+// envoyer de message vers frontend
   io.emit('receive_message',message)
  })
   .catch((err)=>console.log(err))
   });
+ 
   socket.on('disconnect',()=>{
-    console.log('user deconnecter')
+    console.log('deconnecter')
   })
-})
+
+  // notification
+  socket.on('send_notifications',(data)=>{
+    const {senderId,receiverId,description,type} = data
+    console.log(data)
+    const notifications = new Notifications({
+      senderId:senderId,
+      receiverId:receiverId,
+      type:type,
+      description:description
+    })
+    notifications.save()
+    .then(()=>{
+      io.emit('received_notifications',notifications)
+    })
+    .catch((err)=>console.log(err))
+    
+  });
+ 
+  socket.on('disconnect',()=>{
+    console.log('deconnecter')
+  })
+});
 
   
   //start server

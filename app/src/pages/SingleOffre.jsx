@@ -30,12 +30,14 @@ const SingleOffre = () => {
 
   // ajouter des commentaires
   const addCommentaires = (commentaires) => {
+    if(newComents.length > 0){
     commentaires = { userId: userId, comments: newComents };
     axios
       .put(`http://localhost:3002/offres/addComent/${id}`, { commentaires })
       .then((res) => res.data)
       .catch((err) => console.log(err));
     setNewComents("");
+  }
   };
 
   const handleDeleteCommit = (commit) => {

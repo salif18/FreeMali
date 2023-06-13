@@ -26,7 +26,10 @@ const AviComentaires = ({ avi, handleDeleteCommit }) => {
             flexDirection: "column",
             justifyContent: "space-between",
           }}>
-          <p>{avi.comments}</p>
+          <div className='contenu-commit'>
+            <p>{avi.comments}</p>
+          </div>
+          
         </div>
       </div>
 

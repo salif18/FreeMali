@@ -9,19 +9,22 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import HeartBrokenIcon from "@mui/icons-material/HeartBroken";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
 import AviComentaires from "../constants/card/aviComentaires";
+import io from "socket.io-client";
+// url de socket
+const socket = io("http://localhost:3002");
 
 const Profile = () => {
   const navigate = useNavigate();
-  const { userId, myProfile, defaultImage } = useContext(MyStore);
+  const { userId, myProfile, defaultImage} = useContext(MyStore);
   const [item, setItem] = useState([]);
   const [avis, setAvis] = useState([]);
   const { id } = useParams();
   const [comments, setComments] = useState("");
-  // const [viewBtnLike,setViewBtnLike] =useState()
+  
   //recuperer le profile du prestataire selectionner
   useEffect(() => {
     axios
-      .get(`http://localhost:3002/profiles/yourProfile/${id}`)
+      .get(`http://localhost:3002/profiles/prestaProfile/${id}`)
       .then((res) => {
         const { avis } = res.data;
         setItem(res.data);
@@ -29,6 +32,8 @@ const Profile = () => {
       })
       .catch((err) => console.log(err));
   }, [id]);
+
+  
 
   //click pour donner un like
   const handleLike = () => {
@@ -63,17 +68,37 @@ const Profile = () => {
       .catch((err) => console.log(err));
   };
 
+  // model de notification
+  const notification ={
+    senderId:userId,
+    receiverId:item.userId,
+    description:'a écrit à propos de vous',
+    type:"commiPresta"
+  }
+
+  // boutton pour envoyer la notification au prestataire
+  const sendNotifications =()=>{
+    socket.emit('send_notifications',notification)
+    //  axios
+    //   .post(`http://localhost:3002/notifications`, notification)
+    //   .then((res) => res.data)
+    //   .catch((err) => console.log(err));
+  }
+
   // ajouter des avis sur le prestataire
   const handleAvis = (avis) => {
-    avis = {
-      userId: userId,
-      comments: comments,
-    };
+   
+    if(comments.length > 0){ 
+    avis = {userId: userId, comments: comments};
     axios
       .put(`http://localhost:3002/profiles/avis/${id}`, { avis })
       .then((res) => res.data)
       .catch((err) => console.log(err));
-    setComments("");
+      sendNotifications()
+      setComments("");
+    }else{
+      console.log('champs vide')
+    }
   };
 
   // supprimer son avis sur le prestataire
@@ -83,6 +108,8 @@ const Profile = () => {
       .then((res) => res.data)
       .catch((err) => console.log(err));
   };
+
+  // boutton pour contacter le prestataire en envoyer les deux id 
   const handleContacter = () => {
     axios
       .post(`http://localhost:3002/chat`, {
@@ -93,6 +120,8 @@ const Profile = () => {
       .catch((err) => console.log(err));
     navigate(`/messagerie`);
   };
+
+
   return (
     <>
       <Navbar />
@@ -122,14 +151,14 @@ const Profile = () => {
                 <button className="btn-j" onClick={() => handleLike()}>
                   <FavoriteIcon
                     style={{ color: "rgb(13,179,221),marginRight:10" }}
-                  />{" "}
-                  {item.likes} j'aime(s)
+                  />
+                  {item.likes} bon(s)
                 </button>
                 <button className="btn-jp" onClick={() => handleDisLike()}>
                   <HeartBrokenIcon
                     style={{ color: "#ff4040", marginRight: 10 }}
                   />
-                  {item.disLikes} j'aime pas
+                  {item.disLikes} pas bon(s)
                 </button>
                 <button className="btn-nj" onClick={() => handlePlus()}>
                   <DoDisturbOnIcon style={{ color: "blue", marginRight: 10 }} />

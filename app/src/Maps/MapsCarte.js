@@ -1,38 +1,32 @@
-import React, { Component} from 'react';
-import {Map , GoogleApiWrapper, Marker} from 'google-maps-react'
-class MapsCarte extends Component { 
-
+import React, { Component } from "react";
+import { Map, GoogleApiWrapper, Marker } from "google-maps-react";
+class MapsCarte extends Component {
   render() {
     return (
-        
-       
-         <Map
-           google={this.props.google}
-           zoom={10}
-           style={{
-               width: '300px',
-               height: '80vh',
-            }}
-           initialCenter={{
-               lat:12.639232,
-               lng:-8.002889 }}
-         >
-
-        {this.props.resultatSearch.map((user)=>(
+      <Map
+        google={this.props.google}
+        zoom={10}
+        style={{
+          width: "300px",
+          height: "80vh",
+        }}
+        initialCenter={{
+          lat: 12.639232,
+          lng: -8.002889,
+        }}>
+        {this.props.resultatSearch.map((user) => (
           <Marker
             position={{
-            lat:user.profile.latitude,
-            lng:user.profile.longitude
-         }}
-         />
-    ))}
-         </Map> 
-      
-       );
-     }
-     
+              lat: user.profile.latitude,
+              lng: user.profile.longitude,
+            }}
+          />
+        ))}
+      </Map>
+    );
   }
+}
 
-   export default GoogleApiWrapper({
-    //  apiKey: 'AIzaSyDFLF-glHoZOBdZYG6Y95SQVlQjzlE6KTw',
-   })(MapsCarte);
+export default GoogleApiWrapper({
+  //  apiKey: 'AIzaSyDFLF-glHoZOBdZYG6Y95SQVlQjzlE6KTw',
+})(MapsCarte);

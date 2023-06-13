@@ -14,14 +14,17 @@ router.post('/',profileRouter.CreatProfile)
 router.get('/',profileRouter.getProfileAll)
 
 //recuperer le profile unique dun utilisateur selectionner
-router.get('/yourProfile/:id',profileRouter.getOneprestaProfile)
-
+router.get('/prestaProfile/:id',profileRouter.getOneprestaProfile)
+ 
 // recuperer le profile par utilisateur unique qui est connecter a son compte
 router.get('/myProfile/:userId',profileRouter.getProfile)
 
 // modification de profile par utilisateur
-router.put('/:userId',profileRouter.modifyProfile)
+router.put('/:userId',profileRouter.modifyProfile) 
 
+// modification de profile par uchamp
+router.put('/:userId/forField',profileRouter.modifyOneField)
+ 
 //route pour ajouter des likes
 router.post('/:id/notations',likesRouter.usersNotations)
 

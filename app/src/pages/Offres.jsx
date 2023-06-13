@@ -18,28 +18,42 @@ const Offres = () => {
     isInLine,
     setNewOffre,
   } = useContext(MyStore);
+// valeur du champs input offre
+  const [recits, setRecits] = useState("");
 
+  // model de notification
+  const notification ={
+    senderId:userId,
+    receiverId:"",
+    type:"commitOffre",
+    description:'a poster une nouvelle offre',
+  }
+
+  // boutton pour envoyer la notification au prestataire
+  const sendNotifications =()=>{
+    axios
+     .post(`http://localhost:3002/notifications`, notification)
+     .then((res) => res.data)
+     .catch((err) => console.log(err));
+ }
   // recuperation des offres du cotes server
   useEffect(() => {
     axios
       .get(url)
       .then((res) => {
         res && getOffres(res.data);
-        setNewOffre(newOffre + 1);
       })
       .catch((err) => console.log(err));
-  }, [getOffres, newOffre, setNewOffre]);
+  }, []);
 
-  // valeur du champs input offre
-  const [recits, setRecits] = useState("");
-  console.log(newOffre);
+  
   // boutton pour poster un offre
   const handlePost = () => {
-    const d = new Date();
+    if(offres.length > 0){
     const offres = {
       userId: userId,
       contenu: recits,
-      date: `${d.toLocaleDateString()} à ${d.toLocaleTimeString()}`,
+      
     };
 
     //envoie des offres vers le server
@@ -47,7 +61,12 @@ const Offres = () => {
       .post(url, offres)
       .then((res) => res.data)
       .catch((err) => console.log(err));
-    setRecits("");
+      sendNotifications();
+      setRecits("");
+
+  }else{
+    console.log('vide')
+  }
   };
 
   return (

@@ -1,87 +1,106 @@
-import React, { useContext, useState} from 'react';
+import React, { useContext, useState } from "react";
 // import data from '../data/EmpData';
-import EmpCard from '../constants/card/Employers';
-import NavbarSearch from '../constants/NavbarSearch';
-import { MyStore } from '../context/myStore';
-import MapsCarte from '../Maps/MapsCarte';
-
+import EmpCard from "../constants/card/Employers";
+import NavbarSearch from "../constants/NavbarSearch";
+import { MyStore } from "../context/myStore";
+import MapsCarte from "../Maps/MapsCarte";
 
 const Search = () => {
-const {valueSearch,users,myProfile} = useContext(MyStore)
+  const { valueSearch, users, myProfile } = useContext(MyStore);
 
-
- function toRadians(degrees) {
+  function toRadians(degrees) {
     return degrees * (Math.PI / 180);
   }
 
   // Étape 1 : Calculer la distance
-const calculateDistance=(lat1, lon1, lat2, lon2)=>{
+  const calculateDistance = (lat1, lon1, lat2, lon2) => {
     const R = 6371; // Rayon de la Terre en kilomètres
     const dLat = toRadians(lat2 - lat1);
     const dLon = toRadians(lon2 - lon1);
     const a =
       Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-      Math.cos(toRadians(lat1)) * Math.cos(toRadians(lat2)) *
-      Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      Math.cos(toRadians(lat1)) *
+        Math.cos(toRadians(lat2)) *
+        Math.sin(dLon / 2) *
+        Math.sin(dLon / 2);
     const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     const distance = R * c;
     return distance;
-  }
-  
-const [LATITUDE,setLATITUDE] = useState('')
-const [LONGITUDE,setLONGITUDE] = useState('') 
-  
-// Étape 1 : Obtenir la position actuel de l'utilisateur 
-const getPosition =()=>{
-   navigator.geolocation.getCurrentPosition((position)=>{
-    const {latitude,longitude}= position.coords
-    setLATITUDE(latitude)
-    setLONGITUDE(longitude)
-  });
-}   
+  };
 
-// si l'utilisateur n'est pas connecter appel cette fonction pour obtenir la position actuel de lui
-!myProfile && getPosition()
+  const [LATITUDE, setLATITUDE] = useState("");
+  const [LONGITUDE, setLONGITUDE] = useState("");
 
-const prestataires = users.filter((presta)=> presta.isPrestataire )
+  // Étape 1 : Obtenir la position actuel de l'utilisateur
+  const getPosition = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const { latitude, longitude } = position.coords;
+      setLATITUDE(latitude);
+      setLONGITUDE(longitude);
+    });
+  };
 
-// si user est connecter utilise son latitude ou
-const lat1 = myProfile ? myProfile.latitude : LATITUDE
-const lng1 = myProfile ? myProfile.longitude : LONGITUDE
+  // si l'utilisateur n'est pas connecter appel cette fonction pour obtenir la position actuel de lui
+  !myProfile && getPosition();
+
+  const prestataires = users.filter((presta) => presta.isPrestataire);
+
+  // si user est connecter utilise son latitude ou
+  const lat1 = myProfile ? myProfile.latitude : LATITUDE;
+  const lng1 = myProfile ? myProfile.longitude : LONGITUDE;
 
   // Étape 4 : Utiliser les utilisateurs filtrés comme vous le souhaitez
-  const filteredUsers = prestataires.filter(user => {
-      const distance = calculateDistance(lat1, lng1, user.profile.latitude, user.profile.longitude);
-      // const maxDistance = 6; // Distance maximale en kilomètres
-      
-      return distance
-    });
-    console.log('les filtrer');
-    console.log(filteredUsers);
-  
-    const resultatSearch = filteredUsers.filter((x) => x.profile.proffession.includes(valueSearch.toLowerCase()))
-    
-return (
-        <>
-       <NavbarSearch/>
-        <div className='search'>
-        {valueSearch && <p className='search-p'>( {resultatSearch.length} ) profils trouves...</p>}
-             {valueSearch && <div><MapsCarte resultatSearch={resultatSearch} /></div>}
-            <div className='container-result'>
-             {valueSearch &&
-                resultatSearch.map(item => (
-                  <div style={{display:'flex',flexDirection:'column',alignItems:'center'}}>
-                    <EmpCard item={item}/>
-                    <p style={{fontFamily:'Roboto',fontWeight:600}}>{item.profile.address}</p>
-                    </div>
-                ))
-             }
-            </div>
-            
-        </div>
-       
-        </>
+  const filteredUsers = prestataires.filter((user) => {
+    const distance = calculateDistance(
+      lat1,
+      lng1,
+      user.profile.latitude,
+      user.profile.longitude
     );
-}
+    // const maxDistance = 6; // Distance maximale en kilomètres
+
+    return distance;
+  });
+  console.log("les filtrer");
+  console.log(filteredUsers);
+
+  const resultatSearch = filteredUsers.filter((x) =>
+    x.profile.proffession.includes(valueSearch.toLowerCase())
+  );
+
+  return (
+    <>
+      <NavbarSearch />
+      <div className="search">
+        {valueSearch && (
+          <p className="search-p">
+            ( {resultatSearch.length} ) profils trouves...
+          </p>
+        )}
+        {valueSearch && (
+          <div>
+            <MapsCarte resultatSearch={resultatSearch} />
+          </div>
+        )}
+        <div className="container-result">
+          {valueSearch &&
+            resultatSearch.map((item) => (
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                }}>
+                <EmpCard item={item} />
+                <p style={{ fontFamily: "Roboto", fontWeight: 600 }}>
+                  {item.profile.address}
+                </p>
+              </div>
+            ))}
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default Search;

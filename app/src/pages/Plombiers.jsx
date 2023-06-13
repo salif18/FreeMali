@@ -1,33 +1,33 @@
-import React, { useContext } from 'react';
-import Sidebar from '../constants/blogs/Sidebar';
-import Navbar from '../constants/Navbar';
-import EmpCard from '../constants/card/Employers';
+import React, { useContext } from "react";
+import Sidebar from "../constants/blogs/Sidebar";
+import Navbar from "../constants/Navbar";
+import EmpCard from "../constants/card/Employers";
 // import data from '../data/EmpData'
-import { MyStore } from '../context/myStore';
+import { MyStore } from "../context/myStore";
 
 const Plombiers = () => {
-const {users} = useContext(MyStore)
-const prestataires = users.filter((presta) =>  presta.isPrestataire)
-    return (
-        <>
-        <Navbar/>
-        <div className='blogs'>
-        <div className='side'>
-        <Sidebar/>
-      </div>
-            <div className='main-container'>
-            <h1>Nos profils Plombiers</h1>
-            <div className='section-ens'>
-            {
-              prestataires.filter((item => item.profile.proffession.includes('plombier'))).map((item)=>(
-                  <EmpCard item={item}/>
-              ))
-            }
-          </div>
-            </div>
+  const { users } = useContext(MyStore);
+  const prestataires = users.filter((presta) => presta.isPrestataire);
+  return (
+    <>
+      <Navbar />
+      <div className="blogs">
+        <div className="side">
+          <Sidebar />
         </div>
-        </>
-    );
-}
+        <div className="main-container">
+          <h1>Nos profils Plombiers</h1>
+          <div className="section-ens">
+            {prestataires
+              .filter((item) => item.profile.proffession.includes("plombier"))
+              .map((item) => (
+                <EmpCard item={item} />
+              ))}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
 export default Plombiers;

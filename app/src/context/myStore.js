@@ -60,9 +60,11 @@ export const MyStoreProvider = (props) => {
   const [offres, setOffres] = useState([]); //stockage des offres
   const [newOffre, setNewOffre] = useState(0); //si un nouveau offre est recu
   const [newMessage, setNewMessage] = useState(0); //si un nouveau message est recu
-  const [newNotification, setNewNotification] = useState(0);
+  const [newNotification, setNewNotification] = useState('');
   const [invite, setInvite] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false)
 
+ 
   //   connection
   const handleLogin = (userId, token) => {
     setUserId(userId);
@@ -115,7 +117,7 @@ export const MyStoreProvider = (props) => {
 
   //ajouter de notification
   const addNotification = (notification) => {
-    setNotifications([...notifications, notification]);
+    setNotifications(notification);
   };
 
   //supprimer de notification
@@ -124,6 +126,15 @@ export const MyStoreProvider = (props) => {
       notifications.filter((notification) => notification.id !== id)
     );
   };
+
+  // onvir la fenetre
+  const openModal=()=>{
+    setIsModalOpen(true)
+  }
+  //fermer la fenetre
+  const closeModal =()=>{
+    setIsModalOpen(false)
+  }
 
   const defaultImage =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtYqXjw6IR_opev4UADLjT8TPcLmWYQsx_YQ&usqp=CAU";
@@ -142,6 +153,7 @@ export const MyStoreProvider = (props) => {
     setValueSearch: setValueSearch,
     handleChange: handleChange,
     notifications: notifications,
+    setNotifications:setNotifications,
     addNotification: addNotification,
     removeNotification: removeNotification,
     conversations: conversations,
@@ -159,6 +171,9 @@ export const MyStoreProvider = (props) => {
     setNewNotification: setNewNotification,
     invite: invite,
     setInvite: setInvite,
+    isModalOpen:isModalOpen,
+    openModal:openModal,
+    closeModal:closeModal
   };
 
   return (

@@ -14,7 +14,7 @@ const CardOffres = ({ item }) => {
       .delete(`http://localhost:3002/offres/${item._id}`) //supprimer son offre
       .then((res) => res.data)
       .catch((Err) => console.log(Err));
-  };
+  }; 
 
   //recuperer les infos sur auteurs dans la list de tous les users
   const Auteur = users.filter((c) => c._id === item.userId);
@@ -33,7 +33,9 @@ const CardOffres = ({ item }) => {
 
           <div className="contenu">
             <h1>Offre</h1>
-            <p>{item.contenu.slice(0, 90)}</p>
+            <div className="contenu-commit">
+             <p>{item.contenu}</p>
+            </div>
             <NavLink className="commenter" to={`/offre/${item._id}`}>
               Commentaires({item.commentaires.length})
             </NavLink>

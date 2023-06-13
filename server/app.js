@@ -7,6 +7,7 @@ const profileRouter = require('./routes/userProfile')
 const offreRouter = require('./routes/offres')
 const chatRouter = require('./routes/chat')
 const messageRouter = require('./routes/message')
+const notificationRouter = require('./routes/notifications')
 app.use(cors())
 app.use(express.json())
 
@@ -16,4 +17,5 @@ app.use('/profiles',profileRouter)
 app.use('/offres',offreRouter)
 app.use('/chat',chatRouter)
 app.use('/message',messageRouter)
+app.use('/notifications',notificationRouter)
 module.exports = app

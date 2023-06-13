@@ -1,0 +1,19 @@
+//importation
+const express = require('express')
+const notificationControllers = require('../controllers/notifications')
+
+//configuration de route
+const router = express.Router()
+
+//routage
+//add de notification
+router.post('/',notificationControllers.creatNotifications)
+
+//recuperer son notification
+router.get('/receiver/:receiverId',notificationControllers.getnotifications)
+
+//recuperer notifications ds offres
+router.get('/status',notificationControllers.getnotificationsOffre)
+//supprimer une notification
+router.delete('/del/:id',notificationControllers.delNotifications)
+module.exports = router
