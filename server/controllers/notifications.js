@@ -36,3 +36,16 @@ exports.delNotifications=(req,res, next)=>{
      .then((noti)=>res.status(201).json(noti))
      .catch((err)=>res.status(400).json({err}))
 }
+
+// changer le status de notification lue
+exports.changeStatus =(req,res,next)=>{
+  const {id} = req.params
+  const {newStatus} = req.body
+  Notifications.findOneAndUpdate(
+    {_id:id},
+    {$set:{status:newStatus}},
+    {new:true}
+  )
+  .then((notification)=>res.status(201).json({status:notification.status}))
+  .catch((err)=>res.status(400).json({err}))
+}

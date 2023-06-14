@@ -14,10 +14,8 @@ const Offres = () => {
     userId,
     offres,
     getOffres,
-    newOffre,
     isInLine,
     users,
-    setNewOffre,
   } = useContext(MyStore);
 // valeur du champs input offre
   const [recits, setRecits] = useState("");

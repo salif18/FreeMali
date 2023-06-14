@@ -8,7 +8,7 @@ const Conversation = ({ chaters }) => {
 
   //recuperer autre interlocuteur et ses donnees en filtrant userid
   useEffect(() => {
-    const id = chaters.membres.find((x) => x !== userId);
+    const id = chaters.membres.filter((x) => x !== userId);
     const getInvite = () => {
       axios
         .get(`http://localhost:3002/profiles/prestaProfile/${id}`)
@@ -22,8 +22,9 @@ const Conversation = ({ chaters }) => {
 
 
   const handledeleteConver = () => {
-    axios.delete(`http://localhost:3002/conversations/${chaters._id}`); //suprimer la conversations
+    axios.delete(`http://localhost:3002/message/${chaters._id}`); //suprimer la conversations
   };
+  
   return (
     <div className="conversation" key={chaters._id}>
       <img

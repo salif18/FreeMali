@@ -11,15 +11,12 @@ import { Navigate } from "react-router";
 const socket = io("http://localhost:3002");
 
 const Messagerie = () => {
-  const { userId, isInLine } = useContext(MyStore);
+  const { userId, isInLine, message, setMessage ,setCurrenChat, currenChat} = useContext(MyStore);
 
   //contacts des deux chatters
   const [chaters, setChaters] = useState([]);
-  //maintenir les infos des deux chatters recus pour utiliser ce id dans les conversations
-  const [currenChat, setCurrenChat] = useState(null);
-  //les messages de discussion
-  const [message, setMessage] = useState([]);
-  const [newMessage, setNewMessage] = useState(""); //nouveau text de discusion
+  //nouveau text de discusion
+  const [newMessage, setNewMessage] = useState(""); 
 
   //recuperer les contact des deux chatters
   useEffect(() => {
@@ -36,10 +33,11 @@ const Messagerie = () => {
     axios
       .get(`http://localhost:3002/message/${currenChat?._id}`)
       .then((res) => {
-        setMessage(res.data);
+        const data = res.data
+        setMessage(data);
       })
       .catch((err) => console.log(err));
-  },[currenChat?._id]);
+  },[currenChat?._id,setMessage]);
 
   // envoi de message au server par socket.io
   const handleSubmit = (e) => {
@@ -61,8 +59,22 @@ const Messagerie = () => {
     return () => {
       socket.off("receive_message");
     };
-  }, [message]);
+  }, []);
 
+  //changer le status de message en lue
+  const changeStatusMessage =()=>{
+    axios
+      .put(`http://localhost:3002/message/status/${currenChat?._id}`,{newStatus:'lue'})
+      .then(res =>res.data)
+      .catch(err => console.log(err))
+  }
+
+  //bouton qui envoie la mis a jour de status lue du message recu
+  //et appel la fonction currenChat
+const handleBtnMultipleRole=(c)=>{
+  setCurrenChat(c);
+  changeStatusMessage()
+}
   // scroll ecrant automatiquement a chaque nouveau text recu
   const scrollRef = useRef(null);
 
@@ -81,7 +93,7 @@ const Messagerie = () => {
           <div className="chatMenuWrapper">
             <h1>Mes conversations</h1>
             {chaters.map((c) => (
-              <div onClick={() => setCurrenChat(c)}>
+              <div onClick={() => handleBtnMultipleRole(c)}>
                 <Conversation chaters={c} />
               </div>
             ))}

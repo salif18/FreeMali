@@ -39,15 +39,6 @@ const getusers = () => {
   }
 };
 
-// const getoffres =()=>{
-//   const data = localStorage.getItem('offres')
-//   if(data){
-//     return JSON.parse(data)
-//   }else{
-//     return []
-//   }
-// }
-
 export const MyStoreProvider = (props) => {
   const [userId, setUserId] = useState(userIdStorage); //magasin de stock userId
   const [token, setToken] = useState(tokenStorage); //magasin de stock token
@@ -62,9 +53,10 @@ export const MyStoreProvider = (props) => {
   const [newMessage, setNewMessage] = useState(0); //si un nouveau message est recu
   const [newNotification, setNewNotification] = useState(0);
   const [invite, setInvite] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false)
-
- 
+  const [touched,setTouched] = useState(false)//l'etat de toucher sur icone
+  const [isModalOpen, setIsModalOpen] = useState(false)//etat d'ouvertur de la fenetre modal
+  const [message,setMessage] = useState([])
+ const [currenChat, setCurrenChat] = useState(null); //maintenir les infos des deux chatters recus pour utiliser ce id dans les conversations
   //   connection
   const handleLogin = (userId, token) => {
     setUserId(userId);
@@ -115,18 +107,18 @@ export const MyStoreProvider = (props) => {
   // notification
   const [notifications, setNotifications] = useState([]);
 
-  //supprimer de notification
+  //supprimer la notification
   const removeNotification = (id) => {
     setNotifications(
       notifications.filter((notification) => notification.id !== id)
     );
   };
 
-  // onvir la fenetre
+  // onvir la fenetre modal
   const openModal=()=>{
     setIsModalOpen(true)
   }
-  //fermer la fenetre
+  //fermer la fenetre modal
   const closeModal =()=>{
     setIsModalOpen(false)
   }
@@ -147,6 +139,10 @@ export const MyStoreProvider = (props) => {
     valueSearch: valueSearch,
     setValueSearch: setValueSearch,
     handleChange: handleChange,
+    message:message,
+    setMessage:setMessage,
+    currenChat:currenChat,
+    setCurrenChat:setCurrenChat,
     notifications: notifications,
     setNotifications:setNotifications,
     removeNotification: removeNotification,
@@ -167,7 +163,9 @@ export const MyStoreProvider = (props) => {
     setInvite: setInvite,
     isModalOpen:isModalOpen,
     openModal:openModal,
-    closeModal:closeModal
+    closeModal:closeModal,
+    touched:touched,
+    setTouched:setTouched
   };
 
   return (

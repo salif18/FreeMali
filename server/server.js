@@ -24,6 +24,7 @@ io.on('connection',(socket)=>{
     const message = new Message({
       conversationId:data.conversationId,
       sender:data.sender,
+      receiver:data.receiver,
       text:data.text
     })
      message.save()

@@ -36,7 +36,7 @@ const SingleOffre = () => {
     receiverId:oneOffre.userId,
     type:"commitOffre",
     offreId:oneOffre._id,
-    description:'a reagis a votre offre',
+    description:'a reagis à votre offre',
   }
 
   // boutton pour envoyer la notification au prestataire

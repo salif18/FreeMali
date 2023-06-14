@@ -9,8 +9,7 @@ const Notify = ({notification}) => {
     const {users,defaultImage,me_User,closeModal} = useContext(MyStore)
     const auteurs = users.filter((c) => c._id === notification.senderId)
     const auteur = auteurs[0]
-    console.log(auteur)
-    console.log(notification)
+    
     // boutton pour supprimer la notification
     const handleDelNotify=()=>{
         axios.delete(`http://localhost:3002/notifications/del/${notification._id}`)
@@ -18,32 +17,40 @@ const Notify = ({notification}) => {
         .catch((err)=>console.log(err))
     }
 
+//fonction envoie de new status
+const changeStatus=()=>{
+    axios.put(`http://localhost:3002/notifications/status/${notification._id}`,{newStatus:'lue'})
+    .then((res)=>res.data)
+    .catch((err)=>console.log(err))
+}
 
 // deux actions fermer modale et naviguer
 const handleClick =()=>{
     closeModal();
-    navigate(`/profile/${me_User?._id}`)
+    navigate(`/profile/${me_User?._id}`);
+    changeStatus()
 }
 
 const handleClick2 =()=>{
     closeModal();
-    navigate(`/offres`)
+    navigate(`/offres`);
+    changeStatus()
 }
 
 const handleClick3 =()=>{
     closeModal();
-    navigate(`/offre/${notification.offreId}`)
+    navigate(`/offre/${notification.offreId}`);
+    changeStatus()
 }
     return (
         <div className='card-notification' >
             {notification.length <= 0 && <p>"Auncunes notifications"</p>}
             {notification.type === 'commitPresta' && <div className='notif-image'>
             <img className='not-img' src={ auteur ? auteur?.profile.photo : defaultImage} alt='' />
-            <div className='notif-body'  >
+            <div className='notif-body' onClick={()=>handleClick()} >
             <div className='not-conta'>
             <h3>{auteur?.profile.prenom} {auteur?.profile.nom}</h3>
              <p className='desc'>{notification.description}</p>
-             <a href onClick={()=>handleClick()}><p>Lire...</p></a>
              </div>
              <p className='not-date'>{format(notification.createdAt)}</p>
              
@@ -53,11 +60,10 @@ const handleClick3 =()=>{
 
             {notification.type === 'newoffre' && <div className='notif-image'>
             <img className='not-img' src={ auteur ? auteur?.profile.photo : defaultImage} alt='' />
-            <div className='notif-body'  >
+            <div className='notif-body' onClick={()=>handleClick2()}>
             <div className='not-conta'>
             <h3>{auteur?.profile.prenom} {auteur?.profile.nom}</h3>
              <p className='desc'>{notification.description}</p>
-             <a href onClick={()=>handleClick2()}><p>Lire...</p></a>
              </div>
              <p className='not-date'>{format(notification.createdAt)}</p>
             
@@ -66,11 +72,10 @@ const handleClick3 =()=>{
 
             {notification.type === 'commitOffre' && <div className='notif-image'>
             <img className='not-img' src={ auteur ? auteur?.profile.photo : defaultImage} alt='' />
-            <div className='notif-body'  >
+            <div className='notif-body' onClick={()=>handleClick3()} >
             <div className='not-conta'>
             <h3>{auteur?.profile.prenom} {auteur?.profile.nom}</h3>
              <p className='desc'>{notification.description}</p>
-             <a href onClick={()=>handleClick3()} ><p>Lire...</p></a>
              </div>
              <p className='not-date'>{format(notification.createdAt)}</p>
             </div>

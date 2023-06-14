@@ -6,7 +6,7 @@ const schema = mongoose.Schema({
     type:{type:String},
     offreId:{type:String},
     description:{type:String},
-
+    status:{type:String, default:'non lue'}
 
 },{timestamps:true})
 

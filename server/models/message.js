@@ -4,7 +4,9 @@ const mongoose = require('mongoose')
 const Schema = new mongoose.Schema({
    conversationId:{type:String},
    sender:{type:String},
-   text:{type:String}
+   receiver:{type:String},
+   text:{type:String},
+   status:{type:String, default:'non lue'}
   },{timestamps:true});
 
   module.exports = mongoose.model('Message', Schema);

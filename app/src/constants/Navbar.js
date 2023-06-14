@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext} from "react";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { NavLink, useNavigate } from "react-router-dom";
 import { MyStore } from "../context/myStore";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import SettingsPowerIcon from "@mui/icons-material/SettingsPower";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
@@ -12,11 +11,26 @@ import EngineeringIcon from "@mui/icons-material/Engineering";
 import ContactlessIcon from "@mui/icons-material/Contactless";
 
 const Navbar = () => {
-  const { myProfile, logout, isInLine, defaultImage, notifications,openModal } =
-    useContext(MyStore);
-  const [open,setopen] =useState(false)
-
   const navigate = useNavigate();
+  const { myProfile, logout, isInLine, defaultImage, message, notifications,openModal, setTouched } =
+    useContext(MyStore);
+    //filtrer chaque foi les notification non lues
+  const notification_No_read= notifications.filter(c => c.status.includes('non lue'))
+
+  //bouton contenant les actions change le statuts de toucher pour 
+  // que les bulle de notification ne saffiche plus une foi appuyer sur icon notification
+  // fermer la fenetre modal
+  const handleTouched=()=>{
+    setTouched(true);
+    openModal()
+  }
+
+  //filtrer les message par non lue
+  const message_No_read = message.filter( c => c.status.includes('non lue'))
+
+  const handleTouchedIconMessage =()=>{
+    setTouched(true);
+  }
 
   return (
     <nav className="navbar">
@@ -60,11 +74,16 @@ const Navbar = () => {
           {isInLine && (
             <NavLink className="lien-sociaux" to="/messagerie">
               <QuestionAnswerIcon />
+              <div className="badge"><span>{notification_No_read.length}</span></div>
             </NavLink>
           )}
           {isInLine && (
-            <NavLink className="lien-sociaux" onClick={openModal} > 
-              <NotificationsNoneIcon onClick={()=>setopen(true)} />{(notifications.length >0 )&& <div className="badge"><span>{notifications.length}</span></div>}
+            <NavLink className="lien-sociaux" onClick={()=>handleTouched()} > 
+              <NotificationsNoneIcon  />
+              {
+                notification_No_read.length > 0  && 
+                <div className="badge"><span>{notification_No_read.length}</span></div>
+              }
             </NavLink>
           )}
           {isInLine && (

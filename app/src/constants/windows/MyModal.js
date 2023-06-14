@@ -7,8 +7,9 @@ import Notify from '../card/Notify';
 import { MyStore } from '../../context/myStore';
 
 const MyModal = ({isOpen, onClose}) => {
-    //if(!isOpen) return null
+    
     const {notifications} = useContext(MyStore)
+    
     const customStyles = {
         content:{
             width: '330px',
@@ -19,7 +20,7 @@ const MyModal = ({isOpen, onClose}) => {
             marginLeft:"-10%",
             transform:"translate(-50%, -50%)",
             border:'none',
-            boxShadow:'5px 5px 5px 5px #d0d0d0',
+            boxShadow:'-5px 5px 5px -5px #bcbcbc',
             height:'550px',
             borderRadius:'10px'
 
@@ -35,7 +36,7 @@ const MyModal = ({isOpen, onClose}) => {
         >
         <Modal  isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
             <div className='header-modal'>
-             <div className='close' onClick={onClose}><span>&times;</span> </div>
+             <span className='close' onClick={onClose}>&times;</span>
             </div>
             <div className='notifications'>
             <h2>Notifications</h2>

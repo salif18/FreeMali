@@ -24,7 +24,7 @@ import Search from './pages/Search';
 import Parametres from './pages/Parametres';
 import SingleOffre from './pages/SingleOffre';
 import Notifications from './pages/Notifications';
-import {toast} from 'react-toastify';
+import {Flip, Zoom, toast} from 'react-toastify';
 import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
 import Messagerie from './pages/Messagerie';
@@ -43,9 +43,12 @@ function App() {
   // url pour poster et recuperer tous les offres
 const url = 'http://localhost:3002/offres'
 
-const {getOffres, userId, notifications, setNotifications, newNotification, setNewNotification, isModalOpen, closeModal} = useContext(MyStore)
+const {getOffres, userId, notifications, setNotifications,touched, isModalOpen, closeModal} = useContext(MyStore)
 
-// recuperation des offres du cotes server
+//a chaque entrer notification filtrer les non lues 
+const new_Notification_No_read = notifications.filter(c => c.status !== 'lue')
+
+// recuperation les offres du cotes server
 useEffect(()=>{
     axios.get(url)
     .then(res => {
@@ -54,19 +57,17 @@ useEffect(()=>{
 },[])
 
 
-// recuperer la notification de user
+// recuperer ses notification 
 useEffect(()=>{
   axios
    .get(`http://localhost:3002/notifications/receiver/${userId}`)
    .then((res)=> {
     const notification = res.data
     setNotifications(notification)
-    setNewNotification(notification)
   })
    .catch((err)=>console.log(err))
-},[userId,setNewNotification,setNotifications])
-
-
+},[userId,setNotifications])
+//recuperer ses notification avec socket
 useEffect(()=>{
   socket.on('receive_notifications',(data)=>{
     setNotifications([...notifications,data])
@@ -76,50 +77,29 @@ useEffect(()=>{
   }
 },[setNotifications,notifications])
 
-// fonction alerte la bulle pour la notification de message et notification
+// bouton declancheur de la bulle de notification de message 
 const handleNewMessage =()=>{
   const newMessage ='Vous avez recu un nouveau message';
   toast.info(newMessage,{position:toast.POSITION.BOTTOM_RIGHT})
   
 }
-//pour les nouveaux commentaires
+//pour les nouveaux commentaires boutton declancheur la bulle de notification
 const handleNewComment =()=>{
   const newComment ='Vous avez un nouveau commentaire';
-  toast.info(newComment,{position:toast.POSITION.BOTTOM_RIGHT})
+  toast.info(newComment,{position:toast.POSITION.BOTTOM_RIGHT,theme:'colored'})
 }
 
-const alerte =()=>{
-  if(notifications.length > 0 && notifications[notifications.length -1] !== newNotification){
-    handleNewComment()
-  }
-}
-const [isNewItemAdd,setIsNewItemAdd] = useState(false)
-
-
-useEffect(()=>{
-  alerte()
-  // if(notifications.length > 1){
-  //   const lastNotifications = notifications[notifications.length - 1];
-  //   const newNotif = notifications.slice(0,notifications.length - 1);
-
-  //   if(newNotif.includes(lastNotifications)){
-  //     setIsNewItemAdd(false)
-  //   }else{
-  //     setIsNewItemAdd(true)
-  //   }
-  // }
-},[])
-
+// declanche la bule de notification lors des nouveau notification non lue
+(new_Notification_No_read.length > 0 && touched ) && handleNewComment()
 
 // handleNewMessage()
 
   return (
     <>
     <div className="App">
-    <ToastContainer/>
+    <ToastContainer limit={1} transition={Zoom} hideProgressBar={true} autoClose={5000}/>
     <MyModal isOpen={isModalOpen} onClose={closeModal} />
-    {isNewItemAdd ? handleNewComment() : ''}
-
+   
      <Routes> 
        <Route path='/' element={<Home/>}/>
        <Route path='/search' element={<Search/>} />
