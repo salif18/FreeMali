@@ -74,7 +74,7 @@ const Navbar = () => {
           {isInLine && (
             <NavLink className="lien-sociaux" to="/messagerie">
               <QuestionAnswerIcon />
-              <div className="badge"><span>{notification_No_read.length}</span></div>
+              {message.length >0 && <div className="badge"><span>{message.length}</span></div>}
             </NavLink>
           )}
           {isInLine && (

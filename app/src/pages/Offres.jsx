@@ -17,14 +17,9 @@ const Offres = () => {
     isInLine,
     users,
   } = useContext(MyStore);
+  
 // valeur du champs input offre
   const [recits, setRecits] = useState("");
-
-
-  // model de notification
-
- 
- 
   
   // boutton pour envoyer la notification a un ensemble de groupe prestataire en un clic
   const sendNotifications =()=>{
@@ -35,8 +30,6 @@ const Offres = () => {
      .catch((err) => console.log(err))
     )
  }
-
-
 
   // recuperation des offres du cotes server
   useEffect(() => {

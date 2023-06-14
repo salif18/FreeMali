@@ -17,6 +17,8 @@ router.get('/status',notificationControllers.getnotificationsOffre)
 
 //mis a jours du champs status de notification
 router.put('/status/:id',notificationControllers.changeStatus)
+
 //supprimer une notification
 router.delete('/del/:id',notificationControllers.delNotifications)
+
 module.exports = router
