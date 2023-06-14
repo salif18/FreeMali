@@ -94,7 +94,7 @@ const handleBtnMultipleRole=(c)=>{
             <h1>Mes conversations</h1>
             {chaters.map((c) => (
               <div onClick={() => handleBtnMultipleRole(c)}>
-                <Conversation chaters={c} />
+                <Conversation contacts={c} />
               </div>
             ))}
           </div>

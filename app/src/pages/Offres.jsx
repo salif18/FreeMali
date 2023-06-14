@@ -23,25 +23,19 @@ const Offres = () => {
 
   // model de notification
 
-  
  
-  // boutton pour envoyer la notification au prestataire
+ 
+  
+  // boutton pour envoyer la notification a un ensemble de groupe prestataire en un clic
   const sendNotifications =()=>{
- users.filter((c)=> c.isPrestataire).map((x) => {
-    return (notification)=>{
-    notification = {
-    senderId:userId,
-    receiverId:x._id ,
-    type:"commitOffre",
-    description:'a poster une nouvelle offre',
-  };
-    axios
-     .post(`http://localhost:3002/notifications`, notification)
+    users.filter((x) => x.isPrestataire).map((x)=>
+      axios
+     .post(`http://localhost:3002/notifications`,{ senderId:userId,receiverId:x._id,type:"commitOffre", description:'a poster une nouvelle offre'} )
      .then((res) => res.data)
-     .catch((err) => console.log(err)); 
-    }
- })
-}
+     .catch((err) => console.log(err))
+    )
+ }
+
 
 
   // recuperation des offres du cotes server
@@ -71,7 +65,7 @@ const Offres = () => {
       .catch((err) => console.log(err));
       sendNotifications();
       setRecits("");
-
+     
   }else{
     console.log('vide')
   }

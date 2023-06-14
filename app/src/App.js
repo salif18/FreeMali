@@ -90,7 +90,7 @@ const handleNewComment =()=>{
 }
 
 // declanche la bule de notification lors des nouveau notification non lue
-(new_Notification_No_read.length > 0 && touched ) && handleNewComment()
+(new_Notification_No_read.length > 0 && !touched ) && handleNewComment()
 
 // handleNewMessage()
 

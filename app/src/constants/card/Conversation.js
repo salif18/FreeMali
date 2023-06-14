@@ -3,12 +3,12 @@ import { MyStore } from "../../context/myStore";
 import axios from "axios";
 
 // {conversation}
-const Conversation = ({ chaters }) => {
+const Conversation = ({ contacts }) => {
   const { userId, defaultImage, invite, setInvite } = useContext(MyStore);
 
   //recuperer autre interlocuteur et ses donnees en filtrant userid
   useEffect(() => {
-    const id = chaters.membres.filter((x) => x !== userId);
+    const id = contacts.membres.filter((x) => x !== userId);
     const getInvite = () => {
       axios
         .get(`http://localhost:3002/profiles/prestaProfile/${id}`)
@@ -18,15 +18,15 @@ const Conversation = ({ chaters }) => {
         .catch((err) => console.log(err));
     };
     getInvite();
-  }, [chaters, setInvite, userId]);
+  }, [contacts, setInvite, userId]);
 
 
   const handledeleteConver = () => {
-    axios.delete(`http://localhost:3002/message/${chaters._id}`); //suprimer la conversations
+    axios.delete(`http://localhost:3002/message/${contacts._id}`); //suprimer la conversations
   };
   
   return (
-    <div className="conversation" key={chaters._id}>
+    <div className="conversation" key={contacts._id}>
       <img
         className="convers-img"
         src={invite?.photo ? invite.photo : defaultImage}
