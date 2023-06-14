@@ -60,7 +60,7 @@ export const MyStoreProvider = (props) => {
   const [offres, setOffres] = useState([]); //stockage des offres
   const [newOffre, setNewOffre] = useState(0); //si un nouveau offre est recu
   const [newMessage, setNewMessage] = useState(0); //si un nouveau message est recu
-  const [newNotification, setNewNotification] = useState('');
+  const [newNotification, setNewNotification] = useState(0);
   const [invite, setInvite] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -115,11 +115,6 @@ export const MyStoreProvider = (props) => {
   // notification
   const [notifications, setNotifications] = useState([]);
 
-  //ajouter de notification
-  const addNotification = (notification) => {
-    setNotifications(notification);
-  };
-
   //supprimer de notification
   const removeNotification = (id) => {
     setNotifications(
@@ -154,7 +149,6 @@ export const MyStoreProvider = (props) => {
     handleChange: handleChange,
     notifications: notifications,
     setNotifications:setNotifications,
-    addNotification: addNotification,
     removeNotification: removeNotification,
     conversations: conversations,
     setConversations: setConversations,

@@ -73,7 +73,7 @@ const Profile = () => {
     senderId:userId,
     receiverId:item.userId,
     description:'a écrit à propos de vous',
-    type:"commiPresta"
+    type:"commitPresta"
   }
 
   // boutton pour envoyer la notification au prestataire

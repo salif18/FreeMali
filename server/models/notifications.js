@@ -4,7 +4,7 @@ const schema = mongoose.Schema({
     senderId:{type:String},
     receiverId:{type:String},
     type:{type:String},
-    status:{type:String},
+    offreId:{type:String},
     description:{type:String},
 
 

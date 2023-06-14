@@ -11,13 +11,18 @@ const MyModal = ({isOpen, onClose}) => {
     const {notifications} = useContext(MyStore)
     const customStyles = {
         content:{
-            top:'61%',
+            width: '330px',
+            top:'53%',
             left:'auto',
-            right:'-20%',
+            right:'-12%',
             bottom:"auto",
-            marginLeft:"-50%",
+            marginLeft:"-10%",
             transform:"translate(-50%, -50%)",
-        
+            border:'none',
+            boxShadow:'5px 5px 5px 5px #d0d0d0',
+            height:'550px',
+            borderRadius:'10px'
+
         }
     }
     return (

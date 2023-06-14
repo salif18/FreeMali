@@ -16,26 +16,36 @@ const Offres = () => {
     getOffres,
     newOffre,
     isInLine,
+    users,
     setNewOffre,
   } = useContext(MyStore);
 // valeur du champs input offre
   const [recits, setRecits] = useState("");
 
-  // model de notification
-  const notification ={
-    senderId:userId,
-    receiverId:"",
-    type:"commitOffre",
-    description:'a poster une nouvelle offre',
-  }
 
+  // model de notification
+
+  
+ 
   // boutton pour envoyer la notification au prestataire
   const sendNotifications =()=>{
+ users.filter((c)=> c.isPrestataire).map((x) => {
+    return (notification)=>{
+    notification = {
+    senderId:userId,
+    receiverId:x._id ,
+    type:"commitOffre",
+    description:'a poster une nouvelle offre',
+  };
     axios
      .post(`http://localhost:3002/notifications`, notification)
      .then((res) => res.data)
-     .catch((err) => console.log(err));
- }
+     .catch((err) => console.log(err)); 
+    }
+ })
+}
+
+
   // recuperation des offres du cotes server
   useEffect(() => {
     axios

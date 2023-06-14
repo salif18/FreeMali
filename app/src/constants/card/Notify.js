@@ -24,9 +24,19 @@ const handleClick =()=>{
     closeModal();
     navigate(`/profile/${me_User?._id}`)
 }
+
+const handleClick2 =()=>{
+    closeModal();
+    navigate(`/offres`)
+}
+
+const handleClick3 =()=>{
+    closeModal();
+    navigate(`/offre/${notification.offreId}`)
+}
     return (
         <div className='card-notification' >
-
+            {notification.length <= 0 && <p>"Auncunes notifications"</p>}
             {notification.type === 'commitPresta' && <div className='notif-image'>
             <img className='not-img' src={ auteur ? auteur?.profile.photo : defaultImage} alt='' />
             <div className='notif-body'  >
@@ -47,7 +57,7 @@ const handleClick =()=>{
             <div className='not-conta'>
             <h3>{auteur?.profile.prenom} {auteur?.profile.nom}</h3>
              <p className='desc'>{notification.description}</p>
-             <a href onClick={()=>navigate(`/offres`)}><p>Lire...</p></a>
+             <a href onClick={()=>handleClick2()}><p>Lire...</p></a>
              </div>
              <p className='not-date'>{format(notification.createdAt)}</p>
             
@@ -60,7 +70,7 @@ const handleClick =()=>{
             <div className='not-conta'>
             <h3>{auteur?.profile.prenom} {auteur?.profile.nom}</h3>
              <p className='desc'>{notification.description}</p>
-             <a href onClick={()=>navigate(`/offres`)} ><p>Lire...</p></a>
+             <a href onClick={()=>handleClick3()} ><p>Lire...</p></a>
              </div>
              <p className='not-date'>{format(notification.createdAt)}</p>
             </div>

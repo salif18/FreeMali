@@ -5,6 +5,7 @@ import { MyStore } from "../context/myStore";
 import axios from "axios";
 import { format } from "timeago.js";
 import Commentaires from "../constants/card/commentaires";
+import Offres from "./Offres";
 
 const SingleOffre = () => {
   const { userId, me_User, myProfile, defaultImage, isInLine } =
@@ -28,6 +29,24 @@ const SingleOffre = () => {
       .catch((err) => console.log(err));
   }, [id]);
 
+
+  // model de notification
+  const notification ={
+    senderId:userId,
+    receiverId:oneOffre.userId,
+    type:"commitOffre",
+    offreId:oneOffre._id,
+    description:'a reagis a votre offre',
+  }
+
+  // boutton pour envoyer la notification au prestataire
+  const sendNotifications =()=>{
+    axios
+     .post(`http://localhost:3002/notifications`, notification)
+     .then((res) => res.data)
+     .catch((err) => console.log(err));
+ }
+
   // ajouter des commentaires
   const addCommentaires = (commentaires) => {
     if(newComents.length > 0){
@@ -37,6 +56,7 @@ const SingleOffre = () => {
       .then((res) => res.data)
       .catch((err) => console.log(err));
     setNewComents("");
+    sendNotifications()
   }
   };
 

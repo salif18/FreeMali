@@ -56,12 +56,12 @@ const Messagerie = () => {
   // recevoir message depuis server par socket.io
   useEffect(() => {
     socket.on("receive_message", (data) => {
-      setMessage(data);
+      setMessage([...message,data]);
     });
     return () => {
       socket.off("receive_message");
     };
-  }, []);
+  }, [message]);
 
   // scroll ecrant automatiquement a chaque nouveau text recu
   const scrollRef = useRef(null);

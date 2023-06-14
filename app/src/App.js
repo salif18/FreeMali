@@ -61,34 +61,20 @@ useEffect(()=>{
    .then((res)=> {
     const notification = res.data
     setNotifications(notification)
-    setNewNotification(res.data)
+    setNewNotification(notification)
   })
    .catch((err)=>console.log(err))
 },[userId,setNewNotification,setNotifications])
 
 
-// recuperer la notification de offre uniquement pour les prestattaires
-//   const status ='prestataire'
-// useEffect(()=>{
-//   axios
-//    .get(`http://localhost:3002/notifications/status`,status)
-//    .then((res)=> {
-//     const notification = res.data
-//     setNotifications(notification)
-//     setNewNotification(res.data)
-//   })
-//    .catch((err)=>console.log(err))
-// },[setNotifications,setNewNotification])
-
-
 useEffect(()=>{
   socket.on('receive_notifications',(data)=>{
-    setNotifications(data)
+    setNotifications([...notifications,data])
   })
   return ()=>{
     socket.off('receive_notification')
   }
-},[setNotifications])
+},[setNotifications,notifications])
 
 // fonction alerte la bulle pour la notification de message et notification
 const handleNewMessage =()=>{

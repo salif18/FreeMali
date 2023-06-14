@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { NavLink, useNavigate } from "react-router-dom";
 import { MyStore } from "../context/myStore";
@@ -14,6 +14,7 @@ import ContactlessIcon from "@mui/icons-material/Contactless";
 const Navbar = () => {
   const { myProfile, logout, isInLine, defaultImage, notifications,openModal } =
     useContext(MyStore);
+  const [open,setopen] =useState(false)
 
   const navigate = useNavigate();
 
@@ -63,7 +64,7 @@ const Navbar = () => {
           )}
           {isInLine && (
             <NavLink className="lien-sociaux" onClick={openModal} > 
-              <NotificationsNoneIcon  />{notifications.length >0 && <div className="badge"><span>{notifications.length}</span></div>}
+              <NotificationsNoneIcon onClick={()=>setopen(true)} />{(notifications.length >0 )&& <div className="badge"><span>{notifications.length}</span></div>}
             </NavLink>
           )}
           {isInLine && (
