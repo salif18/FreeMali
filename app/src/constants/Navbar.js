@@ -74,7 +74,7 @@ const Navbar = () => {
           {isInLine && (
             <NavLink className="lien-sociaux" to="/messagerie">
               <QuestionAnswerIcon />
-              {message.length >0 && <div className="badge"><span>{message.length}</span></div>}
+              
             </NavLink>
           )}
           {isInLine && (
@@ -111,3 +111,4 @@ export default Navbar;
 //  <NavLink><TwitterIcon style={{color:'rgba(0, 132, 255, 0.726)',fontSize:30,fontWeight:'bold'}} /></NavLink>
 //  <NavLink><InstagramIcon style={{color:'#f3086280',fontSize:30,fontWeight:'bold'}} /></NavLink><span className='len-offre'>{offres.length}</span>
 // <div className='badge'>{newOffre >0  && <span>{newOffre }</span>}</div>
+// {<div className="badge"><span></span></div>}

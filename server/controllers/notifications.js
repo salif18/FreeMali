@@ -14,7 +14,7 @@ exports.creatNotifications = (req, res,next) => {
 exports.getnotificationsOffre = (req, res,next) => {
   const { status } = req.body;
   Notifications
-    .find({ status:status })
+    .find({ status:status }).sort({createdAt:-1})
     .then((notification) => res.status(200).json(notification))
     .catch((err) => res.status(400).json({ err }));
 };
@@ -23,7 +23,7 @@ exports.getnotificationsOffre = (req, res,next) => {
 exports.getnotifications = (req, res,next) => {
   const { receiverId } = req.params;
   Notifications
-    .find({ receiverId: receiverId })
+    .find({ receiverId: receiverId }).sort({createdAt:-1})
     .then((notification) => res.status(200).json(notification))
     .catch((err) => res.status(400).json({ err }));
 };

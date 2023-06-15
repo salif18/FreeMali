@@ -21,7 +21,7 @@ exports.getUserOffre = (req, res, next) => {
 
 // application recupere tous offre
 exports.getAllOffre = (req, res, next) => {
-  Offres.find()
+  Offres.find().sort({createdAt:-1})
     .then((offres) => res.status(200).json(offres))
     .catch((err) => res.status(400).json({ err }));
 };

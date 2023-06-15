@@ -47,7 +47,7 @@ const {getOffres, userId, notifications, setNotifications, isModalOpen, closeMod
 
 //a chaque entrer notification vrifier s'il y'a les non lues 
 const new_Notification_No_read = notifications.some(notification => notification.status === 'non lue')
-console.log(new_Notification_No_read)
+const notification_type_offre = notifications.some(notification => notification.description === 'a poster une nouvelle offre')
 // recuperation les offres du cotes server
 useEffect(()=>{
     axios.get(url)
@@ -87,16 +87,24 @@ const handleNewMessage =()=>{
 //pour les nouveaux commentaires boutton declancheur la bulle de notification
 const handleNewComment =()=>{
   const newComment ='Vous avez un nouveau commentaire';
-  toast.info(newComment,{position:toast.POSITION.BOTTOM_RIGHT,theme:'colored'})
+  toast.success(newComment,{position:toast.POSITION.BOTTOM_RIGHT,theme:'colored'})
+}
+
+const handleNewOffre =()=>{
+  const newComment =`Il y'a une nouvelle offre, allez-y voir dans Offres d'emploi`;
+  toast.success(newComment,{position:toast.POSITION.BOTTOM_RIGHT,theme:'dark'})
 }
 
 
 // declanche la bule de notification lors des nouveau notification non lue
 useEffect(()=>{
-  if(new_Notification_No_read){
+  if(new_Notification_No_read && !notification_type_offre){
    handleNewComment()
-  } 
-},[new_Notification_No_read])
+  }
+  if(new_Notification_No_read && notification_type_offre){
+    handleNewOffre()
+  }
+},[new_Notification_No_read,notification_type_offre])
 
 
 // handleNewMessage()
