@@ -49,21 +49,26 @@ const Search = () => {
   const lat1 = myProfile ? myProfile.latitude : LATITUDE;
   const lng1 = myProfile ? myProfile.longitude : LONGITUDE;
 
-  // Étape 4 : Utiliser les utilisateurs filtrés comme vous le souhaitez
-  const filteredUsers = prestataires.filter((user) => {
-    const distance = calculateDistance(
+  // filtrer les prestataire selon la distance calcule du plus proche au plus eloigne
+  const filteredUsers = prestataires.sort((a,b)=>{
+    const distanceA = calculateDistance(
       lat1,
       lng1,
-      user.profile.latitude,
-      user.profile.longitude
+      a.profile.latitude,
+      a.profile.longitude
+    );
+    const distanceB = calculateDistance(
+      lat1,
+      lng1,
+      b.profile.latitude,
+      b.profile.longitude
     );
     // const maxDistance = 6; // Distance maximale en kilomètres
 
-    return distance;
+    return distanceA - distanceB;
   });
-  console.log("les filtrer");
-  console.log(filteredUsers);
-
+  
+  // le resultat de la recherche
   const resultatSearch = filteredUsers.filter((x) =>
     x.profile.proffession.includes(valueSearch.toLowerCase())
   );
@@ -72,17 +77,19 @@ const Search = () => {
     <>
       <NavbarSearch />
       <div className="search">
-        {valueSearch && (
-          <p className="search-p">
-            ( {resultatSearch.length} ) profils trouves...
-          </p>
-        )}
+
         {valueSearch && (
           <div>
             <MapsCarte resultatSearch={resultatSearch} />
           </div>
         )}
+         {valueSearch && (
+          <p className="search-p">
+            ( {resultatSearch.length} ) profils trouves...
+          </p>
+        )}
         <div className="container-result">
+      
           {valueSearch &&
             resultatSearch.map((item) => (
               <div

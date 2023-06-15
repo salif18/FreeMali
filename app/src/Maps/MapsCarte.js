@@ -7,8 +7,10 @@ class MapsCarte extends Component {
         google={this.props.google}
         zoom={10}
         style={{
-          width: "300px",
-          height: "80vh",
+          width: "1000px",
+          height: "40vh",
+          marginLeft:'190px'
+          
         }}
         initialCenter={{
           lat: 12.639232,

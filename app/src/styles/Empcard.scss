@@ -1,25 +1,26 @@
 .empCard{
-    width: 200px;
-    height: 350px;
+    width: 175px;
+    height: 295px;
     border-radius: 10px;
     cursor: pointer;
-    margin:10px;
+    margin:5px;
     border: 1px solid #dadada;
     background: #fff;
     transition: all 0.5s ease-in-out;
     &:hover{
         transform: scale(1.1);
         border: 3.5px solid rgb(13, 179, 221);
+        background: #f0f0f0;
     }
     
 }
 
 .empcard-img{
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     border-radius: 100%;
     border: 2.5px solid rgb(13, 179, 221);
-    margin: 20px;
+    margin: 10px;
 }
 
 .containe-img{
@@ -38,7 +39,7 @@
 
 .card-body h2{
     font-family: 'Roboto';
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     color:rgb(13, 179, 221)
 }
@@ -47,6 +48,7 @@
     color: #656760;
     text-transform: capitalize;
     font-family: 'Roboto',sans-serif;
+    font-size: 14px;
 }
 
 .icons{
@@ -62,14 +64,16 @@
 
 .btn-contacter{
     border-radius: 20px;
-    width: 120px;
-    height: 40px;
+    width: 110px;
+    height: 30px;
     border: none;
     background: rgb(13, 179, 221);
     color:#fff;
     font-family: 'Roboto',sans-serif;
+    font-size: 14px;
     &:hover{
         background:rgba(15, 201, 248, 0.562) ;
+        
     }
 }
 // 12.583165, -7.929676
