@@ -2,8 +2,18 @@ import React, { useContext } from "react";
 import { MyStore } from "../../context/myStore";
 import { format } from "timeago.js";
 
-const Discussions = ({ discussion }) => {
-  const { myProfile, invite, userId } = useContext(MyStore);
+const Discussions = ({ discussion}) => {
+  const { myProfile, invite, userId, currenChat } = useContext(MyStore);
+
+   //recuperer autre interlocuteur et ses donnees en filtrant userid
+   const id = currenChat.membres.filter((x) => x !== userId);
+
+  //  recuperer le profile de chaque discuteur
+  const receivers = invite.filter(c => c.userId == id).map(c => {
+    return c
+  })
+  const receiver = receivers[0]
+console.log(receiver)
 
   return (
     <>
@@ -12,7 +22,7 @@ const Discussions = ({ discussion }) => {
           <img
             className="message-img"
             src={
-              discussion?.sender === userId ? myProfile?.photo : invite?.photo
+              discussion?.sender === userId ? myProfile?.photo : receiver?.photo
             }
             alt=" "
           />

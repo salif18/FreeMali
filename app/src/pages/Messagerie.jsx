@@ -59,7 +59,7 @@ const Messagerie = () => {
     return () => {
       socket.off("receive_message");
     };
-  }, []);
+  }, [message,setMessage]);
 
   //changer le status de message en lue
   const changeStatusMessage =()=>{
@@ -108,7 +108,7 @@ const handleBtnMultipleRole=(c)=>{
                 <div className="chatBoxtop">
                   {message.map((item) => (
                     <div ref={scrollRef}>
-                      <Discussions discussion={item} />
+                      <Discussions discussion={item}  />
                     </div>
                   ))}
                 </div>

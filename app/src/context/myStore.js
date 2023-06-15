@@ -52,12 +52,13 @@ export const MyStoreProvider = (props) => {
   const [newOffre, setNewOffre] = useState(0); //si un nouveau offre est recu
   const [newMessage, setNewMessage] = useState(0); //si un nouveau message est recu
   const [newNotification, setNewNotification] = useState(0);
-  const [invite, setInvite] = useState(null);
+  const [invite, setInvite] = useState([]);
   const [touched,setTouched] = useState(false)//l'etat de toucher sur icone
   const [isModalOpen, setIsModalOpen] = useState(false)//etat d'ouvertur de la fenetre modal
   const [message,setMessage] = useState([])
- const [currenChat, setCurrenChat] = useState(null); //maintenir les infos des deux chatters recus pour utiliser ce id dans les conversations
-  //   connection
+  const [currenChat, setCurrenChat] = useState(null); //maintenir les infos des deux chatters recus pour utiliser ce id dans les conversations
+  
+  //connection
   const handleLogin = (userId, token) => {
     setUserId(userId);
     setToken(token);
@@ -65,7 +66,7 @@ export const MyStoreProvider = (props) => {
     localStorage.setItem("token", token);
   };
 
-  //   recuperer mes donnees infos
+  //recuperer mes donnees infos
   const getMyData = (data) => {
     setMyData(data);
     localStorage.setItem("dataUser", JSON.stringify(data));
@@ -88,7 +89,8 @@ export const MyStoreProvider = (props) => {
     setOffres(data);
     localStorage.setItem("offres", JSON.stringify(data));
   };
-  //   se deconnecter
+
+  //se deconnecter
   const handleLogout = () => {
     setUserId(null);
     setToken(null);
@@ -118,14 +120,17 @@ export const MyStoreProvider = (props) => {
   const openModal=()=>{
     setIsModalOpen(true)
   }
+
   //fermer la fenetre modal
   const closeModal =()=>{
     setIsModalOpen(false)
   }
 
+  // image par defsult
   const defaultImage =
     "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQtYqXjw6IR_opev4UADLjT8TPcLmWYQsx_YQ&usqp=CAU";
-  // context value
+ 
+    // context value
   const contextValue = {
     userId: userId,
     token: token,

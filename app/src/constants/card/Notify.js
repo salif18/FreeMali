@@ -6,7 +6,7 @@ import { format } from 'timeago.js';
 import {useNavigate} from 'react-router'
 const Notify = ({notification}) => {
     const navigate = useNavigate()
-    const {users,defaultImage,me_User,closeModal} = useContext(MyStore)
+    const {users,defaultImage,me_User,closeModal, touched} = useContext(MyStore)
     const auteurs = users.filter((c) => c._id === notification.senderId)
     const auteur = auteurs[0]
     

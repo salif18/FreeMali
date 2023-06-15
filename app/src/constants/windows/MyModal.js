@@ -36,7 +36,7 @@ const MyModal = ({isOpen, onClose}) => {
         >
         <Modal  isOpen={isOpen} onRequestClose={onClose} style={customStyles}>
             <div className='header-modal'>
-             <span className='close' onClick={onClose}>&times;</span>
+             
             </div>
             <div className='notifications'>
             <h2>Notifications</h2>
@@ -53,3 +53,4 @@ const MyModal = ({isOpen, onClose}) => {
 }
 
 export default MyModal;
+// <span className='close' onClick={onClose}>&times;</span>

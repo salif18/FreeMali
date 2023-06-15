@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Routes,Route} from 'react-router';
 import Home from './pages/Home';
 import InscriptionPrestataire from './pages/InscriptionPrestataire';
@@ -43,11 +43,11 @@ function App() {
   // url pour poster et recuperer tous les offres
 const url = 'http://localhost:3002/offres'
 
-const {getOffres, userId, notifications, setNotifications,touched, isModalOpen, closeModal} = useContext(MyStore)
+const {getOffres, userId, notifications, setNotifications, isModalOpen, closeModal} = useContext(MyStore)
 
-//a chaque entrer notification filtrer les non lues 
-const new_Notification_No_read = notifications.filter(c => c.status !== 'lue')
-
+//a chaque entrer notification vrifier s'il y'a les non lues 
+const new_Notification_No_read = notifications.some(notification => notification.status === 'non lue')
+console.log(new_Notification_No_read)
 // recuperation les offres du cotes server
 useEffect(()=>{
     axios.get(url)
@@ -67,6 +67,7 @@ useEffect(()=>{
   })
    .catch((err)=>console.log(err))
 },[userId,setNotifications])
+
 //recuperer ses notification avec socket
 useEffect(()=>{
   socket.on('receive_notifications',(data)=>{
@@ -80,17 +81,23 @@ useEffect(()=>{
 // bouton declancheur de la bulle de notification de message 
 const handleNewMessage =()=>{
   const newMessage ='Vous avez recu un nouveau message';
-  toast.info(newMessage,{position:toast.POSITION.BOTTOM_RIGHT})
-  
+  toast.info(newMessage,{position:toast.POSITION.BOTTOM_RIGHT,})
 }
+
 //pour les nouveaux commentaires boutton declancheur la bulle de notification
 const handleNewComment =()=>{
   const newComment ='Vous avez un nouveau commentaire';
   toast.info(newComment,{position:toast.POSITION.BOTTOM_RIGHT,theme:'colored'})
 }
 
+
 // declanche la bule de notification lors des nouveau notification non lue
-(new_Notification_No_read.length > 0 && !touched ) && handleNewComment()
+useEffect(()=>{
+  if(new_Notification_No_read){
+   handleNewComment()
+  } 
+},[new_Notification_No_read])
+
 
 // handleNewMessage()
 

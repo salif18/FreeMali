@@ -7,19 +7,26 @@ const Conversation = ({ contacts }) => {
   const { userId, defaultImage, invite, setInvite } = useContext(MyStore);
 
   //recuperer autre interlocuteur et ses donnees en filtrant userid
+  const id = contacts.membres.filter((x) => x !== userId);
+
   useEffect(() => {
-    const id = contacts.membres.filter((x) => x !== userId);
     const getInvite = () => {
       axios
         .get(`http://localhost:3002/profiles/prestaProfile/${id}`)
         .then((res) => {
-          setInvite(res.data);
+          setInvite((invite)=>([...invite,res.data]));
         })
         .catch((err) => console.log(err));
     };
     getInvite();
-  }, [contacts, setInvite, userId]);
+  }, [contacts, setInvite, id]);
 
+ //recuperer le profile de chaque discuteur
+  const receivers = invite.filter(c => c.userId == id).map(c => {
+    return c
+  })
+  const receiver = receivers[0]
+console.log(receiver)
 
   const handledeleteConver = () => {
     axios.delete(`http://localhost:3002/message/${contacts._id}`); //suprimer la conversations
@@ -29,10 +36,10 @@ const Conversation = ({ contacts }) => {
     <div className="conversation" key={contacts._id}>
       <img
         className="convers-img"
-        src={invite?.photo ? invite.photo : defaultImage}
+        src={receiver?.photo ? receiver?.photo : defaultImage}
         alt=""
       />
-      <span className="convers-name">{invite?.prenom}</span>
+      <span className="convers-name">{receiver?.prenom}</span>
       <button className="btn-convers-del" onClick={handledeleteConver}>
         x
       </button>
