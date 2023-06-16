@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Navbar from "../constants/Navbar";
 import Footer from "../constants/Footer";
 import { Formik, Field, Form, ErrorMessage } from "formik";
@@ -10,22 +10,25 @@ import { useNavigate } from "react-router";
 //API de registre login
 const url = "http://localhost:3002/auth/login";
 const Connection = () => {
+  const [errorMessage,setErrorMessage] =useState('')
   const navigate = useNavigate();
   const { login } = useContext(MyStore);
 
   const initialValue = {
-    numero: "",
+    contacts: "",
     password: "",
   };
 
   const validation = yup.object({
-    numero: yup.string().required("Veuillez votre numero operationnel"),
+    contacts: yup.string().required("Veuillez entrez votre numero ou email"),
     password: yup
       .string()
       .required("Veuillez entrer un mot de passe")
       .min(6)
       .max(8),
-  });
+     
+  }
+  );
 
   const formSubmission = () => {
     return new Promise((resolve, reject) => {
@@ -36,26 +39,35 @@ const Connection = () => {
   };
 
   //envoi de formulaire
-  const handleSubmit = async (formData, onSubmittingProps) => {
-    try {
-      const res = await axios.post(url, formData);
-      if (res) {
-        await res.data;
-        const { userId, token } = res.data;
+  const handleSubmit = (formData, onSubmittingProps) => {
+    axios.post(url, formData)
+      .then((res)=>{
+         const { userId, token} = res.data; 
+         if(res){
         login(userId, token);
         navigate("/");
-        await formSubmission(formData);
+        formSubmission(formData);
         onSubmittingProps.resetForm();
+      }else if(!res){
+        setErrorMessage(res.data.message)
+        console.log(res.data.message)
       }
-    } catch (e) {
-      console.error(e);
-    }
-  };
+    })
+    .catch((error)=> {
+    console.log(error)
+  })
+      
+}  
+    
 
   return (
     <>
       <Navbar />
       <div className="connection-pages">
+      <div className="logo">
+        <h1>FreeMali</h1>
+        <p>Connectez vous et avoir de relation <br/>dans le cadre de travail sur notre plateform </p>
+      </div>
         <div className="container-connect">
           <h1>Connectez-vous</h1>
 
@@ -69,14 +81,16 @@ const Connection = () => {
                   <Field
                     className="form-control"
                     type="text"
-                    name="numero"
-                    placeholder="Votre numero"
+                    name="contacts"
+                    placeholder="Entrez votre numero ou e-mail"
+                  
                   />
                   <ErrorMessage
                     className="text-danger"
-                    name="numero"
+                    name="contacts"
                     component="span"
                   />
+                  {errorMessage && <span>{errorMessage}</span>}
                 </div>
 
                 <div>
@@ -92,6 +106,7 @@ const Connection = () => {
                     name="password"
                     component="span"
                   />
+                  {errorMessage && <span>{errorMessage}</span>}
                 </div>
 
                 <div>
@@ -101,6 +116,13 @@ const Connection = () => {
                     type="submit">
                     Se connecter
                   </button>
+                </div>
+                 <p className="mot-oublie" onClick={()=>navigate('/reinitialisation')}>Mot de passe oublié ?</p>
+                <div>
+                <button
+                className="btn-creer-un-compte">
+                Créer un  compte
+              </button>
                 </div>
               </Form>
             )}

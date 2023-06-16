@@ -138,7 +138,8 @@ const InscriptionPrestataire = () => {
                     name="email"
                     component="span"
                   />
-                </div>
+                </div>  
+               
               </div>
 
               <div className="rigth-form">
@@ -165,6 +166,9 @@ const InscriptionPrestataire = () => {
                     S'enregistrer
                   </button>
                 </div>
+
+              
+
               </div>
             </Form>
           )}

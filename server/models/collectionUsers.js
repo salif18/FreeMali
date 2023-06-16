@@ -5,11 +5,12 @@ const uniqueValidator = require('mongoose-unique-validator')
 //creation table
 const Schema = mongoose.Schema({
    
-    email:{type:String,required:true},
+    email:{type:String,required:true,unique:true},
     numero:{ type:Number, required:[true,'Veuillez entrer votre numero de telephone'],
         unique:true,
         trim:true
     },
+    resetPasswordToken:{type:String},
     password:{ type:String, required:[true, 'Veuillez entrer un mot de passe'],
          trim:true
         // maxLength:[9,'Le mot de passe doit contenir au moins 8 a 9 characteres']

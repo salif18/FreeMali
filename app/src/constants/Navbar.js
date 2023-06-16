@@ -2,7 +2,7 @@ import React, { useContext} from "react";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { NavLink, useNavigate } from "react-router-dom";
 import { MyStore } from "../context/myStore";
-import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import SettingsPowerIcon from "@mui/icons-material/SettingsPower";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import HomeIcon from "@mui/icons-material/Home";
@@ -35,7 +35,10 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <div className="navbar-left">
-        <h2 className="logo-title">FreeMali</h2>
+        <h2 className="logo-title">
+        <span>Fr</span>
+        <span>ee</span>
+        <span>Mali</span></h2>
         <NavLink
           className={({ isActive }) => (isActive ? "active" : "")}
           to="/">
@@ -66,29 +69,32 @@ const Navbar = () => {
         <button className="btn-search" onClick={() => navigate("/search")}>
           <SearchSharpIcon style={{ fontWeight: "bold", fontSize: 30 }} />
         </button>
-        <p className="p-rech">Rechercher</p>
+        {/* <p className="p-rech">Rechercher</p>*/}
         <div className="seconnecter-container">
           {!isInLine && <NavLink to="/connecter">Se connecter</NavLink>}
         </div>
         <div className="navbar-rigth-sociaux">
           {isInLine && (
             <NavLink className="lien-sociaux" to="/messagerie">
-              <QuestionAnswerIcon />
-               {<div className="badge"><span>{message.length}</span></div>}
+              <div className="rond"><QuestionAnswerIcon /></div>
+               
             </NavLink>
           )}
           {isInLine && (
             <NavLink className="lien-sociaux" onClick={()=>handleTouched()} > 
-              <NotificationsNoneIcon  />
+              <div className="rond">
+              <NotificationsIcon  /> 
               {
                 notification_No_read.length > 0  && 
                 <div className="badge"><span>{notification_No_read.length}</span></div>
               }
+              </div>
+           
             </NavLink>
           )}
           {isInLine && (
-            <div className="sedeconecter" onClick={logout}>
-              <SettingsPowerIcon style={{ color: "#1876f2" }} />
+            <div className="sedeconecter" style={{marginRight:20}} onClick={logout}>
+              <SettingsPowerIcon />
             </div>
           )}
           {isInLine && (

@@ -6,7 +6,7 @@ import { MyStore } from "../context/myStore";
 import MapsCarte from "../Maps/MapsCarte";
 
 const Search = () => {
-  const { valueSearch, users, myProfile } = useContext(MyStore);
+  const { valueSearch, users, myProfile, isLogin } = useContext(MyStore);
 
   function toRadians(degrees) {
     return degrees * (Math.PI / 180);
@@ -41,7 +41,7 @@ const Search = () => {
   };
 
   // si l'utilisateur n'est pas connecter appel cette fonction pour obtenir la position actuel de lui
-  !myProfile && getPosition();
+  !isLogin && getPosition();
 
   const prestataires = users.filter((presta) => presta.isPrestataire);
 
@@ -101,6 +101,7 @@ const Search = () => {
                 <EmpCard item={item} />
                 <p style={{ fontFamily: "Roboto", fontWeight: 600 }}>
                   {item.profile.address}
+                  
                 </p>
               </div>
             ))}

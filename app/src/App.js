@@ -33,6 +33,7 @@ import { MyStore } from './context/myStore';
 import axios from 'axios';
 import io from "socket.io-client";
 import MyModal from './constants/windows/MyModal';
+import Reinitialisation from './pages/Reinitialisation';
 
 
 
@@ -135,6 +136,8 @@ useEffect(()=>{
        <Route path='/proffeseurs' element={<Proff/>} />
        <Route path='/docteur' element={<Docteurs/>}/>
        <Route path='/connecter' element={<Connection/>}/>
+       <Route path='/reinitialisation' element={<Reinitialisation/>} />
+       
        <Route path='/medecin' element={<Medecins/>}/>
        <Route path='/sagefemme' element={<SageFemme/>}/>
        <Route path='/entrepreneur' element={<Entrepreneurs/>} />

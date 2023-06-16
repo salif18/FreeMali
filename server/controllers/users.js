@@ -6,12 +6,32 @@ const router = express.Router();
 const Users = require("../models/collectionUsers");
 const Profile = require("../models/collectionProfile");
 const dotenv = require("dotenv");
-
+const nodemailer = require('nodemailer')
 //configuration
 dotenv.config();
+const transporter =nodemailer.createTransport({
+  ssevrice:"Gmail",
+  auth:{
+    user:`{}`,
+    pass:``,
+  }
+});
+const mailOption = {
+  from:'votre email',
+  to:'desti',
+
+}
 
 //registre user
 exports.signup = (req, res, next) => {
+  const {numero,email} = req.body
+   Users.findOne({
+    $or:[{numero:numero},{email:email}]
+  })
+  .then((user)=>{
+    if(user){
+    return res.status(400).json({messag:'Le numero de telephone ou email existe deja'})
+}})
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
@@ -36,17 +56,21 @@ exports.signup = (req, res, next) => {
 
 //loin user
 exports.login = (req, res, next) => {
-  Users.findOne({ numero: req.body.numero })
+  
+  Users.findOne({
+    $or:[{email:req.body.contacts},{numero: req.body.contacts }] 
+  })
     .then((user) => {
       if (!user) {
-        return res.status(401).json({ message: "Votre numero est incorrect" });
+       res.status(400).json({message: "Votre numero est incorrect" });
+        
       }
       bcrypt
         .compare(req.body.password, user.password)
         .then((valid) => {
           if (!valid) {
             return res
-              .status(401)
+              .status(400)
               .json({ message: "Votre mot de passe est incorrect" });
           }
           res.status(200).json({
@@ -114,3 +138,54 @@ exports.userDelete = (req, res, next) => {
     )
     .catch((err) => res.status(400).json({ err }));
 };
+
+
+// reinitialisation
+exports.Reinitialisation = async (req, res) => {
+  const { numero } = req.body;
+  try {
+    const users = await Users.findOne({ numero:numero });
+    if (!users) {
+      return res.status(404).json({ message: "Cet email n'existe pas" });
+    }
+    const token = jwt.sign({ userId: users._id }, `${process.env.KEY_TOKEN}`, { expiresIn: '24h' });
+   
+    // Save the token in the database for the user
+    users.resetPasswordToken = token;
+    await users.save();
+   console.log(users.resetPasswordToken)
+    // Send the reset password email with the token
+    return res.status(200).json({token:users.resetPasswordToken});//
+  } catch (error) {
+    return res.status(500).json({ message: 'Erreur de server' });
+  }
+};
+
+exports.Validation =async (req, res) => {
+  const { resetToken, password, confirmPassword  } = req.body;
+  
+  try {
+    const users = await Users.findOne({ resetPasswordToken: resetToken });
+    if (!users) {
+      return res.status(404).json({ message: 'Invalid or expired token' });
+    }
+
+    // Verify if password and confirmPassword match
+    if (password !== confirmPassword) {
+      return res.status(400).json({ message: 'Les mots de passe ne correspondent pas' });
+    }
+
+    // Hash the new password
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Update the user's password and clear the resetPasswordToken
+    users.password = hashedPassword;
+    users.resetPasswordToken = '';
+    await users.save();
+
+    return res.status(200).json({ message: 'Votre mot de passe a ete reinitialise avec successfully' });
+  } catch (error) {
+    return res.status(500).json({ message: 'Server error' });
+  }
+};
+

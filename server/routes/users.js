@@ -8,7 +8,8 @@ const router = express.Router()
 //routages vers le frontend
 router.post('/signup',usersControllers.signup)
 router.post('/login',usersControllers.login)
-
+router.post('/reset-password',usersControllers.Reinitialisation)
+router.post('/validation-password',usersControllers.Validation)
 // recuprerer les donne de utilisateur seulement par son userId
 router.get('/usersData/:userId',usersControllers.getUser)
 

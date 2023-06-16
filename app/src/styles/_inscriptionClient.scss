@@ -45,7 +45,8 @@ margin-top: 20px;
 // }
 
 .rigth-form{
-    margin:20px
+    margin:20px;
+    border-left: 1px solid #e3e4e6;
 }
 
 .form-control{
@@ -64,9 +65,16 @@ margin-top: 20px;
     width: 400px;
     height: 50px;
     border: none;
-    background: rgb(13, 179, 221);
+    background: #24aa4c;//#1876f2;
     border-radius: 10px;
     color:#fff;
     font-size: 18px;
     font-family: sans-serif;
+}
+
+.selog{
+    margin-left: 20px;
+    color:#7451eb;//#1876f2;
+    font-family: Roboto;
+    cursor: pointer;
 }

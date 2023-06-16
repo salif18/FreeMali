@@ -10,6 +10,7 @@ import HeartBrokenIcon from "@mui/icons-material/HeartBroken";
 import DoDisturbOnIcon from "@mui/icons-material/DoDisturbOn";
 import AviComentaires from "../constants/card/aviComentaires";
 import io from "socket.io-client";
+import { create } from "@mui/material/styles/createTransitions";
 // url de socket
 const socket = io("http://localhost:3002");
 
@@ -229,7 +230,7 @@ const Profile = () => {
                 "Aucuns commentaires"
               </p>
             )}
-            {avis.map((avi) => (
+            {avis.sort((a,b)=>a.createdAt - b.createdAt).map((avi) => (
               <AviComentaires
                 avi={avi}
                 handleDeleteCommit={handleDeleteCommit}
