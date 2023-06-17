@@ -13,7 +13,8 @@ const Connection = () => {
   const [errorMessage,setErrorMessage] =useState('')
   const navigate = useNavigate();
   const { login } = useContext(MyStore);
-
+ const RegexNumero = /numero/
+ const RegexPassowrd =/mot de passe/
   const initialValue = {
     contacts: "",
     password: "",
@@ -39,24 +40,19 @@ const Connection = () => {
   };
 
   //envoi de formulaire
-  const handleSubmit = (formData, onSubmittingProps) => {
-    axios.post(url, formData)
-      .then((res)=>{
-         const { userId, token} = res.data; 
-         if(res){
+  const handleSubmit =async (formData, onSubmittingProps) => {
+   try{
+    const response = await axios.post(url, formData)
+      if(response){
+         const { userId, token} = response.data; 
         login(userId, token);
         navigate("/");
         formSubmission(formData);
         onSubmittingProps.resetForm();
-      }else if(!res){
-        setErrorMessage(res.data.message)
-        console.log(res.data.message)
-      }
-    })
-    .catch((error)=> {
-    console.log(error)
-  })
-      
+    }
+  }catch(error){
+    setErrorMessage(error.response.data.message)
+  }
 }  
     
 
@@ -90,7 +86,7 @@ const Connection = () => {
                     name="contacts"
                     component="span"
                   />
-                  {errorMessage && <span>{errorMessage}</span>}
+                  {errorMessage && RegexNumero.test(errorMessage) && <span className="error">{errorMessage}</span>}
                 </div>
 
                 <div>
@@ -106,7 +102,7 @@ const Connection = () => {
                     name="password"
                     component="span"
                   />
-                  {errorMessage && <span>{errorMessage}</span>}
+                  {errorMessage && RegexPassowrd.test(errorMessage) && <span className="error">{errorMessage}</span>}
                 </div>
 
                 <div>

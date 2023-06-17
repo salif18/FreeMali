@@ -12,7 +12,7 @@ dotenv.config();
 const transporter =nodemailer.createTransport({
   ssevrice:"Gmail",
   auth:{
-    user:`{}`,
+    user:`{}`, 
     pass:``,
   }
 });
@@ -56,22 +56,22 @@ exports.signup = (req, res, next) => {
 
 //loin user
 exports.login = (req, res, next) => {
-  
+  const {contacts} = req.body
   Users.findOne({
-    $or:[{email:req.body.contacts},{numero: req.body.contacts }] 
+    $or:[{email:contacts},{numero:contacts }] 
   })
     .then((user) => {
       if (!user) {
-       res.status(400).json({message: "Votre numero est incorrect" });
+        const errorMessage="Votre numero est incorrect"
+      return res.status(401).json({message:errorMessage  });
         
       }
       bcrypt
         .compare(req.body.password, user.password)
         .then((valid) => {
           if (!valid) {
-            return res
-              .status(400)
-              .json({ message: "Votre mot de passe est incorrect" });
+            const errorMessage="Votre mot de passe est incorrect"
+            return res.status(401).json({ message: errorMessage })
           }
           res.status(200).json({
             userId: user._id,
@@ -134,7 +134,7 @@ exports.updateProfile = (req, res, next) => {
 exports.userDelete = (req, res, next) => {
   Users.findByIdAndRemove({ _id: req.params.id })
     .then(() =>
-      res.status(200).json({ Confirmation: "Votre compte a ete supprimer" })
+      res.status(200).json({ Confirmation: "Votre compte a été supprimé" })
     )
     .catch((err) => res.status(400).json({ err }));
 };
@@ -183,7 +183,7 @@ exports.Validation =async (req, res) => {
     users.resetPasswordToken = '';
     await users.save();
 
-    return res.status(200).json({ message: 'Votre mot de passe a ete reinitialise avec successfully' });
+    return res.status(200).json({ message: 'Votre mot de passe a été réinitialisé avec succès' });
   } catch (error) {
     return res.status(500).json({ message: 'Server error' });
   }
