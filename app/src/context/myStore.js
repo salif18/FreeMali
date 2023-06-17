@@ -59,7 +59,7 @@ export const MyStoreProvider = (props) => {
   const [currenChat, setCurrenChat] = useState(null); //maintenir les infos des deux chatters recus pour utiliser ce id dans les conversations
   
   //connection
-  const handleLogin = (userId, token) => {
+  const handleLogin = (userId, token) => {  
     setUserId(userId);
     setToken(token);
     localStorage.setItem("userId", userId);

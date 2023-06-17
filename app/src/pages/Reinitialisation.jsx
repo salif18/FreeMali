@@ -19,6 +19,7 @@ const Reinitialisation = () => {
 
   //envoeyer le numero de reinitialisation vers le backend
   const handleFormSubmit1 = async(e) => {
+    if(numero.length > 0){
     e.preventDefault();
     try{
      const res = await axios.post('http://localhost:3002/auth/reset-password', { numero })
@@ -30,6 +31,7 @@ const Reinitialisation = () => {
       }catch(error){
        setMessage(error.res.data.message);
     }
+  }
   }
 
   // changer la valeur du passowrd
@@ -44,6 +46,7 @@ const Reinitialisation = () => {
 
   //envoie des nouveaux donne mots d passe vers backend
   const handleFormSubmit2 = async (e) => {
+    if(password.length >0 && confirmPassword.length >0){
     e.preventDefault();
     try {
       const res = await axios.post('http://localhost:3002/auth/validation-password', { resetToken, password, confirmPassword });
@@ -56,6 +59,7 @@ const Reinitialisation = () => {
     } catch (error) {
       setMessage(error.res.data.message);
     }
+  }
   };
 
   // pour le rendu de la page reinitialisation step ===1

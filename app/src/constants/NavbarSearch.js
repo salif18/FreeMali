@@ -20,7 +20,7 @@ const NavbarSearch = () => {
         />
         <button className="btn-search">
           <SearchSharpIcon
-            style={{ color: "#ffff", fontWeight: "bold", fontSize: 30 }}
+            style={{ color: "#555555", fontWeight: "bold", fontSize: 30 }}
           />
         </button>
 

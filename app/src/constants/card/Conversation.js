@@ -4,7 +4,7 @@ import axios from "axios";
 
 // {conversation}
 const Conversation = ({ contacts }) => {
-  const { userId, defaultImage, invite, setInvite } = useContext(MyStore);
+  const { userId, defaultImage, invite, setInvite,message } = useContext(MyStore);
 
   //recuperer autre interlocuteur et ses donnees en filtrant userid
   const id = contacts.membres.filter((x) => x !== userId);
@@ -21,6 +21,8 @@ const Conversation = ({ contacts }) => {
     getInvite();
   }, [contacts, setInvite, id]);
 
+  //filtrer les message par non lue
+  const message_No_read = message.filter( c => c.status.includes('non lue'))
  //recuperer le profile de chaque discuteur
   const receivers = invite.filter(c => c.userId == id).map(c => {
     return c
@@ -43,6 +45,7 @@ console.log(receiver)
       <button className="btn-convers-del" onClick={handledeleteConver}>
         x
       </button>
+      {<span>{message_No_read.length}</span>}
     </div>
   );
 };

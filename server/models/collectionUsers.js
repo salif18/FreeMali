@@ -6,7 +6,7 @@ const uniqueValidator = require('mongoose-unique-validator')
 const Schema = mongoose.Schema({
    
     email:{type:String,required:true,unique:true},
-    numero:{ type:Number, required:[true,'Veuillez entrer votre numero de telephone'],
+    numero:{ type:String, required:[true,'Veuillez entrer votre numero de telephone'],
         unique:true,
         trim:true
     },

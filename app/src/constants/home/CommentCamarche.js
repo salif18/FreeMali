@@ -23,7 +23,7 @@ const CommentCamarche = () => {
             alt=""
           />
           <p>
-            Parcourez les profils dans le blog puis choisissez celui qui vous
+            Parcourez les profils dans le blog  puis choisissez celui qui vous
             convient le mieux
           </p>
         </div>

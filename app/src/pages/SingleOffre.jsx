@@ -76,7 +76,7 @@ const SingleOffre = () => {
       })
       .then((res) => res.data)
       .catch((err) => console.log(err));
-    navigate("/messagerie");
+    navigate("http://localhost:3002/messagerie");
   };
 
   console.log(comments);

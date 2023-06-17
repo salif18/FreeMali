@@ -8,20 +8,17 @@ const Profile = require("../models/collectionProfile");
 const dotenv = require("dotenv");
 const nodemailer = require('nodemailer')
 //configuration
-dotenv.config();
+dotenv.config(); 
+ 
 const transporter =nodemailer.createTransport({
-  ssevrice:"Gmail",
+  host:'smtp.gmail.com',
+  port:'465',
   auth:{
-    user:`{}`, 
-    pass:``,
+    user:`salifmoctarkonate@gmail.com`, 
+    pass:`Konatee18`,
   }
 });
-const mailOption = {
-  from:'votre email',
-  to:'desti',
-
-}
-
+ 
 //registre user
 exports.signup = (req, res, next) => {
   const {numero,email} = req.body
@@ -155,6 +152,21 @@ exports.Reinitialisation = async (req, res) => {
     await users.save();
    console.log(users.resetPasswordToken)
     // Send the reset password email with the token
+    
+const mailOption = {
+  from:'salifmoctarkonate@gmail.com',
+  to:users.email,
+  subject:'Reinitialiser votre mot de passe',
+  text:users.resetPasswordToken
+
+}
+    transporter.sendMail(mailOption,(err,info)=>{
+      if(err){
+        console.log('erreur',err)
+      }else{
+        console.log('email envoyer',info.messageId)
+      }
+    })
     return res.status(200).json({token:users.resetPasswordToken});//
   } catch (error) {
     return res.status(500).json({ message: 'Erreur de server' });

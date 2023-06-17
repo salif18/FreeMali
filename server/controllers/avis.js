@@ -1,6 +1,6 @@
 //importation
 const Profile = require('../models/collectionProfile')
-
+ 
 //ajouter les avis sur client
 exports.addAvis=(req,res,next)=>{
     const {id}=req.params
