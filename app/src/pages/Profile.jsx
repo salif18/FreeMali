@@ -16,7 +16,7 @@ const socket = io("http://localhost:3002");
 
 const Profile = () => {
   const navigate = useNavigate();
-  const { userId, myProfile, defaultImage} = useContext(MyStore);
+  const { userId, myProfile, defaultImage,isInLine} = useContext(MyStore);
   const [item, setItem] = useState([]);
   const [avis, setAvis] = useState([]);
   const { id } = useParams();
@@ -88,7 +88,9 @@ const Profile = () => {
 
   // ajouter des avis sur le prestataire
   const handleAvis = (avis) => {
-   
+   if(!isInLine){
+    navigate('/connecter')
+   }
     if(comments.length > 0){ 
     avis = {userId: userId, comments: comments};
     axios

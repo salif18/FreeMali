@@ -18,7 +18,7 @@ const transporter =nodemailer.createTransport({
     pass:`Konatee18`,
   }
 });
- 
+     
 //registre user
 exports.signup = (req, res, next) => {
   const {numero,email} = req.body
@@ -27,7 +27,7 @@ exports.signup = (req, res, next) => {
   })
   .then((user)=>{
     if(user){
-    return res.status(400).json({messag:'Le numero de telephone ou email existe deja'})
+    return res.status(400).json({message:'Le numero de telephone ou email existe deja'})
 }})
   bcrypt
     .hash(req.body.password, 10)
@@ -51,7 +51,7 @@ exports.signup = (req, res, next) => {
     .catch((err) => res.status(500).json({ err }));
 };
 
-//loin user
+//login user
 exports.login = (req, res, next) => {
   const {contacts} = req.body
   Users.findOne({
@@ -138,8 +138,9 @@ exports.userDelete = (req, res, next) => {
 
 
 // reinitialisation
-exports.Reinitialisation = async (req, res) => {
+exports.Reinitialisation =async(req, res) => {
   const { numero } = req.body;
+   
   try {
     const users = await Users.findOne({ numero:numero });
     if (!users) {
@@ -147,26 +148,26 @@ exports.Reinitialisation = async (req, res) => {
     }
     const token = jwt.sign({ userId: users._id }, `${process.env.KEY_TOKEN}`, { expiresIn: '24h' });
    
-    // Save the token in the database for the user
+    // enregistrer le token en ajoutant un nouveau champ resetToken a user
     users.resetPasswordToken = token;
     await users.save();
    console.log(users.resetPasswordToken)
-    // Send the reset password email with the token
+    // envoyer le token de renitialisation a user par son mail ou numero ou automatiquement vers le front
     
-const mailOption = {
-  from:'salifmoctarkonate@gmail.com',
-  to:users.email,
-  subject:'Reinitialiser votre mot de passe',
-  text:users.resetPasswordToken
+// const mailOption = {
+//   from:'salifmoctarkonate@gmail.com',
+//   to:users.email,
+//   subject:'Reinitialiser votre mot de passe',
+//   text:users.resetPasswordToken
 
-}
-    transporter.sendMail(mailOption,(err,info)=>{
-      if(err){
-        console.log('erreur',err)
-      }else{
-        console.log('email envoyer',info.messageId)
-      }
-    })
+// }
+//     transporter.sendMail(mailOption,(err,info)=>{
+//       if(err){
+//         console.log('erreur',err)
+//       }else{
+//         console.log('email envoyer',info.messageId)
+//       }
+//     })
     return res.status(200).json({token:users.resetPasswordToken});//
   } catch (error) {
     return res.status(500).json({ message: 'Erreur de server' });
@@ -182,15 +183,15 @@ exports.Validation =async (req, res) => {
       return res.status(404).json({ message: 'Invalid or expired token' });
     }
 
-    // Verify if password and confirmPassword match
+    // Verifier si les mot de passe sont conforment
     if (password !== confirmPassword) {
       return res.status(400).json({ message: 'Les mots de passe ne correspondent pas' });
     }
 
-    // Hash the new password
+    // Hash le mot de passe
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Update the user's password and clear the resetPasswordToken
+    // mis a jour du mot de passe et vide le resetPasswordToken
     users.password = hashedPassword;
     users.resetPasswordToken = '';
     await users.save();

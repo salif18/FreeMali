@@ -16,6 +16,7 @@ const Banner = () => {
             Rejoignez notre Communauté !
           </h1>
           <p>Trouvez des professionnels qualifiés pour vos services</p>
+          {!isInLine && <p>Inscrivez-vous !</p>}
           <div className="btn-cont">
             {!isInLine && (
               <button

@@ -21,8 +21,9 @@ const Conversation = ({ contacts }) => {
     getInvite();
   }, [contacts, setInvite, id]);
 
-  //filtrer les message par non lue
-  const message_No_read = message.filter( c => c.status.includes('non lue'))
+//filtrer les message par non lue
+const message_No_read = message.filter( c => c.status.includes('non lue') && c.conversationId === contacts._id )
+
  //recuperer le profile de chaque discuteur
   const receivers = invite.filter(c => c.userId == id).map(c => {
     return c
@@ -42,10 +43,10 @@ console.log(receiver)
         alt=""
       />
       <span className="convers-name">{receiver?.prenom}</span>
-      <button className="btn-convers-del" onClick={handledeleteConver}>
+      {/*<button className="btn-convers-del" onClick={handledeleteConver}>
         x
-      </button>
-      {<span>{message_No_read.length}</span>}
+  </button>*/}
+      {/*<span className="longuer-array">{message_No_read.length}</span>*/}
     </div>
   );
 };

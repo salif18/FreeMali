@@ -9,6 +9,7 @@ import { useNavigate, Navigate } from "react-router";
 import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
+import EditIcon from '@mui/icons-material/Edit';
 import MapUser from "../Maps/MapUser";
 
 const Parametres = () => {
@@ -33,6 +34,7 @@ const Parametres = () => {
   const [click, setClick] = useState(false);
   const [LONGITUDE, setLONGITUDE] = useState("");
   const [LATITUDE, setLATITUDE] = useState("");
+  const [updateView,setUpdateView] = useState(false)
 
   const getPosition = () => {
     //demander acces ala position local
@@ -161,10 +163,11 @@ const Parametres = () => {
     { value: "menuisier", label: "Menuisier" },
     { value: "mecanicien", label: "Mecanicien" },
     { value: "plombier", label: "Plombier" },
+    { value: "maçon", label: "Maçon" },
+    { value: "developpeur", label: "Developpeur" },
     { value: "enseignant", label: "Enseignant" },
     { value: "proffesseur", label: "Proffesseur" },
     { value: "docteur", label: "Docteur" },
-    { value: "medecin", label: "Medecin" },
     { value: "sage femme", label: "Sage femme" },
     { value: "entrepreneur", label: "Entrepreneur" },
     { value: "avocat", label: "Avocat" },
@@ -176,6 +179,8 @@ const Parametres = () => {
     { value: "", label: "Choix de la categorie" },
     { value: "mains d'oeuvres", label: "Mains d'oeuvres" },
     { value: "educations", label: "Educations" },
+    { value: "programmations", label: "Programmations" },
+    { value: "animations", label: "Animations" },
     { value: "sante", label: "Sante" },
     { value: "juriste", label: "Juriste" },
     { value: "entreprenariat", label: "entreprenariat" },
@@ -212,15 +217,24 @@ const Parametres = () => {
               <h2>
                 Address <span>{myProfile && myProfile?.address}</span>
               </h2>
+              <h2>
+                Numero <span>{myProfile && myProfile?.numero}</span>
+              </h2>
+              
+              <p className="modif" onClick={()=>setUpdateView(!updateView)}>Modifier votre profil <EditIcon/> </p>
             </div>
-          </div>
+            </div>
           <div className="lienposi">
             <MapUser />
           </div>
+          
         </div>
 
         <div className="container-pro-parametre">
+        {updateView &&
           <div className="pro">
+          
+            <>
             <h1 className="pro-h1">Modifier les informations</h1>
             <Formik
               initialValues={initialValue1}
@@ -228,7 +242,16 @@ const Parametres = () => {
               onSubmit={handleSubmit1}>
               {(formik) => (
                 <Form className="form-para">
-                  <div>
+                <div className="form-para-left">
+                <div className="container-field">
+                   <Field
+                    className="champs"
+                    type="text"
+                    name="photo"
+                    placeholder="Photo"
+                  />
+                  </div>
+                  <div className="container-field">
                     <Field
                       className="champs"
                       type="text"
@@ -243,7 +266,7 @@ const Parametres = () => {
                     />
                   </div>
 
-                  <div>
+                  <div className="container-field">
                     <Field
                       className="champs"
                       type="text"
@@ -258,15 +281,10 @@ const Parametres = () => {
                     />
                   </div>
 
-                  <Field
-                    className="champs"
-                    type="text"
-                    name="photo"
-                    placeholder="Photo"
-                  />
+               
 
-                  {me_User?.isPrestataire && (
-                    <div>
+                  
+                    <div className="container-field">
                       <Field
                         name="proffession"
                         id="proffesion"
@@ -289,10 +307,12 @@ const Parametres = () => {
                         )}
                       </Field>
                     </div>
-                  )}
-
-                  {me_User?.isPrestataire && (
-                    <div>
+                    
+                
+                  
+                 
+                  
+                    <div className="container-field">
                       <Field name="categorie" id="categorie" className="champs">
                         {({ field }) => (
                           <>
@@ -312,9 +332,11 @@ const Parametres = () => {
                         )}
                       </Field>
                     </div>
-                  )}
+                  
+                  </div>
 
-                  <div>
+                 <div className="form-para-rigth">
+                  <div className="container-field">
                     <Field
                       className="champs"
                       type="email"
@@ -329,7 +351,7 @@ const Parametres = () => {
                     />
                   </div>
 
-                  <div>
+                  <div className="container-field">
                     <Field
                       className="champs"
                       type="number"
@@ -343,15 +365,16 @@ const Parametres = () => {
                       component="span"
                     />
                   </div>
-
+           
+                   <div className="container-field">
                   <Field
                     className="champs"
                     type="text"
                     name="biographie"
                     placeholder="biographie"
                   />
-
-                  <div>
+                  </div>
+                  <div className="container-field">
                     <Field
                       className="champs"
                       type="text"
@@ -373,21 +396,28 @@ const Parametres = () => {
                       Modifier
                     </button>
                   </div>
+                  </div>
                 </Form>
               )}
             </Formik>
+            </>
+                              
           </div>
-
+        }
+                          
+        
           {!myProfile && (
             <div className="infos-pro">
-              <h1 className="infos-h1">Creer votre profil utilisateur</h1>
+              <h1 className="infos-h1">Creer votre profil </h1>
+              
               <Formik
                 initialValues={initialValue2}
                 validationSchema={validation2}
                 onSubmit={handleSubmit2}>
                 {(formik) => (
                   <Form className="form-para">
-                    <div>
+                  <div className='infos-pro-left'>
+                    <div className="container-field">
                       <Field
                         className="champs"
                         type="text"
@@ -395,7 +425,7 @@ const Parametres = () => {
                         placeholder="Photo"
                       />
                     </div>
-                    <div>
+                    <div className="container-field">
                       <Field
                         className="champs"
                         type="text"
@@ -410,7 +440,7 @@ const Parametres = () => {
                       />
                     </div>
 
-                    <div>
+                    <div className="container-field">
                       <Field
                         className="champs"
                         type="text"
@@ -425,8 +455,8 @@ const Parametres = () => {
                       />
                     </div>
 
-                    {me_User?.isPrestataire && (
-                      <div>
+                    
+                      <div className="container-field">
                         <Field
                           name="proffession"
                           id="proffesion"
@@ -449,10 +479,10 @@ const Parametres = () => {
                           )}
                         </Field>
                       </div>
-                    )}
+                    
 
-                    {me_User?.isPrestataire && (
-                      <div>
+                    
+                      <div className="container-field">
                         <Field name="categorie" id="categorie">
                           {({ field }) => (
                             <>
@@ -474,8 +504,10 @@ const Parametres = () => {
                           )}
                         </Field>
                       </div>
-                    )}
-                    <div>
+                    </div>
+
+                   <div className='infos-pro-right'>
+                    <div className="container-field">
                       <Field
                         className="champs"
                         type="email"
@@ -489,8 +521,7 @@ const Parametres = () => {
                         component="span"
                       />
                     </div>
-
-                    <div>
+                    <div className="container-field">
                       <Field
                         className="champs"
                         type="number"
@@ -505,7 +536,7 @@ const Parametres = () => {
                       />
                     </div>
 
-                    <div>
+                    <div className="container-field">
                       {!click ? (
                         <button
                           className="maps-btn-ins"
@@ -527,7 +558,7 @@ const Parametres = () => {
                         </p>
                       )}
                     </div>
-                    <div>
+                    <div className="container-field">
                       <Field
                         className="champs"
                         type="text"
@@ -541,7 +572,7 @@ const Parametres = () => {
                       />
                     </div>
 
-                    <div>
+                    <div className="container-field">
                       <Field
                         className="champs"
                         as="textarea"
@@ -557,13 +588,14 @@ const Parametres = () => {
                       />
                     </div>
 
-                    <div>
+                    <div className="container-field">
                       <button
                         className="signup-btn-para"
                         disabled={!formik.isValid || formik.isSubmitting}
                         type="submit">
                         Enregistrer
                       </button>
+                    </div>
                     </div>
                   </Form>
                 )}
@@ -572,7 +604,7 @@ const Parametres = () => {
           )}
         </div>
       </div>
-      <Footer />
+    
     </>
   );
 };

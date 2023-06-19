@@ -26,7 +26,7 @@ const Connection = () => {
       .string()
       .required("Veuillez entrer un mot de passe")
       .min(6)
-      .max(8),
+      .max(10),
      
   }
   );
@@ -62,7 +62,7 @@ const Connection = () => {
       <div className="connection-pages">
       <div className="logo">
         <h1>FreeMali</h1>
-        <p>Connectez vous et avoir de relation <br/>dans le cadre de travail sur notre plateform </p>
+        <p>Connectez vous et gagnez des relations <br/>dans le cadre de travail sur notre plateform </p>
       </div>
         <div className="container-connect">
           <h1>Connectez-vous</h1>
@@ -73,7 +73,7 @@ const Connection = () => {
             onSubmit={handleSubmit}>
             {(formik) => (
               <Form className="form-connection">
-                <div>
+                <div className="container-field">
                   <Field
                     className="form-control"
                     type="text"
@@ -89,7 +89,7 @@ const Connection = () => {
                   {errorMessage && RegexNumero.test(errorMessage) && <span className="error">{errorMessage}</span>}
                 </div>
 
-                <div>
+                <div className="container-field">
                   <Field
                     className="form-control"
                     type="password"
@@ -116,7 +116,9 @@ const Connection = () => {
                  <p className="mot-oublie" onClick={()=>navigate('/reinitialisation')}>Mot de passe oublié ?</p>
                 <div>
                 <button
-                className="btn-creer-un-compte">
+                className="btn-creer-un-compte"
+                onClick={()=>navigate('/')}
+                >
                 Créer un  compte
               </button>
                 </div>

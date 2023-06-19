@@ -10,8 +10,9 @@
 .header-para{
     display: flex;
     align-items: center;
+    margin: 20px;
     // justify-content: space-between;
-    height: 200px;
+    // height: 200px;
     // background: rgb(15,202,248);
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
@@ -21,26 +22,37 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
 }
 
 .information{
-    margin-right: 50px;
-    h1{
-        font-size: 18px;
+    margin-right: 100px;
+    margin-left: 20px;
+    
+    h1{  
+        margin-top: 40px;
+        font-size: 20px;
         font-family: "Roboto";
-        font-weight: 300;
-        margin-bottom: 30px;
-        border-bottom: 1px solid #000;
+        font-weight: 500;
+        margin-bottom: 20px;
+        
     }
     h2{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 16px;
     font-family: Roboto;
     font-weight: 500;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    // border-bottom: 1px solid #cdcece;
     }
 
     span{
         font-weight: 300;
         color: #8b8b8b;
+        margin-left: 20px;
     }
 }
 
@@ -86,13 +98,22 @@ margin-bottom: 20px;
     background: #fff;
     border-radius: 10px;
     border: 1px solid #c6c6c663;
-     flex:1;
+    flex:1;
     margin-top: 20px;
     margin-left: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+
+.infos-pro-left{
+margin-right: 20px;
+margin-bottom: 25px
+}
+
+.infos-pro-right{
+    margin-left:20px
 }
 
 .infos-h1{
@@ -104,7 +125,7 @@ margin-bottom: 20px;
 
 .form-para{
   display: flex;
-  flex-direction: column;
+//   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
@@ -112,10 +133,11 @@ margin-bottom: 20px;
     width: 380px;
     font-family: 'Roboto';
     height: 50px;
-    margin: 10px;
+    margin: 20px;
     outline: none;
-    border: 1px solid #55555577;
-    border-radius: 10px;
+    border: none;
+    border-bottom: 1px solid #55555577;
+    // border-radius: 10px;
     padding: 10px;
     
 }
@@ -149,5 +171,15 @@ margin-bottom: 20px;
         font-size: 18px;
         font-family: 'Roboto';
         font-weight: 600;
+    }
+}
+
+.modif{
+    margin-top: 20px;
+    font-family: Roboto;
+    cursor: pointer;
+    color: #1854eb;
+    &:hover{
+        color:#527ff0
     }
 }

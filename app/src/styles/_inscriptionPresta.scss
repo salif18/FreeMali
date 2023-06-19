@@ -5,26 +5,30 @@
     margin: 20px;
     border-top: 1px solid #f5f5f5;
     background:#f0f2f5 ;
+    h1{
+        font-family: Roboto;
+        font-size: 25px;
+        font-weight: 300;
+    }
 }
 
 .container-ins{
 margin-top: 20px;
+
 }
 
 
-.container-ins h1{
-    font-family: 'Roboto';
-    font-size: 20px;
-}
 
 .container-ins h3{
-    color:#0a9bc7;
+    color:#19a6e1;
     font-family: 'Roboto';
+    font-weight: 300;
 }
 
 .container-ins p{
     font-size: 18px;
     font-family: 'Roboto',sans-serif;
+    font-weight: 300;
 }
 .insc-presta h2{
     text-align: center;
@@ -32,6 +36,7 @@ margin-top: 20px;
 }
 
 .form{
+    padding: 20px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -52,7 +57,7 @@ margin-top: 20px;
 
 .form-control{
     width: 400px;
-    height: 50px;
+    height: 55px;
     border: 1px solid #aaa;
     outline: none;
     border-radius: 10px;
@@ -62,11 +67,12 @@ margin-top: 20px;
 }
 
 .signup-btn-presta{
-    margin-left:25px;
-    width: 400px;
-    height: 50px;
+    margin-top: 10px;
+    margin-left:10px;
+    width: 320px;
+    height: 40px;
     border: none;
-    background: #7451eb;
+    background: #1b74e4;//#7451eb;
     border-radius: 10px;
     color:#fff;
     font-size: 18px;

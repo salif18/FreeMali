@@ -12,8 +12,6 @@ import Plombiers from './pages/Plombiers';
 import Enseignants from './pages/Enseignants';
 import Proff from './pages/Proff';
 import Docteurs from './pages/Docteurs';
-import Medecins from './pages/Medecins';
-import SageFemme from './pages/SageFemme';
 import Entrepreneurs from './pages/Entrepreneurs';
 import Avocats from './pages/Avocats';
 import Dj from './pages/Dj';
@@ -34,6 +32,8 @@ import axios from 'axios';
 import io from "socket.io-client";
 import MyModal from './constants/windows/MyModal';
 import Reinitialisation from './pages/Reinitialisation';
+import Developpeurs from './pages/Developpeurs';
+import Maçon from './pages/Maçon';
 
 
 
@@ -137,15 +137,14 @@ useEffect(()=>{
        <Route path='/docteur' element={<Docteurs/>}/>
        <Route path='/connecter' element={<Connection/>}/>
        <Route path='/reinitialisation' element={<Reinitialisation/>} />
-       
-       <Route path='/medecin' element={<Medecins/>}/>
-       <Route path='/sagefemme' element={<SageFemme/>}/>
        <Route path='/entrepreneur' element={<Entrepreneurs/>} />
        <Route path='/juriste' element={<Avocats/>} />
        <Route path='/animateur' element={<Animateur/>} />
        <Route path='/dj' element={<Dj/>}/>
        <Route path='/messagerie' element={<Messagerie/>}/>
-     </Routes>
+       <Route path='/developpeur' element={<Developpeurs/>}/>
+       <Route path='/maçon' element={<Maçon/>} />
+       </Routes>
     </div>
 
     </>

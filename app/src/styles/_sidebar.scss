@@ -3,7 +3,7 @@
     background: #f0f2f5;
     border:1px solid #e7e7e7;
     margin: 20px;
-    height: 950px;
+    height: 550px;
     border-radius: 10px;
 }
 
@@ -14,7 +14,7 @@
 }
 
 .sidebar .mainsoeuvres h3{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 550;
     color: #8a8a8a8c;
     font-family: 'Roboto';
@@ -43,7 +43,7 @@
     text-decoration: none;
     font-family: Roboto;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 15px;
     color: black;
     transition: all  ease-in-out;
     &:hover{
@@ -51,6 +51,7 @@
         border-radius: 5px;
         color: #6e6e6e;
         background: #dbdbdb;
+        color: #19a6e1;
         // border: 2px solid rgba(15, 202, 248);
     }
 }

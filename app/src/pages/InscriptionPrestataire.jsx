@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Footer from "../constants/Footer";
@@ -10,6 +10,7 @@ import { useNavigate } from "react-router";
 const InscriptionPrestataire = () => {
   const { login, getMyData, userId, isInLine, getMyProfileData } =
     useContext(MyStore);
+    const [errorMessage,setErrorMessage] = useState('')
   const navigate = useNavigate();
   //API de registre signup
   const url = "http://localhost:3002/auth/signup";
@@ -30,7 +31,7 @@ const InscriptionPrestataire = () => {
       .string()
       .required("Veuillez entrer un mot de passe")
       .min(6)
-      .max(8),
+      .max(10),
     isPrestaire: yup
       .boolean()
       .oneOf([true], "veuillez cocher la case prestataire"),
@@ -48,17 +49,17 @@ const InscriptionPrestataire = () => {
   const handleSubmit = async (formData, onSubmittingProps) => {
     console.log(formData);
     try {
-      const res = await axios.post(url, formData);
-      if (res) {
-        await res.data;
-        const { userId, token } = res.data;
+      const response = await axios.post(url, formData);
+      if (response) {
+        await response.data;
+        const { userId, token } = response.data;
         login(userId, token);
         navigate("/parametre");
         await formSubmission(formData);
         onSubmittingProps.resetForm();
       }
     } catch (e) {
-      console.error(e);
+      setErrorMessage(e.response.data.message)
     }
   };
 
@@ -111,7 +112,7 @@ const InscriptionPrestataire = () => {
           {(formik) => (
             <Form className="form">
               <div className="left-form">
-                <div>
+                <div className="container-field">
                   <Field
                     className="form-control"
                     type="number"
@@ -125,7 +126,8 @@ const InscriptionPrestataire = () => {
                     component="span"
                   />
                 </div>
-                <div>
+                {errorMessage && <span>{errorMessage}</span>}
+                <div className="container-field">
                   <Field
                     className="form-control"
                     type="text"
@@ -143,7 +145,7 @@ const InscriptionPrestataire = () => {
               </div>
 
               <div className="rigth-form">
-                <div>
+                <div className="container-field">
                   <Field
                     className="form-control"
                     type="password"
@@ -158,7 +160,7 @@ const InscriptionPrestataire = () => {
                   />
                 </div>
 
-                <div>
+                <div className="container-field">
                   <button
                     className="signup-btn-presta"
                     disabled={!formik.isValid || formik.isSubmitting}

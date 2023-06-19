@@ -57,7 +57,8 @@ export const MyStoreProvider = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false)//etat d'ouvertur de la fenetre modal
   const [message,setMessage] = useState([])
   const [currenChat, setCurrenChat] = useState(null); //maintenir les infos des deux chatters recus pour utiliser ce id dans les conversations
-  
+   //contacts des deux chatters
+   const [chaters, setChaters] = useState([]);
   //connection
   const handleLogin = (userId, token) => {  
     setUserId(userId);
@@ -170,7 +171,9 @@ export const MyStoreProvider = (props) => {
     openModal:openModal,
     closeModal:closeModal,
     touched:touched,
-    setTouched:setTouched
+    setTouched:setTouched,
+    chaters:chaters,
+    setChaters:setChaters
   };
 
   return (

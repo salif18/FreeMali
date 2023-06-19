@@ -3,9 +3,13 @@ const express =require('express')
 const profileRouter = require('../controllers/profile')
 const likesRouter = require('../controllers/likes')
 const avisRouter =require('../controllers/avis')
-const auth = require('../middlewares/auth')
+// const auth = require('../middlewares/auth')
+// const multer = require('multer')
+// const upload = multer({destination:'images/'})
+// const multer = require('../middlewares/multer')
 //configuration
 const router = express.Router()
+
 
 //routage
 router.post('/',profileRouter.CreatProfile)

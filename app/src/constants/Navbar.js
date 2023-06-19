@@ -12,7 +12,7 @@ import ContactlessIcon from "@mui/icons-material/Contactless";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { myProfile, logout, isInLine, defaultImage, message, notifications,openModal, setTouched } =
+  const { myProfile, logout, isInLine, defaultImage,invite,chaters, message, notifications,openModal, setTouched } =
     useContext(MyStore);
     //filtrer chaque foi les notification non lues
   const notification_No_read= notifications.filter(c => c.status.includes('non lue'))
@@ -76,7 +76,13 @@ const Navbar = () => {
         <div className="navbar-rigth-sociaux">
           {isInLine && (
             <NavLink className="lien-sociaux" to="/messagerie">
-              <div className="rond"><QuestionAnswerIcon /></div>
+              <div className="rond">
+              <QuestionAnswerIcon />
+              {/*
+               message_No_read.length > 0  && 
+              <div className="badge"><span>{message_No_read.length}</span></div>
+          */ }
+              </div>
                
             </NavLink>
           )}

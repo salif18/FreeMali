@@ -2,10 +2,10 @@ import React, { useContext } from "react";
 import Sidebar from "../constants/blogs/Sidebar";
 import Navbar from "../constants/Navbar";
 import EmpCard from "../constants/card/Employers";
-// import data from '../data/EmpData';
+// import data from '../data/EmpData'
 import { MyStore } from "../context/myStore";
 
-const SageFemme = () => {
+const Developpeurs = () => {
   const { users } = useContext(MyStore);
   const prestataires = users.filter((presta) => presta.isPrestataire);
   return (
@@ -16,10 +16,10 @@ const SageFemme = () => {
           <Sidebar />
         </div>
         <div className="main-container">
-          <h1>Nos profils sages femmes</h1>
+          <h1>Nos profils medecins</h1>
           <div className="section-ens">
             {prestataires
-              .filter((item) => item.profile.proffession.includes("sage femme"))
+              .filter((item) => item["profile"].proffession.includes("developpeur"))
               .map((item) => (
                 <EmpCard item={item} />
               ))}
@@ -30,4 +30,4 @@ const SageFemme = () => {
   );
 };
 
-export default SageFemme;
+export default Developpeurs;

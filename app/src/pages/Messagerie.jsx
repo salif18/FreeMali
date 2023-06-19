@@ -11,10 +11,9 @@ import { Navigate } from "react-router";
 const socket = io("http://localhost:3002");
 
 const Messagerie = () => {
-  const { userId, isInLine, message, setMessage ,setCurrenChat, currenChat} = useContext(MyStore);
+  const { userId, isInLine, chaters,setChaters, message, setMessage ,setCurrenChat, currenChat} = useContext(MyStore);
 
-  //contacts des deux chatters
-  const [chaters, setChaters] = useState([]);
+ 
   //nouveau text de discusion
   const [newMessage, setNewMessage] = useState(""); 
 
@@ -82,6 +81,7 @@ const handleBtnMultipleRole=(c)=>{
     scrollRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [message]);
 
+  
   return (
     <>
       <Navbar />
@@ -95,6 +95,7 @@ const handleBtnMultipleRole=(c)=>{
             {chaters.map((c) => (
               <div onClick={() => handleBtnMultipleRole(c)}>
                 <Conversation contacts={c} />
+                
               </div>
             ))}
           </div>

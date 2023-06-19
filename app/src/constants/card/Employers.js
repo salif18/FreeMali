@@ -32,8 +32,8 @@ const Employers = ({ item }) => {
                 fontFamily: "Roboto",
                 fontWeight: 600,
               }}>
-              <ThumbUpIcon style={{ color: "rgb(13,167,221)", marginLeft: 10 }} />{" "}
-              {item && item.profile.likes}
+              <ThumbUpIcon style={{ color: "#19a6e1", marginLeft: 10 }} />{" "}
+              {item?.profile.likes >0 && item.profile.likes}
             </p>
             <p
               style={{
@@ -45,7 +45,7 @@ const Employers = ({ item }) => {
               <ThumbDownIcon
                 style={{ color: "#ff4040", marginLeft: 10 }}
               />{" "}
-              {item && item.profile.disLikes}
+              {item?.profile.disLikes > 0  && item.profile.disLikes}
             </p>
           </div>
           <p

@@ -7,9 +7,10 @@
     border: 1px solid #dadada;
     background: #fff;
     transition: all 0.5s ease-in-out;
+    box-shadow: -2px 2px 2px 2px  #e6e6e6;
     &:hover{
         transform: scale(1.1);
-        border: 3.5px solid rgb(13, 179, 221);
+        // border: 3.5px solid rgb(13, 179, 221);
         background: #f0f0f0;
     }
     
@@ -19,7 +20,7 @@
     width: 90px;
     height: 90px;
     border-radius: 100%;
-    border: 2.5px solid rgb(13, 179, 221);
+    // border: 2.5px solid rgb(13, 179, 221);
     margin: 10px;
 }
 
@@ -41,7 +42,7 @@
     font-family: 'Roboto';
     font-size: 16px;
     font-weight: 500;
-    color:rgb(13, 179, 221)
+    color:#19a6e1
 }
 
 .card-body p{
@@ -67,12 +68,13 @@
     width: 110px;
     height: 30px;
     border: none;
-    background: rgb(13, 179, 221);
+    // background: rgb(13, 179, 221);
+    background-color: #1b74e4;
     color:#fff;
     font-family: 'Roboto',sans-serif;
     font-size: 14px;
     &:hover{
-        background:rgba(15, 201, 248, 0.562) ;
+        background:#19a6e1 ;
         
     }
 }

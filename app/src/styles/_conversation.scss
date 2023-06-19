@@ -5,7 +5,7 @@
     cursor: pointer;
     background: #f0f2f5;
     &:hover{
-        background: rgb(245,243,243);
+        background: #7551eb21;
     }
 }
 
@@ -15,7 +15,7 @@
     height: 40px;
     border-radius: 100%;
     object-fit: cover;
-    border: 1px solid rgb(13,179,221);
+    // border: 1px solid rgb(13,179,221);
 }
 
 .convers-name{
@@ -38,4 +38,17 @@
         color:"#fff";
         background: #7e7e7e;
     }
+}
+
+.longuer-array{
+    margin-left: 10px;
+    font-family: Roboto;
+    font-size: 11px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background: #0bff2c;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;
 }

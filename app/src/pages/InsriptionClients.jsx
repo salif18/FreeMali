@@ -31,7 +31,7 @@ const InsriptionClients = () => {
       .string()
       .required("Veuillez entrer un mot de passe")
       .min(6)
-      .max(8),
+      .max(10),
   });
 
   const formSubmission = () => {
@@ -109,7 +109,7 @@ const InsriptionClients = () => {
             {(formik) => (
               <Form className="form">
                 <div className="left-form">
-                  <div>
+                  <div className="container-field">
                     <Field
                       className="form-control"
                       type="number"
@@ -123,7 +123,7 @@ const InsriptionClients = () => {
                       component="span"
                     />
                   </div>
-                  <div>
+                  <div className="container-field">
                     <Field
                       className="form-control"
                       type="text"
@@ -140,7 +140,7 @@ const InsriptionClients = () => {
                 </div>
 
                 <div className="rigth-form">
-                  <div>
+                  <div className="container-field">
                     <Field
                       className="form-control"
                       type="password"
@@ -155,7 +155,7 @@ const InsriptionClients = () => {
                     />
                   </div>
 
-                  <div>
+                  <div className="container-field">
                     <button
                       className="signup-btn-clients"
                       disabled={!formik.isValid || formik.isSubmitting}

@@ -20,7 +20,7 @@ const CardOffres = ({ item }) => {
   const Auteur = users.filter((c) => c._id === item.userId);
   const auteur = Auteur[0];
 
-  console.log(auteur);
+
   return (
     <div className="card-offre" key={item._id}>
       <div className="card-offre-body">

@@ -86,7 +86,7 @@ const SingleOffre = () => {
       {!isInLine && <Navigate to="/connecter" replace={true} />}
       <div className="singleoffre">
         <div className="single-offre-header">
-          <h1>Service</h1>
+          <h1>La demande</h1>
           <p>{format(oneOffre.createdAt)}</p>
         </div>
 

@@ -11,7 +11,7 @@
   h1{
     font-size: 50px;
     font-weight: bold;
-    color: #7451eb;
+    color: #1b74e4;//#7451eb;
     font-family: Montserrat;
     margin: 10px;
   }
@@ -31,6 +31,18 @@
     background: #fff;
     width: 550px;
     box-shadow: -3px 2px 2px 2px #e2e4e7;
+    // transition: all 0.5s ease-in-out;
+    // &:hover{
+    //     transform: scale(1.03);
+    // }
+}
+
+.container-field{
+    display: flex;
+    flex-direction: column;
+    span{
+        margin-left: 25px;
+    }
 }
 
 .container-connect h1{
@@ -50,7 +62,7 @@
     height: 50px;
     border-radius: 10px;
     border: none;
-    background: #7451eb;//#1876f2;
+    background: #1b74e4;//#7451eb;//#1876f2;
     color:#fff;
     font-size: 18px;
     font-family: 'Roboto';

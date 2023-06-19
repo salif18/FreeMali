@@ -64,7 +64,7 @@
 
 .commenter{
     font-weight: 600;
-    color: rgb(13,179,221);
+    color: #19a6e1;
 }
 
 .btn-card-offre{
@@ -72,7 +72,7 @@
     width: 100px;
     height: 35px;
     border: none;
-    background: #555;
+    background: #1b74e4;//#7451eb;
     color:#fff;
     font-family: "Roboto";
     font-weight: 500;
@@ -82,7 +82,7 @@
     align-items: center;
     justify-content: center;
     &:hover{
-        background: #000;
+        background: #19a6e1;
     }
 }
 
