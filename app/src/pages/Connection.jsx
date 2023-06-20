@@ -6,11 +6,14 @@ import * as yup from "yup";
 import axios from "axios";
 import { MyStore } from "../context/myStore";
 import { useNavigate } from "react-router";
-
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 //API de registre login
 const url = "http://localhost:3002/auth/login";
 const Connection = () => {
   const [errorMessage,setErrorMessage] =useState('')
+  const [isView, setIsView] = useState(false)
+
   const navigate = useNavigate();
   const { login } = useContext(MyStore);
  const RegexNumero = /numero/
@@ -55,6 +58,10 @@ const Connection = () => {
   }
 }  
     
+//afficher et cacher le contenu du mot de passe
+const handleViewPassword=()=>{
+  setIsView(!isView)
+}
 
   return (
     <>
@@ -90,16 +97,19 @@ const Connection = () => {
                 </div>
 
                 <div className="container-field">
+                <div className="pass-visible">
                   <Field
                     className="form-control"
-                    type="password"
+                    type={isView ? "text":"password"}
                     name="password"
                     id="password"
                     placeholder="Mot de passe"
                   />
+                  <div className="visible">{isView ? <VisibilityOffIcon  onClick={()=>handleViewPassword()} />:<VisibilityIcon onClick={()=>handleViewPassword()}/>}</div>
+                  </div>
                   <ErrorMessage
                     className="text-danger"
-                    name="password"
+                    name={isView ? 'text':'password'}
                     component="span"
                   />
                   {errorMessage && RegexPassowrd.test(errorMessage) && <span className="error">{errorMessage}</span>}

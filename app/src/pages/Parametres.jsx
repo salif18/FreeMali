@@ -182,7 +182,7 @@ const regexNumber = /^\+?[1-9]\d{1,14}$/;
     { value: "docteur", label: "Docteur" },
     { value: "sage femme", label: "Sage femme" },
     { value: "entrepreneur", label: "Entrepreneur" },
-    { value: "avocat", label: "Avocat" },
+    { value: "agronomme", label: "Agronomme" },
     { value: "animateur", label: "Animateur" },
     { value: "dj", label: "Dj" },
   ];
@@ -193,6 +193,7 @@ const regexNumber = /^\+?[1-9]\d{1,14}$/;
     { value: "educations", label: "Educations" },
     { value: "programmations", label: "Programmations" },
     { value: "informatiques", label: "Informatiques" },
+    {value:'agropastorale',label:'Agropastorale'},
     { value: "animations", label: "Animations" },
     { value: "sante", label: "Sante" },
     { value: "juriste", label: "Juriste" },

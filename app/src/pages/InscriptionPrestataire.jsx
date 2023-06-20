@@ -1,16 +1,20 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
+import ReactPhoneInput from 'react-phone-number-input';
 import * as yup from "yup";
 import Footer from "../constants/Footer";
 import Navbar from "../constants/Navbar";
 import axios from "axios";
 import { MyStore } from "../context/myStore";
 import { useNavigate } from "react-router";
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const InscriptionPrestataire = () => {
   const { login, getMyData, userId, isInLine, getMyProfileData } =
     useContext(MyStore);
     const [errorMessage,setErrorMessage] = useState('')
+    const [isView, setIsView] = useState(false)
   const navigate = useNavigate();
   //API de registre signup
   const url = "http://localhost:3002/auth/signup";
@@ -30,15 +34,19 @@ const InscriptionPrestataire = () => {
   // Regex pour valider une adresse e-mail
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+  //regex numero
+  const regexNumber = /^\+?[1-9]\d{1,14}$/;
+
   const validation = yup.object({
     email: yup.string()
     .matches(emailRegex,"Veuillez entrer un email operationnel")
     .required('Le champs ne doit pas etre vide'),
-    numero: yup.number().required("Veuillez entrer un numero joingnable"),
-    password: yup
-      .string()
-      .matches(passwordRegex,"Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule et un chiffre")
-      .required('Veuillez entrer un mot de passe'),
+    numero: yup.string()
+    .matches(regexNumber,'Veuillez entrer un numero au moins de 8 chiffres')
+    .required("Veuillez entrer un numero joingnable"),
+    password: yup.string()
+    .matches(passwordRegex,"Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule et un chiffre")
+    .required('Veuillez entrer un mot de passe'),
       // .min(6)
       // .max(10),
     isPrestaire: yup
@@ -67,8 +75,8 @@ const InscriptionPrestataire = () => {
         await formSubmission(formData);
         onSubmittingProps.resetForm();
       }
-    } catch (e) {
-      setErrorMessage(e.response.data.message)
+    } catch (error) {
+      setErrorMessage(error.response.data.message)
     }
   };
 
@@ -100,6 +108,11 @@ const InscriptionPrestataire = () => {
     };
     isInLine && getProfile();
   }, []);
+
+  //afficher et cacher le contenu du mot de passe
+const handleViewPassword=()=>{
+  setIsView(!isView)
+}
 
   return (
     <>
@@ -135,7 +148,7 @@ const InscriptionPrestataire = () => {
                     component="span"
                   />
                 </div>
-                {errorMessage && <span>{errorMessage}</span>}
+                {errorMessage && <span className="error" >{errorMessage}</span>}
                 <div className="container-field">
                   <Field
                     className="form-control"
@@ -155,13 +168,16 @@ const InscriptionPrestataire = () => {
 
               <div className="rigth-form">
                 <div className="container-field">
+                <div className="pass-visible">
                   <Field
                     className="form-control"
-                    type="password"
+                    type={isView ? "text":"password"}
                     name="password"
                     id="password"
                     placeholder="Mot de passe"
                   />
+                  <div className="visiblepresta">{isView ? <VisibilityOffIcon  onClick={()=>handleViewPassword()} />:<VisibilityIcon onClick={()=>handleViewPassword()}/>}</div>
+                  </div>
                   <ErrorMessage
                     className="text-danger"
                     name="password"

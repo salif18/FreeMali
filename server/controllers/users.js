@@ -44,14 +44,14 @@ exports.signup = (req, res, next) => {
         .json({ message: "Le numero de telephone ou email existe deja" });
     };
   }); 
-  // console.log(numero)
+  console.log(numero)
   
-  // console.log(isTelNumberValid(numero))
-  //  if (!isTelNumberValid(numero)) {
-  //   return res
-  //     .status(400)
-  //     .json({ message: "Veuillez entrez un numero reel" });
-  // }
+  console.log(isTelNumberValid(numero))
+   if (!isTelNumberValid(numero)) {
+    return res
+      .status(400)
+      .json({ message: "Ce numero n'est pas un numero de telephone, veuillez entrez un numero de telephone valable" });
+  }
 
   bcrypt
     .hash(req.body.password, 10)

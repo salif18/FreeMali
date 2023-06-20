@@ -34,6 +34,7 @@ import Reinitialisation from './pages/Reinitialisation';
 import Developpeurs from './pages/Developpeurs';
 import Maçon from './pages/Maçon';
 import Informatiques from './pages/Informatiques';
+import Agronomme from './pages/Agronomme';
 
 
 
@@ -140,6 +141,7 @@ useEffect(()=>{
        <Route path='/reinitialisation' element={<Reinitialisation/>} />
        <Route path='/entrepreneur' element={<Entrepreneurs/>} />
        <Route path='/animateur' element={<Animateur/>} />
+       <Route path='/agronome' element={<Agronomme/>} />
        <Route path='/dj' element={<Dj/>}/>
        <Route path='/messagerie' element={<Messagerie/>}/>
        <Route path='/developpeur' element={<Developpeurs/>}/>

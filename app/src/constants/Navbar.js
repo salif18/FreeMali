@@ -36,9 +36,9 @@ const Navbar = () => {
     <nav className="navbar">
       <div className="navbar-left">
         <h2 className="logo-title">
-        <span>Fr</span>
-        <span>ee</span>
-        <span>Mali</span></h2>
+        <span>Free</span>
+        <span>b</span>
+        <span>ook</span></h2>
         <NavLink
           className={({ isActive }) => (isActive ? "active" : "")}
           to="/">

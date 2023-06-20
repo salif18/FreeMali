@@ -16,7 +16,7 @@ const Maçon = () => {
           <Sidebar />
         </div>
         <div className="main-container">
-          <h1>Nos profils sages femmes</h1>
+          <h1>Nos profils maçons</h1>
           <div className="section-ens">
             {prestataires
               .filter((item) => item.profile.proffession.includes("maçon"))

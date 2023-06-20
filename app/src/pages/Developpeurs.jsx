@@ -16,7 +16,7 @@ const Developpeurs = () => {
           <Sidebar />
         </div>
         <div className="main-container">
-          <h1>Nos profils medecins</h1>
+          <h1>Nos profils developpeurs</h1>
           <div className="section-ens">
             {prestataires
               .filter((item) => item["profile"].proffession.includes("developpeur"))

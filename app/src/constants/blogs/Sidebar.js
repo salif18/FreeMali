@@ -21,6 +21,7 @@ import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 import DevicesIcon from '@mui/icons-material/Devices';
 import LanIcon from '@mui/icons-material/Lan';
+import AgricultureIcon from '@mui/icons-material/Agriculture';
 import LaptopChromebookIcon from '@mui/icons-material/LaptopChromebook';
 const Sidebar = () => {
   return (
@@ -33,7 +34,12 @@ const Sidebar = () => {
             />
             <h3>Mains d'oeuvres</h3>
   </div>*/}
-
+         <NavLink className="liens" to="/agronome">
+          <AgricultureIcon
+             style={{ margin: 10, fontSize: 26, color: "#1d89e6" }}
+            />
+            Agro bussiness
+          </NavLink>
           <NavLink className="liens" to="/electricite">
             <TipsAndUpdatesIcon
               style={{ margin: 10, fontSize: 26, color: "#39bbcb" }}
@@ -81,7 +87,7 @@ const Sidebar = () => {
           <LaptopChromebookIcon
             style={{ margin: 10, fontSize: 26, color: "#1d89e6" }}
           />
-          Informatiques
+          Informaticien(e)s
         </NavLink>
       </div>
 
@@ -131,6 +137,7 @@ const Sidebar = () => {
             />
             Entrepreneurs
           </NavLink>
+         
         </div>
 
         <div className="mainsoeuvres">

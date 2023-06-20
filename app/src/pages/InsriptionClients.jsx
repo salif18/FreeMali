@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as yup from "yup";
 import Footer from "../constants/Footer";
@@ -6,10 +6,14 @@ import Navbar from "../constants/Navbar";
 import axios from "axios";
 import { MyStore } from "../context/myStore";
 import { useNavigate } from "react-router";
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 const InsriptionClients = () => {
   const { login, userId, getMyData, isInLine, getMyProfileData } =
     useContext(MyStore);
+    const [errorMessage,setErrorMessage] =useState('')
+    const [isView, setIsView] = useState(false)
   //API de registre signup
   const url = "http://localhost:3002/auth/signup";
   //url de recuperation des donnes de user apres etre connecter
@@ -30,17 +34,21 @@ const InsriptionClients = () => {
   // Regex pour valider une adresse e-mail
   const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
+//recherche le mot numero
+  const RegexNumero = /numero/
+
   const validation = yup.object({
     email: yup.string()
     .matches(emailRegex,"Veuillez entrer un email operationnel")
     .required('Le champs ne doit pas etre vide'),
-    numero: yup.number().required("Veuillez entrer un numero joingnable"),
+    numero: yup.string()
+    .required("Veuillez entrer un numero joingnable"),
     password: yup
       .string()
       .matches(passwordRegex,"Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule et un chiffre")
       .required("Veuillez entrer un mot de passe")
-      .min(6)
-      .max(10),
+      // .min(6)
+      // .max(10),
   });
 
   const formSubmission = () => {
@@ -54,17 +62,17 @@ const InsriptionClients = () => {
   //envoi de formulaire
   const handleSubmit = async (formData, onSubmittingProps) => {
     try {
-      const res = await axios.post(url, formData);
-      if (res) {
-        await res.data;
-        const { userId, token } = res.data;
+      const response = await axios.post(url, formData);
+      if (response) {
+        await response.data;
+        const { userId, token } = response.data;
         login(userId, token);
         navigate("/parametre");
         await formSubmission(formData);
         onSubmittingProps.resetForm();
       }
-    } catch (e) {
-      console.error(e);
+    } catch (error) {
+      setErrorMessage(error.response.data.message)
     }
   };
 
@@ -72,11 +80,12 @@ const InsriptionClients = () => {
     const getUser = async () => {
       axios
         .get(urlGET)
-        .then((res) => {
-          res && getMyData(res.data);
+        .then((response) => {
+          response && getMyData(response.data);
         })
-        .catch((err) => {
-          console.error(err);
+        .catch((error) => {
+          console.log(error)
+         
         });
     };
     isInLine && getUser();
@@ -96,6 +105,11 @@ const InsriptionClients = () => {
     };
     isInLine && getProfile();
   }, []);
+
+   //afficher et cacher le contenu du mot de passe
+const handleViewPassword=()=>{
+  setIsView(!isView)
+}
 
   return (
     <div>
@@ -126,6 +140,7 @@ const InsriptionClients = () => {
                       id="numero"
                       placeholder="Numero de telephone"
                     />
+                    {errorMessage && RegexNumero.test(errorMessage) && <span className="error">{errorMessage}</span>}
                     <ErrorMessage
                       className="text-danger"
                       name="numero"
@@ -150,13 +165,16 @@ const InsriptionClients = () => {
 
                 <div className="rigth-form">
                   <div className="container-field">
+                  <div className="pass-visible">
                     <Field
                       className="form-control"
-                      type="password"
+                      type={isView ? "text":"password"}
                       name="password"
                       id="password"
                       placeholder="Mot de passe"
                     />
+                    <div className="visiblepresta">{isView ? <VisibilityOffIcon  onClick={()=>handleViewPassword()} />:<VisibilityIcon onClick={()=>handleViewPassword()}/>}</div>
+                    </div>
                     <ErrorMessage
                       className="text-danger"
                       name="password"
