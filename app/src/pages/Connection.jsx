@@ -24,9 +24,9 @@ const Connection = () => {
     contacts: yup.string().required("Veuillez entrez votre numero ou email"),
     password: yup
       .string()
-      .required("Veuillez entrer un mot de passe")
-      .min(6)
-      .max(10),
+      .required("Veuillez entrer votre mot de passe")
+      // .min(6)
+      // .max(10),
      
   }
   );

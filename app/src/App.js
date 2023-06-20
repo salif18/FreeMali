@@ -13,7 +13,6 @@ import Enseignants from './pages/Enseignants';
 import Proff from './pages/Proff';
 import Docteurs from './pages/Docteurs';
 import Entrepreneurs from './pages/Entrepreneurs';
-import Avocats from './pages/Avocats';
 import Dj from './pages/Dj';
 import Animateur from './pages/Animateur';
 import Profile from './pages/Profile';
@@ -34,6 +33,7 @@ import MyModal from './constants/windows/MyModal';
 import Reinitialisation from './pages/Reinitialisation';
 import Developpeurs from './pages/Developpeurs';
 import Maçon from './pages/Maçon';
+import Informatiques from './pages/Informatiques';
 
 
 
@@ -55,7 +55,7 @@ useEffect(()=>{
     .then(res => {
         res && getOffres(res.data)
     }).catch((err)=>console.log(err))
-},[])
+},[getOffres])
 
 
 // recuperer ses notification 
@@ -127,6 +127,7 @@ useEffect(()=>{
        <Route path='/sign-clients' element={<InsriptionClients/>} />
        <Route path='/offres' element={<Offres/>}/>
        <Route path='/offre/:id' element={<SingleOffre/>} />
+       <Route path='/informatique' element={<Informatiques/>}/>
        <Route path='/electricite' element={<Electriciens/>}/>
        <Route path='/profile/:id' element={<Profile/>} />
        <Route path='/mecanique' element={<Mecaniciens/>}/>
@@ -138,7 +139,6 @@ useEffect(()=>{
        <Route path='/connecter' element={<Connection/>}/>
        <Route path='/reinitialisation' element={<Reinitialisation/>} />
        <Route path='/entrepreneur' element={<Entrepreneurs/>} />
-       <Route path='/juriste' element={<Avocats/>} />
        <Route path='/animateur' element={<Animateur/>} />
        <Route path='/dj' element={<Dj/>}/>
        <Route path='/messagerie' element={<Messagerie/>}/>

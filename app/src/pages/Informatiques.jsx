@@ -5,7 +5,7 @@ import Navbar from "../constants/Navbar";
 import EmpCard from "../constants/card/Employers";
 import { MyStore } from "../context/myStore";
 
-const Avocats = () => {
+const Informatiques = () => {
   const { users } = useContext(MyStore);
   const prestataires = users.filter((presta) => presta.isPrestataire);
   return (
@@ -16,10 +16,10 @@ const Avocats = () => {
           <Sidebar />
         </div>
         <div className="main-container">
-          <h1>Nos profils avocats</h1>
+          <h1>Nos profils Informaticien</h1>
           <div className="section-ens">
             {prestataires
-              .filter((item) => item["profile"].proffession.includes("avocat"))
+              .filter((item) => item["profile"].proffession.includes("informaticien"))
               .map((item) => (
                 <EmpCard item={item} />
               ))}
@@ -30,4 +30,4 @@ const Avocats = () => {
   );
 };
 
-export default Avocats;
+export default Informatiques;

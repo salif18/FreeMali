@@ -5,10 +5,9 @@ import { MyStore } from "../context/myStore";
 import axios from "axios";
 import { format } from "timeago.js";
 import Commentaires from "../constants/card/commentaires";
-import Offres from "./Offres";
 
 const SingleOffre = () => {
-  const { userId, me_User, myProfile, defaultImage, isInLine } =
+  const { userId, me_User, myProfile,users, defaultImage, isInLine } =
     useContext(MyStore);
   const navigate = useNavigate();
   const { id } = useParams();
@@ -76,17 +75,22 @@ const SingleOffre = () => {
       })
       .then((res) => res.data)
       .catch((err) => console.log(err));
-    navigate("http://localhost:3002/messagerie");
+    navigate("/messagerie");
   };
 
-  console.log(comments);
+  const auteurs = users.filter(x => x.userId === oneOffre.userId)
+  const auteurImg = auteurs[0]
+  
   return (
     <>
       <Navbar />
       {!isInLine && <Navigate to="/connecter" replace={true} />}
       <div className="singleoffre">
         <div className="single-offre-header">
+          <div className="rt">
           <h1>La demande</h1>
+          <img src={auteurImg? auteurImg.profile.photo :defaultImage} alt='' />
+          </div>
           <p>{format(oneOffre.createdAt)}</p>
         </div>
 

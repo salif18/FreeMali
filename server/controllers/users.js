@@ -1,34 +1,58 @@
 //importation
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const express = require("express");
-const router = express.Router();
 const Users = require("../models/collectionUsers");
 const Profile = require("../models/collectionProfile");
 const dotenv = require("dotenv");
-const nodemailer = require('nodemailer')
-//configuration
-dotenv.config(); 
- 
-const transporter =nodemailer.createTransport({
-  host:'smtp.gmail.com',
-  port:'465',
-  auth:{
-    user:`salifmoctarkonate@gmail.com`, 
-    pass:`Konatee18`,
+const nodemailer = require("nodemailer");
+const  {PhoneNumberUtil}  = require("google-libphonenumber");
+
+// verifier si un numero est valable reel selon un pays
+const isTelNumberValid = (numero) => {
+  const phoneUtil = PhoneNumberUtil.getInstance();
+  try {
+    const parsedNumber = phoneUtil.parseAndKeepRawInput(numero,'ML');
+    return phoneUtil.isValidNumber(parsedNumber);
+  } catch (err) {
+    return false;
   }
-});
-     
+};
+ 
+
+//configuration
+dotenv.config();
+
+// const transporter = nodemailer.createTransport({
+//   host: "smtp.gmail.com",
+//   port: "465",
+//   auth: {
+//     user: `salifmoctarkonate@gmail.com`,
+//     pass: `Konatee18`,
+//   },
+// });
+
 //registre user
 exports.signup = (req, res, next) => {
-  const {numero,email} = req.body
-   Users.findOne({
-    $or:[{numero:numero},{email:email}]
-  })
-  .then((user)=>{
-    if(user){
-    return res.status(400).json({message:'Le numero de telephone ou email existe deja'})
-}})
+  const { numero, email } = req.body;
+
+  Users.findOne({
+    $or: [{ numero: numero }, { email: email }],
+  }).then((user) => {
+    if (user) {
+      return res
+        .status(400)
+        .json({ message: "Le numero de telephone ou email existe deja" });
+    };
+  }); 
+  // console.log(numero)
+  
+  // console.log(isTelNumberValid(numero))
+  //  if (!isTelNumberValid(numero)) {
+  //   return res
+  //     .status(400)
+  //     .json({ message: "Veuillez entrez un numero reel" });
+  // }
+
   bcrypt
     .hash(req.body.password, 10)
     .then((hash) => {
@@ -37,7 +61,7 @@ exports.signup = (req, res, next) => {
         password: hash,
       });
       users
-        .save()
+        .save() 
         .then((user) =>
           res.status(200).json({
             userId: user._id,
@@ -53,22 +77,21 @@ exports.signup = (req, res, next) => {
 
 //login user
 exports.login = (req, res, next) => {
-  const {contacts} = req.body
+  const { contacts } = req.body;
   Users.findOne({
-    $or:[{email:contacts},{numero:contacts }] 
+    $or: [{ email: contacts }, { numero: contacts }],
   })
     .then((user) => {
       if (!user) {
-        const errorMessage="Votre numero est incorrect"
-      return res.status(401).json({message:errorMessage  });
-        
+        const errorMessage = "Votre numero est incorrect";
+        return res.status(401).json({ message: errorMessage });
       }
       bcrypt
         .compare(req.body.password, user.password)
         .then((valid) => {
           if (!valid) {
-            const errorMessage="Votre mot de passe est incorrect"
-            return res.status(401).json({ message: errorMessage })
+            const errorMessage = "Votre mot de passe est incorrect";
+            return res.status(401).json({ message: errorMessage });
           }
           res.status(200).json({
             userId: user._id,
@@ -81,7 +104,7 @@ exports.login = (req, res, next) => {
     })
     .catch((err) => res.status(500).json({ err }));
 };
-
+ 
 //recuperation un utilisateur
 exports.getOneUser = async (req, res, next) => {
   const { id } = req.params;
@@ -136,56 +159,59 @@ exports.userDelete = (req, res, next) => {
     .catch((err) => res.status(400).json({ err }));
 };
 
-
 // reinitialisation
-exports.Reinitialisation =async(req, res) => {
+exports.Reinitialisation = async (req, res) => {
   const { numero } = req.body;
-   
+
   try {
-    const users = await Users.findOne({ numero:numero });
+    const users = await Users.findOne({ numero: numero });
     if (!users) {
       return res.status(404).json({ message: "Cet email n'existe pas" });
     }
-    const token = jwt.sign({ userId: users._id }, `${process.env.KEY_TOKEN}`, { expiresIn: '24h' });
-   
+    const token = jwt.sign({ userId: users._id }, `${process.env.KEY_TOKEN}`, {
+      expiresIn: "24h",
+    });
+
     // enregistrer le token en ajoutant un nouveau champ resetToken a user
     users.resetPasswordToken = token;
     await users.save();
-   console.log(users.resetPasswordToken)
+    console.log(users.resetPasswordToken);
     // envoyer le token de renitialisation a user par son mail ou numero ou automatiquement vers le front
-    
-// const mailOption = {
-//   from:'salifmoctarkonate@gmail.com',
-//   to:users.email,
-//   subject:'Reinitialiser votre mot de passe',
-//   text:users.resetPasswordToken
 
-// }
-//     transporter.sendMail(mailOption,(err,info)=>{
-//       if(err){
-//         console.log('erreur',err)
-//       }else{
-//         console.log('email envoyer',info.messageId)
-//       }
-//     })
-    return res.status(200).json({token:users.resetPasswordToken});//
+    // const mailOption = {
+    //   from:'salifmoctarkonate@gmail.com',
+    //   to:users.email,
+    //   subject:'Reinitialiser votre mot de passe',
+    //   text:users.resetPasswordToken
+
+    // }
+    //     transporter.sendMail(mailOption,(err,info)=>{
+    //       if(err){
+    //         console.log('erreur',err)
+    //       }else{
+    //         console.log('email envoyer',info.messageId)
+    //       }
+    //     })
+    return res.status(200).json({ token: users.resetPasswordToken }); //
   } catch (error) {
-    return res.status(500).json({ message: 'Erreur de server' });
+    return res.status(500).json({ message: "Erreur de server" });
   }
 };
 
-exports.Validation =async (req, res) => {
-  const { resetToken, password, confirmPassword  } = req.body;
-  
+exports.Validation = async (req, res) => {
+  const { resetToken, password, confirmPassword } = req.body;
+
   try {
     const users = await Users.findOne({ resetPasswordToken: resetToken });
     if (!users) {
-      return res.status(404).json({ message: 'Invalid or expired token' });
+      return res.status(404).json({ message: "Invalid or expired token" });
     }
 
     // Verifier si les mot de passe sont conforment
     if (password !== confirmPassword) {
-      return res.status(400).json({ message: 'Les mots de passe ne correspondent pas' });
+      return res
+        .status(400)
+        .json({ message: "Les mots de passe ne correspondent pas" });
     }
 
     // Hash le mot de passe
@@ -193,12 +219,13 @@ exports.Validation =async (req, res) => {
 
     // mis a jour du mot de passe et vide le resetPasswordToken
     users.password = hashedPassword;
-    users.resetPasswordToken = '';
+    users.resetPasswordToken = "";
     await users.save();
 
-    return res.status(200).json({ message: 'Votre mot de passe a été réinitialisé avec succès' });
+    return res
+      .status(200)
+      .json({ message: "Votre mot de passe a été réinitialisé avec succès" });
   } catch (error) {
-    return res.status(500).json({ message: 'Server error' });
+    return res.status(500).json({ message: "Server error" });
   }
 };
-

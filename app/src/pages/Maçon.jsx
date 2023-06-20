@@ -19,7 +19,7 @@ const Maçon = () => {
           <h1>Nos profils sages femmes</h1>
           <div className="section-ens">
             {prestataires
-              .filter((item) => item.profile.proffession.includes("maçons"))
+              .filter((item) => item.profile.proffession.includes("maçon"))
               .map((item) => (
                 <EmpCard item={item} />
               ))}

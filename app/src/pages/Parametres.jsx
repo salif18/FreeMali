@@ -11,6 +11,7 @@ import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import EditIcon from '@mui/icons-material/Edit';
 import MapUser from "../Maps/MapUser";
+import {PhoneNumberUtil} from 'google-libphonenumber'
 
 const Parametres = () => {
   const {
@@ -22,6 +23,8 @@ const Parametres = () => {
     defaultImage,
   } = useContext(MyStore);
   const navigate = useNavigate();
+const regexNumber = /^\+?[1-9]\d{1,14}$/;
+
   //API
   //url pour poster le profile
   const urlPOST = "http://localhost:3002/profiles";
@@ -46,8 +49,6 @@ const Parametres = () => {
       setClick(true);
     });
   };
-
-  console.log(LONGITUDE, LATITUDE);
 
   // recuperation du profile de user
   useEffect(() => {
@@ -104,6 +105,16 @@ const Parametres = () => {
     }
   };
 
+  const isTelNumberValid=(numero)=>{
+    const phoneUtil = PhoneNumberUtil.getInstance()
+    try{
+     const parsedNumber = phoneUtil.parseAndKeepRawInput(numero)
+     return phoneUtil.isValidNumber(parsedNumber)
+    }catch(err){
+      return false;
+    }
+  }
+
   const validation2 = yup.object({
     nom: yup.string().required("Veuillez entrer votre nom"),
     prenom: yup.string().required("Veuillez entrer votre prenom"),
@@ -143,7 +154,7 @@ const Parametres = () => {
         longitude: LONGITUDE,
         latitude: LATITUDE,
       });
-      console.log(formData);
+  
       if (res) {
         await res.data;
         // const {data} = res.data
@@ -165,6 +176,7 @@ const Parametres = () => {
     { value: "plombier", label: "Plombier" },
     { value: "maçon", label: "Maçon" },
     { value: "developpeur", label: "Developpeur" },
+    { value: "informaticien", label: "Informaticien" },
     { value: "enseignant", label: "Enseignant" },
     { value: "proffesseur", label: "Proffesseur" },
     { value: "docteur", label: "Docteur" },
@@ -180,6 +192,7 @@ const Parametres = () => {
     { value: "mains d'oeuvres", label: "Mains d'oeuvres" },
     { value: "educations", label: "Educations" },
     { value: "programmations", label: "Programmations" },
+    { value: "informatiques", label: "Informatiques" },
     { value: "animations", label: "Animations" },
     { value: "sante", label: "Sante" },
     { value: "juriste", label: "Juriste" },

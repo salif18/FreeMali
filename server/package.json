@@ -5,6 +5,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
+    "google-libphonenumber": "^3.2.32",
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.2.1",
     "mongoose-unique-validator": "^4.0.0",

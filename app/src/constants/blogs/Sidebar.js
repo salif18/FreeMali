@@ -21,7 +21,7 @@ import OnlinePredictionIcon from "@mui/icons-material/OnlinePrediction";
 import SentimentDissatisfiedIcon from "@mui/icons-material/SentimentDissatisfied";
 import DevicesIcon from '@mui/icons-material/Devices';
 import LanIcon from '@mui/icons-material/Lan';
-
+import LaptopChromebookIcon from '@mui/icons-material/LaptopChromebook';
 const Sidebar = () => {
   return (
     <div className="sidebar">
@@ -36,7 +36,7 @@ const Sidebar = () => {
 
           <NavLink className="liens" to="/electricite">
             <TipsAndUpdatesIcon
-              style={{ margin: 10, fontSize: 26, color: "#1d89e6" }}
+              style={{ margin: 10, fontSize: 26, color: "#39bbcb" }}
             />
             Electriciens
           </NavLink>
@@ -52,9 +52,9 @@ const Sidebar = () => {
           </NavLink>
           <NavLink className="liens" to="/plomberie">
             <PlumbingRoundedIcon
-              style={{ margin: 10, fontSize: 26, color: "#1d89e6" }}
+              style={{ margin: 10, fontSize: 26, color: "#39bbcb" }}
             />
-            Plombier
+            Plombiers
           </NavLink>
           <NavLink className="liens" to="/maçon">
           <AssuredWorkloadOutlinedIcon
@@ -75,7 +75,13 @@ const Sidebar = () => {
           <DevicesIcon
             style={{ margin: 10, fontSize: 26, color: "#1d89e6" }}
           />
-          Developpeur
+          Developpeurs
+        </NavLink>
+        <NavLink className="liens" to="/informatique">
+          <LaptopChromebookIcon
+            style={{ margin: 10, fontSize: 26, color: "#1d89e6" }}
+          />
+          Informatiques
         </NavLink>
       </div>
 
@@ -87,7 +93,7 @@ const Sidebar = () => {
 
           <NavLink className="liens" to="/enseignants">
             <SchoolIcon
-              style={{ margin: 10, fontSize: 26, color: "#1d89e6" }}
+              style={{ margin: 10, fontSize: 26, color: "#39bbcb" }}
             />
             Enseignant(e)s
           </NavLink>
@@ -121,7 +127,7 @@ const Sidebar = () => {
   </div>*/}
           <NavLink className="liens" to="/entrepreneur">
             <BusinessCenterIcon
-              style={{ margin: 10, fontSize: 26, color: "#1d89e6" }}
+              style={{ margin: 10, fontSize: 26, color: "#39bbcb" }}
             />
             Entrepreneurs
           </NavLink>

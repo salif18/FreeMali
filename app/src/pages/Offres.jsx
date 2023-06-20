@@ -39,7 +39,7 @@ const Offres = () => {
         res && getOffres(res.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [getOffres]);
 
   
   // boutton pour poster un offre

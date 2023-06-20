@@ -3,7 +3,7 @@ import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { NavLink, useNavigate } from "react-router-dom";
 import { MyStore } from "../context/myStore";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import SettingsPowerIcon from "@mui/icons-material/SettingsPower";
+import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import HomeIcon from "@mui/icons-material/Home";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
@@ -100,7 +100,7 @@ const Navbar = () => {
           )}
           {isInLine && (
             <div className="sedeconecter" style={{marginRight:20}} onClick={logout}>
-              <SettingsPowerIcon />
+              <PowerSettingsNewIcon />
             </div>
           )}
           {isInLine && (

@@ -24,11 +24,20 @@ const InsriptionClients = () => {
     password: "",
   };
 
+  // Regex pour valider un mot de passe avec au moins 8 caractères, au moins une lettre majuscule, une lettre minuscule et un chiffre
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
+
+  // Regex pour valider une adresse e-mail
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
   const validation = yup.object({
-    email: yup.string().required("Veuillez entrer un email operationnel"),
+    email: yup.string()
+    .matches(emailRegex,"Veuillez entrer un email operationnel")
+    .required('Le champs ne doit pas etre vide'),
     numero: yup.number().required("Veuillez entrer un numero joingnable"),
     password: yup
       .string()
+      .matches(passwordRegex,"Le mot de passe doit contenir au moins 8 caractères, une lettre majuscule, une lettre minuscule et un chiffre")
       .required("Veuillez entrer un mot de passe")
       .min(6)
       .max(10),
@@ -126,7 +135,7 @@ const InsriptionClients = () => {
                   <div className="container-field">
                     <Field
                       className="form-control"
-                      type="text"
+                      type="email"
                       name="email"
                       id="email"
                       placeholder="Email"
