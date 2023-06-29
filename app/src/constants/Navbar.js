@@ -1,4 +1,4 @@
-import React, { useContext} from "react";
+import React, { useContext, useState} from "react";
 import SearchSharpIcon from "@mui/icons-material/SearchSharp";
 import { NavLink, useNavigate } from "react-router-dom";
 import { MyStore } from "../context/myStore";
@@ -9,11 +9,13 @@ import HomeIcon from "@mui/icons-material/Home";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import EngineeringIcon from "@mui/icons-material/Engineering";
 import ContactlessIcon from "@mui/icons-material/Contactless";
-
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
 const Navbar = () => {
   const navigate = useNavigate();
   const { myProfile, logout, isInLine, defaultImage,invite,chaters, message, notifications,openModal, setTouched } =
     useContext(MyStore);
+    const [viewBurger,setViewBurger] = useState(false)
     //filtrer chaque foi les notification non lues
   const notification_No_read= notifications.filter(c => c.status.includes('non lue'))
 
@@ -33,12 +35,28 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="navbar">
-      <div className="navbar-left">
+    <>    
+    <div className="menu"> 
+      {!viewBurger?
+        <>
         <h2 className="logo-title">
-        <span>Free</span>
-        <span>b</span>
-        <span>ook</span></h2>
+        <span>free</span>
+        <span>Ma</span>
+        <span>li</span>
+        </h2>
+        <MenuIcon onClick={()=>setViewBurger(true)}  fontSize="30"/> 
+        </>
+        : <CloseIcon fontSize="" onClick={()=>setViewBurger(false)} />
+      }
+    </div>
+
+    <nav className={viewBurger ? "activenavbar" :"navbar"}>
+      <div className="navbar-left">
+       <h2 className="logo-title">
+        <span>free</span>
+        <span>Ma</span>
+        <span>li</span></h2>
+        <div className="liens-nav">
         <NavLink
           className={({ isActive }) => (isActive ? "active" : "")}
           to="/">
@@ -63,7 +81,10 @@ const Navbar = () => {
           <ContactlessIcon style={{ fontSize: 29 }} />
           Contacts
         </NavLink>
+        </div>
       </div>
+
+     
 
       <div className="navbar-rigth">
         <button className="btn-search" onClick={() => navigate("/search")}>
@@ -89,10 +110,12 @@ const Navbar = () => {
           {isInLine && (
             <NavLink className="lien-sociaux" onClick={()=>handleTouched()} > 
               <div className="rond">
-              <NotificationsIcon  /> 
-              {
+              <NotificationsIcon  />  
+               {
                 notification_No_read.length > 0  && 
-                <div className="badge"><span>{notification_No_read.length}</span></div>
+                 <div className="badge">
+                   {notification_No_read.length}
+                </div>
               }
               </div>
            
@@ -114,7 +137,11 @@ const Navbar = () => {
           )}
         </div>
       </div>
+
+     
+
     </nav>
+    </>
   );
 };
 

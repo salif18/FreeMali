@@ -1,7 +1,8 @@
 .footer{
     background: #161b2e;
-    height: 50vh;
+    height: 25em;
     padding: 20px;
+    width: 100%;
     
 }
 
@@ -40,4 +41,22 @@
     &:hover{
         color:#c7c7c7
     }
+}
+
+@media(max-width:768px){
+.footer{
+        height: 50em;
+}
+
+.container-footer{
+    flex-direction: column;
+}
+.contacts{
+    h2{
+        font-size: 1.4em;
+    }
+    p{
+        font-size: 1.2em;
+    }
+}
 }

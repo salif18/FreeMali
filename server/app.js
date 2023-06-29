@@ -18,4 +18,4 @@ app.use('/offres',offreRouter)
 app.use('/chat',chatRouter)
 app.use('/message',messageRouter)
 app.use('/notifications',notificationRouter)
-module.exports = app
+module.exports = app 

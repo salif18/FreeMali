@@ -121,10 +121,10 @@ const handleViewPassword=()=>{
         <div className="container-ins">
           <h3>Etre aux services des clients</h3>
           <p>
-            Bienvenue sur Platform, un service qui vous permet de vous mettre en
-            contact avec un clien a l'aide d'un seul bouton
+            Bienvenue sur notre <span className="plate">plateforme</span>, un service qui permet de vous mettre en
+            contact avec un recruteur à l'aide d'un seul bouton
           </p>
-          <p>Creer votre compte et gagner des clients.</p>
+          <p>Créer votre compte et gagner des clients.</p>
         </div>
         <h1> Inscrivez-vous</h1>
         <Formik
@@ -136,7 +136,7 @@ const handleViewPassword=()=>{
               <div className="left-form">
                 <div className="container-field">
                   <Field
-                    className="form-control"
+                    className="forms-control"
                     type="number"
                     name="numero"
                     id="numero"
@@ -151,7 +151,7 @@ const handleViewPassword=()=>{
                 {errorMessage && <span className="error" >{errorMessage}</span>}
                 <div className="container-field">
                   <Field
-                    className="form-control"
+                    className="forms-control"
                     type="text"
                     name="email"
                     id="email"
@@ -170,7 +170,7 @@ const handleViewPassword=()=>{
                 <div className="container-field">
                 <div className="pass-visible">
                   <Field
-                    className="form-control"
+                    className="forms-control"
                     type={isView ? "text":"password"}
                     name="password"
                     id="password"
@@ -194,7 +194,9 @@ const handleViewPassword=()=>{
                   </button>
                 </div>
 
-              
+               <div className="politique">
+                <p>En s'inscrivant j'accepte <span>les Conditions d'utilisation et</span><br/><span>les politiques de confidentialité</span> </p>
+               </div>
 
               </div>
             </Form>

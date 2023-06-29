@@ -11,7 +11,6 @@
   padding:0;
   box-sizing: border-box;
   max-width: 100%;
-  outline-style: none
 }
 
 @import './home-page';
@@ -43,4 +42,5 @@
 @import './contacter';
 @import './notificard';
 @import './notification';
-@import './reinitialisation'
+@import './reinitialisation';
+@import './navSearch'

@@ -6,6 +6,7 @@ const Reinitialisation = () => {
 
   const navigate = useNavigate()
   const [numero, setNumero] = useState('');
+  const [email, setEmail] = useState('')
   const [message, setMessage] = useState('');
   const [step,setStep] = useState(1)
   const [resetToken, setResetToken] = useState("");
@@ -22,7 +23,7 @@ const Reinitialisation = () => {
     if(numero.length > 0){
     e.preventDefault();
     try{
-     const res = await axios.post('http://localhost:3002/auth/reset-password', { numero })
+     const res = await axios.post('http://localhost:3002/auth/reset-password', { numero, email })
        if(res){
        setMessage(res.data.message);
        setResetToken(res.data.token);
@@ -69,6 +70,8 @@ const Reinitialisation = () => {
         <h2>Réinitialisation du mot de passe </h2>
         <form onSubmit={handleFormSubmit1} className='form-renit'>
           <input className='form-control' type="number" placeholder="Entrer votre numero" value={numero} onChange={handleNumeroChange} />
+          <p>et</p>
+          <input className='form-control' type="email" placeholder="Votre email" value={email} onChange={(e)=>setEmail(e.target.value)} />
           <button className='btn-renit' type="submit">Envoyer</button>
         </form>
         {message && <p>{message}</p>}

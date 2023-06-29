@@ -1,21 +1,25 @@
 .comment{
-    margin-top: 10px;
-    padding-top: 20px;
+    margin-top: 0.625em;
+    padding-top: 1.25em;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: #fff;
     // margin-bottom: 50px;
-    
+    width: 100%;
 }
 
 .comment h1{
     font-family: 'Roboto';
-    margin:10px;
-    font-size: 33px;
+    margin:0.625em;
+    font-size: 1.875;
     font-weight: 300;
-    color:#3e3f6b //#656760;
+    color:#3e3f6b; //#656760;
+    .free{
+       color:#1b74e1;
+       font-weight: 500;
+    }
 }
 
 .container-objets{
@@ -26,9 +30,9 @@
 
 .objets{
     // background: #fff;
-    margin: 20px;
-    width: 350px;
-    height: 390px;
+    margin: 1.25em;
+    width: 21.875em;
+    height: 24.375em;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -41,9 +45,9 @@
 }
 
 .obj-img{
-    width: 220px;
-    height: 150px;
-    margin:20px;
+    width: 13.75em;
+    height: 9.375em;
+    margin:1.25em;
     transition: all 0.5s ease-in-out;
     &:hover{
         transform: scale(1.1);
@@ -51,9 +55,25 @@
 }
 
 .objets p{
-    font-size: 18px;
+    font-size: 1.125em;
     font-family: Roboto;
-    margin: 20px;
+    margin: 1.25em;
     color: #000;//#7451eb;
     font-weight: 600;
+}
+
+@media(max-width:768px){
+
+    .comment h1{
+       font-size: 1.20em;
+       text-align: center;
+    }
+    .container-objets{
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .objets p{
+        font-size: 1em;
+    }
+    
 }

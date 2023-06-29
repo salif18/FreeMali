@@ -24,7 +24,7 @@ const Connection = () => {
   };
 
   const validation = yup.object({
-    contacts: yup.string().required("Veuillez entrez votre numero ou email"),
+    contacts: yup.string().required("Veuillez entrez votre numero ou votre email"),
     password: yup
       .string()
       .required("Veuillez entrer votre mot de passe")
@@ -68,7 +68,7 @@ const handleViewPassword=()=>{
       <Navbar />
       <div className="connection-pages">
       <div className="logo">
-        <h1>FreeMali</h1>
+        <h1>freeMali</h1>
         <p>Connectez vous et gagnez des relations <br/>dans le cadre de travail sur notre plateform </p>
       </div>
         <div className="container-connect">
@@ -82,7 +82,7 @@ const handleViewPassword=()=>{
               <Form className="form-connection">
                 <div className="container-field">
                   <Field
-                    className="form-control"
+                    className="formc-control"
                     type="text"
                     name="contacts"
                     placeholder="Entrez votre numero ou e-mail"
@@ -99,7 +99,7 @@ const handleViewPassword=()=>{
                 <div className="container-field">
                 <div className="pass-visible">
                   <Field
-                    className="form-control"
+                    className="formc-control"
                     type={isView ? "text":"password"}
                     name="password"
                     id="password"

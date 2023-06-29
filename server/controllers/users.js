@@ -7,7 +7,7 @@ const dotenv = require("dotenv");
 const nodemailer = require("nodemailer");
 const  {PhoneNumberUtil}  = require("google-libphonenumber");
 
-// verifier si un numero est valable reel selon un pays
+// verifier si un numero de telephone est valable reel selon un pays
 const isTelNumberValid = (numero) => {
   const phoneUtil = PhoneNumberUtil.getInstance();
   try {
@@ -45,7 +45,6 @@ exports.signup = (req, res, next) => {
     };
   }); 
   console.log(numero)
-  
   console.log(isTelNumberValid(numero))
    if (!isTelNumberValid(numero)) {
     return res
@@ -161,17 +160,17 @@ exports.userDelete = (req, res, next) => {
 
 // reinitialisation
 exports.Reinitialisation = async (req, res) => {
-  const { numero } = req.body;
+  const { numero ,email} = req.body;
 
   try {
-    const users = await Users.findOne({ numero: numero });
+    const users = await Users.findOne({ $and :[{numero: numero},{email:email}] });
     if (!users) {
-      return res.status(404).json({ message: "Cet email n'existe pas" });
+      return res.status(404).json({ message: "Cet email n'existe pas ou ce numero n'existe pas" });
     }
     const token = jwt.sign({ userId: users._id }, `${process.env.KEY_TOKEN}`, {
       expiresIn: "24h",
-    });
-
+    }); 
+   
     // enregistrer le token en ajoutant un nouveau champ resetToken a user
     users.resetPasswordToken = token;
     await users.save();

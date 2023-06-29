@@ -27,7 +27,7 @@ router.get('/myProfile/:userId',profileRouter.getProfile)
 router.put('/:userId',profileRouter.modifyProfile) 
 
 // modification de profile par uchamp
-router.put('/:userId/forField',profileRouter.modifyOneField)
+router.put('/:userId/fieldPhoto',profileRouter.modifyProfilePhoto)
  
 //route pour ajouter des likes
 router.post('/:id/notations',likesRouter.usersNotations)

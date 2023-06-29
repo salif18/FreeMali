@@ -3,7 +3,11 @@ const Profile = require('../models/collectionProfile')
 
 exports.CreatProfile = (req,res,next)=>{
     // const {userId,nom,prenom,email,numero,photo,address} = req.body
-    const profile = new Profile({...req.body})
+    const profile = new Profile({ 
+        ...req.body,
+    //    userId: req.auth.userId,
+    //  photo: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    })
     profile.save()
     .then(()=>res.status(201).json({msg:'profile creer'}))
     .catch((err)=>res.status(400).json({err}))
@@ -49,25 +53,15 @@ exports.modifyProfile =(req,res,next)=>{
 }
 
 // modifier chacun des champs du profile
-exports.modifyOneField = (req,res,next)=>{
-    const {id} = req.params
+exports.modifyProfilePhoto = (req,res,next)=>{
+    const {userId} = req.params
     Profile
       .findOneAndUpdate(
-        {userId:id},//recuperer objet par son id
-        {$set:{nom:req.body.nom}},//mis a jour le champs status au nouveau status
-        {$set:{prenom:req.body.prenom}},
-        // {$set:{photo:req.body.photo}},
-        {$set:{email:req.body.email}},
-        {$set:{numero:req.body.numero}},
-        {$set:{proffession:req.body.proffession}},
-        {$set:{categorie:req.body.categorie}},
-        {$set:{address:req.body.address}},
-        {$set:{biographie:req.body.biographie}},
-        // {$set:{latitude:req.body.latitude}},
-        // {$set:{longitude:req.body.longitude}},
+        {userId:userId},//recuperer objet par son id
+        {$set:{photo:req.body.photo}},
         {new:true} 
       )   
-      .then((profile)=>res.status(201).json({profile}))
+      .then((profile)=>res.status(201).json({photo:profile.photo}))
       .catch((err)=>res.status(400).json({err}))
 }
 

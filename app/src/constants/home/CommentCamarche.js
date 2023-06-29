@@ -3,7 +3,7 @@ import React from "react";
 const CommentCamarche = () => {
   return (
     <div className="comment">
-      <h1>Comment fonctionne notre plateforme FreeMali ?</h1>
+      <h1>Comment fonctionne notre plateforme <span className="free">FreeMali ?</span></h1>
       <div className="container-objets">
         <div className="objets">
           <img
@@ -12,7 +12,7 @@ const CommentCamarche = () => {
             alt=""
           />
           <p>
-            Vous etes client ? postez votre projet et explicitez votre besoin
+            Vous etes recruteur ? postez votre projet et explicitez votre besoin
           </p>
         </div>
 
@@ -47,7 +47,7 @@ const CommentCamarche = () => {
           />
           <p>
             Vous etes prestataire ? definir votre proffession et gagner des
-            clients
+            recruteurs
           </p>
         </div>
       </div>

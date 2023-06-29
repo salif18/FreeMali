@@ -117,12 +117,12 @@ const handleViewPassword=()=>{
         <Navbar />
         <div className="insc-clients">
           <div className="container-ins">
-            <h3>Etre a la recherche d'un employe</h3>
+            <h3>Etre à la recherche d'un prestataire</h3>
             <p>
-              Bienvenue sur Platform, un service qui vous permet de vous mettre
-              en contact avec un employe a l'aide d'un seul bouton
+              Bienvenue sur notre <span className="plate">plateforme</span>, un service qui permet de vous mettre
+              en contact avec un prestataire à l'aide d'un seul bouton
             </p>
-            <p>Creer votre compte et trouver votre employe.</p>
+            <p>Créer votre compte et trouver votre prestataire.</p>
           </div>
           <h1>Inscrivez-vous</h1>
           <Formik
@@ -134,7 +134,7 @@ const handleViewPassword=()=>{
                 <div className="left-form">
                   <div className="container-field">
                     <Field
-                      className="form-control"
+                      className="forms-control"
                       type="number"
                       name="numero"
                       id="numero"
@@ -149,7 +149,7 @@ const handleViewPassword=()=>{
                   </div>
                   <div className="container-field">
                     <Field
-                      className="form-control"
+                      className="forms-control"
                       type="email"
                       name="email"
                       id="email"
@@ -167,7 +167,7 @@ const handleViewPassword=()=>{
                   <div className="container-field">
                   <div className="pass-visible">
                     <Field
-                      className="form-control"
+                      className="forms-control"
                       type={isView ? "text":"password"}
                       name="password"
                       id="password"
@@ -191,6 +191,11 @@ const handleViewPassword=()=>{
                     </button>
                   </div>
                
+                  
+               <div className="politique">
+               <p>En s'inscrivant j'accepte <span>les Conditions d'utilisation et</span><br/><span>les politiques de confidentialité</span> </p>
+              </div>
+
                 </div>
               </Form>
             )}

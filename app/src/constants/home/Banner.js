@@ -13,7 +13,7 @@ const Banner = () => {
           <h1>
             Vous avez besoin d'un prestataire ou vous recherchez un job en ligne
             ? <br />
-            Rejoignez notre Communauté !
+            Rejoignez notre <span>Plateforme !</span>
           </h1>
           <p>Trouvez des professionnels qualifiés pour vos services</p>
           {!isInLine && <p>Inscrivez-vous !</p>}
@@ -29,7 +29,7 @@ const Banner = () => {
               <button
                 className="btn-braner2"
                 onClick={() => navigate("/sign-clients")}>
-                Devenir clients
+                Devenir recruteur
               </button>
             )}
           </div>

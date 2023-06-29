@@ -7,24 +7,23 @@ import { MyStore } from "../context/myStore";
 const NavbarSearch = () => {
   const { valueSearch, handleChange } = useContext(MyStore);
   return (
-    <nav className="navbar">
-      <div className="navbar-left">
+    <nav className="navbarSearch">
+      <div className="navbarSearch-left">
         <h1 className="navh2">FreeMali</h1>
       </div>
-      <div className="navbar-rigth">
+      <div className="navbarSearch-rigth">
         <input
           className="input-search2"
           value={valueSearch}
           onChange={handleChange}
-          placeholder="Recherche de profil..."
+          placeholder="Rechercher des prestataires..."
         />
-        <button className="btn-search">
+        <button className="btn-navSearch">
           <SearchSharpIcon
             style={{ color: "#555555", fontWeight: "bold", fontSize: 30 }}
           />
         </button>
 
-        <div className="navbar-rigth-sociaux"></div>
       </div>
     </nav>
   );

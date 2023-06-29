@@ -9,9 +9,9 @@ import { useNavigate, Navigate } from "react-router";
 import LocationSearchingIcon from "@mui/icons-material/LocationSearching";
 import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
-import EditIcon from '@mui/icons-material/Edit';
+import EditIcon from "@mui/icons-material/Edit";
 import MapUser from "../Maps/MapUser";
-import {PhoneNumberUtil} from 'google-libphonenumber'
+import { PhoneNumberUtil } from "google-libphonenumber";
 
 const Parametres = () => {
   const {
@@ -23,7 +23,7 @@ const Parametres = () => {
     defaultImage,
   } = useContext(MyStore);
   const navigate = useNavigate();
-const regexNumber = /^\+?[1-9]\d{1,14}$/;
+  const regexNumber = /^\+?[1-9]\d{1,14}$/;
 
   //API
   //url pour poster le profile
@@ -37,7 +37,7 @@ const regexNumber = /^\+?[1-9]\d{1,14}$/;
   const [click, setClick] = useState(false);
   const [LONGITUDE, setLONGITUDE] = useState("");
   const [LATITUDE, setLATITUDE] = useState("");
-  const [updateView,setUpdateView] = useState(false)
+  const [updateView, setUpdateView] = useState(false);
 
   const getPosition = () => {
     //demander acces ala position local
@@ -70,15 +70,15 @@ const regexNumber = /^\+?[1-9]\d{1,14}$/;
 
   const initialValue1 = {
     userId: "",
-    nom: "",
-    prenom: "",
+    // nom: "",
+    // prenom: "",
     photo: "",
-    email: "",
-    numero: "",
-    proffession: "",
-    categorie: "",
-    address: "",
-    biographie: "",
+    // email: "",
+    // numero: "",
+    // proffession: "",
+    // categorie: "",
+    // address: "",
+    // biographie: "",
   };
 
   const formSubmission = () => {
@@ -105,15 +105,15 @@ const regexNumber = /^\+?[1-9]\d{1,14}$/;
     }
   };
 
-  const isTelNumberValid=(numero)=>{
-    const phoneUtil = PhoneNumberUtil.getInstance()
-    try{
-     const parsedNumber = phoneUtil.parseAndKeepRawInput(numero)
-     return phoneUtil.isValidNumber(parsedNumber)
-    }catch(err){
+  const isTelNumberValid = (numero) => {
+    const phoneUtil = PhoneNumberUtil.getInstance();
+    try {
+      const parsedNumber = phoneUtil.parseAndKeepRawInput(numero);
+      return phoneUtil.isValidNumber(parsedNumber);
+    } catch (err) {
       return false;
     }
-  }
+  };
 
   const validation2 = yup.object({
     nom: yup.string().required("Veuillez entrer votre nom"),
@@ -148,13 +148,15 @@ const regexNumber = /^\+?[1-9]\d{1,14}$/;
   //envoi de formulaire
   const handleSubmit2 = async (formData, onSubmittingProps) => {
     try {
+      //const formData = new FormData();
+      // formData.append('photo',formData.photo);
       const res = await axios.post(urlPOST, {
         ...formData,
         userId,
         longitude: LONGITUDE,
         latitude: LATITUDE,
       });
-  
+
       if (res) {
         await res.data;
         // const {data} = res.data
@@ -193,7 +195,7 @@ const regexNumber = /^\+?[1-9]\d{1,14}$/;
     { value: "educations", label: "Educations" },
     { value: "programmations", label: "Programmations" },
     { value: "informatiques", label: "Informatiques" },
-    {value:'agropastorale',label:'Agropastorale'},
+    { value: "agropastorale", label: "Agropastorale" },
     { value: "animations", label: "Animations" },
     { value: "sante", label: "Sante" },
     { value: "juriste", label: "Juriste" },
@@ -234,242 +236,236 @@ const regexNumber = /^\+?[1-9]\d{1,14}$/;
               <h2>
                 Numero <span>{myProfile && myProfile?.numero}</span>
               </h2>
-              
-              <p className="modif" onClick={()=>setUpdateView(!updateView)}>Modifier votre profil <EditIcon/> </p>
+
+              <p className="modif" onClick={() => setUpdateView(!updateView)}>
+                Modifier votre profil <EditIcon />{" "}
+              </p>
             </div>
-            </div>
+          </div>
           <div className="lienposi">
             <MapUser />
           </div>
-          
         </div>
 
         <div className="container-pro-parametre">
-        {updateView &&
-          <div className="pro">
-          
-            <>
-            <h1 className="pro-h1">Modifier les informations</h1>
-            <Formik
-              initialValues={initialValue1}
-              validationSchema={validation1}
-              onSubmit={handleSubmit1}>
-              {(formik) => (
-                <Form className="form-para">
-                <div className="form-para-left">
-                <div className="container-field">
-                   <Field
-                    className="champs"
-                    type="text"
-                    name="photo"
-                    placeholder="Photo"
-                  />
-                  </div>
-                  <div className="container-field">
-                    <Field
-                      className="champs"
-                      type="text"
-                      name="nom"
-                      id="nom"
-                      placeholder="Nom"
-                    />
-                    <ErrorMessage
-                      className="text-danger"
-                      name="nom"
-                      component="span"
-                    />
-                  </div>
+          {updateView && (
+            <div className="pro">
+              <>
+                <h1 className="pro-h1">Modifier les informations</h1>
+                <Formik
+                  initialValues={initialValue1}
+                  validationSchema={validation1}
+                  onSubmit={handleSubmit1}>
+                  {(formik) => (
+                    <Form className="form-para">
+                      <div className="form-para-left">
+                        <div className="container-field">
+                          <Field
+                            className="champs"
+                            type="text"
+                            name="photo"
+                            placeholder="Photo"
+                          />
+                        </div>
+                        <div className="container-field">
+                          <Field
+                            className="champs"
+                            type="text"
+                            name="nom"
+                            id="nom"
+                            placeholder="Nom"
+                          />
+                          <ErrorMessage
+                            className="text-danger"
+                            name="nom"
+                            component="span"
+                          />
+                        </div>
 
-                  <div className="container-field">
-                    <Field
-                      className="champs"
-                      type="text"
-                      name="prenom"
-                      id="prenom"
-                      placeholder="Prenom"
-                    />
-                    <ErrorMessage
-                      className="text-danger"
-                      name="prenom"
-                      component="span"
-                    />
-                  </div>
+                        <div className="container-field">
+                          <Field
+                            className="champs"
+                            type="text"
+                            name="prenom"
+                            id="prenom"
+                            placeholder="Prenom"
+                          />
+                          <ErrorMessage
+                            className="text-danger"
+                            name="prenom"
+                            component="span"
+                          />
+                        </div>
 
-               
+                        <div className="container-field">
+                          <Field
+                            name="proffession"
+                            id="proffesion"
+                            className="champs">
+                            {({ field }) => (
+                              <>
+                                <select {...field} className="champs">
+                                  {proffesions.map((prof) => (
+                                    <option key={prof.value} value={prof.value}>
+                                      {prof.label}
+                                    </option>
+                                  ))}
+                                </select>
+                                <ErrorMessage
+                                  className="text-danger"
+                                  name="proffession"
+                                  component="span"
+                                />
+                              </>
+                            )}
+                          </Field>
+                        </div>
 
-                  
-                    <div className="container-field">
-                      <Field
-                        name="proffession"
-                        id="proffesion"
-                        className="champs">
-                        {({ field }) => (
-                          <>
-                            <select {...field} className="champs">
-                              {proffesions.map((prof) => (
-                                <option key={prof.value} value={prof.value}>
-                                  {prof.label}
-                                </option>
-                              ))}
-                            </select>
-                            <ErrorMessage
-                              className="text-danger"
-                              name="proffession"
-                              component="span"
-                            />
-                          </>
-                        )}
-                      </Field>
-                    </div>
-                    
-                
-                  
-                 
-                  
-                    <div className="container-field">
-                      <Field name="categorie" id="categorie" className="champs">
-                        {({ field }) => (
-                          <>
-                            <select {...field} className="champs">
-                              {categories.map((catego) => (
-                                <option key={catego.value} value={catego.value}>
-                                  {catego.label}
-                                </option>
-                              ))}
-                            </select>
-                            <ErrorMessage
-                              className="text-danger"
-                              name="categorie"
-                              component="span"
-                            />
-                          </>
-                        )}
-                      </Field>
-                    </div>
-                  
-                  </div>
+                        <div className="container-field">
+                          <Field
+                            name="categorie"
+                            id="categorie"
+                            className="champs">
+                            {({ field }) => (
+                              <>
+                                <select {...field} className="champs">
+                                  {categories.map((catego) => (
+                                    <option
+                                      key={catego.value}
+                                      value={catego.value}>
+                                      {catego.label}
+                                    </option>
+                                  ))}
+                                </select>
+                                <ErrorMessage
+                                  className="text-danger"
+                                  name="categorie"
+                                  component="span"
+                                />
+                              </>
+                            )}
+                          </Field>
+                        </div>
+                      </div>
 
-                 <div className="form-para-rigth">
-                  <div className="container-field">
-                    <Field
-                      className="champs"
-                      type="email"
-                      name="email"
-                      id="email"
-                      placeholder={me_User?.email}
-                    />
-                    <ErrorMessage
-                      className="text-danger"
-                      name="email"
-                      component="span"
-                    />
-                  </div>
+                      <div className="form-para-rigth">
+                        <div className="container-field">
+                          <Field
+                            className="champs"
+                            type="email"
+                            name="email"
+                            id="email"
+                            placeholder={me_User?.email}
+                          />
+                          <ErrorMessage
+                            className="text-danger"
+                            name="email"
+                            component="span"
+                          />
+                        </div>
 
-                  <div className="container-field">
-                    <Field
-                      className="champs"
-                      type="number"
-                      name="numero"
-                      id="numero"
-                      placeholder={me_User?.numero}
-                    />
-                    <ErrorMessage
-                      className="text-danger"
-                      name="numero"
-                      component="span"
-                    />
-                  </div>
-           
-                   <div className="container-field">
-                  <Field
-                    className="champs"
-                    type="text"
-                    name="biographie"
-                    placeholder="biographie"
-                  />
-                  </div>
-                  <div className="container-field">
-                    <Field
-                      className="champs"
-                      type="text"
-                      name="address"
-                      placeholder="Address"
-                    />
-                    <ErrorMessage
-                      className="text-danger"
-                      name="address"
-                      component="span"
-                    />
-                  </div>
+                        <div className="container-field">
+                          <Field
+                            className="champs"
+                            type="number"
+                            name="numero"
+                            id="numero"
+                            placeholder={me_User?.numero}
+                          />
+                          <ErrorMessage
+                            className="text-danger"
+                            name="numero"
+                            component="span"
+                          />
+                        </div>
 
-                  <div>
-                    <button
-                      className="signup-btn-para"
-                      disabled={!formik.isValid || formik.isSubmitting}
-                      type="submit">
-                      Modifier
-                    </button>
-                  </div>
-                  </div>
-                </Form>
-              )}
-            </Formik>
-            </>
-                              
-          </div>
-        }
-                          
-        
+                        <div className="container-field">
+                          <Field
+                            className="champs"
+                            type="text"
+                            name="biographie"
+                            placeholder="biographie"
+                          />
+                        </div>
+                        <div className="container-field">
+                          <Field
+                            className="champs"
+                            type="text"
+                            name="address"
+                            placeholder="Address"
+                          />
+                          <ErrorMessage
+                            className="text-danger"
+                            name="address"
+                            component="span"
+                          />
+                        </div>
+
+                        <div>
+                          <button
+                            className="signup-btn-para"
+                            disabled={!formik.isValid || formik.isSubmitting}
+                            type="submit">
+                            Modifier
+                          </button>
+                        </div>
+                      </div>
+                    </Form>
+                  )}
+                </Formik>
+              </>
+            </div>
+          )}
+
           {!myProfile && (
             <div className="infos-pro">
               <h1 className="infos-h1">Creer votre profil </h1>
-              
+
               <Formik
                 initialValues={initialValue2}
                 validationSchema={validation2}
                 onSubmit={handleSubmit2}>
                 {(formik) => (
                   <Form className="form-para">
-                  <div className='infos-pro-left'>
-                    <div className="container-field">
-                      <Field
-                        className="champs"
-                        type="text"
-                        name="photo"
-                        placeholder="Photo"
-                      />
-                    </div>
-                    <div className="container-field">
-                      <Field
-                        className="champs"
-                        type="text"
-                        name="nom"
-                        id="nom"
-                        placeholder="Nom"
-                      />
-                      <ErrorMessage
-                        className="text-danger"
-                        name="nom"
-                        component="span"
-                      />
-                    </div>
+                    <div className="infos-pro-left">
+                      <div className="container-field">
+                        <Field
+                          className="champs"
+                          type="text"
+                          name="photo"
+                          placeholder="Photo"
+                        />
+                      </div>
+                      <div className="container-field">
+                        <Field
+                          className="champs"
+                          type="text"
+                          name="nom"
+                          id="nom"
+                          placeholder="Nom"
+                        />
+                        <ErrorMessage
+                          className="text-danger"
+                          name="nom"
+                          component="span"
+                        />
+                      </div>
 
-                    <div className="container-field">
-                      <Field
-                        className="champs"
-                        type="text"
-                        name="prenom"
-                        id="prenom"
-                        placeholder="Prenom"
-                      />
-                      <ErrorMessage
-                        className="text-danger"
-                        name="prenom"
-                        component="span"
-                      />
-                    </div>
+                      <div className="container-field">
+                        <Field
+                          className="champs"
+                          type="text"
+                          name="prenom"
+                          id="prenom"
+                          placeholder="Prenom"
+                        />
+                        <ErrorMessage
+                          className="text-danger"
+                          name="prenom"
+                          component="span"
+                        />
+                      </div>
 
-                    
                       <div className="container-field">
                         <Field
                           name="proffession"
@@ -493,9 +489,7 @@ const regexNumber = /^\+?[1-9]\d{1,14}$/;
                           )}
                         </Field>
                       </div>
-                    
 
-                    
                       <div className="container-field">
                         <Field name="categorie" id="categorie">
                           {({ field }) => (
@@ -520,96 +514,96 @@ const regexNumber = /^\+?[1-9]\d{1,14}$/;
                       </div>
                     </div>
 
-                   <div className='infos-pro-right'>
-                    <div className="container-field">
-                      <Field
-                        className="champs"
-                        type="email"
-                        name="email"
-                        id="email"
-                        placeholder="Email"
-                      />
-                      <ErrorMessage
-                        className="text-danger"
-                        name="email"
-                        component="span"
-                      />
-                    </div>
-                    <div className="container-field">
-                      <Field
-                        className="champs"
-                        type="number"
-                        name="numero"
-                        id="numero"
-                        placeholder="Numero de telephone"
-                      />
-                      <ErrorMessage
-                        className="text-danger"
-                        name="numero"
-                        component="span"
-                      />
-                    </div>
+                    <div className="infos-pro-right">
+                      <div className="container-field">
+                        <Field
+                          className="champs"
+                          type="email"
+                          name="email"
+                          id="email"
+                          placeholder="Email"
+                        />
+                        <ErrorMessage
+                          className="text-danger"
+                          name="email"
+                          component="span"
+                        />
+                      </div>
+                      <div className="container-field">
+                        <Field
+                          className="champs"
+                          type="number"
+                          name="numero"
+                          id="numero"
+                          placeholder="Numero de telephone"
+                        />
+                        <ErrorMessage
+                          className="text-danger"
+                          name="numero"
+                          component="span"
+                        />
+                      </div>
 
-                    <div className="container-field">
-                      {!click ? (
+                      <div className="container-field">
+                        {!click ? (
+                          <button
+                            className="maps-btn-ins"
+                            onClick={() => getPosition()}>
+                            <LocationSearchingIcon
+                              style={{ marginRight: 10, fontSize: 20 }}
+                            />
+                            Envoyer nous votre position actuelle
+                          </button>
+                        ) : (
+                          <p style={{ fontFamily: "Roboto" }}>
+                            <GpsFixedIcon
+                              style={{ color: "green", marginRight: 10 }}
+                            />{" "}
+                            Position active
+                            <DoneAllIcon
+                              style={{ color: "green", marginLeft: 10 }}
+                            />
+                          </p>
+                        )}
+                      </div>
+                      <div className="container-field">
+                        <Field
+                          className="champs"
+                          type="text"
+                          name="address"
+                          placeholder="Ville/Quartier"
+                        />
+                        <ErrorMessage
+                          className="text-danger"
+                          name="address"
+                          component="span"
+                        />
+                      </div>
+
+                      <div className="container-field">
+                        <Field
+                          className="champs"
+                          as="textarea"
+                          rows="4" // Nombre de lignes du textarea
+                          cols="50" // Nombre de colonnes du textarea
+                          name="biographie"
+                          placeholder="Biographie"
+                        />
+                        <ErrorMessage
+                          className="text-danger"
+                          name="biographie"
+                          component="span"
+                        />
+                      </div>
+
+                      <div className="container-field">
                         <button
-                          className="maps-btn-ins"
-                          onClick={() => getPosition()}>
-                          <LocationSearchingIcon
-                            style={{ marginRight: 10, fontSize: 20 }}
-                          />
-                          Envoyer nous votre position actuelle
+                          className="signup-btn-para"
+                          disabled={!formik.isValid || formik.isSubmitting}
+                          type="submit">
+                          Enregistrer
                         </button>
-                      ) : (
-                        <p style={{ fontFamily: "Roboto" }}>
-                          <GpsFixedIcon
-                            style={{ color: "green", marginRight: 10 }}
-                          />{" "}
-                          Position active
-                          <DoneAllIcon
-                            style={{ color: "green", marginLeft: 10 }}
-                          />
-                        </p>
-                      )}
-                    </div>
-                    <div className="container-field">
-                      <Field
-                        className="champs"
-                        type="text"
-                        name="address"
-                        placeholder="Ville/Quartier"
-                      />
-                      <ErrorMessage
-                        className="text-danger"
-                        name="address"
-                        component="span"
-                      />
-                    </div>
-
-                    <div className="container-field">
-                      <Field
-                        className="champs"
-                        as="textarea"
-                        rows="4" // Nombre de lignes du textarea
-                        cols="50" // Nombre de colonnes du textarea
-                        name="biographie"
-                        placeholder="Biographie"
-                      />
-                      <ErrorMessage
-                        className="text-danger"
-                        name="biographie"
-                        component="span"
-                      />
-                    </div>
-
-                    <div className="container-field">
-                      <button
-                        className="signup-btn-para"
-                        disabled={!formik.isValid || formik.isSubmitting}
-                        type="submit">
-                        Enregistrer
-                      </button>
-                    </div>
+                      </div>
                     </div>
                   </Form>
                 )}
@@ -618,7 +612,6 @@ const regexNumber = /^\+?[1-9]\d{1,14}$/;
           )}
         </div>
       </div>
-    
     </>
   );
 };

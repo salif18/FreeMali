@@ -11,9 +11,6 @@
     display: flex;
     align-items: center;
     margin: 20px;
-    // justify-content: space-between;
-    // height: 200px;
-    // background: rgb(15,202,248);
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
 }
@@ -125,7 +122,6 @@ margin-bottom: 25px
 
 .form-para{
   display: flex;
-//   flex-direction: row;
   align-items: center;
   justify-content: center;
 }
@@ -134,7 +130,6 @@ margin-bottom: 25px
     font-family: 'Roboto';
     height: 50px;
     margin: 20px;
-    outline: none;
     border: none;
     border-bottom: 1px solid #55555577;
     // border-radius: 10px;

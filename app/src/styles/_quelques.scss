@@ -4,6 +4,7 @@
     align-items: center;
     justify-content: center;
     background: #f0f2f5;
+    width: 100%;
 }
 
 .container-quelques{
@@ -16,27 +17,27 @@
 
 .h-h1{
     font-family: 'Roboto';
-    font-size: 33px;
+    font-size: 1.875em;
     font-weight: 300;
     color:#3e3f6b // #65676b;
 }
 
 .h-h2{
-    margin-top: 20px;
+    margin-top: 1.25em;
     color:rgb(13, 179, 221);
-    margin-left:-850px
+    margin-left:-53.125em
 }
 
 .btn-qlq{
-    width: 250px;
-    height: 40px;
-    border: 3px solid #1b74e6;
+    width: 15.625em;
+    height: 2.5em;
+    border: 0.1875em solid #1b74e6;
     color:#1b74e6;
-    font-size: 16px;
+    font-size: 1em;
     font-weight: 600;
     background: #fff;
     font-family: 'Roboto';
-    margin: 40px;
+    margin: 2.5em;
     &:hover{
         background: #1b74e6;
         color:#fff
@@ -49,6 +50,22 @@
 }
 .quelques h1{
         font-family: 'Roboto';
-        margin: 50px;
+        margin: 3.125em;
     
+    }
+
+    @media(max-width:768px){
+       
+       .quelques{
+        width: 100%;
+        .h-h1{
+            font-size: 1.20em;
+        }
+       };
+       .btn-qlq{
+        width: 15em;
+        height: 2em;
+        font-size: 0.75em;
+       }
+
     }

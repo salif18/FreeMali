@@ -15,7 +15,7 @@ const Schema = mongoose.Schema({
     longitude:{type:Number},
     biographie:{type:String},
     usersLikes:{type:[String]},
-    usersDisLikes:{type:[String]},
+    usersDisLikes:{type:[String]}, 
     likes:{type:Number, default:0},
     disLikes:{type:Number, default:0},
     avis:[{

@@ -35,6 +35,8 @@ import Developpeurs from './pages/Developpeurs';
 import Maçon from './pages/Maçon';
 import Informatiques from './pages/Informatiques';
 import Agronomme from './pages/Agronomme';
+import {Helmet}  from 'react-helmet';//pour securiser url
+
 
 
 
@@ -111,12 +113,22 @@ useEffect(()=>{
 
 // handleNewMessage()
 
+
+
+function MyComponent({ data }) {
+  const escapedData = escape(data);
+
+  return <div>{escapedData}</div>;
+}
+
+
   return (
     <>
     <div className="App">
     <ToastContainer limit={1} transition={Zoom} hideProgressBar={true} autoClose={5000}/>
     <MyModal isOpen={isModalOpen} onClose={closeModal} />
-   
+    
+
      <Routes> 
        <Route path='/' element={<Home/>}/>
        <Route path='/search' element={<Search/>} />

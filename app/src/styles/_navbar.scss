@@ -4,7 +4,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    // border-bottom: 1px solid #cecdcd;
     box-shadow: -5px -5px 5px 5px #d6d6d6;
    
 }
@@ -14,6 +13,12 @@
     align-items: center;
     justify-content:center;
    
+}
+
+.liens-nav{
+    display: flex;
+    align-items: center;
+    justify-content:center;
 }
 
 .badge{
@@ -64,17 +69,18 @@
         transform: scale(1.1);
     }
 }
+
 .navbar-left a{
     margin-left:20px;
     padding: 10px;
     font-size: 14px;
     text-decoration: none;
-    //color:#19a6e1;
-    color:#4b6f7e;
+     color:#006e8a;
+    //  color:#4b6f7e;
     align-items: center;
     cursor: pointer;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: 500;
+    font-family: Roboto;
+    font-weight: 300; 
     transition: all ease-in-out;
     display: flex;
     flex-direction: column;
@@ -155,7 +161,6 @@
 }
 .btn-search{
     margin-right: 20px;
-    
     width: 40px;
     height:40px ;
     background: #f0f2f5;
@@ -209,15 +214,10 @@
 
 }
 
-.navh2{
-    font-family:Verdana, Geneva, Tahoma, sans-serif;
-    font-weight: bold;
-    color:  #1b74e4;
-    font-size: 25px;
-    margin-left: 20px;
-}
 
 .active{
+    
+    color:#1876f2;
     border-bottom: 3.7px solid #1b74e4;
     
 }
@@ -225,13 +225,14 @@
 .seconnecter-container a{
     text-decoration: none;
     margin: 10px;
-    font-weight: 500;
+    text-transform: uppercase;
+    font-weight: 600;
     color:#3e3f6b;
     cursor: pointer;
     font-family: 'Roboto';
-    font-size: 16px;
+    font-size: 14px;
     &:hover{
-        color:#0000005b
+        color:#000000
     }
 }
 
@@ -243,4 +244,52 @@
     height: 40px;
     border-radius: 100%;
     background: #f0f2f5;
+}
+
+.menu{
+    display: none;
+    margin: 20px;
+    font-size: 30px;
+}
+
+@media(max-width:880px){
+    .navbar{
+        display: none;
+    }
+
+    .activenavbar{
+        height: 50vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .navbar-left{
+        
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        .logo-title{
+            text-align: center;
+        }
+    
+        .liens-nav{
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+    .navbar-rigth{
+
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menu{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    
 }
