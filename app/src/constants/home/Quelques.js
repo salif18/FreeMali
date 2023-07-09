@@ -10,7 +10,7 @@ const Quelques = () => {
   return (
     <div className="quelques">
       <h1 className="h-h1">
-        Trouver les meilleurs prestataires experts qualifies pour vos services
+        Trouver des experts qualifiés pour vos services
       </h1>
       <div className="container-quelques">
         {users

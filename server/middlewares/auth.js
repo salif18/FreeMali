@@ -14,12 +14,12 @@ module.exports = (req,res,next)=>{
         //recuperer userId qui se trouve dans le token
         const userId = decodedToken.userId
     
-        req.auth ={
+        req.auth ={ 
             userId:userId
         },
       
         next()
-
+        console.log(token)
     }catch(err){
         console.log(err)
       return res.status(401).json({

@@ -7,19 +7,25 @@ import { format } from "timeago.js";
 import Commentaires from "../constants/card/commentaires";
 
 const SingleOffre = () => {
-  const { userId, me_User, myProfile,users, defaultImage, isInLine } =
+  const { userId, me_User, token, myProfile,users, defaultImage, isInLine } =
     useContext(MyStore);
   const navigate = useNavigate();
   const { id } = useParams();
   const [oneOffre, setOneOffre] = useState([]);
   const [comments, setComments] = useState([]);
-
+  const [newcomit, setnewComit] = useState('')
+  const [modifier , setModifier] = useState(false)
   //contenu du commentaries
   const [newComents, setNewComents] = useState("");
-
+ const Headers = {
+  headers:{
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }
+ }
   useEffect(() => {
     axios
-      .get(`http://localhost:3002/offres/${id}`) //recuperer un offre
+      .get(`http://localhost:3002/offres/${id}`,Headers) //recuperer un offre
       .then((res) => {
         const { commentaires } = res.data;
         setOneOffre(res.data);
@@ -41,7 +47,7 @@ const SingleOffre = () => {
   // boutton pour envoyer la notification au prestataire
   const sendNotifications =()=>{
     axios
-     .post(`http://localhost:3002/notifications`, notification)
+     .post(`http://localhost:3002/notifications`, notification,Headers)
      .then((res) => res.data)
      .catch((err) => console.log(err));
  }
@@ -51,7 +57,7 @@ const SingleOffre = () => {
     if(newComents.length > 0){
     commentaires = { userId: userId, comments: newComents };
     axios
-      .put(`http://localhost:3002/offres/addComent/${id}`, { commentaires })
+      .put(`http://localhost:3002/offres/addComent/${id}`, { commentaires },Headers)
       .then((res) => res.data)
       .catch((err) => console.log(err));
     setNewComents("");
@@ -62,7 +68,7 @@ const SingleOffre = () => {
   const handleDeleteCommit = (commit) => {
     axios
       .put(
-        `http://localhost:3002/offres/user/delete/${oneOffre.userId}/commentaires/${commit._id}`
+        `http://localhost:3002/offres/user/delete/${oneOffre.userId}/commentaires/${commit._id}`,Headers
       )
       .then((res) => res.data)
       .catch((err) => console.log(err));
@@ -72,11 +78,19 @@ const SingleOffre = () => {
       .post("http://localhost:3002/chat", {
         senderId: userId,
         receiverId: oneOffre.userId,
-      })
+      },Headers)
       .then((res) => res.data)
       .catch((err) => console.log(err));
     navigate("/messagerie");
   };
+
+  const handleModifier = (commit)=>{
+    axios.put(`http://localhost:3002/offres/modify/${commit.userId}/commentaires/${commit._id}`,{newcomit},Headers)
+    .then((res) => res.data)
+    .catch((err) => console.log(err));
+    setModifier(!modifier)
+    setnewComit('')
+  }
 
   const auteurs = users.filter(x => x.userId === oneOffre.userId)
   const auteurImg = auteurs[0]
@@ -140,6 +154,11 @@ const SingleOffre = () => {
             <Commentaires
               commit={commit}
               handleDeleteCommit={handleDeleteCommit}
+              handleModifier={handleModifier}
+              newcomit={newcomit}
+              setnewComit={setnewComit}
+              modifier={modifier}
+              setModifier={setModifier}
             />
           ))}
         </div>

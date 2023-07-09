@@ -7,11 +7,18 @@ import axios from "axios";
 
 const CardOffres = ({ item }) => {
   const navigate = useNavigate();
-  const { me_User, userId, defaultImage, users } = useContext(MyStore);
+  const { me_User, userId, token, defaultImage, users } = useContext(MyStore);
 
+  //configuration de lentete
+const Headers = {
+  headers:{
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }
+ }
   const deleteOffre = () => {
     axios
-      .delete(`http://localhost:3002/offres/${item._id}`) //supprimer son offre
+      .delete(`http://localhost:3002/offres/${item._id}`,Headers) //supprimer son offre
       .then((res) => res.data)
       .catch((Err) => console.log(Err));
   }; 

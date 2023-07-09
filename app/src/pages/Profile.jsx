@@ -16,16 +16,25 @@ const socket = io("http://localhost:3002");
 
 const Profile = () => {
   const navigate = useNavigate();
-  const { userId, myProfile, defaultImage,isInLine} = useContext(MyStore);
+  const { userId, token, myProfile, defaultImage,isInLine} = useContext(MyStore);
   const [item, setItem] = useState([]);
   const [avis, setAvis] = useState([]);
   const { id } = useParams();
   const [comments, setComments] = useState("");
+
+  
+//configuration de l'entete
+const Headers = {
+  headers:{
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }
+ }
   
   //recuperer le profile du prestataire selectionner
   useEffect(() => {
     axios
-      .get(`http://localhost:3002/profiles/prestaProfile/${id}`)
+      .get(`http://localhost:3002/profiles/prestaProfile/${id}`,Headers)
       .then((res) => {
         const { avis } = res.data;
         setItem(res.data);
@@ -42,7 +51,7 @@ const Profile = () => {
       .post(`http://localhost:3002/profiles/${id}/notations`, {
         userId: userId,
         likes: 1,
-      })
+      },Headers)
       .then((res) => res.data)
       .catch((err) => console.log(err));
   };
@@ -53,7 +62,7 @@ const Profile = () => {
       .post(`http://localhost:3002/profiles/${id}/notations`, {
         userId: userId,
         likes: 0,
-      })
+      },Headers)
       .then((res) => res.data)
       .catch((err) => console.log(err));
   };
@@ -64,7 +73,7 @@ const Profile = () => {
       .post(`http://localhost:3002/profiles/${id}/notations`, {
         userId: userId,
         likes: -1,
-      })
+      },Headers)
       .then((res) => res.data)
       .catch((err) => console.log(err));
   };
@@ -94,7 +103,7 @@ const Profile = () => {
     if(comments.length > 0){ 
     avis = {userId: userId, comments: comments};
     axios
-      .put(`http://localhost:3002/profiles/avis/${id}`, { avis })
+      .put(`http://localhost:3002/profiles/avis/${id}`, { avis },Headers)
       .then((res) => res.data)
       .catch((err) => console.log(err));
       sendNotifications()
@@ -107,7 +116,7 @@ const Profile = () => {
   // supprimer son avis sur le prestataire
   const handleDeleteCommit = (avi) => {
     axios
-      .put(`http://localhost:3002/profiles/delete/${id}/avis/${avi._id}`)
+      .put(`http://localhost:3002/profiles/delete/${id}/avis/${avi._id}`,Headers)
       .then((res) => res.data)
       .catch((err) => console.log(err));
   };
@@ -118,7 +127,7 @@ const Profile = () => {
       .post(`http://localhost:3002/chat`, {
         senderId: userId,
         receiverId: item.userId,
-      })
+      },Headers)
       .then((res) => res.data)
       .catch((err) => console.log(err));
     navigate(`/messagerie`);
@@ -178,7 +187,7 @@ const Profile = () => {
               <button
                 className="btn-contacter"
                 onClick={() => handleContacter()}>
-                Contacter moi
+                Contacter
               </button>
             )}
           </div>

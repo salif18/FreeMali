@@ -11,7 +11,6 @@ import GpsFixedIcon from "@mui/icons-material/GpsFixed";
 import DoneAllIcon from "@mui/icons-material/DoneAll";
 import EditIcon from "@mui/icons-material/Edit";
 import MapUser from "../Maps/MapUser";
-import { PhoneNumberUtil } from "google-libphonenumber";
 
 const Parametres = () => {
   const {
@@ -21,10 +20,19 @@ const Parametres = () => {
     me_User,
     myProfile,
     defaultImage,
+    token
   } = useContext(MyStore);
   const navigate = useNavigate();
-  const regexNumber = /^\+?[1-9]\d{1,14}$/;
+  //const regexNumber = /^\+?[1-9]\d{1,14}$/;
 
+  const Headers = {
+    headers:{
+      'Content-Type': 'multipart/form-data',
+      'Authorization': `Bearer ${token}`
+    }
+   }
+   console.log(userId)
+   console.log(token)
   //API
   //url pour poster le profile
   const urlPOST = "http://localhost:3002/profiles";
@@ -34,6 +42,7 @@ const Parametres = () => {
   const urlPUT = `http://localhost:3002/profiles/${userId}`;
   //url pour modifier le profile par cham
   const urlPUTField = `http://localhost:3002/profiles/${userId}/forField`;
+
   const [click, setClick] = useState(false);
   const [LONGITUDE, setLONGITUDE] = useState("");
   const [LATITUDE, setLATITUDE] = useState("");
@@ -70,15 +79,15 @@ const Parametres = () => {
 
   const initialValue1 = {
     userId: "",
-    // nom: "",
-    // prenom: "",
-    photo: "",
-    // email: "",
-    // numero: "",
-    // proffession: "",
-    // categorie: "",
-    // address: "",
-    // biographie: "",
+    nom: "",
+    prenom: "",
+    photo:"",
+    email: "",
+    numero: "",
+    proffession: "",
+    categorie: "",
+    address: "",
+    biographie: "",
   };
 
   const formSubmission = () => {
@@ -90,28 +99,18 @@ const Parametres = () => {
   };
 
   //envoi de formulaire
-  const handleSubmit1 = async (formData, onSubmittingProps) => {
+  const handleSubmit1 = async (values, onSubmittingProps) => {
     try {
-      const res = await axios.put(urlPUTField, { ...formData });
+      const formData = new FormData()
+      formData.append('photo',values.photo)
+      const res = await axios.put(urlPUTField, { ...formData },{Headers});
       if (res) {
         await res.data;
-        // const {data} = res.data
-
         await formSubmission(formData);
         onSubmittingProps.resetForm();
       }
     } catch (e) {
       console.error(e);
-    }
-  };
-
-  const isTelNumberValid = (numero) => {
-    const phoneUtil = PhoneNumberUtil.getInstance();
-    try {
-      const parsedNumber = phoneUtil.parseAndKeepRawInput(numero);
-      return phoneUtil.isValidNumber(parsedNumber);
-    } catch (err) {
-      return false;
     }
   };
 
@@ -122,13 +121,12 @@ const Parametres = () => {
     email: yup.string().required("Veuillez entrer un email operationnel"),
     numero: yup.number().required("Veuillez entrer un numero joingnable"),
     biographie: yup.string().required("Veuillez ecrire sur a propos de vous"),
-  });
-
+  }); 
+ 
   const initialValue2 = {
-    userId: "",
-    nom: "",
+    nom: "", 
     prenom: "",
-    photo: "",
+    photo:"",
     email: "",
     numero: "",
     address: "",
@@ -145,25 +143,27 @@ const Parametres = () => {
     });
   };
 
-  //envoi de formulaire
-  const handleSubmit2 = async (formData, onSubmittingProps) => {
+ 
+  //envoi de formulaire onSubmittingProps,
+  const handleSubmit2 = async (formData,{resetForm}) => {
     try {
-      //const formData = new FormData();
-      // formData.append('photo',formData.photo);
-      const res = await axios.post(urlPOST, {
+      const longitude = LONGITUDE;
+      const latitude = LATITUDE;
+      
+      const res = await axios.post(urlPOST,{
         ...formData,
-        userId,
-        longitude: LONGITUDE,
-        latitude: LATITUDE,
-      });
+        userId, 
+        longitude, 
+        latitude 
+      }, Headers);
 
       if (res) {
         await res.data;
-        // const {data} = res.data
         navigate("/");
 
-        await formSubmission2(formData);
-        onSubmittingProps.resetForm();
+        // await formSubmission2(formData);
+        // onSubmittingProps.
+        resetForm();
       }
     } catch (e) {
       console.error(e);
@@ -262,7 +262,7 @@ const Parametres = () => {
                         <div className="container-field">
                           <Field
                             className="champs"
-                            type="text"
+                            type="file"
                             name="photo"
                             placeholder="Photo"
                           />
@@ -431,7 +431,7 @@ const Parametres = () => {
                       <div className="container-field">
                         <Field
                           className="champs"
-                          type="text"
+                          type="file"
                           name="photo"
                           placeholder="Photo"
                         />

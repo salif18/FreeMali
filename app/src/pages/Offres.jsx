@@ -12,12 +12,19 @@ const Offres = () => {
     myProfile,
     defaultImage,
     userId,
+    token,
     offres,
     getOffres,
     isInLine,
     users,
   } = useContext(MyStore);
-  
+//configuration de lentete
+const Headers = {
+  headers:{
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }
+ }
 // valeur du champs input offre
   const [recits, setRecits] = useState("");
   
@@ -25,7 +32,13 @@ const Offres = () => {
   const sendNotifications =()=>{
     users.filter((x) => x.isPrestataire).map((x)=>
       axios
-     .post(`http://localhost:3002/notifications`,{ senderId:userId,receiverId:x._id,type:"commitOffre", description:'a poster une nouvelle offre'} )
+     .post(`http://localhost:3002/notifications`,
+     { 
+       senderId:userId,
+       receiverId:x._id,
+       type:"commitOffre",
+       description:'a poster une nouvelle offre'
+      })
      .then((res) => res.data)
      .catch((err) => console.log(err))
     )
@@ -34,7 +47,7 @@ const Offres = () => {
   // recuperation des offres du cotes server
   useEffect(() => {
     axios
-      .get(url)
+      .get(url,Headers)
       .then((res) => {
         res && getOffres(res.data);
       })
@@ -53,7 +66,7 @@ const Offres = () => {
 
     //envoie des offres vers le server
     axios
-      .post(url, offres)
+      .post(url, offres,Headers)
       .then((res) => res.data)
       .catch((err) => console.log(err));
       sendNotifications();

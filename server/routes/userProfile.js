@@ -3,16 +3,16 @@ const express =require('express')
 const profileRouter = require('../controllers/profile')
 const likesRouter = require('../controllers/likes')
 const avisRouter =require('../controllers/avis')
-// const auth = require('../middlewares/auth')
-// const multer = require('multer')
-// const upload = multer({destination:'images/'})
-// const multer = require('../middlewares/multer')
-//configuration
+const authMiddleware = require('../middlewares/auth')
+const multer = require('../middlewares/multer')
+
+//configurations
 const router = express.Router()
 
 
 //routage
-router.post('/',profileRouter.CreatProfile)
+//poster un profile
+router.post('/',multer,profileRouter.CreatProfile)
 
 // recuperation de tous profiles
 router.get('/',profileRouter.getProfileAll)
@@ -24,19 +24,19 @@ router.get('/prestaProfile/:id',profileRouter.getOneprestaProfile)
 router.get('/myProfile/:userId',profileRouter.getProfile)
 
 // modification de profile par utilisateur
-router.put('/:userId',profileRouter.modifyProfile) 
+router.put('/:userId',authMiddleware,multer,profileRouter.modifyProfile) 
 
 // modification de profile par uchamp
-router.put('/:userId/fieldPhoto',profileRouter.modifyProfilePhoto)
+router.put('/:userId/fieldPhoto',authMiddleware,multer,profileRouter.modifyProfilePhoto)
  
 //route pour ajouter des likes
-router.post('/:id/notations',likesRouter.usersNotations)
+router.post('/:id/notations',authMiddleware,likesRouter.usersNotations)
 
 //route pour ajouter des avis sur prestataire
-router.put('/avis/:id',avisRouter.addAvis)
+router.put('/avis/:id',authMiddleware,avisRouter.addAvis)
 
 // route pur supprimer son commentaire sur le client
-router.put('/delete/:userId/avis/:id',avisRouter.deleteAvisCommit)
+router.put('/delete/:userId/avis/:id',authMiddleware,avisRouter.deleteAvisCommit)
 
 
 //exportation

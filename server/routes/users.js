@@ -13,7 +13,7 @@ router.post('/validation-password',usersControllers.Validation)
 // recuprerer les donne de utilisateur seulement par son userId
 router.get('/usersData/:userId',usersControllers.getUser)
 
-//reucper tous les utilisateur profiler
+//reucper tous les utilisateur et leur profile
 router.get('/users&Profile',usersControllers.AllUsers)
 
 //recuperer un seul utilisateur

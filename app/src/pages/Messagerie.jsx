@@ -11,8 +11,16 @@ import { Navigate } from "react-router";
 const socket = io("http://localhost:3002");
 
 const Messagerie = () => {
-  const { userId, isInLine, chaters,setChaters, message, setMessage ,setCurrenChat, currenChat} = useContext(MyStore);
+  const { userId, token, isInLine, chaters,setChaters, message, setMessage ,setCurrenChat, currenChat} = useContext(MyStore);
 
+   
+  //configuration de lentete
+const Headers = {
+  headers:{
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  }
+ }
  
   //nouveau text de discusion
   const [newMessage, setNewMessage] = useState(""); 
@@ -20,7 +28,7 @@ const Messagerie = () => {
   //recuperer les contact des deux chatters
   useEffect(() => {
     axios
-      .get(`http://localhost:3002/chat/${userId}`)
+      .get(`http://localhost:3002/chat/${userId}`,Headers)
       .then((res) => {
         setChaters(res.data);
       })

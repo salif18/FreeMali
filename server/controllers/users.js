@@ -22,15 +22,6 @@ const isTelNumberValid = (numero) => {
 //configuration
 dotenv.config();
 
-// const transporter = nodemailer.createTransport({
-//   host: "smtp.gmail.com",
-//   port: "465",
-//   auth: {
-//     user: `salifmoctarkonate@gmail.com`,
-//     pass: `Konatee18`,
-//   },
-// });
-
 //registre user
 exports.signup = (req, res, next) => {
   const { numero, email } = req.body;
@@ -174,24 +165,31 @@ exports.Reinitialisation = async (req, res) => {
     // enregistrer le token en ajoutant un nouveau champ resetToken a user
     users.resetPasswordToken = token;
     await users.save();
-    console.log(users.resetPasswordToken);
+    
     // envoyer le token de renitialisation a user par son mail ou numero ou automatiquement vers le front
-
-    // const mailOption = {
-    //   from:'salifmoctarkonate@gmail.com',
-    //   to:users.email,
-    //   subject:'Reinitialiser votre mot de passe',
-    //   text:users.resetPasswordToken
-
-    // }
-    //     transporter.sendMail(mailOption,(err,info)=>{
-    //       if(err){
-    //         console.log('erreur',err)
-    //       }else{
-    //         console.log('email envoyer',info.messageId)
-    //       }
-    //     })
-    return res.status(200).json({ token: users.resetPasswordToken }); //
+    const transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: "465",
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      }, 
+    });
+  
+    const mailOption = {
+      from:'FreeMali',
+      to:email,
+      subject:'Reinitialiser votre mot de passe',
+      text:users.resetPasswordToken
+    };
+        transporter.sendMail(mailOption,(err,info)=>{
+          if(err){
+            console.log('erreur',err)
+          }else{
+            console.log('email envoyer',info.messageId)
+          }
+        }); 
+    return res.status(200).json({ message:"copier et coller ici le token envoyer sur votre email"}); 
   } catch (error) {
     return res.status(500).json({ message: "Erreur de server" });
   }

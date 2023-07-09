@@ -26,7 +26,7 @@ const Reinitialisation = () => {
      const res = await axios.post('http://localhost:3002/auth/reset-password', { numero, email })
        if(res){
        setMessage(res.data.message);
-       setResetToken(res.data.token);
+       setResetToken(res.data.message);
        setStep(2);
        }
       }catch(error){

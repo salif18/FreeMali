@@ -1,16 +1,26 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { MyStore } from "../../context/myStore";
 import { format } from "timeago.js";
 import { useNavigate } from "react-router";
+import axios from "axios";
 
-const Commentaires = ({ commit, handleDeleteCommit }) => {
-  const { userId, me_User, defaultImage, users } = useContext(MyStore);
+const Commentaires = ({ commit,handleDeleteCommit, handleModifier , newcomit, setnewComit, modifier , setModifier}) => {
+  const { userId, token, me_User, defaultImage, users } = useContext(MyStore);
   const navigate = useNavigate();
 
   // filtrer les prestataires dans la list users pour recuperer ses donnes
   const commentataires = users.filter((c) => c._id === commit.userId);
   const commentataire = commentataires[0];
 
+  
+  //configuration de lentete
+// const Headers = {
+//   headers:{
+//     'Content-Type': 'application/json',
+//     'Authorization': `Bearer ${token}`
+//   }
+//  }
+  
   return (
     <div className="commentaire-o" key={commit._id}>
       <div className="left-commit">
@@ -27,6 +37,17 @@ const Commentaires = ({ commit, handleDeleteCommit }) => {
           }}>
           <p style={{ fontWeight: 600 }}>{commentataire?.profile.prenom}</p>
             <p>{commit.comments}</p>
+            {(userId === commit.userId && !modifier) && <p onClick={()=>setModifier(!modifier)}><span>modifier</span></p>}
+            
+            {(modifier && userId === commit.userId ) && 
+             <div style={{display:'flex'}}><input type="text" 
+              className="modifier-comment"
+              value={newcomit}
+              placeholder="modifier le commentaire... "
+              onChange={(e)=>setnewComit(e.target.value)} />
+              {(userId === commit.userId && modifier) && <p onClick={()=>handleModifier(commit)} ><span>Ok</span></p>}
+              </div>
+            }
         </div>
       </div>
 

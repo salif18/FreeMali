@@ -5,6 +5,7 @@ const app = require('./app')
 const Message = require('./models/message')
 const Notifications = require('./models/notifications')
 const socketIO = require('socket.io')
+
 //configurations
 dotenv.config()
 app.set(process.env.PORT || 3002)
@@ -17,8 +18,8 @@ const server = http.createServer(app)
     methods:['GET','POST']
   }}
 )
-
-io.on('connection',(socket)=>{
+ 
+io.on('connection',(socket)=>{  
 // envover vers backend et enregistrement de nouveaux message
   socket.on('send_message',async(data)=>{
     const message = new Message({
@@ -42,7 +43,6 @@ io.on('connection',(socket)=>{
   // notification
   socket.on('send_notifications',(data)=>{
     const {senderId,receiverId,description,type} = data
-    console.log(data)
     const notifications = new Notifications({
       senderId:senderId,
       receiverId:receiverId,
@@ -53,8 +53,7 @@ io.on('connection',(socket)=>{
     .then(()=>{
       io.emit('received_notifications',notifications)
     })
-    .catch((err)=>console.log(err))
-    
+    .catch((err)=>console.log(err)) 
   });
  
   socket.on('disconnect',()=>{
@@ -63,7 +62,7 @@ io.on('connection',(socket)=>{
 });
 
   
-  //start server
+//start server
 server.listen(process.env.PORT,()=>{
     console.log('Server en marche sur PORT:',process.env.PORT) 
 })

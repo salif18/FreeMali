@@ -65,16 +65,17 @@ exports.modifyOffre = (req, res, next) => {
 //modifier les commemtaire dune seul offre
 exports.modifyOffreCommit = (req, res, next) => {
   //recuperer userId de offres et id du commentaire
-  const { userId, id, comments } = req.params;
-  console.log(userId, id, comments);
+  const { userId,id } = req.params;  
+  const { newcomit } = req.body
+  console.log( newcomit)
   Offres.updateOne(
-    { userId: userId },
-    { $set: { commentaires:{ _id:id ,comments:comments }} } //modifier le contenu du commentaire
+    {userId : userId},
+    { $push: { commentaires:{_id:id , comments:newcomit}}},//modifier le contenu du commentaire
+    { new : true}
   )
-    .then((res) => res.status(201).json({ msg: "modifier" }))
-    .catch((err) => res.status(400).json(err));
-};
-
+    .then((offre) => res.status(201).json(offre))
+    .catch((err) => res.status(400).json(err)); 
+};       
 //supprimer les commemtaire dune  offre
 exports.deleteOffreCommit = (req, res, next) => {
   const { userId, id } = req.params; //recuperer userId de offres et id du commentaire
