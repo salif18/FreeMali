@@ -3,6 +3,7 @@ import FacebookSharpIcon from "@mui/icons-material/FacebookSharp";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+import ContactlessIcon from '@mui/icons-material/Contactless';
 import { NavLink } from "react-router-dom";
 const Footer = () => {
   return (
@@ -11,7 +12,7 @@ const Footer = () => {
 
       <div className="contacts">  
       <NavLink className='contact' to="/contacts">
-         Nous contacter
+        <ContactlessIcon/> Nous contacter
       </NavLink>
       </div>
 
@@ -22,11 +23,11 @@ const Footer = () => {
       <TwitterIcon className="icon" />
      </div>
 
-        <div className="service">
+        {/*<div className="service">
          
           <p>A propos de nous</p>
           <p>Comment ca marche ?</p>
-        </div> 
+  </div> */}
 
         <div className="copy">
            Copyright &copy; FreeMali 2023 - Tous droits réservés

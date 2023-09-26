@@ -62,7 +62,7 @@ const Headers = {
             <p className="p2">{format(item.createdAt)}</p>
           </div>
         </div>
-        <p>Budget {item.budget ? <span>{item.budget} fcfa</span> : <span>non definit</span>}</p>
+       
         </div>
         
         <div>
@@ -95,6 +95,7 @@ const Headers = {
 
           <div className="contenu">
             <h1>{item.sujet}</h1>
+            <p>Budget {item.budget ? <span>{item.budget} fcfa</span> : <span>non definit</span>}</p>
             <div className="contenu-commit">
              <p>{item.contenu}</p>
             </div>
