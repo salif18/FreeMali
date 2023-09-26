@@ -1,0 +1,92 @@
+.conversation{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+    background: #f0f2f5;
+    &:hover{
+        background: #7551eb21;
+    }
+}
+
+
+.convers-img{
+    margin-right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    object-fit: cover;
+    
+}
+
+.message-length{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: -10px;
+    left: -30px;
+    font-family: Roboto;
+    background-color: #0bff2c;
+    color: #ffffff;
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    font-size: 12px;
+}
+
+.convers-name{
+    font-weight: 600;
+}
+
+.btn-convers-del{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 50px;
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    font-family: Roboto;
+    border: none;
+    background: #7e7e7e15;
+    color:rgb(255, 255, 255);
+    &:hover{
+        color:"#fff";
+        background: #7e7e7e;
+    }
+}
+
+.longuer-array{
+    margin-left: 10px;
+    font-family: Roboto;
+    font-size: 11px;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background: #0bff2c;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+
+@media (max-width: 900px) {
+    .conversation {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        margin: 5px;
+    }
+  
+    .convers-img {
+      margin-right: 10px; 
+      width: 30px; 
+      height: 30px;
+    }
+  
+    .convers-name {
+      font-size: 14px; 
+    }
+  }

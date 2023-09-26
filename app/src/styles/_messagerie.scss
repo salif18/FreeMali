@@ -1,0 +1,152 @@
+.messagerie{
+    display: flex;
+    height: calc(100vh - 80px);
+    max-width: 100%;
+    background: #f0f2f5;
+}
+
+
+.chatMenu{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll !important;
+}
+
+.chatMenuWrapper{
+    padding: 10px;
+    flex-direction: column;
+    justify-content: center;
+   
+    h1{
+        font-size: 16px;
+        font-family: Open Sans ;
+        padding: 10px;
+        border-bottom: 1px solid gray;
+        font-weight: 600;
+    }
+}
+
+.chatBox{
+    flex:4;
+    
+}
+
+.chatBoxWrapper{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    height: 100%;
+   width: 100%;
+}
+
+.chatBoxtop{
+height:100%;
+padding: 20px;
+overflow-y: scroll !important;
+width: 600px;
+}
+
+.chatBoxBottom{
+margin-top: 5px;
+display: flex;
+align-items: center;
+justify-content: center;
+background: #f0f2f5;
+border-top: 1px solid #e9e9e9; 
+margin-right: auto;
+}
+
+.input-message{
+    width:100%;
+    height: 50px;
+    border-radius: 50px;
+    border: 1px solid #deddee;
+    outline: none;
+    padding-left: 20px;
+    color: gray;
+}
+
+.chatBox-btn{
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 40px;
+    background: teal;
+    color: #fff;
+    font-family: "Roboto";
+    font-weight: 600;
+    border: none;
+}
+
+.textread{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    font-size: 20px;
+    font-family: 'Roboto';
+    font-weight: 600;
+    color: rgb(218, 218, 218);
+}
+
+@media (max-width: 900px) {
+    .messagerie {
+        display: flex;
+        flex-direction: column; 
+        background: #f0f2f5;
+        max-width: 100%; 
+      }
+      
+      .chatMenu {
+        width: auto;
+        flex: 1; 
+        display: flex;
+    }
+      .chatMenuWrapper{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        white-space: nowrap;
+        overflow-y: hidden;
+        overflow: scroll !important; 
+        margin: auto;
+        width: auto;
+        h1{
+            display: none;
+        }
+        
+        
+      }
+      
+      .chatBox {
+        flex: 4; 
+      }
+      
+      .chatBoxBottom {
+        margin-top: 5px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f0f2f5;
+        border-top: 1px solid #e9e9e9;
+        margin-right: auto; 
+      }
+      
+      .input-message {
+        width: 100%; 
+        height: 50px;
+        border-radius: 50px;
+        border: 1px solid #deddee;
+        outline: none;
+        padding-left: 20px;
+        color: gray;
+      }
+      
+  }

@@ -1,0 +1,38 @@
+.maps-presta-btn{
+    width: 120px;
+    height: 50px;
+    border-radius: 10px;
+    border: none;
+    background: rgb(5, 172, 61);
+    color: #fff;
+    font-family: 'Roboto';
+    font-size: 14px;
+    font-weight: 300;
+    transition: all 0.5s;
+    &:hover{
+        transform: scale(1.1);
+    }
+}
+
+.maps-btn-ins{
+    border:none;
+    width: 300px;
+    height: 30px;
+    font-family: Roboto;
+    transition: all 0.5s;
+    &:hover{
+        transform: scale(1.1);
+    }
+}
+
+.maps-user-btn{
+    font-family: Roboto;
+    width: 150px;
+    border: none;
+    font-weight: 300;
+    font-size: 14px;
+    transition: all 0.5s;
+    &:hover{
+        transform: scale(1.1);
+    }
+}

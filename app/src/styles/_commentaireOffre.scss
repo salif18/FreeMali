@@ -1,0 +1,188 @@
+.commentaire-o{
+    padding: 10px;
+    background-color: #ffff;
+    display: flex;
+    width: 600px;
+    align-items: center;
+    margin: 10px;
+    box-shadow: 1px 1px 1px 1px #d3d3d3;
+    border-radius: 10px;
+
+
+    .img-co{
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        margin-right: 10px;
+    }
+
+
+.n-mess{
+    margin-left: 10px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+.name-co{
+    margin: 10px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mess{
+    margin-top: -10px;
+    margin-left: 10px;
+    font-family: 'Roboto';
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    background: #f0f2f5;
+    width: 100%;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.zon-edit{
+    width: 300px;
+    display: flex;
+.modifier-comment{
+    padding: 10px;
+    margin-left: 20px;
+    border: 1px solid #dadada;
+    border-radius: 10px;
+    color: #8a8a8a;
+    
+}}
+
+}
+
+.date-bt{
+    margin-top: 20px;
+    margin-left: 50px;
+    width: 200px;
+    p{
+        font-family: Roboto;
+        font-weight: 400;
+        color: rgb(136, 136, 136);
+        font-size: 14px;
+    }
+
+    .ic{
+      font-size: 18px;
+    }
+    .btn-card-offre-dele{
+      width: 40px;
+      height: 40px;
+      color: rgb(14, 138, 255);
+      font-family: Roboto;
+      cursor: pointer;
+      margin-left: 20px;
+      
+    }
+}
+
+.text-modify{
+    margin-top: -15px;
+    margin-left: 10px;
+    color: rgb(50, 149, 241);
+    cursor: pointer;
+}
+
+
+
+
+.btn-offre-contacter{
+  margin-top: 10px;
+    border: none;
+    background: #2f90ff;
+    width: 110px;
+    font-family: Roboto;
+    color: #ffff;
+}
+
+}
+
+@media(max-width:900px){
+    .commentaire-o {
+        padding: 10px;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column; /* Ajuster pour les petits écrans */
+        align-items: center;
+        justify-content: center;
+        width: 100%; /* Ajuster la largeur pour s'adapter à l'écran */
+        margin: 10px;
+        box-shadow: 1px 1px 1px 1px #d3d3d3;
+        border-radius: 10px;
+      }
+      
+      .img-co {
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+        margin-right: 10px;
+      }
+      
+      .n-mess {
+        margin-right: 25px;
+        width: 100%; /* Ajuster la largeur pour s'adapter à l'écran */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        
+        .name-co {
+          margin: 10px;
+          font-family: 'Roboto';
+          font-size: 16px;
+          font-weight: 600;
+        }
+      
+        .mess {
+        
+          font-family: 'Roboto';
+          font-size: 16px;
+          font-weight: 500;
+          cursor: pointer;
+          background: #f0f2f5;
+          width: 17rem;
+          border-radius: 20px;
+          padding: 10px;
+        }
+      
+      }
+      
+      .date-bt {
+        margin-top: 20px;
+        margin-left: 0; /* Réinitialiser la marge gauche pour les petits écrans */
+        width: 100%; /* Ajuster la largeur pour s'adapter à l'écran */
+        p {
+          font-family: Roboto;
+          font-weight: 400;
+          color: rgb(136, 136, 136);
+          font-size: 14px;
+        }
+      
+        .btn-card-offre-dele {
+          width: 40px;
+          height: 40px;
+          color: rgb(14, 138, 255);
+          font-family: Roboto;
+          cursor: pointer;
+          margin-left: 0; /* Réinitialiser la marge gauche pour les petits écrans */
+        }
+      }
+      
+      
+      
+      .btn-offre-contacter {
+        border: none;
+        background: #2f90ff;
+        width: 100%; /* Ajuster la largeur pour s'adapter à l'écran */
+        font-family: Roboto;
+        color: #fff;
+      }
+}

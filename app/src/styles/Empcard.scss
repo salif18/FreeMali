@@ -1,0 +1,85 @@
+.empCard{
+    width: 11rem;
+    height:19rem;
+    border-radius: 10px;
+    cursor: pointer;
+    margin:5px;
+    border: 1px solid #dadada;
+    background: #fff;
+    transition: all 0.1s ease-in-out;
+   
+    &:hover{
+        box-shadow: -2px 2px 2px 2px  #dadada;
+    }
+    
+}
+
+.empcard-img{
+    width: 4.1em;
+    height: 4.1em;
+    border-radius: 100%;
+    position: relative;
+    top: 20px;
+    margin: 10px;
+    
+}
+
+.containe-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #d9e5e7;
+    height: 70px;
+    margin-bottom: 40px;
+    border-radius: 8px;
+}
+
+.card-body{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-body h2{
+    font-family: 'Roboto';
+    font-size: 0.9em;
+    font-weight: 500;
+    color:#19a6e1
+}
+
+.card-body p{
+    color: #656760;
+    text-transform: capitalize;
+    font-family: 'Roboto',sans-serif;
+    font-size: 0.8em;
+}
+
+.icons{
+    display: flex;
+}
+
+.container-bt{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.btn-contacter{
+    border-radius: 20px;
+    width: 7em;
+    height: 1.9em;
+    border: 1px solid #1b74e4;
+    background-color:#f0f2f5;
+    color:#1b74e4;
+    font-family: 'Roboto',sans-serif;
+    font-size: 0.8em;
+    &:hover{
+        background:#d3f0fc ;
+        border: 2px solid #1b74e4;
+    }
+}
+// 12.583165, -7.929676

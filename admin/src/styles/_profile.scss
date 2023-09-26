@@ -1,0 +1,178 @@
+.profile{
+    flex: 4;
+    height: 620px;
+}
+
+.headerprofile{
+    height: 260px;
+    background: #fff;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 2px 2px 2px 2px #e6e6e7;
+    border-radius: 20px;
+}
+
+.profileimage{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    margin: 20px;
+    background: #ffff;
+    img{
+        width: 100px;
+        height: 100px;
+        border-radius: 100%;
+    }
+    p{
+        color: #3561f0;
+        font-family: 'Roboto';
+        margin: 10px;
+        cursor: pointer;
+    }
+    input{
+        border: 1px solid #cccccc;
+        padding: 10px;
+        font-family: Open Sans ;
+        font-weight: 300;
+        margin: 10px;
+        border-radius: 10px;
+        height: 40px;
+        outline: none;
+    }
+}
+
+
+.profileinfos{
+    margin: 20px;
+    h2{
+        font-size: 20px;
+        font-family: Open Sans;
+        font-weight: 300;
+    }
+    p{
+        display: flex;
+        justify-content: space-between;
+        font-family: 'Roboto';
+        font-size: 15px;
+        font-weight: 300;
+        color: #686868;
+        span{
+            font-family: Open Sans;
+            font-weight: 500;
+            color:#666666
+        }
+    }
+}
+
+.createProfile{
+    margin: 10px;
+    background: #ffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h2{
+        font-family: Open Sans;
+        font-size: 25px;
+        font-weight: 500;
+        margin:10px;
+    }
+    .form-profil{
+        display: flex;
+        align-items: center;
+        margin: 20px;
+        .formprofil-control{
+            width: 300px;
+            height: 40px;
+            border-radius: 10px;
+            margin: 10px;
+            border: 1px solid #d1d1d1;
+            padding: 10px;
+            font-family: Open Sans;
+            font-weight:300;
+        }
+        .create-btn{
+            width: 300px;
+            height: 40px;
+            margin: 10px;
+            font-family: Open Sans ;
+            font-weight: 600;
+            border: none;
+            background: teal;
+            color:#fff;
+        }
+    }
+}
+
+.modifierProfile{
+    margin: 20px;
+    background: #ffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h2{
+        font-family: Open Sans;
+        font-size: 25px;
+        font-weight: 500;
+        margin:10px;
+    }
+    .form-profil{
+        display: flex;
+        align-items: center;
+        margin: 20px;
+        .formprofil-control{
+            width: 300px;
+            height: 40px;
+            border-radius: 10px;
+            margin: 10px;
+            border: 1px solid #d1d1d1;
+            padding: 10px;
+            font-family: Open Sans;
+            font-weight:300;
+        }
+        .create-btn{
+            width: 300px;
+            height: 40px;
+            margin: 10px;
+            font-family: Open Sans ;
+            font-weight: 600;
+            border: none;
+            background: teal;
+            color:#fff;
+        }
+    }
+}
+
+.zone-btn{
+    margin: 20px;
+    font-size: 16px;
+    font-family: Roboto;
+    color: #3561f0;
+    cursor: pointer;
+    p:hover{
+        color: #080ce4;
+    }
+}
+
+.bt{
+    margin: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logbtn{
+    width: 300px;
+    height: 50px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    border: none;
+    font-family: 'Roboto';
+    color: #535353;
+    font-weight: 300;
+    justify-content: center;
+}

@@ -1,0 +1,342 @@
+.offres{
+    flex:1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #f0f2f5;
+    // height: calc(100vh - 90px);
+}
+
+.container-offre{
+    flex:3;
+    margin: 10px;
+    display: flex;
+    background: #fff;
+    align-items: center;
+    justify-content:center ;
+    width: 700px;
+    height: 120px;
+    background: #fff;
+     border:1px solid #e9e9e9;
+     box-shadow: 1px 1px 1px 1px #d3d3d3;
+     border-top-left-radius: 10px;
+     border-top-right-radius: 10px;
+}
+
+.zone-saisie-offre{
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 700px;
+    margin-top: -10px;
+    background: #fff;
+    box-shadow: 1px 1px 1px 1px #d3d3d3;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    select{
+        width: 200px;
+        height: 40px;
+        border: 1px solid #f0f2f5;
+        border-radius: 20px;
+        background-color: #fff;
+        font-size: 14px;
+        option{
+            font-family: Roboto;
+            
+        }
+    }
+    input{
+        width: 120px;
+        height: 40px;
+        border: 1px solid #f0f2f5;
+        padding: 10px;
+        font-family: Roboto;
+        font-size: 14px;
+        outline: none;
+        background: #f0f2f5;
+        margin-right: 10px;
+    }
+}
+.img-offre{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin: 20px;
+}
+
+
+.cham-texta{
+ display: flex;
+ 
+ h1{
+    font-family: "Roboto";
+    font-size: 18px;
+    margin:20px;
+ }
+ .titre{
+    margin-top: 20px;
+    width: auto;
+ }
+ input{
+    margin-top: 10px ;
+    margin-left: 10px;
+    height: 40px;
+    border: 1px solid #f0f2f5;
+    padding: 10px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 500;
+    background: #f0f2f5;
+    border-radius: 20px;
+    outline: none;
+ }
+
+}
+
+
+.texta{
+    padding: 10px;
+    margin:10px;
+    width: 350px;
+    height: 50px;
+    border-radius: 5px;
+    outline: none;
+    border:1px solid #c6c6c6;
+    font-family: "Roboto";
+    font-size: 16px;
+    color: #555;
+    background:#f0f2f5;
+    border-radius: 50px;
+}
+
+.btn-post-offre{
+    font-family: "Roboto";
+    font-size: 14px;
+    font-weight: 600;
+    margin: 20px;
+    width: 90px;
+    height: 40px;
+    border-radius: 10px;
+    background: #1b74e4;
+    color: #fff;
+    border: none;
+    &:hover{
+        background: #19a6e1;
+    }
+}
+
+.offre-pulier{
+    flex:4;
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    // justify-content: center;
+    // overflow-y: scroll;
+    // height: 100%;
+}
+
+.textaucun{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: "Roboto";
+    color: rgb(204, 203, 203);
+    margin-top: 40px;
+}
+
+
+.pops{
+    background: #f0f2f5;
+    border: 1px solid #d9e3e9;
+    border-radius: 10px;
+    width: 260px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    p{
+        font-family: 'Roboto';
+        font-size: 16px;
+        font-weight: 500;
+    }
+
+    .btn-confirm{
+        display: flex;
+        align-items: center;
+    }
+
+    .oui{
+        border: none;
+        color: #1b1b1b;
+        width: 30px;
+        height: 30px;
+        margin: 2.5px;
+        font-size: 14px;
+        font-family:'Roboto';
+    }
+    .non{
+        margin: 2.5;
+        border: none;
+        color: #1f1e1e;
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+        font-family:'Roboto';
+    }
+}
+
+.video-image{
+    margin-top: -10px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    height: 50px;
+    box-shadow: 1px 1px 1px 1px #e0e4e9;
+    width: 700px;
+    .icon-image{
+        font-size: 30px;
+        margin: 10px;
+        color: rgb(43, 236, 43);
+        cursor: pointer;
+    }
+    .icon-video{
+        font-size: 30px;
+        margin: 10px;
+        color: rgb(224, 54, 54);
+        cursor: pointer;
+    }
+}
+.form-post-videos{
+   display: flex;
+   flex-direction: column;
+   box-shadow: 1px 1px 1px 1px #e0e4e9;
+   background: #fff;
+   margin-top: 2px;
+   margin-left: 10px;
+   width: 700px;
+   .champ-text-video{
+    margin: 10px;
+    padding: 10px;
+    width: 350px;
+    height: 100px;
+    border: 1px solid #d9e3e9;
+    font-family: 'Roboto';
+   }
+   .video-input{
+    display: none;
+    margin: 10px;
+   }
+
+   
+     .icon-v{
+        margin: 10px;
+        font-size: 30px;
+     }
+   
+   .post-video{
+    background: #1491c7;
+    color: #fff;
+    font-family: Roboto;
+    width: 125px;
+    height: 40px;
+    border: none;
+    margin: 10px;
+   }
+
+   .champ-image-text{
+    margin: 10px;
+    padding: 10px;
+    width: 350px;
+    height: 100px;
+    border: 1px solid #d9e3e9;
+    font-family: 'Roboto';
+   }
+   .champ-images{
+    margin: 10px;
+    display: none;
+   }
+   
+    .icon-i{
+        margin: 10px;
+    }
+   
+   
+   .post-images{
+    background: #1491c7;
+    color: #fff;
+    font-family: Roboto;
+    width: 125px;
+    height: 40px;
+    border: none;
+    margin: 10px;
+   }
+}
+
+@media screen and (max-width: 768px) {
+    .offres{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .container-offre{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+        width: 100%;
+
+    }
+    
+    
+    
+    .zone-saisie-offre {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      width: 100%;
+      height: 20vh;
+      .champs{
+        width: 18rem;
+      }
+      input{
+        width: 18rem;
+        height: 40px;
+        font-size: 12px;
+        margin: 10px;
+      }
+    }
+  
+    .cham-texta {
+      flex-direction: column;
+      align-items: center;
+      
+      h1 {
+        margin: 10px 0;
+      }
+      .titre{
+        font-size: 14px;
+        width: 20rem;
+    }
+    .texta{
+        width: 20rem;
+        font-size: 14px;
+    }
+    }
+  
+    
+  
+    .btn-post-offre {
+      width: 18rem;
+      margin-top: 10px;
+    }
+    
+  }

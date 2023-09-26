@@ -1,0 +1,113 @@
+.images-single{
+    display: flex;
+    align-items: center;
+    background: #000;
+    padding: auto;
+
+    img{
+        width: auto;
+        height: 500px;
+        margin: 20px;
+    }
+
+    .actions{
+        display: flex;
+        align-items: center;
+        margin: 20px;
+        p{
+            margin: 10px;
+            cursor: pointer;
+        }
+        span{
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    }
+
+    .zone-commentaire{
+        padding: 50px;
+        height: 100vh;
+        overflow-y: scroll;
+        width: auto;
+
+    }
+}
+
+
+.videos-single{
+    display: flex;
+    align-items: center;
+    background: #000;
+    padding: auto;
+
+    video{
+        width: 800px;
+        height: 500px;
+        margin: 20px;
+    }
+
+    .actions{
+        display: flex;
+        align-items: center;
+        margin: 20px;
+        p{
+            margin: 10px;
+            cursor: pointer;
+        }
+        span{
+            margin-left: 10px;
+            cursor: pointer;
+        }
+    }
+
+    .zone-commentaire{
+        padding: 50px;
+        height: 100vh;
+        overflow-y: scroll;
+        width: auto;
+
+    }
+}
+
+@media (max-width:900px) {
+    .videos-single ,
+    .images-single{
+        flex-direction: column;
+        .co{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            video{
+                width:50rem;
+            }
+             .img{
+                  width:50rem;
+            }
+        }
+    }
+  .actions{
+    margin-bottom: 100px;
+  }
+     .actions p {
+      margin: 5px; /* Réduisez la marge entre les actions */
+    }
+  
+    
+    .actions span {
+      margin: 5px; /* Réduisez la marge entre les actions */
+    }
+
+    .zone-commentaire{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow-y: scroll;
+        width: 100%;
+        
+    }
+  }
+  
+  

@@ -1,0 +1,52 @@
+.reinitialisation2{
+    margin: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h2{
+        font-family: Roboto;
+        font-size: 20px;
+        font-weight: 500;
+    }
+}
+
+.form-renit{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.form-control{
+    width: 320px;
+    height: 40px;
+    border: none;
+    margin: 10px;
+    padding: 10px;
+    font-family: 'Roboto';
+    font-weight: 400;
+    outline: none;
+}
+
+.btn-renit{
+    width: 100px;
+    height: 40px;
+    background: teal;
+    border: none;
+    color: #fff;
+    font-family: Roboto;
+}
+
+.link-a{
+    cursor: pointer;
+    font-family: Roboto;
+    font-weight: 600;
+    text-decoration: none;
+    color: blue;
+}
+
+.message-reini{
+    font-family: 'Roboto';
+    color: #0d9608;
+    font-size: 16px;
+}

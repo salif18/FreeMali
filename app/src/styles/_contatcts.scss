@@ -1,0 +1,240 @@
+.contactss{
+    display: flex;
+    background: #f0f2f5;
+    padding: 20px;
+    height: 580px;
+    h2{
+        text-align: center;
+        font-family: Roboto;
+        font-size: 25px;
+         margin:50px
+    }
+}
+.titree{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.container-contact{
+    margin: 20px;
+    display: flex;
+    justify-content:center;
+    .form-controlm{
+        width: 600px;
+        height: 40px;
+        margin: 10px;
+        padding: 10px;
+        font-family: Roboto;
+        outline: none;
+    }
+
+    .form-textaream{
+        width: 600px;
+        //height: 70px;
+        margin: 10px;
+        padding: 10px;
+        font-family: Roboto;
+        outline: none;
+    }
+}
+
+.champs-contact{
+    margin: 20px;
+}
+
+.ling{
+    border-right: 1px solid #555;
+    margin: 20px;
+}
+
+.btn-conta{
+    margin: 10px;
+    .btn-envoie-message{
+        width: 150px;
+        height: 40px;
+        margin: 5px;
+        font-family: Roboto;
+        font-weight: 300;
+        background: #555;
+        color: #f0f2f5;
+        border: none;
+    }
+    .btn-annule-message{
+        width: 150px;
+        height: 40px;
+        margin: 5px;
+        font-family: Roboto;
+        font-weight: 300;
+        background: teal;
+        color:#f0f2f5;
+        border: none;
+    }
+}
+
+.contacter-reseau{
+    margin: 20px;
+    h2{
+        margin: 10px;
+        font-family: Roboto;
+    }
+    .soci{
+        display: flex;
+        p{
+            margin: 10px;
+            font-family: Open Sans;
+            font-size: 20px;
+        }
+        .icon{
+            font-size: 30px;
+            color: #a7a7a7;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            &:hover{
+                transform: scale(1.1);
+                color: #0897f7;
+            }
+        }
+    }
+}
+
+@media(max-width:900px){
+    .contactss {
+        display: flex;
+        flex-direction: column; /* Ajuster pour les petits écrans */
+        align-items: center;
+        padding: 20px;
+        background: #f0f2f5;
+        min-height: 100vh; /* Ajuster la hauteur pour occuper l'écran complet */
+        h2 {
+          text-align: center;
+          font-family: Roboto;
+          font-size: 25px;
+          margin: 20px; /* Ajuster la marge pour les petits écrans */
+        }
+      }
+      
+      .titree {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .container-contact {
+        margin: 20px;
+        display: flex;
+        flex-direction: column; /* Ajuster pour les petits écrans */
+        align-items: center; /* Ajuster pour les petits écrans */
+        .form-controlm {
+          width: 100%; /* Ajuster la largeur pour occuper la largeur de l'écran */
+          height: 40px;
+          margin: 10px;
+          padding: 10px;
+          font-family: Roboto;
+          outline: none;
+        }
+      
+        .form-textaream {
+          width: 100%; /* Ajuster la largeur pour occuper la largeur de l'écran */
+          margin: 10px;
+          padding: 10px;
+          font-family: Roboto;
+          outline: none;
+        }
+      }
+      
+      .champs-contact {
+        margin: 20px;
+      }
+      
+      .ling {
+        display: none; /* Masquer la ligne pour les petits écrans */
+        border-right: 1px solid #555;
+        margin: 20px;
+      }
+      
+      .btn-conta {
+        margin: 10px;
+        display: flex; /* Ajuster pour les petits écrans */
+        flex-direction: column; /* Ajuster pour les petits écrans */
+        align-items: center; /* Ajuster pour les petits écrans */
+        .btn-envoie-message,
+        .btn-annule-message {
+          width: 100%; /* Ajuster la largeur pour occuper la largeur de l'écran */
+          height: 40px;
+          margin: 5px;
+          font-family: Roboto;
+          font-weight: 300;
+          border: none;
+        }
+        .btn-envoie-message {
+          background: #555;
+          color: #f0f2f5;
+        }
+        .btn-annule-message {
+          background: teal;
+          color: #f0f2f5;
+        }
+      }
+      
+      .contacter-reseau {
+        margin: 20px;
+        h2 {
+          margin: 10px;
+          font-family: Roboto;
+        }
+        .soci {
+          display: flex;
+          flex-wrap: wrap; /* Ajuster pour les petits écrans */
+          justify-content: center; /* Ajuster pour les petits écrans */
+          p {
+            margin: 10px;
+            font-family: Open Sans;
+            font-size: 20px;
+          }
+          .icon {
+            font-size: 30px;
+            color: #a7a7a7;
+            margin: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+              transform: scale(1.1);
+              color: #0897f7;
+            }
+          }
+        }
+      }
+      
+      /* Media Query pour les petits écrans */
+      @media (max-width: 768px) {
+        .contactss {
+          h2 {
+            font-size: 20px; /* Ajuster la taille du titre pour les petits écrans */
+          }
+        }
+      .champs-contact{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+        .container-contact {
+          .form-controlm,
+          .form-textaream {
+            width: 100%; /* Ajuster la largeur pour occuper la largeur de l'écran */
+          }
+        }
+      
+        .btn-conta {
+          .btn-envoie-message,
+          .btn-annule-message {
+            width: 100%; /* Ajuster la largeur pour occuper la largeur de l'écran */
+          }
+        }
+      
+        .ling {
+          display: block; /* Afficher la ligne pour les petits écrans */
+        }
+      }
+}

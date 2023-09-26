@@ -1,0 +1,231 @@
+.profile{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background: #f0f2f5;
+
+}
+
+.profile .pr{
+    height: 100px;
+    width: 100%;
+    background: #fff;
+    border-top:1px solid #dfdfdf ;
+    border-bottom: 1px solid #dfdfdf;
+    box-shadow: 1px 1px 1px 1px #d3d3d3;
+    
+}
+
+.profile h1{
+    
+    margin: 20px;
+    font-family: 'Roboto';
+    font-size: 20px;
+}
+.container-profiles{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #dfdfdf;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 1px 1px 1px 1px #d3d3d3;
+    border-radius: 10px;
+}
+
+.cars-profile{ 
+    border-radius: 20px;
+    // background:  #09c4f3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.img-car{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-img{
+    width: 200px;
+    height: 200px;
+    border-radius: 100%;
+    margin-top: 50px;
+    transition: all 0.5s;
+    &:hover{
+        transform: scale(1.1);
+        border: 3px solid #fff;
+    }
+}
+
+.profile .card-body{
+    
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.card-body h1{
+    font-family: sans-serif;
+    color:#555;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.les-notes{
+    p{
+        font-family: Roboto;
+        font-size: 16px;
+        font-weight: 600;
+    }
+}
+
+.btn-avis{
+    display: flex;
+    margin: 10px;
+    .btn-j,
+    .btn-nj,
+    .btn-jp{
+        margin:5px;
+        width: 130px;
+        height: 40px;
+        border: none;
+        border-radius: 20px;
+        font-family: Roboto;
+
+    }
+    .btn-j{
+        color:rgb(13, 179, 221)
+    }
+}
+.biograph{
+   margin: 20px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+
+.details{
+    margin: 20px;
+    p{
+        font-family: Roboto;
+    }
+    span{
+        font-weight: 350;
+        color: #8b8b8b;
+    }
+}
+
+.profile p{
+   font-family: 'Roboto';
+   
+}
+
+.lienGeo{
+    text-decoration: none;
+    font-size: 18px;
+    font-family: "Roboto";
+    font-weight: 600;
+}
+
+.les-notations{
+    margin:20px;
+    
+}
+
+.header-avis{
+   background: #fff;
+   border:1px solid #e9e9e9;
+   box-shadow: 1px 1px 1px 1px #d3d3d3;
+   border-radius: 10px;
+   padding: 10px;
+    h1{
+        font-family: Roboto;
+        font-size: 16px;
+        
+    }
+    .input-avis{ 
+        margin: 20px;
+        width: 300px;
+        height: 50px;
+        border: 1px solid #e9e9e9;
+        border-radius: 10px;
+        padding: 10px;
+        font-family: 'Roboto';
+    }
+
+    .btn-avis-input{
+        margin: 10px;
+        width: 100px;
+        border: none;
+        background: teal;
+        height: 45px;
+        text-align: center;
+        font-family: Roboto;
+        font-size: 16px;
+        color:#fff
+    }
+}
+
+@media (max-width:900px){
+    .pr{
+        text-align: center;
+        width: 15rem;
+    }
+    .profile{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+    .container-profiles {
+        width: 20rem;
+        padding: 10px; /* Réduisez l'espacement */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .cars-profile{
+        width: 20rem;
+      }
+    
+      .card-img {
+        width: 150px; /* Réduisez la taille de l'image */
+        height: 150px;
+        margin-top: 30px;
+      }
+    
+      .card-body h1 {
+        font-size: 14px; /* Réduisez la taille de la police */
+      }
+
+      .btn-j,.btn-jp,.btn-nj{
+        width: 10rem;
+        font-size: 0.8em;
+        box-sizing: border-box;
+      }
+      .les-notations{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+     .header-avis{
+        width: 20rem;
+
+        .input-avis{
+            width: 17rem
+         }
+     }
+
+     
+      
+}

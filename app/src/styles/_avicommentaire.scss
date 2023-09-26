@@ -1,0 +1,78 @@
+.aviscommentaire{
+    padding: 10px;
+    background-color: #ffff;
+    display: flex;
+    //flex-wrap: wrap;
+    align-items: center;
+    width: 600px;
+    text-transform: none;
+    box-shadow: 1px 1px 1px 1px #d3d3d3;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+    &:hover{
+        background: #e7e4e4;
+    }
+
+
+
+    
+    .img-avis{
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+    }
+
+
+.n-mess{
+ display: flex; 
+ flex-wrap: wrap;
+ flex-direction: column;
+ width: 350px;  
+.name{
+    margin: 10px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mess-avis{
+    margin-top: -10px;
+    margin-left: 10px;
+    font-family: 'Roboto';
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    background: #f0f2f5;
+    padding: 10px;
+    border-radius: 20px;
+}}
+
+.date-btn{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 200px;
+    p{
+        font-family: Roboto;
+        font-weight: 400;
+        color: rgb(136, 136, 136);
+        font-size: 14px;
+    }
+    .btn-card-avis-del{
+      width: 40px;
+      height: 40px;
+      color: rgb(2, 74, 209);
+      font-family: Roboto;
+      cursor: pointer;
+    }}
+
+}
+
+@media(max-width:900px){
+   .aviscommentaire{
+       width: 20rem;
+   }
+   
+}

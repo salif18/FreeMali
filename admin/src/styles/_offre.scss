@@ -1,0 +1,73 @@
+.offre{
+    flex:4;
+    border: 1px solid #f8fbfc94;
+    margin:20px;
+    background: #fff;
+    box-shadow: 2px 2px 2px 2px #d2d2d2;
+    
+}
+
+
+.headers{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 20px;
+    border-bottom: 1px solid rgb(192, 192, 192);
+}
+
+.select{
+    width: 200px;
+    height: 40px;
+    padding-left: 10px;
+    margin: 20px;
+}
+
+.option{
+    font-weight:600;
+    font-size: 18px;
+}
+
+.tableaux{
+    margin:20px;
+    cursor: pointer;
+}
+
+.tab{
+    margin-top: 20px;
+}
+
+.ite-h{
+    font-weight: 600;
+    font-family: Open Sans;
+}
+
+.title-tab{
+    border-bottom: 4px solid #555;
+    width: 400px;
+    padding: 10px;
+    font-family: 'Roboto';
+    font-weight: normal;
+    text-align: center;
+}
+
+.name-tab{
+    margin: 20px;
+    padding: 10px;
+    font-size: 14px;
+    font-family: Roboto;
+    font-weight: 300;
+    text-align: center;
+    border-bottom: 1px solid #c4c4c494;
+    img{
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+    }
+}
+
+.btnview{
+    border: none;
+    color: #06e663;
+    background: #fff;
+}

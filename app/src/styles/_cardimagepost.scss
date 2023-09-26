@@ -1,0 +1,138 @@
+.cardimage{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    width: 600px;
+    height: auto;
+    box-shadow: 1px 1px 1px 1px #dadada;
+    border-radius: 10px;
+  
+    //zonnee des donnes
+     .donnees{
+      margin: 10px;
+      border: 1px solid #e6e7e7;
+      padding: 10px;
+      .info-user{
+          display: flex;
+          img{
+              width: 50px;
+              height: 50px;
+              border-radius: 100%;
+              background-color: #f0f2f5;
+          }
+          .info-day{
+              margin: 10px;
+              p:nth-child(1){
+                  font-family: Roboto;
+              }
+              p:nth-child(2){
+                  font-family: 'Roboto' ;
+                  font-size: 12px;
+                  margin-top: -20px;
+              }
+          }
+      }
+      p{
+          font-family: 'Roboto' ;
+          font-size: 16px;
+          font-weight: 500;
+          
+      }
+     }
+  
+     //zone de videos
+     .container-image{
+      width: 600px;
+      height: auto;
+      border: 1px solid #d4d5d6;
+      img{
+      width: 600px;
+      height: auto;
+      }
+     }
+  // les actions
+     .actions{
+      display: flex;
+      align-items: center;
+      margin: 20px;
+      border: 1px solid #e6e7e7;
+      padding: 10px;
+      border-radius: 10px;
+  
+      p{
+        display: flex;
+        align-items: center;
+        color: #0000004d;
+        font-family: sans-serif ;
+        font-weight: 500;
+        margin: 20px;
+        cursor: pointer;
+        span{
+            margin-left:5px;
+            margin-right:5px
+        }
+      }
+     }
+  
+     //zone input
+     .zone-input{
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      margin: 10px;
+      input{
+          width: 300px;
+          height: 40px;
+          border-radius: 20px;
+          padding: 10px;
+          border: 1px solid #d3d3d3;
+          outline: none;
+          background-color: #f0f2f5;
+      }
+      .btn{
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: Roboto;
+          margin: 10px;
+          cursor: pointer;
+          color: #a0a0a0;
+          border-radius: 100%;
+      }
+     }
+  
+     //zone commentaire
+     .zone-commentaire{
+      display: flex;
+      flex-direction: column;
+      padding: 10px;
+      border: 1px solid #f0f2f5;
+      
+     }
+}
+
+@media (max-width: 900px) {
+    .cardvideos {
+      max-width: 100%; /* Occupe toute la largeur sur les écrans étroits */
+      
+    }
+    
+    .actions{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+        font-size: 13px;
+        
+    }
+    .cardvideos video {
+      max-width: 100%; /* Assurez-vous que la vidéo reste dans la largeur de la carte */
+    }
+    .zone-commentaire{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+    }
+  }

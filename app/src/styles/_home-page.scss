@@ -1,0 +1,50 @@
+.home-page{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.container-home{
+    height: 100%;
+}
+.section-home{
+    margin: 1.25em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 25em;
+
+}
+
+.maps{
+    width: 6.25em;
+    height: 6.25em;
+    display: flex;
+    align-items: center;
+   justify-content: center;
+}
+
+ .maps .a{
+        text-decoration: none;
+        font-size: 1.25em;
+    }
+
+    .maps .a .img{
+        width: 1.25em;
+        height: 1.25em;
+    }
+
+    @media(max-width:768px){
+        .container-home{
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .section-home{
+            margin: 1.25em;
+            
+            height: 25em;
+        
+        }
+    }

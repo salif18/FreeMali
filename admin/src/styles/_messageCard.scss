@@ -1,0 +1,54 @@
+.messageCard{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    background: #f0f2f5;
+}
+
+.messageTop{
+    display: flex;
+    
+    p{
+        padding: 10px;
+        display: flex;
+        flex-wrap: wrap;
+        border-radius: 20px;
+        background: rgb(81, 165, 221);
+        font-family: 'Roboto';
+        color: #ffffff;
+        font-weight: 500;
+        max-width: 300px;
+    }
+}
+
+.message-img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    // border: 4px solid rgb(13,179,221);
+    object-fit: cover;
+    color:#fff;
+    font-family: 'Roboto';
+    margin-right: 10px;
+    
+}
+
+.message-times{
+    font-size: 12px;
+    margin-top: 10px;
+    font-family: sans-serif;
+    font-weight: 600;
+    color: #a0a0a0;
+}
+
+
+
+.message.own{
+    align-items: flex-end;
+
+    .messageTop p{
+        background: #e4e2e28a;
+        // background: rgb(137, 255, 200);
+        color: black;
+    }
+}

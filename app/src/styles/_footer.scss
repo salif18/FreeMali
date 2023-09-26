@@ -1,0 +1,92 @@
+.footer{
+    background: #161b2e;
+    height: 15em;
+    padding: 20px;
+    width: 100%;
+    
+}
+
+.container-footer{
+    
+    display: flex;
+    justify-content: space-evenly;
+    
+    .reso{
+        margin-top: 100px;
+        .icon{
+            color: #fff;
+            margin-left: 10px;
+            cursor: pointer;
+            &:hover{
+                color: #0eaae7;
+            }
+        }
+    }
+
+    .contacts{
+        margin-top: 100px;
+        .contact{
+            font-family: Roboto;
+            font-size: 1em;
+            color: #fff;
+            text-decoration: none;
+            &:hover{
+                color: #0eaae7;
+            }
+        }
+    }
+
+    .service{
+        margin-top: 100px;
+        h2{
+            font-size: 1em;
+            font-family: Roboto;
+            color: #fff;
+        }
+
+        p{
+            font-size: 1em;
+            font-family: Roboto;
+            color: #fff;
+            cursor: pointer;
+            &:hover{
+                color: #0eaae7;
+            }
+        }
+    }
+
+    .copy{
+        margin-top: 100px;
+        font-family: Roboto;
+        font-size: 1em;
+        color: #fff;
+    }
+}
+
+@media(max-width:900px){
+.footer{
+        height: 100%;
+      
+}
+
+.container-footer{
+    flex-direction: column;
+     align-items: center;
+     justify-content: center;
+    
+}
+.service{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.contacts{
+    h2{
+        font-size: 1em;
+    }
+    p{
+        font-size: 1em;
+    }
+}
+}

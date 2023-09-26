@@ -1,0 +1,42 @@
+.revenueComponent{
+    display: flex;
+    width: 380px;
+    height: 95px;
+    margin:10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px #ececec;
+    cursor: pointer;
+    .revenu-icons{
+        margin: 5px;
+    }
+    .revenu-infos{
+        margin: 5px;
+        h3{
+            font-size: 20px;
+            font-family: Roboto;
+        }
+        
+        .totprc{
+            display: flex;
+            justify-content: space-between;
+            
+        }
+       .money-taux{
+           display: flex;
+           
+           
+           
+        }
+
+        .futured-icons{
+           font-size: 14px;
+           color: green;
+           
+        }
+
+        .futured-icons.negative{
+           color: red;
+        }
+    }
+}

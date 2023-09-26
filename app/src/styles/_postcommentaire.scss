@@ -1,0 +1,211 @@
+.postcomment{
+    padding: 10px;
+    background-color: #ffff;
+    display: flex;
+    align-items: center;
+    width: 550px;
+    text-transform: none;
+    border:1px solid #e9e9e9;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+    
+
+    .img-avis{
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+    }
+
+
+.n-mess{
+ display: flex; 
+ flex-wrap: wrap;
+ flex-direction: column;
+ width: 350px;  
+.name{
+    margin: 10px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.mess-avis{
+    margin-top: -10px;
+    margin-left: 10px;
+    font-family: 'Roboto';
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    background: #f0f2f5;
+    padding: 10px;
+    border-radius: 20px;
+}}
+
+.date-btn{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 200px;
+    p{
+        font-family: Roboto;
+        font-weight: 400;
+        color: rgb(136, 136, 136);
+        font-size: 14px;
+    }
+    .btn-card-avis-del{
+      width: 40px;
+      height: 40px;
+      color: rgb(2, 74, 209);
+      font-family: Roboto;
+      cursor: pointer;
+    }}
+
+}
+
+.singlepostcommentvideo{
+    padding: 10px;
+    background-color: #363636;
+    display: flex;
+    align-items: center;
+    width: 500px;
+    text-transform: none;
+    border:1px solid #000000;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+   
+
+    .img-avis{
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+    }
+
+
+.n-mess{
+ display: flex; 
+ flex-wrap: wrap;
+ flex-direction: column;
+ width: 400px;  
+.name{
+    margin-left: 20px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 600;
+    color: #f0f2f5;
+}
+
+.mess-avis{
+    max-width: 400px;
+    margin-top: -10px;
+    margin-left: 20px;
+    font-family: 'Roboto';
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    background: #232b38;
+    padding: 10px;
+    border-radius: 20px;
+    color: #f0f2f5;
+}}
+
+.date-btn{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 200px;
+    p{
+        font-family: Roboto;
+        font-weight: 400;
+        color: rgb(136, 136, 136);
+        font-size: 14px;
+    }
+    .btn-card-avis-del{
+      width: 40px;
+      height: 40px;
+      color: rgb(2, 74, 209);
+      font-family: Roboto;
+      cursor: pointer;
+    }}
+}
+
+.singlepostcommentimg{
+    padding: 10px;
+    background-color: #363636;
+    display: flex;
+    align-items: center;
+    width: 400px;
+    text-transform: none;
+    border:1px solid #000000;
+    border-radius: 10px;
+    margin: 10px;
+    cursor: pointer;
+    
+
+    .img-avis{
+        width: 50px;
+        height: 50px;
+        border-radius: 100%;
+    }
+
+
+.n-mess{
+ display: flex; 
+ flex-wrap: wrap;
+ flex-direction: column;
+ width: 400px;  
+.name{
+    margin-left: 20px;
+    font-family: 'Roboto';
+    font-size: 16px;
+    font-weight: 600;
+    color: #f0f2f5;
+}
+
+.mess-avis{
+    margin-top: -10px;
+    margin-left: 20px;
+    font-family: 'Roboto';
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    background: #232b38;
+    padding: 10px;
+    border-radius: 20px;
+    color: #f0f2f5;
+}}
+
+.date-btn{
+    margin-top: 20px;
+    margin-left: 20px;
+    width: 200px;
+    p{
+        font-family: Roboto;
+        font-weight: 400;
+        color: rgb(136, 136, 136);
+        font-size: 14px;
+    }
+    .btn-card-avis-del{
+      width: 40px;
+      height: 40px;
+      color: rgb(2, 74, 209);
+      font-family: Roboto;
+      cursor: pointer;
+    }}
+}
+
+@media(max-width:900px){
+    .singlepostcommentimg{
+        width: 30rem;
+        
+    }
+    .singlepostcommentvideo{
+        width: 30rem;
+    }
+}

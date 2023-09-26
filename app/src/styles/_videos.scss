@@ -1,0 +1,15 @@
+.videos{
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    video{
+        width: 150px;
+        height: 150px;
+        border-radius: 10px;
+        border:1px solid #c7c7c7;
+        margin: 10px;
+    }
+}

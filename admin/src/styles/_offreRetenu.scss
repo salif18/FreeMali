@@ -1,0 +1,27 @@
+.offre-retenu{
+    flex:4;
+
+    .container-offre{
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        .entete{
+            margin: 10px;
+            height: 100px;
+            background-color: #fff;
+            box-shadow: 1px 1px 1px 1px #c9c9c9;
+            padding: 10px;
+            background: #fff;
+            h1{
+                font-family: 'Roboto';
+                font-size: 20px;
+            }
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+
+        }
+    }
+}

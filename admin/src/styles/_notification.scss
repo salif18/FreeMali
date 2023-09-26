@@ -1,0 +1,15 @@
+.notifications{
+    flex:4;
+    background: #f0f2f5;
+    // height: calc(100vh - 80px);
+    height: 550px;
+    border: none;
+    
+    h2{
+        font-family: "Montserrat";
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 20px;
+        color: rgb(13, 179, 221);
+    }
+}

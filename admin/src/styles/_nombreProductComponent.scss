@@ -1,0 +1,20 @@
+.nombreProductComponent{
+    display: flex;
+    width: 350px;
+    height: 95px;
+    margin:10px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px #ececec;
+    cursor: pointer;
+    .nombre-icons{
+        margin: 5px;
+    }
+    .nombre-infos{
+        margin: 5px;
+        h3{
+            font-size: 20px;
+            font-family: Roboto;
+        }
+    }
+}

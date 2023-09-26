@@ -1,0 +1,29 @@
+.home{
+    flex:4;
+    display: flex;
+    flex-direction: column;
+    margin:10px;
+    background: #f0f2f5;
+}
+
+.nombres{
+    display: flex;
+    align-items: center;
+}
+
+.statistiques{
+    display: flex;
+    align-items: center;
+}
+
+.user-orders{
+    display: flex;
+
+}
+
+.mapscarte{
+    margin: 20px;
+    width: 600px;
+}
+
+

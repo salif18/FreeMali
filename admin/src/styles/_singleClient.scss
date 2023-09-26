@@ -1,0 +1,123 @@
+.singleClient{
+    flex: 4;
+    margin: 10px;
+    border-top: 1px solid #c4c4c494;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px 2px #d2d2d2;
+}
+
+
+.singleClient h2{
+    font-family: Roboto;
+    margin:20px;
+    font-size: 18px;
+    font-weight: 500;
+}
+
+.identite-container{
+    margin: 20px;
+}
+
+.indite{
+    display: flex;
+    margin:10px;
+    align-items: center;
+    // justify-content: space-between;
+}
+
+.imag-identite{
+    
+    width: 200px;
+    height: 200px;
+    border: 1px solid #c4c4c494;
+    border-radius: 10px;
+    margin-right:20px ;
+    img{
+        width: 200px;
+        height: 200px;
+        border-radius: 10px;
+    }
+}
+
+.info-identite{
+    background: #fff;
+    flex:3;
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #c4c4c494;
+    height: 200px;
+    border-radius: 10px;
+    margin: 10px;
+}
+.btn.email{
+  background: rgba(35, 35, 240, 0.705);
+  margin:20px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid rgba(35, 35, 240, 0.705);
+  span{
+    color:#fff
+  }
+}
+.email a{
+ display: flex;
+  align-items: center;
+  justify-content: space-around;
+  text-decoration: none;
+   color:#fff;
+   //font-weight: 600;
+   font-family: Roboto;
+   font-size: 16px;
+}
+
+.info-identite h3{
+    font-weight: 500;
+    font-family:Roboto;
+    margin:20px;
+    font-size: 16px;
+}
+
+.identite-span{
+    font-size: 16px;
+    font-family: Roboto;
+    margin: 20px;
+    color:rgba(110, 110, 110, 0.87)
+}
+
+.tableau{
+    margin:20px;
+    border: 1px solid #c4c4c494;
+    border-radius: 5px;
+
+}
+
+.in{
+    display: flex;
+    align-items: center;
+}
+
+.ite-h{
+    text-align: center;
+
+}
+
+.ite-nam{
+    text-align: center;
+    padding: 20px;
+}
+.lin2{
+    height: 100px;
+}
+
+.btn-sa{
+    margin: 20px;
+    border: none;
+    background: #099c47;
+    font-family: Roboto;
+    color: #fff;
+    width: 100px;
+    height: 40px;
+    &:hover{
+        background: #045f2a;
+    }
+}
