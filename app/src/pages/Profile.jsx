@@ -217,9 +217,6 @@ useEffect(()=>{
             <p>
               Prenom <span>{item.prenom}</span>
             </p>
-            {isInLine && <p>
-              Contact <span>{item.numero}</span>
-            </p>}
             <p>
               Proffession <span>{item.proffession}</span>
             </p>

@@ -12,9 +12,13 @@
         justify-content: center;
         border: 1px solid #cacaca;
         .p{
-            margin: 20px;
+            margin: 10px;
             font-family: 'Roboto';
             cursor: pointer;
+            color: #696969;
+            &:hover{
+                color: #0672ee;
+            }
         }
         
     }
@@ -22,7 +26,6 @@
     .zone{
         display: flex;
         width: 900px;
-        
         flex-wrap: wrap;
         align-items: center;
         margin: 20px;
@@ -31,5 +34,14 @@
         cursor: pointer;
         border-radius: 10px;
         background-color: #fff;
+    }
+}
+@media(max-width:900px){
+    .nav{
+        .container{
+            p{
+                font-size: 0.8em;
+            }
+        }
     }
 }

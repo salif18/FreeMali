@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import Navbar from "../constants/Navbar";
+import Footer from '../constants/Footer';
 import { MyStore } from "../context/myStore";
 import axios from "axios";
 import { useNavigate, Navigate,NavLink } from "react-router-dom";
@@ -684,6 +685,7 @@ const notification = {
           )}
         </div>
       </div>
+      <Footer />
     </>
   );
 };

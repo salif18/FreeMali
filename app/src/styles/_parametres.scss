@@ -8,17 +8,20 @@
 }
 
 .header-para{
+    //background-image: url('../images/bgk.jpg');
     display: flex;
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
     width: 100%;
+    height: 40%;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
     box-shadow: 1px 1px 1px 1px #cfcfcf;
     margin: 3px;
 }
 .img-para-container{
+    
     padding-left: 20px;
     display: flex;
     align-items: center;
