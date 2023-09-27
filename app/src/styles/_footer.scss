@@ -13,6 +13,13 @@
     
     .reso{
         margin-top: 100px;
+        p{
+            color: #fff;
+            text-align: center;
+            font-family: Roboto;
+            font-size: 1em;
+            color: #fff;
+        }
         .icon{
             color: #fff;
             margin-left: 10px;
@@ -24,8 +31,20 @@
     }
 
     .contacts{
+        display: flex;
+        flex-direction: column;
         margin-top: 100px;
         .contact{
+            font-family: Roboto;
+            font-size: 1em;
+            color: #fff;
+            text-decoration: none;
+            margin: 5px;
+            &:hover{
+                color: #0eaae7;
+            }
+        }
+        .contact a{
             font-family: Roboto;
             font-size: 1em;
             color: #fff;
@@ -56,10 +75,22 @@
     }
 
     .copy{
+        display: flex;
+        flex-direction: column;
         margin-top: 100px;
         font-family: Roboto;
         font-size: 1em;
         color: #fff;
+        .contact{
+            margin: 5px;
+            font-family: Roboto;
+            font-size: 1em;
+            color: #fff;
+            text-decoration: none;
+            &:hover{
+                color: #0eaae7;
+            }
+        }
     }
 }
 

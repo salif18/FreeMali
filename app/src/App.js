@@ -38,6 +38,8 @@ import Comfirmation from './pages/Comfirmation';
 import Postes from './pages/Postes';
 import SingleVideo from './pages/SingleVideo';
 import SingleImage from './pages/SingleImage';
+import About from './pages/About';
+import Confidentialite from './pages/Confidentialite';
 
 
 
@@ -113,6 +115,8 @@ useEffect(()=>{
        <Route path='/developpeur' element={<Developpeurs/>}/>
        <Route path='/maçon' element={<Maçon/>} />
        <Route path='/contacts' element={<Contacts/>} />
+       <Route path='/abouts' element={<About/>} />
+       <Route path='/confidentialite' element={<Confidentialite/>} />
        <Route path='/postes' element={<Postes/>} />
        <Route path='/postes/:id/video' element={<SingleVideo/>}/>
        <Route path='/postes/:id/image' element={<SingleImage/>}/>

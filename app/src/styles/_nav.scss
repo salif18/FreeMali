@@ -3,8 +3,10 @@
     align-items: center;
     justify-content: center;
     margin-top:-3px ;
+    width: 100%;
     .container{
-        width: 900px;
+        //width: 900px;
+        width: 100%;
         background-color: #fff;
         height: 60px;
         display: flex;
@@ -25,9 +27,11 @@
 
     .zone{
         display: flex;
-        width: 900px;
+        //width: 900px;
+        width: 50%;
         flex-wrap: wrap;
         align-items: center;
+        justify-content: center;
         margin: 20px;
         font-family: 'Roboto';
         box-shadow: 1px 1px 1px 1px #cecece;

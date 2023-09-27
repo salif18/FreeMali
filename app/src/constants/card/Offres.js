@@ -41,7 +41,7 @@ const Headers = {
   const Auteur = users.filter((c) => c._id === item.userId);
   const auteur = Auteur[0];
 
-
+ 
   return (
     <div className="card-offre" key={item._id}>
 
@@ -56,10 +56,10 @@ const Headers = {
           <div className="center">
           <div className="contenuss">
             <p>{auteur?.profile.prenom}</p>
-            <p><span>{auteur?.numero}</span></p>
+            
           </div>
           <div className="contenus">
-            <p className="p2">{format(item.createdAt)}</p>
+             <p className="p2">{format(item.createdAt)}</p>
           </div>
         </div>
        
@@ -88,7 +88,7 @@ const Headers = {
           onClick={() => navigate(`/offre/${item._id}`)}>
           Postulez à l'offre
         </button>
-        <p >Offre: <span style={{fontSize:'0.9em',fontWeight:500,color: item.prise === true ? 'green' : 'blue'}}>{item.prise === true ? "Prise en main" :"En attente"} {item.prise ===true && <CheckCircleIcon className="ic"/>}</span></p>
+        <p >Offre: <span style={{fontSize:'0.9em',fontWeight:500,color: item.prise === true ? 'green' : 'blue'}}>{item.prise === true ? "en main"  :"En attente"}  {item.prise === true && <span>&#x1F44B;</span>} {item.prise ===true && <CheckCircleIcon className="ic"/>}</span></p>
       </div>
       </div>
       </div>

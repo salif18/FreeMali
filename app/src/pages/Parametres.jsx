@@ -12,6 +12,7 @@ import MapUser from "../Maps/MapUser";
 import Nav from "../constants/Nav";
 import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import PowerSettingsNewIcon from "@mui/icons-material/PowerSettingsNew";
+import {ClipLoader} from 'react-spinners';
 
 const Parametres = () => {
   const {
@@ -38,6 +39,17 @@ const Parametres = () => {
       Authorization: `Bearer ${token}`,
     },
   };
+
+  
+//spinner
+const [loading,setloading]=useState(false)
+
+useEffect(()=>{
+  setloading(true)
+  setTimeout(()=>{
+    setloading(false)
+  },1000)
+},[])
 
   //API
   //url pour poster le profile
@@ -287,7 +299,13 @@ const notification = {
   return (
     <>
       <Navbar />
-      <div className="parametre">
+      {
+        loading ? <div className='clip-card'>
+                     <ClipLoader  />
+                     <p>Chargement en  cours...</p>
+                   </div> 
+                :
+        <div className="parametre">
         <div className="header-para">
           {!isInLine && <Navigate to="/connecter" replace={true} />}
           <div className="img-para-container">
@@ -685,6 +703,7 @@ const notification = {
           )}
         </div>
       </div>
+      }
       <Footer />
     </>
   );

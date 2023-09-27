@@ -3,7 +3,8 @@ import Navbar from "../constants/Navbar";
 import CardOffres from "../constants/card/Offres";
 import { MyStore } from "../context/myStore";
 import axios from "axios";
-
+import { Navigate } from "react-router";
+import {ClipLoader} from 'react-spinners';
 // url pour poster et recuperer tous les offres
 
 const Offres = () => {
@@ -146,10 +147,26 @@ const url = `${domaineURL}/offres`;
   //vider la variable errorForm apres un temps donne
   errorForm  &&  setTimeout(() => { setErrorForm('')},2800);
 
+   //spinner
+   const [loading,setloading]=useState(false)
+
+   useEffect(()=>{
+     setloading(true)
+     setTimeout(()=>{
+       setloading(false)
+     },1000)
+   },[])
+   
   return (
     <>
       <Navbar />
-      <div className="offres">
+      {loading ? <div className='clip-card'>
+      <ClipLoader  />
+      <p>Chargement en  cours...</p>
+    </div> 
+ :
+        <div className="offres">
+       
      {/*afichage par condition*/}
         {
           (me_User && !me_User.isPrestataire) && 
@@ -236,6 +253,7 @@ const url = `${domaineURL}/offres`;
           }
         </div>
       </div>
+      }
     </>
   );
 };

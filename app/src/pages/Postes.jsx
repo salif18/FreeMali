@@ -8,6 +8,7 @@ import AddAPhotoIcon from "@mui/icons-material/AddAPhoto";
 import VideoCallIcon from "@mui/icons-material/VideoCall";
 import CardVideoPost from "../constants/card/CardVideoPost";
 import CardImagePost from "../constants/card/CardImagePost";
+import {ClipLoader} from 'react-spinners';
 
 const Postes = () => {
   const { myProfile, defaultImage, userId, token, setAdmin, admin,domaineURL } = useContext(MyStore);
@@ -188,10 +189,26 @@ const Postes = () => {
   //trier les donnees par ordre recents 
    const data = dataPublic.sort((a, b) => new Date(b.createdAt)-new Date(a.createdAt))
    
+  //spinner
+  const [loading,setloading]=useState(false)
+
+useEffect(()=>{
+  setloading(true)
+  setTimeout(()=>{
+    setloading(false)
+  },1000)
+},[])
+
   return (
     <>
       <Navbar />
-      <main className="postes">
+      {
+        loading ? <div className='clip-card'>
+                     <ClipLoader  />
+                     <p>Chargement  en  cours...</p>
+                   </div> 
+                :
+        <main className="postes">
         <div>
           <div className="container-postes">
             <img
@@ -287,6 +304,7 @@ const Postes = () => {
             )}
         </div>
       </main>
+     }
     </>
   );
 };

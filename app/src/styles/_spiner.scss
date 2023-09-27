@@ -1,0 +1,14 @@
+.clip-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 15%;
+    p{
+        font-size: 1.3em;
+        font-family: Roboto;
+        font-weight: 600;
+        margin: 20px;
+        color: #6f91a1;
+    }
+}

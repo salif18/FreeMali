@@ -7,6 +7,8 @@ import axios from "axios";
 import {  Navigate, useNavigate } from "react-router";
 import CourriersCard from '../constants/card/CourriersCard';
 import BackspaceIcon from '@mui/icons-material/Backspace';
+import {ClipLoader} from 'react-spinners';
+import Footer from '../constants/Footer';
 
 const Courriers = () => {
     const { isInLine,userId ,setAdmin, token, domaineURL } = useContext(MyStore);
@@ -18,6 +20,17 @@ const Courriers = () => {
         'Authorization': `Bearer ${token}`
       }
     }
+
+    //spinner
+const [loading,setloading]=useState(false)
+
+useEffect(()=>{
+  setloading(true)
+  setTimeout(()=>{
+    setloading(false)
+  },1000)
+},[])
+
 
     useEffect(()=>{
       axios.get(`${domaineURL}/profils/admin`,Headers)
@@ -53,7 +66,13 @@ const Courriers = () => {
     return (
         <>
         <Navbar/>
-        <div className='courrier'>
+        {
+          loading ? <div className='clip-card'>
+                     <ClipLoader  />
+                     <p>Chargement en  cours...</p>
+                   </div> 
+                :
+          <main className='courrier'>
         {!isInLine && <Navigate to='/login' replace={true} />}
         {/*partie ou affiche les conversations recus*/}
         <div className="new-message">
@@ -80,7 +99,9 @@ const Courriers = () => {
            : (  <span className="textread"> "" Aucune discussion ouverte ""</span> )
          }  
           </div>
-        </div>
+        </main>
+        }
+        <Footer/>
         </>
     );
 }

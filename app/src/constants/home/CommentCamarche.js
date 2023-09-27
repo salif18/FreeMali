@@ -2,7 +2,7 @@ import React from "react";
 
 const CommentCamarche = () => {
   return (
-    <div className="comment">
+    <div className="comment" id="marche">
       <h1>Comment fonctionne notre plateforme <span className="free">FreeMali ?</span></h1>
       <div className="container-objets">
         <div className="objets">

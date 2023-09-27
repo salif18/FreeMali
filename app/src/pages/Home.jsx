@@ -8,6 +8,7 @@ import { MyStore } from "../context/myStore";
 import axios from "axios";
 import Recomandation from "../constants/home/Recomandation";
 import { useNavigate, Navigate } from "react-router";
+import QuelquesOffre from "../constants/home/QuelquesOffre";
 
 const Home = () => {
   const { getUsers, token, getMyData,domaineURL, userId, isInLine } =
@@ -57,6 +58,7 @@ const Home = () => {
         <div className="container-home">
           <Banner />
           <Quelques />
+          <QuelquesOffre/>
           <CommentCamarche />
           <Recomandation/>
           <Footer />

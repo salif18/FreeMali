@@ -5,6 +5,7 @@ import { MyStore } from "../context/myStore";
 import axios from "axios";
 import { format } from "timeago.js";
 import Commentaires from "../constants/card/commentaires";
+import {ClipLoader} from 'react-spinners';
 
 const SingleOffre = () => {
   const { userId, me_User, admin, setAdmin, token,domaineURL, users, defaultImage, isInLine } = useContext(MyStore);
@@ -111,12 +112,28 @@ const SingleOffre = () => {
 
   //vider la variable errorForm apres un temps donne
   errorForm  &&  setTimeout(() => { setErrorForm('')},2800);
-  
+//spinner
+const [loading,setloading]=useState(false)
+
+useEffect(()=>{
+  setloading(true)
+  setTimeout(()=>{
+    setloading(false)
+  },1000)
+},[])
+
   return (
     <>
       <Navbar />
       {!isInLine && <Navigate to="/connecter" replace={true} />}
-      <div className="singleoffre">
+      
+      {
+        loading ? <div className='clip-card'>
+                     <ClipLoader  />
+                     <p>Chargement en  cours...</p>
+                   </div> 
+                :
+        <main className="singleoffre">
         
 
         <div className="contenu-single-offre">
@@ -197,7 +214,8 @@ const SingleOffre = () => {
         ))}
       </div>
 
-      </div>
+      </main>
+    }
     </>
   );
 };
