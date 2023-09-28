@@ -6,6 +6,7 @@ import {ClipLoader} from 'react-spinners';
 import axios from "axios";
 import { MyStore } from "../context/myStore";
 import Employers from "../constants/card/Employers";
+import SidebarLeft from "../constants/blogs/SidebarLeft";
 
 const Blogs = () => {
   const { users, getUsers,token,domaineURL } = useContext(MyStore);
@@ -60,6 +61,9 @@ useEffect(()=>{
           </div>
         </div>
         }
+        <div className="side">
+         <SidebarLeft/>
+        </div>
       </div>
     </>
   );

@@ -5,7 +5,10 @@ import { MyStore } from "../context/myStore";
 import axios from "axios";
 import { Navigate } from "react-router";
 import {ClipLoader} from 'react-spinners';
-// url pour poster et recuperer tous les offres
+import SidebarLeft from "../constants/blogs/SidebarLeft";
+
+
+
 
 const Offres = () => {
   const {
@@ -165,6 +168,7 @@ const url = `${domaineURL}/offres`;
       <p>Chargement en  cours...</p>
     </div> 
  :
+ <div className="offre-pages">
         <div className="offres">
        
      {/*afichage par condition*/}
@@ -192,7 +196,7 @@ const url = `${domaineURL}/offres`;
                   className="texta"
                   value={recits}
                   onChange={(e) => setRecits(e.target.value)}
-                  placeholder={(errorForm && recits.length <= 0 ) ? errorForm :"Ecrivez votre projet d'emploi..."}
+                  placeholder={(errorForm && recits.length <= 0 ) ? errorForm :"Decrivez votre projet d'emploi..."}
                 />
                
                 </div>
@@ -253,7 +257,12 @@ const url = `${domaineURL}/offres`;
           }
         </div>
       </div>
+      <div className="side">
+      <SidebarLeft/>
+      </div>
+      </div>
       }
+      
     </>
   );
 };

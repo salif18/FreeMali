@@ -9,6 +9,9 @@ import VideoCallIcon from "@mui/icons-material/VideoCall";
 import CardVideoPost from "../constants/card/CardVideoPost";
 import CardImagePost from "../constants/card/CardImagePost";
 import {ClipLoader} from 'react-spinners';
+import SidebarLeft from "../constants/blogs/SidebarLeft";
+
+
 
 const Postes = () => {
   const { myProfile, defaultImage, userId, token, setAdmin, admin,domaineURL } = useContext(MyStore);
@@ -199,6 +202,43 @@ useEffect(()=>{
   },1000)
 },[])
 
+// const [content, setContent] = useState([]); // État pour stocker le contenu
+// const [load, setLoad] = useState(false);
+
+// const loadMoreContent = () => {
+//   // Effectuez une requête AJAX ou une action pour obtenir plus de contenu
+//   // Ajoutez le contenu au tableau content
+//   setLoad(true);
+//   setTimeout(() => {
+//     // Exemple : ajout de contenu factice pour l'illustration
+//     const newContent = Array.from({ length: 5 }, (_, index) => (
+//       <div key={dataPublic.length + index}>Contenu {dataPublic.length + index}</div>
+//     ));
+//     setDataPublic((prevContent) => [...prevContent, ...newContent]);
+//     setLoad(false);
+//   }, 1000);
+// };
+
+// useEffect(() => {
+//   // Ajoutez un gestionnaire d'événement pour le défilement de la fenêtre
+//   const handleScroll = () => {
+//     if (
+//       window.innerHeight + window.scrollY >=
+//       document.documentElement.scrollHeight - 100
+//     ) {
+//       // Si l'utilisateur fait défiler jusqu'en bas de la page, chargez plus de contenu
+//       loadMoreContent();
+//     }
+//   };
+
+//   window.addEventListener('scroll', handleScroll);
+
+//   return () => {
+//     // Nettoyez le gestionnaire d'événements lorsque le composant est démonté
+//     window.removeEventListener('scroll', handleScroll);
+//   };
+// }, []);
+
   return (
     <>
       <Navbar />
@@ -208,6 +248,7 @@ useEffect(()=>{
                      <p>Chargement  en  cours...</p>
                    </div> 
                 :
+        <div className="postes-conta">      
         <main className="postes">
         <div>
           <div className="container-postes">
@@ -298,13 +339,21 @@ useEffect(()=>{
             .map((item) =>
               item.type === "video" ? (
                 <CardVideoPost video={item} key={item._id} />
+                
               ) : (
                 <CardImagePost image={item} key={item._id} />
               )
+              
             )}
+            
         </div>
       </main>
+      <div className="side">
+      <SidebarLeft/>
+      </div>
+      </div>
      }
+     
     </>
   );
 };

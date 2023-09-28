@@ -31,12 +31,12 @@ const QuelquesOffre = () => {
             <Swiper 
               className='swiper'
               modules={[Pagination]}
-              slidesPerView={1}
+              slidesPerView={2}
               pagination={{clickable:true}}
               
              >
             {
-                offres.slice(0,6).map((item) => (
+                offres.slice(0,10).map((item) => (
                  <SwiperSlide className='swiper-slider ' key={item._id}>
                    <CardOffres item={item} key={item._id} />
                  </SwiperSlide>

@@ -6,6 +6,7 @@ import axios from "axios";
 import { format } from "timeago.js";
 import Commentaires from "../constants/card/commentaires";
 import {ClipLoader} from 'react-spinners';
+import Footer from "../constants/Footer";
 
 const SingleOffre = () => {
   const { userId, me_User, admin, setAdmin, token,domaineURL, users, defaultImage, isInLine } = useContext(MyStore);
@@ -216,6 +217,7 @@ useEffect(()=>{
 
       </main>
     }
+    <Footer/>
     </>
   );
 };

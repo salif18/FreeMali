@@ -87,7 +87,7 @@ const Navbar = () => {
             </NavLink>
           
             <NavLink className={({ isActive }) => (isActive ? "active" : "links")} to="/blogs">
-                <EngineeringIcon className="icon"  /> Prestataires
+                <EngineeringIcon className="icon"  /> Repertoire des prestataires
             </NavLink>
         
             <NavLink className={({ isActive }) => (isActive ? "active" : "links")} to="/postes">

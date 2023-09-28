@@ -1,42 +1,93 @@
-.slider{
+// .slider{
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     justify-content: center;
+//     width: 100%;
+//     background-color: #f6f6f6;
+//     height: 80vh;
+//     .h1{
+//         margin: 2em;
+//         font-family: 'Roboto';
+//         font-size: 1.7em;
+//         color:#3e3f6b ;
+//         cursor: pointer;
+//         &:hover{
+//             color: #4749ad;
+//         }
+//     }
+//     .container-slider{
+//         display: flex;
+//         align-items: center;
+//         .swiper{
+//             width: 90%;
+//             border-radius: 10px;
+//         }
+//         .swiper-slider{
+//         //    width: 600px;
+//             display: flex;
+//             align-items: center;
+//             justify-content: center;
+//         }
+//     }
+
+// }
+.slider {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
     background-color: #f6f6f6;
-    height: 80vh;
-    .h1{
-        margin: 2em;
+    height: 70vh;
+
+    .h1 {
+        margin: 1em;
         font-family: 'Roboto';
         font-size: 1.7em;
-        color:#3e3f6b ;
+        color: #3e3f6b;
         cursor: pointer;
-        &:hover{
+
+        &:hover {
             color: #4749ad;
         }
     }
-    .container-slider{
-        background-color: adjust-color(#f0f2f5);
+
+    .container-slider {
         display: flex;
         align-items: center;
-        .swiper{
+
+        .swiper {
             width: 90%;
             border-radius: 10px;
         }
-        .swiper-slider{
-        //    width: 600px;
+
+        .swiper-slider {
             display: flex;
             align-items: center;
             justify-content: center;
         }
     }
 
-}
+
 
 @media(max-width:900px){
     
-    .swiper{
-        width: 100%;
+    .slider {
+        .container-slider {
+            flex-direction: column; /* Changez la direction pour l'affichage mobile */
+            
+            .swiper {
+                width: 100%;
+            }
+
+            .swiper-slider {
+                margin: 1em 0; /* Ajoutez de l'espace entre les slides */
+            }
+        }
     }
 }
+}
+
+
+

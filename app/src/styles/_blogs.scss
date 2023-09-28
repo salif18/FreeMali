@@ -2,7 +2,7 @@
     display: flex;
     border-top: 1px solid #f1f1f1;
     background: #f0f2f5;
-    height: calc(100vh - 55px);
+    height: calc(100vh - 50px);
     
 }
 
@@ -14,7 +14,8 @@
 }
 
 .main-container{
-    
+    align-items: center;
+    justify-content: center;
     flex: 4;
     background: #f0f2f5;
     border-radius: 10px;
@@ -39,8 +40,8 @@
     flex-wrap: wrap;
     align-items: center;
     margin: 20px;
-    width: 800px;
-    margin-left: 150px;
+    width: 590px;
+    margin-left: 90px;
 }
 
 @media(max-width:900px){

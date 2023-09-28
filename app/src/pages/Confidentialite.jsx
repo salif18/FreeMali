@@ -18,18 +18,18 @@ useEffect(()=>{
   },1000)
 },[])
 
-//  animate scroll
-useEffect(()=>{
-   ScrollReveal().reveal('.startleft',{
-    duration:1000,
-    origin:'left',
-    delay:0,
-    easing:'ease-in-out',
-    reset:true
-   })
-   ScrollReveal().reveal()
-   return (()=>{ScrollReveal().destroy()})
-},[])
+// //  animate scroll
+// useEffect(()=>{
+//    ScrollReveal().reveal('.startrigth',{
+//     duration:1000,
+//     origin:'left',
+//     delay:0,
+//     easing:'ease-in-out',
+//     reset:true
+//    })
+//    ScrollReveal().reveal()
+//    return (()=>{ScrollReveal().destroy()})
+// },[])
 
     return (
         <>
@@ -41,21 +41,21 @@ useEffect(()=>{
                 :
             <main className='confidentialite'>
             <div className='baner-confidentialite'>
-            <div className='titre startleft'>
-             <h1 className='startleft'>Politique de confidentialité</h1>
+            <div className='titre '>
+             <h1>Politique de confidentialité</h1>
             </div>
             </div>
 
-            <strong className='date startleft'>27 Septembre 2023</strong>
+            <strong className='date '>27 Septembre 2023</strong>
             <div className='contenu'>
-             <section className='left startleft'>
+             <section className='left'>
               
-              <p className='startleft'>Votre vie privée nous tient à coeur à FreeMali. Cette déclaration de confidentialité fournit des détails sur les informations personnelles que FreeMali collecte, et sur la manière dont FreeMali les utilise.</p>
+              <p >Votre vie privée nous tient à coeur à FreeMali. Cette déclaration de confidentialité fournit des détails sur les informations personnelles que FreeMali collecte, et sur la manière dont FreeMali les utilise.</p>
 
-              <h1 className='les-titre startleft'>
+              <h1 className='les-titre '>
               <strong>VOS INFORMATIONS PERSONNELLES COLLECTEES</strong><hr></hr></h1>
               <p>FreeMali collecte les informations personnelles suivants à travers un formulaire d'adhésion sur le site:</p>
-             <ul className='listes startleft'>
+             <ul className='listes'>
              <li>Nom</li>
              <li>Prénom</li>
              <li>Email</li>
@@ -68,7 +68,7 @@ useEffect(()=>{
              </section>
              <section className='rigth'>
              <h1 className='les-titre'>
-             <strong>UTILISATION D'INFORMATIONS PERSONNELLES</strong><hr></hr></h1>
+             <strong>USAGE DE VOS INFORMATIONS PERSONNELLES</strong><hr></hr></h1>
              <p>FreeMali collecte les informations personnelles dans le but de :</p>
              <ul className='listes'>
               <li>Notifier par email ou sms les candidats sur les offres d'emplois disponibles</li>
@@ -76,7 +76,7 @@ useEffect(()=>{
               <li>Les coordonnées de géolocalisation sont utilises pour vous proposer les prestataires le plus proches de votre position </li>
               <li>Vos numéros seront masqués seul FreeMali a à sa possession pour pouvoir vous contacter en cas de besoins </li>
              </ul>
-             <p>Les candidats ont la possibilité en tout moment d'accéder à leurs informations ou encore de les supprimer. Cette procédure se fait manuellement pour le moment en nous contactant par email ou par téléphone.</p>
+             
              </section>
             </div>
             <div className='ft'>

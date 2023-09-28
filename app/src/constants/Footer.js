@@ -7,7 +7,7 @@ import ScrollReveal from 'scrollreveal';
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Footer = () => {
-  const navigate = useNavigate()
+  
   //fonction pour scroller la page vers la partie cliquer dans le lien 
     const scrollToSection = (sectionId) => {
       const section = document.getElementById(sectionId);
@@ -21,17 +21,18 @@ const handleNavigate =()=>{
   scrollToSection('marche')
 }
 //  animate scroll
-useEffect(()=>{
-  ScrollReveal().reveal('.startleft',{
-   duration:1000,
-   origin:'top',
-   delay:0,
-   easing:'ease-in-out',
-   reset:true
-  })
-  ScrollReveal().reveal()
-  return (()=>{ScrollReveal().destroy()})
-},[])
+// useEffect(()=>{
+//   ScrollReveal().reveal('.startleft',{
+//    duration:1000,
+//    origin:'top',
+//    delay:0,
+//    easing:'ease-in-out',
+//    reset:true
+//   })
+//   ScrollReveal().reveal()
+//   return (()=>{ScrollReveal().destroy()})
+// },[])
+
   return (
     <footer className="footer">
       <div className="container-footer">

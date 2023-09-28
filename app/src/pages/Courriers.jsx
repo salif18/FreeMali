@@ -10,6 +10,7 @@ import BackspaceIcon from '@mui/icons-material/Backspace';
 import {ClipLoader} from 'react-spinners';
 import Footer from '../constants/Footer';
 
+
 const Courriers = () => {
     const { isInLine,userId ,setAdmin, token, domaineURL } = useContext(MyStore);
     const [couriers , setCouriers] = useState([]);
@@ -101,7 +102,7 @@ useEffect(()=>{
           </div>
         </main>
         }
-        <Footer/>
+       <Footer/>
         </>
     );
 }

@@ -1,11 +1,11 @@
 .card-offre{
     background: #fff;
     width: 600px;
-    border: 1px solid #e9e9e9;
+    height: 300px;
     padding: 15px;
      margin:6.9px;
      border-radius: 20px;
-     box-shadow: 1px 1px 1px 1px #d3d3d3;
+     box-shadow: 1px 1px 1px 1px #dfdfdf;
      border-radius: 10px;
     cursor: pointer;
 }
@@ -13,14 +13,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left:20px;
+    // margin-left:20px;
     
 }
 
 
 .img-card-offre{
-   width: 80px;
-   height: 80px;
+   width: 4em;
+   height: 4em;
    border-radius: 100%;
 }
 
@@ -30,14 +30,14 @@
 }
 
 .contenu{
-    margin-left: 20px;
+    margin-left: 1.2em;
     h1{
-        font-size: 16px;
+        font-size: 1.2em;
         font-family: 'Roboto';
          font-weight: 600;
     };
     p{
-        font-size: 16px;
+        font-size: 1em;
         font-family: 'Roboto';
         font-weight: 300;
         color: #000
@@ -49,19 +49,19 @@
         span{
             font-family: 'Roboto';
             font-weight: 400;
-            font-size: 14px;
+            font-size: 1em;
         }
     }
     .p2{
       font-family: "Roboto";
-      font-size: 12px;
+      font-size: 1em;
       color:#b8b8b8;
       font-weight: 600;
     }
 }
 
 .contenu-commit{
-    width: 350px;
+    width: 16rem;
     height: 25px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -94,7 +94,7 @@
     font-family: "Roboto";
     font-weight: 500;
     // border-radius: 10px;
-    font-size: 14px;
+    font-size: 0.8em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -114,7 +114,7 @@
     font-family: "Roboto";
     font-weight: 500;
     border-radius: 100%;
-    font-size: 14px;
+    font-size: 0.8em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -128,14 +128,14 @@
 .contenuss{
     margin: 20px;
     p{
-        font-size: 16px;
+        font-size: 1em;
         font-family: 'Roboto';
         font-weight: 600;
         color: #000;
         margin:-2px
     }
     span{
-        font-size: 12px;
+        font-size: 0.7em;
         font-family: 'Roboto';
         font-weight: 300;
         color: #000;
@@ -148,7 +148,7 @@
     margin-left: 20px;
     .p2{
       font-family: "Roboto";
-      font-size: 12px;
+      font-size: 0.7em;
       color:#b8b8b8;
       font-weight: 600;
     }
@@ -159,7 +159,7 @@
     p{
         font-family: Roboto;
         font-weight: 500;
-        font-size: 16px;
+        font-size: 1em;
     }
     .ic{
         font-size: 20px;
@@ -178,7 +178,6 @@
 @media screen and (max-width: 768px) {
     .card-offre {
       padding: 10px; /* Ajuster la marge intérieure pour les petits écrans */
-      
     }
   
     .container-img-card-offre {
@@ -190,22 +189,30 @@
     }
   
     .contenu {
+        
       margin-left: 10px;
-      font-size: 0.8em; /* Ajuster la marge pour les petits écrans */
+      p{
+        display: none;
+      }
+      //font-size: 0.8em; /* Ajuster la marge pour les petits écrans */
     }
   
     .contenu-commit {
+        display: none;
       width: 100%; /* Ajuster la largeur pour les petits écrans */
-      font-size: 0.8em;
+      //font-size: 0.8em;
     }
   
     .btn-card-offre {
       width: 80%; /* Ajuster la largeur pour les petits écrans */
-      font-size: 0.8em;
+      //font-size: 0.8em;
     }
   
     .btn-card-offre-del {
       margin-left: 10px; /* Ajuster la marge pour les petits écrans */
-      font-size: 1em;
+      //font-size: 1em;
+    }
+    .commenter{
+        display: none;
     }
   }

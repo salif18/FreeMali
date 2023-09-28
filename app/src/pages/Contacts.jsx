@@ -165,9 +165,9 @@ const sendNotifications =()=>{
         </div>
         <div className="ling"></div>
         <div className="contacter-reseau">
-          <h2>Reseaux sociaux</h2>
+          <h2>Retrouvez nous sur</h2>
           <div className="soci">
-            <FacebookSharpIcon className="icon" />
+          <FacebookSharpIcon className="icon" />
             <LinkedInIcon className="icon" />
             <InstagramIcon  className="icon"/>
             <WhatsAppIcon className="icon"/>
