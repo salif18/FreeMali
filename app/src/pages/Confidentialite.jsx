@@ -71,7 +71,7 @@ useEffect(()=>{
              <strong>USAGE DE VOS INFORMATIONS PERSONNELLES</strong><hr></hr></h1>
              <p>FreeMali collecte les informations personnelles dans le but de :</p>
              <ul className='listes'>
-              <li>Notifier par email ou sms les candidats sur les offres d'emplois disponibles</li>
+              <li>Notifier par email ou sms les candidats sur les offres d'emplois disponibles et le code de reinitialisation en cas de mot de passe oublie</li>
               <li>De proposer des informations et des offres publicitaires aux candidats</li>
               <li>Les coordonnées de géolocalisation sont utilises pour vous proposer les prestataires le plus proches de votre position </li>
               <li>Vos numéros seront masqués seul FreeMali a à sa possession pour pouvoir vous contacter en cas de besoins </li>
