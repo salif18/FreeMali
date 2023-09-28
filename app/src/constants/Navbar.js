@@ -47,12 +47,30 @@ const Navbar = () => {
     openModal()
   }
 
+  //scroll le nav bar fixe
+  // const [isNavbarVisible, setNavbarVisible] = useState(true);
+
+  // const handleScroll = () => {
+  //   if (window.scrollY > 0) {
+  //     setNavbarVisible(false);
+  //   } else {
+  //     setNavbarVisible(true);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     window.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, []);
+
   
 
   return (
       
     
-    <nav className="navbar">
+    <nav className='navbar'>
     <h2 className="logo-title" onClick={()=>navigate('/')}>
            <span>free</span>
            <span>Ma</span>
@@ -73,7 +91,7 @@ const Navbar = () => {
             </NavLink>
         
             <NavLink className={({ isActive }) => (isActive ? "active" : "links")} to="/postes">
-                <PublicIcon className="icon"  /> Expositions de travails
+                <PublicIcon className="icon"  /> Travaux réalisés
             </NavLink>
         
             <NavLink className={({ isActive }) => (isActive ? "active" : "links")} to="/offres">

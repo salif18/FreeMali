@@ -46,6 +46,10 @@
         justify-content: center;
         
         .left{
+            transition: all 0.5s ease;
+            &:hover{
+                transform: scale(1.02)
+            };
             padding: 15px;
             width: 50%;
             margin: 20px;
@@ -84,6 +88,10 @@
             border-radius: 5px;
             box-shadow: 1px 1px 1px 1px #e0e0e9;
             cursor: pointer;
+            transition: all 0.5s;
+            &:hover{
+                transform: scale(1.02)
+            };
             p{
                 font-family: Roboto;
                 font-size: 1em;

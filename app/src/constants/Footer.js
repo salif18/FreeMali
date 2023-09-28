@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FacebookSharpIcon from "@mui/icons-material/FacebookSharp";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-// import ContactlessIcon from '@mui/icons-material/Contactless';
-// import InfoIcon from '@mui/icons-material/Info';
-// import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
+import ScrollReveal from 'scrollreveal';
 import { NavLink, useNavigate } from "react-router-dom";
 
 const Footer = () => {
@@ -20,24 +18,33 @@ const Footer = () => {
     };
 
 const handleNavigate =()=>{
-
   scrollToSection('marche')
-  
-  
 }
+//  animate scroll
+useEffect(()=>{
+  ScrollReveal().reveal('.startleft',{
+   duration:1000,
+   origin:'top',
+   delay:0,
+   easing:'ease-in-out',
+   reset:true
+  })
+  ScrollReveal().reveal()
+  return (()=>{ScrollReveal().destroy()})
+},[])
   return (
     <footer className="footer">
       <div className="container-footer">
 
-      <div className="reso">
+      <div className="reso startleft">
       <p >Suivez-nous sur</p>
-      <FacebookSharpIcon className="icon"/>
+      <FacebookSharpIcon className="icon "/>
       <WhatsAppIcon className="icon"/>
       <InstagramIcon className="icon"/>
       <TwitterIcon className="icon" />
      </div>
 
-      <div className="contacts">  
+      <div className="contacts startleft">  
       <NavLink className='contact' to="/contacts">
          Nous contacter
       </NavLink>
@@ -49,7 +56,7 @@ const handleNavigate =()=>{
       </NavLink>
       </div>
 
-        <div className="copy">
+        <div className="copy startleft">
         <NavLink className='contact' to="/confidentialite">
          Politique de confidentialite
         </NavLink>

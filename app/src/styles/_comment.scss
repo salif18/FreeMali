@@ -12,7 +12,7 @@
 .comment h1{
     font-family: 'Roboto';
     margin:0.625em;
-    font-size: 1.875;
+    font-size: 1.7em;
     font-weight: 300;
     color:#3e3f6b; //#656760;
     .free{
@@ -41,8 +41,8 @@
 }
 
 .obj-img{
-    width: 13.75em;
-    height: 9.375em;
+    width: 9.75em;
+    height: 5.375em;
     margin:1.25em;
     transition: all 0.5s ease-in-out;
     &:hover{
@@ -59,7 +59,6 @@
 }
 
 @media(max-width:900px){
-
     .comment h1{
        font-size: 1.20em;
        text-align: center;

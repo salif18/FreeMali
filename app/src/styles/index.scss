@@ -11,7 +11,10 @@
   padding:0;
   box-sizing: border-box;
   max-width: 100%;
-  text-decoration: none
+  text-decoration: none;
+  scrollbar-width:thin; /* "auto" pour utiliser la barre de défilement native */
+  scrollbar-color: #92b1c0 #f1f1f1;
+
  
 }
 
