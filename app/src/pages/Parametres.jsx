@@ -36,7 +36,7 @@ const Parametres = () => {
   const Headers = {
     headers: {
       "Content-type": "multipart/form-data",
-      Authorization: `Bearer ${token}`,
+      "Authorization": `Bearer ${token}`,
     },
   };
 
@@ -138,8 +138,10 @@ const notification = {
   const handleFileChange = (e) => {
     // Accédez au premier fichier sélectionné
     const file = e.target.files[0];
+   
     // Stockez le fichier sélectionné dans l'état
     setProfil({ ...profil, photo: file });
+    
   };
 
   const handleSubmitCreate = async (e) => {
@@ -159,6 +161,7 @@ const notification = {
     formData.append("biographie", profil.biographie);
     formData.append("longitude", longitude);
     formData.append("latitude", latitude);
+    
     if (
       profil.photo.length > 0 ||
       profil.nom.length > 0 ||
@@ -175,6 +178,17 @@ const notification = {
         if (res) {
           await res.data;
           navigate("/");
+          setProfil({
+            nom: "",
+            prenom: "",
+            photo: null,
+            email: "",
+            numero: "",
+            address: "",
+            proffession: "",
+            categorie: "",
+            biographie: "",
+          });
         }
       } catch (e) {
         console.error(e);
@@ -222,11 +236,24 @@ const notification = {
     formData.append("categorie", profilUpdate.categorie);
     formData.append("proffession", profilUpdate.proffession);
     formData.append("biographie", profilUpdate.biographie);
+    console.log(formData)
     if (profilUpdate) {
       try {
         const res = await axios.put(urlPUT, formData, Headers);
         if (res) {
           await res.data;
+          setProfilUpdate({
+            userId: "",
+            nom: "",
+            prenom: "",
+            photo: null,
+            email: "",
+            numero: "",
+            proffession: "",
+            categorie: "",
+            address: "",
+            biographie: "",
+          })
         }
       } catch (e) {
         console.error(e);
@@ -376,9 +403,9 @@ const notification = {
                 <form className="form-para">
                   <div className="form-para-left">
                     <div className="container-field">
-                    <label htmlFor='photo' className="champs" ><AddAPhotoIcon/></label>
+                    <label htmlFor='photoupdate' className="champs" ><AddAPhotoIcon/></label>
                       <input
-                        id="photo"
+                        id="photoupdate"
                         className="champs"
                         type="file"
                         accept="image/*"
@@ -531,14 +558,15 @@ const notification = {
               <div className="form-para">
                 <div className="infos-pro-left">
                   <div className="container-field">
-                  <label className='champs' htmlFor='photo' ><AddAPhotoIcon/></label>
+                  <label className='champs' htmlFor='fichier' ><AddAPhotoIcon/></label>
                     <input
-                      className="champs"
-                      type="file"
-                      accept="image/*"
-                      name="photo"
-                      placeholder="Photo"
-                      onChange={handleFileChange}
+                    id='fichier'
+                    className="champs"
+                    type="file"
+                    accept="image/*"
+                    name="photo"
+                    placeholder="Photo"
+                    onChange={handleFileChange}
                     />
                   </div>
                   <div className="container-field">

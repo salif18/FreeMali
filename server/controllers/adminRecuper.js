@@ -1,16 +1,16 @@
 //importations des modules
 const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt");
-const nodemailer = require('nodemailer');
+const bcrypt = require("bcrypt");   
+const nodemailer = require('nodemailer');  
 const twilio = require("twilio");
 const dotenv = require('dotenv');
 //importations des models
 const Administrateurs = require("../models/adminSchema");
-dotenv.config()
-
+dotenv.config()  
+  
 
 exports.reset = async (req, res) => {
-  //recuperation des donnees de la requete
+  //recuperation des donnees de la requete 
   const { numero, email } = req.body;
   try {
     const users = await Administrateurs.findOne({ 

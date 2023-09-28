@@ -53,20 +53,20 @@ useEffect(()=>{
           <strong>Fonctionnalités clés :</strong>
           <hr></hr>
           <p>
-          <span>1. Profils de Professionnels :</span> Les travailleurs indépendants peuvent créer des profils détaillés, y compris leurs compétences, leurs tarifs et leurs évaluations par d'autres clients.
+          <span>1. Profils de Professionnels :</span> <br/>Les travailleurs indépendants peuvent créer des profils détaillés, y compris leurs compétences, leurs tarifs et leurs évaluations par d'autres clients.
           </p>
           <p>
-          <span>2. Recherche Avancée :</span>Les utilisateurs peuvent rechercher des professionnels en fonction de critères spécifiques tels que la localisation, les categories de fonction.
+          <span>2. Recherche Avancée :</span><br/>Les utilisateurs peuvent rechercher des professionnels en fonction de critères spécifiques tels que la localisation, les categories de fonction.
           </p>
           <p>
-          <span>3. Messagerie Instantanée :</span> Une fonction de messagerie intégrée permet aux clients de communiquer facilement avec les professionnels pour discuter des détails du service.
+          <span>3. Messagerie Instantanée :</span> <br/>Une fonction de messagerie intégrée permet aux clients de communiquer facilement avec les professionnels pour discuter des détails du service.
           </p>
           <p>
-          <span>4. Paiement en Ligne :</span> non intégré pour plus de confiance et eviter l'arnaque en ligne FreeMali propose un système de paiement sécurisé hors ligne entre client et prestataire par vu reel pour eviter les arnaques entre clients et professionnels.
+          <span>4. Paiement en Ligne :</span><br/> non intégré pour plus de confiance et eviter l'arnaque en ligne FreeMali propose un système de paiement sécurisé hors ligne entre client et prestataire par vu reel pour eviter les arnaques entre clients et professionnels.
           </p>
-          <p><span>5. Évaluations et Commentaires :</span> Les utilisateurs peuvent laisser des évaluations et des commentaires sur les professionnels avec lesquels ils ont travaillé, ce qui contribue à renforcer la confiance au sein de la communauté.
+          <p><span>5. Évaluations et Commentaires :</span><br/> Les utilisateurs peuvent laisser des évaluations et des commentaires sur les professionnels avec lesquels ils ont travaillé, ce qui contribue à renforcer la confiance au sein de la communauté.
           </p>
-          <p><span>6. Assistance Client :</span> Une équipe d'assistance client est disponible pour répondre aux questions et résoudre les problèmes éventuels.
+          <p><span>6. Assistance Client :</span><br/> Une équipe d'assistance client est disponible pour répondre aux questions et résoudre les problèmes éventuels.
           </p>
           <p>Que vous ayez besoin d'un petit service ponctuel ou que vous recherchiez un professionnel pour un projet à plus long terme, <strong>FreeMali</strong> simplifie le processus de mise en relation pour vous aider à trouver la personne idéale pour chaque tâche.</p>
          </article>

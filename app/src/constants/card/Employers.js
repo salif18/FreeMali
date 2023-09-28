@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
+import StarIcon from '@mui/icons-material/Star';
 import { MyStore } from "../../context/myStore";
 
 const Employers = ({ item }) => {
